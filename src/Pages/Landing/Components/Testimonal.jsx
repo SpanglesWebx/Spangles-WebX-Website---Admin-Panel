@@ -25,6 +25,7 @@ export default function SmoothStack() {
   const [isAnimating, setIsAnimating] = useState(false);
   const [direction, setDirection] = useState("next");
   const [isAutoPaused, setIsAutoPaused] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const pauseTimeoutRef = useRef(null);
 
   const pauseAutoplay = (duration = 5000) => {
@@ -81,13 +82,13 @@ export default function SmoothStack() {
   }, [next]);
 
   useEffect(() => {
-    if (isAutoPaused) return undefined;
+    if (isAutoPaused || isHovered) return undefined;
 
     const interval = setInterval(() => {
       nextRef.current();
-    }, 3000);
+    }, 2000);
     return () => clearInterval(interval);
-  }, [isAutoPaused]);
+  }, [isAutoPaused, isHovered]);
 
   useEffect(() => {
     return () => {
@@ -109,7 +110,11 @@ export default function SmoothStack() {
         </h2>
       </div>
 
-      <div className="relative flex h-[480px] min-[414px]:h-[480px] min-[1025px]:h-[480px] w-full max-w-[1100px] items-center justify-center">
+      <div
+        className="relative flex h-[480px] min-[414px]:h-[480px] min-[1025px]:h-[480px] w-full max-w-[1100px] items-center justify-center"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         {/* 🔘 LEFT (Desktop) */}
         <button
           onClick={prev}

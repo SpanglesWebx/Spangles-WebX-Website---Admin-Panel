@@ -5,7 +5,7 @@ import {
   FaLinkedinIn,
   FaYoutube,
 } from "react-icons/fa";
-import logo from "../../../../public/Web-Support.jpg"; // Make sure to have this image in your assets folder
+const logo = "/Web-Support.jpg"; // Reference public assets as absolute strings, not imports
 
 export default function SupportBar() {
   return (
