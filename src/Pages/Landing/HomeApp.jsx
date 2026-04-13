@@ -11,12 +11,12 @@ export default function HomeApp() {
     <>
       <Home />
       <Abouthome />
-      <Servicehome/>
-      <Partner/>
-      <Testimonal/>
-      <Featured/>
-      <Contacthome/>
-      <Footerhome/>
+      <Servicehome />
+      <Partner />
+      <Featured />
+      <Testimonal />
+      <Contacthome />
+      <Footerhome />
     </>
   );
 }
