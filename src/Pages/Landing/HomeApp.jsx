@@ -3,6 +3,7 @@ import Abouthome from "./Components/Abouthome";
 import Servicehome from "./Components/Servicehome";
 import Featured from "./Components/Featured";
 import Partner from "./Components/Partner";
+import Testimonal from "./Components/Testimonal";
 import Contacthome from "./Components/Contacthome";
 import Footerhome from "./Components/Footerhome";
 export default function HomeApp() {
@@ -12,6 +13,7 @@ export default function HomeApp() {
       <Abouthome />
       <Servicehome/>
       <Partner/>
+      <Testimonal/>
       <Featured/>
       <Contacthome/>
       <Footerhome/>

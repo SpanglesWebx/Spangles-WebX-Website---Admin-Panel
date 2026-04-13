@@ -87,7 +87,7 @@ export default function ContactSection() {
       ) : null}
       {/* Heading */}
       <div className="mb-10 translate-y-[100px] max-[413px]:translate-y-0 max-[413px]:mb-6">
-        <p className="font-montserrat font-bold text-[14px] leading-[100%]  tracking-[1.43px] uppercase text-[#395563] mb-2 max-[413px]:text-[10px] max-[413px]:mt-10">
+        <p className="font-montserrat font-bold text-[14px] leading-[100%]  tracking-[1.43px] uppercase text-[#395563] mb-2 max-[413px]:text-[10px] max-[413px]:pt-10">
           CONTACT US
         </p>
         <h2 className="font-montserrat font-semibold text-[32px] leading-[42.3px] tracking-[-1.06px] text-start text-[#161C2D] max-[413px]:text-[22px] max-[413px]:leading-[32px]">
