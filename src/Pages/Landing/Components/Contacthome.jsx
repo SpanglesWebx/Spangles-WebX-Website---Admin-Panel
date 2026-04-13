@@ -50,7 +50,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section className="w-full bg-[#F4F7FA] px-[75px]  relative z-30 -mb-[100px] max-[413px]:px-4 max-[413px]:mb-0">
+    <section className="w-full bg-[#F4F7FA] px-[75px]  relative z-30 -mb-[100px] max-[1025px]: -mt-[55px] max-[413px]:px-4 max-[413px]:mb-0">
       {toast ? (
         <div className="fixed right-5 bottom-5 z-[9999]">
           <div className="bg-[#161C2D] text-white rounded-lg shadow-lg px-4 py-3 flex items-start gap-3 min-w-[240px]">

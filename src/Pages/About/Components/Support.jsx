@@ -5,7 +5,7 @@ import {
   FaLinkedinIn,
   FaYoutube,
 } from "react-icons/fa";
-import logo from "../../../assets/Webx-nav-Logo_03.jpg"; // Make sure to have this image in your assets folder
+import logo from "../../../../public/Web-Support.jpg"; // Make sure to have this image in your assets folder
 
 export default function SupportBar() {
   return (
@@ -17,7 +17,7 @@ export default function SupportBar() {
           <img
             src={logo}
             alt="Spanglez Webx"
-            className="h-[50px] w-[200px] object-contain max-[413px]:h-[46px]"
+            className="h-[100px] w-[200px] object-contain max-[413px]:h-[46px]"
           />
         </div>
 

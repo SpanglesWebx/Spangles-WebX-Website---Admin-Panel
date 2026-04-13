@@ -98,22 +98,22 @@ export default function SmoothStack() {
   }, []);
 
   return (
-    <div className="flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-[#F4F7FA] px-[200px] pt-15 pb-40">
+    <div className="flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-[#F4F7FA] px-6 min-[414px]:px-10 min-[1025px]:px-[80px] pt-16 pb-40 max-[1025px]:pb-20 max-[413px]:pb-10">
       {/* 🔝 TOP HEADING */}
-      <div className="mb-16 text-center">
-        <p className="mb-3 font-montserrat text-[14px] font-bold uppercase tracking-[1.43px] leading-[100%] text-[#395563] text-center">
+      <div className="mb-6 min-[414px]:mb-10 min-[1025px]:mb-16 text-center">
+        <p className="mb-3 font-montserrat text-[12px] min-[414px]:text-[13px] min-[1025px]:text-[14px] font-bold uppercase tracking-[1.43px] leading-[100%] text-[#395563] text-center">
           Testimonials
         </p>
-        <h2 className="font-montserrat text-[32px] font-semibold leading-[42.3px] tracking-[-1.06px] text-[#161C2D] text-center">
+        <h2 className="font-montserrat text-[24px] min-[414px]:text-[28px] min-[1025px]:text-[32px] font-semibold leading-[1.3] min-[414px]:leading-[1.4] min-[1025px]:leading-[42.3px] tracking-[-1.06px] text-[#161C2D] text-center">
           What Our Clients Say
         </h2>
       </div>
 
-      <div className="relative flex h-[480px] w-full max-w-[1100px] items-center justify-center">
-        {/* 🔘 LEFT */}
+      <div className="relative flex h-[480px] min-[414px]:h-[480px] min-[1025px]:h-[480px] w-full max-w-[1100px] items-center justify-center">
+        {/* 🔘 LEFT (Desktop) */}
         <button
           onClick={prev}
-          className="absolute left-0 top-1/2 -translate-y-1/2 z-50 text-[#3b5566]"
+          className="absolute left-0 top-1/2 -translate-y-1/2 z-50 text-[#3b5566] hidden min-[414px]:block"
         >
           <ChevronLeft size={42} strokeWidth={1.5} />
         </button>
@@ -121,7 +121,7 @@ export default function SmoothStack() {
         {/* 🔘 RIGHT */}
         <button
           onClick={next}
-          className="absolute right-0 top-1/2 -translate-y-1/2 z-50 text-[#3b5566]"
+          className="absolute right-0 top-1/2 -translate-y-1/2 z-50 text-[#3b5566] hidden min-[414px]:block"
         >
           <ChevronRight size={42} strokeWidth={1.5} />
         </button>
@@ -130,10 +130,15 @@ export default function SmoothStack() {
         {cards.map((card, index) => (
           <motion.div
             key={card.id}
-            className="absolute left-1/2 top-[60px] flex h-[450px] w-[850px] rounded-xl bg-white shadow-[0px_20px_60px_0px_#2E213D14]"
+            className="absolute left-1/2 top-[60px] flex flex-col min-[414px]:flex-row h-[330px] min-[414px]:h-[400px] min-[1025px]:h-[450px] w-[95%] min-[1025px]:w-[800px] rounded-xl bg-white shadow-[0px_20px_60px_0px_#2E213D14]"
             animate={{
-              width: index === 0 ? "85%" : `calc(85% - ${index * 50}px)`,
-              maxWidth: index === 0 ? 900 : 900 - index * 50,
+              width:
+                window.innerWidth < 414
+                  ? index === 0
+                    ? "100%"
+                    : `calc(100% - ${index * 30}px)`
+                  : "100%",
+              maxWidth: index === 0 ? 850 : 850 - index * 50, // Matches original desktop proportions
 
               // ✅ perfectly centered
               x: "-50%",
@@ -144,12 +149,12 @@ export default function SmoothStack() {
               y: isAnimating
                 ? direction === "next"
                   ? index === 0
-                    ? -400
-                    : (index - 1) * 40
+                    ? -500
+                    : (index - 1) * (window.innerWidth < 414 ? 20 : 40)
                   : index === cards.length - 1
-                    ? -400
-                    : (index + 1) * 40
-                : index * 40,
+                    ? -500
+                    : (index + 1) * (window.innerWidth < 414 ? 20 : 40)
+                : index * (window.innerWidth < 414 ? 20 : 40),
 
               opacity: 1 - index * 0.15,
             }}
@@ -163,14 +168,23 @@ export default function SmoothStack() {
           >
             {/* 🖼 IMAGE (FLOAT STYLE) */}
             {(index === 0 || (isAnimating && index === 1)) && (
-              <div className="absolute left-[40px] top-[-60px] w-[300px] h-[510px] overflow-hidden rounded-t-xl rounded-b-none">
-                <img src={card.image} className="h-full w-full object-cover" />
+              <div className="absolute left-6 min-[414px]:left-8 min-[1025px]:left-[40px] top-[-40px] min-[414px]:top-[-50px] min-[1025px]:top-[-60px] flex items-end gap-3 min-[414px]:block">
+                <div className="w-[110px] min-[414px]:w-[200px] min-[1025px]:w-[300px] h-[130px] min-[414px]:h-[350px] min-[1025px]:h-[510px] overflow-hidden rounded-xl min-[1025px]:rounded-b-none shadow-lg min-[1025px]:shadow-none">
+                  <img
+                    src={card.image}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                {/* ⭐ Mobile Stars */}
+                <div className="mb-2 flex gap-1 text-[#3f5f73] text-[14px] min-[414px]:hidden whitespace-nowrap">
+                  ★ ★ ★ ★ <span className="text-gray-300">★</span>
+                </div>
               </div>
             )}
 
             {/* 📄 CONTENT */}
             <motion.div
-              className="ml-[340px] flex flex-col justify-center px-12 py-10"
+              className="mt-22 min-[414px]:mt-0 min-[414px]:ml-[230px] min-[1025px]:ml-[340px] flex flex-col justify-center px-6 min-[1025px]:px-12 py-4 min-[1025px]:py-10"
               animate={{
                 opacity: index === 0 ? 1 : isAnimating && index === 1 ? 1 : 0,
               }}
@@ -179,18 +193,18 @@ export default function SmoothStack() {
                 ease: "easeInOut",
               }}
             >
-              {/* ⭐ STARS */}
-              <div className="mb-5 flex gap-1 text-[#3f5f73] text-[20px]">
+              {/* ⭐ STARS (Desktop Only) */}
+              <div className="mb-3 min-[414px]:mb-4 min-[1025px]:mb-5 hidden min-[414px]:flex gap-1 text-[#3f5f73] text-[16px] min-[1025px]:text-[20px]">
                 ★ ★ ★ ★ <span className="text-gray-300">★</span>
               </div>
 
               {/* 👤 NAME */}
-              <h3 className="mb-4 font-montserrat text-[32px] font-medium leading-[100%] tracking-[-0.04em] capitalize text-[#345261]">
+              <h3 className="mb-2 min-[414px]:mb-3 min-[1025px]:mb-4 font-montserrat text-[20px] min-[414px]:text-[24px] min-[1025px]:text-[32px] font-medium leading-[100%] tracking-[-0.04em] capitalize text-[#345261]">
                 {card.name}
               </h3>
 
               {/* 📝 TEXT */}
-              <p className="mb-5 max-w-[480px] font-montserrat text-[18px] font-normal leading-[32px] tracking-[0em] text-[#6B6A66]">
+              <p className="mb-4 min-[414px]:mb-4 min-[1025px]:mb-5 max-w-[480px] font-montserrat text-[14px] min-[414px]:text-[16px] min-[1025px]:text-[18px] font-normal leading-[1.6] min-[1025px]:leading-[32px] tracking-[0em] text-[#6B6A66]">
                 Ask agreed answer rather joy nature admire wisdom. Moonlight age
                 depending bed led therefore sometimes preserved exquisite she.
                 An fail up so shot leaf wise in. Minuter highest his arrived for
@@ -198,13 +212,22 @@ export default function SmoothStack() {
               </p>
 
               {/* 💼 ROLE */}
-             <span className="font-montserrat text-[18px] font-normal leading-[100%] tracking-[0em] text-[#345261]">
-  – Medical Assistant
-</span>
-
+              <span className="font-montserrat text-[14px] min-[414px]:text-[16px] min-[1025px]:text-[18px] font-normal leading-[100%] tracking-[0em] text-[#345261]">
+                – Medical Assistant
+              </span>
             </motion.div>
           </motion.div>
         ))}
+
+        {/* 🔘 MOBILE CONTROLS (Bottom Right) */}
+        <div className="absolute bottom-0 right-4 z-50 flex gap-6 min-[414px]:hidden">
+          <button onClick={prev} className="text-[#3b5566]">
+            <ChevronLeft size={32} strokeWidth={1.5} />
+          </button>
+          <button onClick={next} className="text-[#3b5566]">
+            <ChevronRight size={32} strokeWidth={1.5} />
+          </button>
+        </div>
       </div>
     </div>
   );
