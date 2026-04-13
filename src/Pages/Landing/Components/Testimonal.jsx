@@ -201,6 +201,7 @@ export default function SmoothStack() {
              <span className="font-montserrat text-[18px] font-normal leading-[100%] tracking-[0em] text-[#345261]">
   – Medical Assistant
 </span>
+
             </motion.div>
           </motion.div>
         ))}
