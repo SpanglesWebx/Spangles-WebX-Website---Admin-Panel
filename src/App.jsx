@@ -9,6 +9,7 @@ import PortfolioDetails from "./Pages/Portfolio/PortfolioDetails";
 import Career from "./Pages/Career/Career";
 import Contact from "./Pages/Contact/Contact";
 import Blog from "./Pages/Blog/Blog";
+import BlogDetails from "./Pages/Blog/BlogDetails";
 import Gallery from "./Pages/Gallery/Gallery";
 import ScrollToTop from "./Components/ScrollToTop";
 import ServiceDetails from "./Pages/Services/ServiceDetails";
@@ -33,6 +34,7 @@ function App() {
           <Route path="/career" element={<Career />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:id" element={<BlogDetails />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

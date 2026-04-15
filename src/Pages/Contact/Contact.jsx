@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ArrowRight } from "lucide-react";
 import phoneIcon from "../../assets/Phone.png";
 import mailIcon from "../../assets/Mail.png";
 import chatIcon from "../../assets/Chat.png";
 import Support from "../About/Components/Support";
+
+const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000";
 
 export default function Contact() {
   const inputStyle = `w-full h-[48.6px] px-5 rounded-[10px]
@@ -21,17 +23,107 @@ focus:border-[#2f4858]`;
   });
 
   const [errors, setErrors] = useState({});
+  const [focusedField, setFocusedField] = useState(null);
+  const [showToast, setShowToast] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    if (showToast) {
+      const timer = setTimeout(() => setShowToast(false), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [showToast]);
 
   const validate = () => {
     let newErrors = {};
 
-    if (!form.name) newErrors.name = "Please enter your name.";
-    if (!form.phone) newErrors.phone = "Enter a valid phone number.";
-    if (!form.email) newErrors.email = "Email address is required.";
-    if (!form.message) newErrors.message = "Message field cannot be empty.";
+    if (!form.name.trim()) {
+      newErrors.name = "Please enter your name.";
+    } else if (form.name.length > 30) {
+      newErrors.name = "Name cannot exceed 30 characters.";
+    }
+
+    const phoneRegex = /^[0-9]{10}$/;
+    if (!form.phone.trim()) {
+      newErrors.phone = "Enter your phone number.";
+    } else if (!phoneRegex.test(form.phone)) {
+      newErrors.phone = "Phone number must be exactly 10 digits.";
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!form.email.trim()) {
+      newErrors.email = "Email address is required.";
+    } else if (!emailRegex.test(form.email)) {
+      newErrors.email = "Please enter a valid email address.";
+    }
+
+    if (!form.subject.trim()) {
+      // Subject is optional in the original code but let's add logic if needed
+    } else if (form.subject.length > 50) {
+      newErrors.subject = "Subject cannot exceed 50 characters.";
+    }
+
+    if (!form.message.trim()) {
+      newErrors.message = "Message field cannot be empty.";
+    } else if (form.message.length > 1000) {
+      newErrors.message = "Message cannot exceed 1000 characters.";
+    }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    let newValue = value;
+
+    if (name === "name") {
+      newValue = value.slice(0, 30);
+    } else if (name === "phone") {
+      // Only allow numbers and max 10 digits
+      newValue = value.replace(/\D/g, "").slice(0, 10);
+    } else if (name === "subject") {
+      newValue = value.slice(0, 50);
+    } else if (name === "message") {
+      newValue = value.slice(0, 1000);
+    }
+
+    setForm({ ...form, [name]: newValue });
+
+    // Clear error for this field when user types
+    if (errors[name]) {
+      setErrors({ ...errors, [name]: "" });
+    }
+  };
+
+  const handleSubmit = async () => {
+    if (validate() && !isSubmitting) {
+      setIsSubmitting(true);
+      try {
+        const res = await fetch(`${API_BASE}/api/contact`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(form),
+        });
+
+        if (!res.ok) throw new Error("Submission failed");
+
+        setShowToast(true);
+        setForm({
+          name: "",
+          phone: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+      } catch (err) {
+        console.error("Error submitting form:", err);
+      } finally {
+        setIsSubmitting(false);
+      }
+    }
   };
 
   return (
@@ -150,12 +242,23 @@ rounded-lg bg-gray-100 group-hover:bg-[#2f4858] transition-all duration-300"
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-[30px] gap-y-[44px] max-[768px]:gap-y-6 max-[480px]:gap-y-4">
               <div>
-                <input
-                  type="text"
-                  placeholder="Your Name *"
-                  className={`${inputStyle} ${errors.name ? "border-red-500" : ""}`}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
-                />
+                <div className="relative">
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Your Name *"
+                    className={`${inputStyle} pr-16 ${errors.name ? "border-red-500" : ""}`}
+                    value={form.name}
+                    onChange={handleInputChange}
+                    onFocus={() => setFocusedField("name")}
+                    onBlur={() => setFocusedField(null)}
+                  />
+                  {focusedField === "name" && (
+                    <span className="absolute right-3 bottom-2 text-[11px] text-gray-400 font-montserrat pointer-events-none">
+                      {form.name.length}/30
+                    </span>
+                  )}
+                </div>
                 {errors.name && (
                   <p className="text-red-500 text-sm mt-1">{errors.name}</p>
                 )}
@@ -164,9 +267,11 @@ rounded-lg bg-gray-100 group-hover:bg-[#2f4858] transition-all duration-300"
               <div>
                 <input
                   type="text"
+                  name="phone"
                   placeholder="Phone Number *"
                   className={`${inputStyle} ${errors.phone ? "border-red-500" : ""}`}
-                  onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                  value={form.phone}
+                  onChange={handleInputChange}
                 />
                 {errors.phone && (
                   <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
@@ -176,9 +281,13 @@ rounded-lg bg-gray-100 group-hover:bg-[#2f4858] transition-all duration-300"
               <div>
                 <input
                   type="email"
+                  name="email"
                   placeholder="Email Address *"
                   className={`${inputStyle} ${errors.email ? "border-red-500" : ""}`}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
+                  value={form.email}
+                  onChange={handleInputChange}
+                  onFocus={() => setFocusedField("email")}
+                  onBlur={() => setFocusedField(null)}
                 />
                 {errors.email && (
                   <p className="text-red-500 text-sm mt-1">{errors.email}</p>
@@ -186,45 +295,101 @@ rounded-lg bg-gray-100 group-hover:bg-[#2f4858] transition-all duration-300"
               </div>
 
               <div>
-                <input
-                  type="text"
-                  placeholder="Subject"
-                  className={inputStyle}
-                  onChange={(e) =>
-                    setForm({ ...form, subject: e.target.value })
-                  }
-                />
+                <div className="relative">
+                  <input
+                    type="text"
+                    name="subject"
+                    placeholder="Subject"
+                    className={`${inputStyle} pr-16 ${errors.subject ? "border-red-500" : ""}`}
+                    value={form.subject}
+                    onChange={handleInputChange}
+                    onFocus={() => setFocusedField("subject")}
+                    onBlur={() => setFocusedField(null)}
+                  />
+                  {focusedField === "subject" && (
+                    <span className="absolute right-3 bottom-2 text-[11px] text-gray-400 font-montserrat pointer-events-none">
+                      {form.subject.length}/50
+                    </span>
+                  )}
+                </div>
+                {errors.subject && (
+                  <p className="text-red-500 text-sm mt-1">{errors.subject}</p>
+                )}
               </div>
             </div>
 
             <div className="mb-9 max-[480px]:mb-6">
-              <textarea
-                placeholder="Message *"
-                className={`${inputStyle} h-[120px] pt-4 mt-[44px] max-[768px]:mt-6 max-[480px]:mt-4 ${
-                  errors.message ? "border-red-500" : ""
-                }`}
-                onChange={(e) => setForm({ ...form, message: e.target.value })}
-              />
+              <div className="relative mt-[44px] max-[768px]:mt-6 max-[480px]:mt-4">
+                <textarea
+                  name="message"
+                  placeholder="Message *"
+                  className={`${inputStyle} h-[120px] pt-4 pb-6 ${errors.message ? "border-red-500" : ""
+                    }`}
+                  value={form.message}
+                  onChange={handleInputChange}
+                  onFocus={() => setFocusedField("message")}
+                  onBlur={() => setFocusedField(null)}
+                />
+                {focusedField === "message" && (
+                  <span className="absolute right-3 bottom-2 text-[11px] text-gray-400 font-montserrat pointer-events-none">
+                    {form.message.length}/1000
+                  </span>
+                )}
+              </div>
               {errors.message && (
                 <p className="text-red-500 text-sm mt-1">{errors.message}</p>
               )}
             </div>
-            <button
-              onClick={validate}
-              className="group bg-[#395563] border border-[#5E6FB5]
-  px-[35px] py-[20px] rounded-[10px]
-  text-white uppercase
-  font-montserrat font-bold text-[12px] leading-[18px]
-  flex items-center justify-center gap-2
-  max-[480px]:w-full max-[480px]:py-4
-  mb-0 max-[413px]:mb-[35px]"
-            >
-              SEND MESSAGE
-              <ArrowRight
-                size={14}
-                className="transition-transform duration-300 group-hover:translate-x-1"
-              />
-            </button>
+            <div className="flex items-center gap-4 flex-wrap">
+              <button
+                onClick={handleSubmit}
+                disabled={isSubmitting}
+                className="group bg-[#395563] border border-[#5E6FB5]
+    px-[35px] py-[20px] rounded-[10px]
+    text-white uppercase
+    font-montserrat font-bold text-[12px] leading-[18px]
+    flex items-center justify-center gap-2
+    max-[480px]:w-full max-[480px]:py-4
+    mb-0 max-[413px]:mb-[35px]
+    disabled:opacity-50"
+              >
+                {isSubmitting ? "SENDING..." : "SEND MESSAGE"}
+                <ArrowRight
+                  size={14}
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                />
+              </button>
+
+              {/* Success Toast */}
+              <div
+                className={`flex items-center gap-2 px-4 py-3 rounded-[10px] transition-all duration-500 ease-out ${showToast
+                    ? "opacity-100 translate-x-0"
+                    : "opacity-0 -translate-x-4 pointer-events-none"
+                  }`}
+                style={{
+                  background: "linear-gradient(135deg, #2f4858 0%, #395563 100%)",
+                }}
+              >
+                <div className="w-5 h-5 rounded-full bg-emerald-400/30 flex items-center justify-center flex-shrink-0">
+                  <svg
+                    className="w-3 h-3 text-emerald-300"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={3}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </div>
+                <span className="text-white font-montserrat text-[12px] font-medium whitespace-nowrap">
+                  Message sent successfully!
+                </span>
+              </div>
+            </div>
           </div>
 
           {/* Right Section - Map */}

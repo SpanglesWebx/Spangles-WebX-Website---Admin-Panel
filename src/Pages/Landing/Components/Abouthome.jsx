@@ -69,7 +69,7 @@ export default function AboutSection() {
             Webx is a tech
           </h2>
 
-          <p className="text-[16px] font-normal leading-[23.65px] text-[#6B6A66] font-montserrat mb-10 max-w-md max-[413px]:text-[14px] max-[413px]:leading-[20px] max-[413px]:mb-8">
+          <p className="w-full max-w-lg font-montserrat font-normal text-[#6B6A66] text-[16px] leading-[23.65px] mb-10 max-[413px]:text-[14px] max-[413px]:leading-[20px] max-[413px]:mb-8">
             Spangles Webx is a tech-driven company passionate about delivering
             innovative digital products. With a focus on design, usability, and
             performance, we help startups and enterprises scale with impactful

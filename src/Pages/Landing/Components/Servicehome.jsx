@@ -112,9 +112,9 @@ export default function ServicesSection() {
     max-[413px]:py-6
   "
         >
-          <div className="flex justify-between items-end gap-10 flex-wrap max-[1025px]:flex-nowrap max-[768px]:flex-wrap max-[413px]:flex-col max-[413px]:items-start max-[413px]:gap-6">
+          <div className="flex justify-between items-end gap-4 flex-wrap max-[1025px]:flex-nowrap max-[768px]:flex-wrap max-[413px]:flex-col max-[413px]:items-start max-[413px]:gap-6">
             {/* LEFT */}
-            <div>
+            <div className="flex flex-col items-start">
               <p className="font-montserrat font-bold text-[14px] leading-[21px] tracking-[2.24px] uppercase text-white/70 mb-4">
                 OUR SERVICE
               </p>
@@ -125,12 +125,14 @@ export default function ServicesSection() {
               </h2>
             </div>
 
-            <div className="max-w-[600px] w-full flex justify-between items-end gap-10 max-[1025px]:w-auto max-[413px]:flex-col max-[413px]:items-start max-[413px]:gap-5">
+            <div className="max-w-[700px] w-full flex justify-between items-end gap-10 max-[1025px]:w-auto max-[413px]:flex-col max-[413px]:items-start max-[413px]:gap-5">
               {/* DESCRIPTION (LEFT) */}
-              <p className="font-montserrat font-normal text-[16px] leading-[24px] text-white max-w-[360px] max-[413px]:text-[14px] max-[413px]:leading-[20px] max-[413px]:max-w-full">
-                Spangles Webx is a tech-driven company passionate about
-                delivering innovative digital products. With a focus on design,
-                usability, and performance,
+              <p className="font-montserrat font-normal text-[16px] leading-[24px] text-white w-full max-[413px]:text-[14px] max-[413px]:leading-[20px]">
+                At Spangles Webx Pvt. Ld, we offer a comprehensive range of IT
+                services designed to empower businesses in the digital era.We
+                combine customer-focused approach to ensure every project is
+                executed with precision, efficiency, and transparency, helping
+                your business grow and stay ahead in a competitive market.
               </p>
 
               {/* BUTTON (RIGHT) */}

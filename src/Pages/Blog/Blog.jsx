@@ -1,54 +1,11 @@
+import React, { useState, useEffect } from "react";
 import { ArrowRight, CalendarDays, Clock3 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import Support from "../About/Components/Support";
 import bannerImg from "../../assets/Service-banner.jpg";
-import img1 from "../../assets/portfolio1.jpg";
-import img2 from "../../assets/portfolio2.jpg";
-import img3 from "../../assets/portfolio3.jpg";
-import img4 from "../../assets/portfolio4.jpg";
 import img5 from "../../assets/portfolio5.jpg";
 
-const posts = [
-  {
-    id: 1,
-    title: "How strong visual systems make digital products feel premium",
-    excerpt:
-      "A smart design language creates trust, improves usability, and helps every screen feel like part of one polished experience.",
-    image: img1,
-    category: "Design",
-    date: "10 Apr 2026",
-    readTime: "5 min read",
-  },
-  {
-    id: 2,
-    title: "Landing page trends that convert without looking generic",
-    excerpt:
-      "The best modern pages mix bold hierarchy, purposeful whitespace, and just enough motion to guide attention.",
-    image: img2,
-    category: "Marketing",
-    date: "08 Apr 2026",
-    readTime: "4 min read",
-  },
-  {
-    id: 3,
-    title: "Why performance still matters in modern brand experiences",
-    excerpt:
-      "A trendy interface should still load fast, feel smooth, and stay readable across every device size.",
-    image: img3,
-    category: "Development",
-    date: "05 Apr 2026",
-    readTime: "6 min read",
-  },
-  {
-    id: 4,
-    title: "Designing content blocks that keep readers scrolling",
-    excerpt:
-      "Editorial spacing, clean metadata, and visual rhythm can turn a simple post list into a much stronger reading experience.",
-    image: img4,
-    category: "Content",
-    date: "02 Apr 2026",
-    readTime: "3 min read",
-  },
-];
+const API_BASE = "http://localhost:5000";
 
 const topics = [
   "UI Strategy",
@@ -57,9 +14,116 @@ const topics = [
   "Mobile Experience",
 ];
 
+const calculateReadTime = (content) => {
+  const wordsPerMinute = 200;
+  const text = content.replace(/<[^>]*>/g, ""); // Remove HTML tags
+  const words = text.split(/\s+/).length;
+  const minutes = Math.ceil(words / wordsPerMinute);
+  return `${minutes} min read`;
+};
+
+const getExcerpt = (content, length = 150) => {
+  const text = content.replace(/<[^>]*>/g, ""); // Remove HTML tags
+  if (text.length <= length) return text;
+  return text.substring(0, length).trim() + "...";
+};
+
+const formatDate = (dateString) => {
+  const options = { day: "2-digit", month: "short", year: "numeric" };
+  return new Date(dateString).toLocaleDateString("en-GB", options);
+};
+
 export default function Blog() {
+  const navigate = useNavigate();
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const disableActions = (e) => {
+      // Disable right click
+      if (e.type === "contextmenu") e.preventDefault();
+
+      // Disable Ctrl+C, Ctrl+U, Ctrl+S, Ctrl+Shift+I
+      if (
+        (e.ctrlKey &&
+          ["c", "u", "s", "a", "x"].includes(e.key.toLowerCase())) ||
+        (e.ctrlKey &&
+          e.shiftKey &&
+          ["i", "j", "c"].includes(e.key.toLowerCase())) ||
+        e.key === "F12"
+      ) {
+        e.preventDefault();
+      }
+    };
+
+    document.addEventListener("contextmenu", disableActions);
+    document.addEventListener("keydown", disableActions);
+
+    return () => {
+      document.removeEventListener("contextmenu", disableActions);
+      document.removeEventListener("keydown", disableActions);
+    };
+  }, []);
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const res = await fetch(`${API_BASE}/api/blogs`);
+        const data = await res.json();
+
+        const mappedPosts = data.map((blog) => ({
+          id: blog._id,
+          title: blog.title,
+          excerpt: getExcerpt(blog.content),
+          image: `${API_BASE}${blog.image}`,
+          category: "Insights", // Default category
+          date: formatDate(blog.createdAt),
+          readTime: calculateReadTime(blog.content),
+        }));
+
+        setPosts(mappedPosts);
+      } catch (err) {
+        console.error("Error fetching blogs:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBlogs();
+  }, []);
+
   const featuredPost = posts[0];
   const latestPosts = posts.slice(1);
+
+  if (loading) {
+    return (
+      <div className="flex h-screen items-center justify-center bg-white font-[Montserrat]">
+        <div className="text-xl font-semibold text-[#345261]">
+          Loading Insights...
+        </div>
+      </div>
+    );
+  }
+
+  if (!featuredPost) {
+    return (
+      <div className="flex h-screen flex-col items-center justify-center bg-white font-[Montserrat] px-4 text-center">
+        <h2 className="text-3xl font-bold text-[#161C2D] mb-4">
+          No stories yet
+        </h2>
+        <p className="text-[#6B6A66] max-w-md">
+          We're currently crafting new insights. Check back soon for the latest
+          updates on design and technology.
+        </p>
+        <button
+          onClick={() => window.location.reload()}
+          className="mt-8 rounded-[10px] bg-[#345261] px-6 py-3 font-bold uppercase text-white hover:opacity-90 transition-opacity"
+        >
+          Refresh Feed
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -105,7 +169,8 @@ export default function Blog() {
               <img
                 src={featuredPost.image}
                 alt={featuredPost.title}
-                className="h-[360px] w-full object-cover transition-transform duration-500 group-hover:scale-105 max-[413px]:h-[240px]"
+                draggable="false"
+                onContextMenu={(e) => e.preventDefault()}
               />
             </div>
 
@@ -135,7 +200,8 @@ export default function Blog() {
 
               <button
                 type="button"
-                className="inline-flex items-center gap-2 rounded-[10px] bg-[#345261] px-6 py-4 font-[Montserrat] text-[12px] font-bold uppercase tracking-[1.5px] text-white"
+                onClick={() => navigate(`/blog/${featuredPost.id}`)}
+                className="inline-flex items-center gap-2 rounded-[10px] bg-[#345261] px-6 py-4 font-[Montserrat] text-[12px] font-bold uppercase tracking-[1.5px] text-white hover:opacity-90 transition-opacity"
               >
                 Read Article
                 <ArrowRight className="h-4 w-4" />
@@ -249,7 +315,8 @@ export default function Blog() {
 
                 <button
                   type="button"
-                  className="inline-flex items-center gap-2 font-[Montserrat] text-[12px] font-bold uppercase tracking-[1.5px] text-[#395563]"
+                  onClick={() => navigate(`/blog/${post.id}`)}
+                  className="inline-flex items-center gap-2 font-[Montserrat] text-[12px] font-bold uppercase tracking-[1.5px] text-[#395563] hover:opacity-80 transition-opacity"
                 >
                   Read More
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
