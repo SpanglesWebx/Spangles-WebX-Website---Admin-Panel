@@ -1,31 +1,75 @@
-import React, { useState, useEffect } from "react";
-import { ArrowRight, CalendarDays, Clock3 } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useMemo, useState, useRef } from "react";
+import {
+  ArrowRight,
+  CalendarDays,
+  Clock3,
+  Search,
+  Sparkles,
+  TrendingUp,
+  ChevronRight,
+} from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { motion, AnimatePresence, useScroll, useSpring, useTransform } from "framer-motion";
 import Support from "../About/Components/Support";
 import bannerImg from "../../assets/Service-banner.jpg";
 import img5 from "../../assets/portfolio5.jpg";
 
 const API_BASE = "http://localhost:5000";
 
-const topics = [
-  "UI Strategy",
-  "Brand Storytelling",
-  "Web Performance",
-  "Mobile Experience",
-];
+// --- STYLISTIC UTILITIES ---
+const GrainOverlay = () => (
+  <div className="pointer-events-none fixed inset-0 z-[999] opacity-[0.035] mix-blend-overlay">
+    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <filter id="noise">
+        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
+      </filter>
+      <rect width="100%" height="100%" filter="url(#noise)" />
+    </svg>
+  </div>
+);
 
-const calculateReadTime = (content) => {
+const MagneticButton = ({ children, className, onClick }) => {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const ref = useRef(null);
+
+  const handleMouseMove = (e) => {
+    const { clientX, clientY } = e;
+    const { left, top, width, height } = ref.current.getBoundingClientRect();
+    const x = (clientX - (left + width / 2)) * 0.35;
+    const y = (clientY - (top + height / 2)) * 0.35;
+    setPosition({ x, y });
+  };
+
+  const reset = () => setPosition({ x: 0, y: 0 });
+
+  return (
+    <motion.button
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={reset}
+      animate={{ x: position.x, y: position.y }}
+      transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
+      className={className}
+      onClick={onClick}
+    >
+      {children}
+    </motion.button>
+  );
+};
+
+// --- DATA UTILITIES ---
+const calculateReadTime = (content = "") => {
   const wordsPerMinute = 200;
-  const text = content.replace(/<[^>]*>/g, ""); // Remove HTML tags
-  const words = text.split(/\s+/).length;
-  const minutes = Math.ceil(words / wordsPerMinute);
+  const text = content.replace(/<[^>]*>/g, "").trim();
+  const words = text ? text.split(/\s+/).length : 0;
+  const minutes = Math.max(1, Math.ceil(words / wordsPerMinute));
   return `${minutes} min read`;
 };
 
-const getExcerpt = (content, length = 150) => {
-  const text = content.replace(/<[^>]*>/g, ""); // Remove HTML tags
+const getExcerpt = (content = "", length = 155) => {
+  const text = content.replace(/<[^>]*>/g, "").trim();
   if (text.length <= length) return text;
-  return text.substring(0, length).trim() + "...";
+  return `${text.substring(0, length).trim()}...`;
 };
 
 const formatDate = (dateString) => {
@@ -35,35 +79,19 @@ const formatDate = (dateString) => {
 
 export default function Blog() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [activeCategory, setActiveCategory] = useState("All Stories");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [featuredPage, setFeaturedPage] = useState(1);
 
-  useEffect(() => {
-    const disableActions = (e) => {
-      // Disable right click
-      if (e.type === "contextmenu") e.preventDefault();
-
-      // Disable Ctrl+C, Ctrl+U, Ctrl+S, Ctrl+Shift+I
-      if (
-        (e.ctrlKey &&
-          ["c", "u", "s", "a", "x"].includes(e.key.toLowerCase())) ||
-        (e.ctrlKey &&
-          e.shiftKey &&
-          ["i", "j", "c"].includes(e.key.toLowerCase())) ||
-        e.key === "F12"
-      ) {
-        e.preventDefault();
-      }
-    };
-
-    document.addEventListener("contextmenu", disableActions);
-    document.addEventListener("keydown", disableActions);
-
-    return () => {
-      document.removeEventListener("contextmenu", disableActions);
-      document.removeEventListener("keydown", disableActions);
-    };
-  }, []);
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -71,15 +99,24 @@ export default function Blog() {
         const res = await fetch(`${API_BASE}/api/blogs`);
         const data = await res.json();
 
-        const mappedPosts = data.map((blog) => ({
-          id: blog._id,
-          title: blog.title,
-          excerpt: getExcerpt(blog.content),
-          image: `${API_BASE}${blog.image}`,
-          category: "Insights", // Default category
-          date: formatDate(blog.createdAt),
-          readTime: calculateReadTime(blog.content),
-        }));
+        const mappedPosts = data
+          .map((blog) => {
+            const imageName = blog.image ? blog.image.split("/").pop() : "";
+
+            return {
+              id: blog._id,
+              title: blog.title,
+              excerpt: getExcerpt(blog.content),
+              image: imageName ? `${API_BASE}/api/blogs/view/${imageName}` : "",
+              category: blog.category || "General",
+              tags: blog.tags || [],
+              createdAt: blog.createdAt,
+              date: formatDate(blog.createdAt),
+              readTime: calculateReadTime(blog.content),
+              featured: blog.featured || false,
+            };
+          })
+          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
         setPosts(mappedPosts);
       } catch (err) {
@@ -90,246 +127,760 @@ export default function Blog() {
     };
 
     fetchBlogs();
+    window.scrollTo(0, 0);
   }, []);
 
-  const featuredPost = posts[0];
-  const latestPosts = posts.slice(1);
+  // --- URL PARAMETER SYNC ---
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const categoryParam = params.get("category");
+    const tagParam = params.get("tag");
+
+    if (categoryParam) {
+      setActiveCategory(categoryParam);
+    } else if (tagParam) {
+      // If a tag is provided, we should probably set category to "All Stories" or "General" 
+      // depends on user preference, but let's reset to All to show all posts with that tag.
+      setActiveCategory("All Stories");
+      setSearchQuery(tagParam);
+    } else {
+      // If no params, we could reset or keep current
+    }
+  }, [location.search]);
+
+  const categories = useMemo(() => {
+    return ["All Stories", ...new Set(posts.map((post) => post.category))];
+  }, [posts]);
+
+  const filteredPosts = useMemo(() => {
+    return posts.filter((post) => {
+      const matchesCategory =
+        activeCategory === "All Stories" || post.category === activeCategory;
+
+      const query = searchQuery.trim().toLowerCase();
+      const matchesSearch =
+        !query ||
+        post.title.toLowerCase().includes(query) ||
+        post.excerpt.toLowerCase().includes(query) ||
+        post.tags.some(tag => tag.toLowerCase().includes(query));
+
+      return matchesCategory && matchesSearch;
+    });
+  }, [posts, activeCategory, searchQuery]);
+
+  const postsPerFeaturedPage = 5;
+
+  const featuredPostsSet = useMemo(() => {
+    return filteredPosts.slice(
+      (featuredPage - 1) * postsPerFeaturedPage,
+      featuredPage * postsPerFeaturedPage
+    );
+  }, [filteredPosts, featuredPage]);
+
+  const featuredPost = useMemo(() => featuredPostsSet[0], [featuredPostsSet]);
+  const featuredSmallLeft = useMemo(() => featuredPostsSet[1], [featuredPostsSet]);
+  const spotlightPosts = useMemo(() => featuredPostsSet.slice(2, 5), [featuredPostsSet]);
+
+  const articlePosts = useMemo(() => {
+    return [...filteredPosts].sort(() => 0.5 - Math.random()).slice(0, 3);
+  }, [filteredPosts]);
+
+  const totalFeaturedPages = Math.ceil(filteredPosts.length / postsPerFeaturedPage);
 
   if (loading) {
     return (
-      <div className="flex h-screen items-center justify-center bg-white font-[Montserrat]">
-        <div className="text-xl font-semibold text-[#345261]">
-          Loading Insights...
+      <div className="flex min-h-screen items-center justify-center bg-[#F4F7FA]">
+        <div className="relative">
+          <div className="h-20 w-20 animate-spin rounded-full border-[1px] border-[#161C2D]/10 border-t-[#345261]" />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <Sparkles className="h-6 w-6 text-[#345261] animate-pulse" />
+          </div>
         </div>
-      </div>
-    );
-  }
-
-  if (!featuredPost) {
-    return (
-      <div className="flex h-screen flex-col items-center justify-center bg-white font-[Montserrat] px-4 text-center">
-        <h2 className="text-3xl font-bold text-[#161C2D] mb-4">
-          No stories yet
-        </h2>
-        <p className="text-[#6B6A66] max-w-md">
-          We're currently crafting new insights. Check back soon for the latest
-          updates on design and technology.
-        </p>
-        <button
-          onClick={() => window.location.reload()}
-          className="mt-8 rounded-[10px] bg-[#345261] px-6 py-3 font-bold uppercase text-white hover:opacity-90 transition-opacity"
-        >
-          Refresh Feed
-        </button>
       </div>
     );
   }
 
   return (
-    <div>
-      <div className="relative h-[360px] w-full max-[413px]:h-[300px]">
-        <img
-          src={bannerImg}
-          alt="blog banner"
-          className="h-full w-full object-cover object-center"
-        />
-        <div className="absolute inset-0 bg-black/45" />
+    <div className="min-h-screen overflow-x-hidden bg-white font-[Montserrat] text-[#161C2D] selection:bg-[#345261] selection:text-white">
+      <GrainOverlay />
+      <motion.div className="fixed top-0 left-0 right-0 h-[2px] bg-[#345261] origin-left z-[1000]" style={{ scaleX }} />
 
-        <div
-          className="absolute inset-0 flex flex-col justify-end px-[100px] pb-25 text-white
-          max-[1024px]:px-10 max-[1024px]:pb-20
-          max-[768px]:px-6 max-[768px]:pb-16
-          max-[413px]:px-4 max-[413px]:pb-10
-          min-[1024px]:max-[1200px]:px-[72px]"
-        >
-          <p className="font-[Montserrat] text-[14px] font-bold uppercase leading-[21px] tracking-[2.24px] max-[413px]:text-[12px]">
-            Home / Blog
-          </p>
-          <h1
-            className="mt-2 font-[Montserrat] text-[54px] font-semibold leading-[62px]
-            max-[1024px]:text-[48px] max-[1024px]:leading-[56px]
-            max-[768px]:text-[44px] max-[768px]:leading-[52px]
-            max-[413px]:text-[28px] max-[413px]:leading-[32px]"
-          >
-            Insights & Blog
-          </h1>
-        </div>
-      </div>
-
-      <section
-        className="border-b border-[#E5E5E5] bg-white px-[100px] py-[60px]
-        max-[1400px]:px-[50px]
-        max-[1024px]:px-10
-        max-[768px]:px-6 max-[768px]:py-[50px]
-        max-[413px]:px-4 max-[413px]:py-[40px]"
-      >
-        <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
-          <article className="group overflow-hidden rounded-[28px] border border-[#E1E7EB] bg-[#F4F7FA]">
-            <div className="overflow-hidden">
-              <img
-                src={featuredPost.image}
-                alt={featuredPost.title}
-                draggable="false"
-                onContextMenu={(e) => e.preventDefault()}
-              />
-            </div>
-
-            <div className="p-8 max-[413px]:p-5">
-              <span className="mb-4 inline-flex rounded-full bg-[#345261] px-4 py-2 font-[Montserrat] text-[11px] font-bold uppercase tracking-[1.8px] text-white">
-                Featured Story
-              </span>
-
-              <h2 className="mb-4 max-w-[720px] font-[Montserrat] text-[38px] font-semibold leading-[46px] text-[#161C2D] max-[1024px]:text-[32px] max-[1024px]:leading-[40px] max-[413px]:text-[24px] max-[413px]:leading-[32px]">
-                {featuredPost.title}
-              </h2>
-
-              <p className="mb-6 max-w-[760px] font-[Montserrat] text-[16px] leading-[24px] text-[#6B6A66] max-[413px]:text-[14px] max-[413px]:leading-[22px]">
-                {featuredPost.excerpt}
-              </p>
-
-              <div className="mb-7 flex flex-wrap gap-5 text-[#395563]">
-                <span className="inline-flex items-center gap-2 font-[Montserrat] text-[13px] font-semibold uppercase tracking-[1.3px]">
-                  <CalendarDays className="h-4 w-4" />
-                  {featuredPost.date}
-                </span>
-                <span className="inline-flex items-center gap-2 font-[Montserrat] text-[13px] font-semibold uppercase tracking-[1.3px]">
-                  <Clock3 className="h-4 w-4" />
-                  {featuredPost.readTime}
-                </span>
-              </div>
-
-              <button
-                type="button"
-                onClick={() => navigate(`/blog/${featuredPost.id}`)}
-                className="inline-flex items-center gap-2 rounded-[10px] bg-[#345261] px-6 py-4 font-[Montserrat] text-[12px] font-bold uppercase tracking-[1.5px] text-white hover:opacity-90 transition-opacity"
-              >
-                Read Article
-                <ArrowRight className="h-4 w-4" />
-              </button>
-            </div>
-          </article>
-
-          <aside className="space-y-6">
-            <div className="rounded-[24px] border border-[#E1E7EB] bg-white p-7">
-              <p className="mb-3 font-[Montserrat] text-[14px] font-bold uppercase leading-[21px] tracking-[2.24px] text-[#395563] max-[413px]:text-[12px]">
-                Editorial Note
-              </p>
-              <h3 className="mb-4 font-[Montserrat] text-[26px] font-semibold leading-[32px] text-[#161C2D] max-[413px]:text-[20px] max-[413px]:leading-[28px]">
-                Same spacing system, fresher blog presentation
-              </h3>
-              <p className="font-[Montserrat] text-[15px] leading-[24px] text-[#6B6A66]">
-                The page now matches the inner-page padding and heading rhythm,
-                then layers in featured content, cleaner metadata, and more
-                stylish cards.
-              </p>
-            </div>
-
-            <div className="rounded-[24px] bg-[#345261] p-7 text-white">
-              <p className="mb-3 font-[Montserrat] text-[14px] font-bold uppercase leading-[21px] tracking-[2.24px] text-[#D9E4EA] max-[413px]:text-[12px]">
-                Trending Topics
-              </p>
-              <div className="flex flex-wrap gap-3">
-                {topics.map((topic) => (
-                  <span
-                    key={topic}
-                    className="rounded-full border border-white/20 bg-white/10 px-4 py-2 font-[Montserrat] text-[12px] font-semibold uppercase tracking-[1.2px]"
-                  >
-                    {topic}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="overflow-hidden rounded-[24px]">
-              <img
-                src={img5}
-                alt="blog visual"
-                className="h-[260px] w-full object-cover"
-              />
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section
-        className="bg-[#F4F7FA] px-[100px] py-[60px]
-        max-[1400px]:px-[50px]
-        max-[1024px]:px-10
-        max-[768px]:px-6 max-[768px]:py-[50px]
-        max-[413px]:px-4 max-[413px]:py-[40px]"
-      >
-        <div className="mb-8 flex items-end justify-between gap-4 max-[768px]:flex-col max-[768px]:items-start">
-          <div>
-            <p className="mb-2 font-[Montserrat] text-[14px] font-bold uppercase leading-[21px] tracking-[2.24px] text-[#395563] max-[413px]:text-[12px]">
-              Latest Articles
-            </p>
-            <h2 className="font-[Montserrat] text-[32px] font-semibold leading-[42.3px] tracking-[-1.06px] text-[#161C2D] max-[413px]:text-[24px] max-[413px]:leading-[32px]">
-              More from the blog
-            </h2>
+      <div className="bg-[#F4F7FA]">
+        <section className="relative isolate overflow-hidden">
+          <div className="absolute inset-0">
+            <img
+              src={bannerImg}
+              alt="Blog banner"
+              className="h-full w-full object-cover scale-105"
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(7,12,18,0.96)_10%,rgba(15,23,32,0.88)_40%,rgba(15,23,32,0.6)_70%,rgba(15,23,32,0.2)_100%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(52,82,97,0.3),transparent_35%),radial-gradient(circle_at_bottom_left,rgba(107,106,102,0.22),transparent_40%)]" />
           </div>
 
-          <button
-            type="button"
-            className="inline-flex items-center gap-2 font-[Montserrat] text-[12px] font-bold uppercase tracking-[1.6px] text-[#395563]"
-          >
-            View All Posts
-            <ArrowRight className="h-4 w-4" />
-          </button>
-        </div>
+          <div className="absolute -left-16 top-24 h-80 w-80 rounded-full bg-[#345261]/25 blur-[120px]" />
+          <div className="absolute right-0 top-0 h-[500px] w-[500px] rounded-full bg-[#6B6A66]/20 blur-[150px]" />
 
-        <div className="grid gap-6 lg:grid-cols-3">
-          {latestPosts.map((post) => (
-            <article
-              key={post.id}
-              className="group overflow-hidden rounded-[24px] border border-[#DEE6EA] bg-white"
-            >
-              <div className="overflow-hidden">
-                <img
-                  src={post.image}
-                  alt={post.title}
-                  className="h-[240px] w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
+          <div className="relative mx-auto max-w-[1440px] px-6 pb-8 pt-16 md:px-10 xl:px-16">
+            <div className="grid min-h-[480px] gap-10 xl:grid-cols-[1.1fr_0.9fr] xl:items-end">
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                className="max-w-4xl"
+              >
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="mb-8 inline-flex items-center gap-4 rounded-full border border-white/10 bg-[#161C2D]/5 px-5 py-2.5 backdrop-blur-[20px] shadow-[0_8px_32px_0_rgba(0,0,0,0.1)]"
+                >
+                  <div className="relative h-2 w-2">
+                    <span className="absolute inset-0 rounded-full bg-[#345261] animate-ping" />
+                    <span className="relative block h-2 w-2 rounded-full bg-[#345261]" />
+                  </div>
+                  <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#345261]">
+                    Strategic Intelligence
+                  </span>
+                </motion.div>
 
-              <div className="p-6">
-                <span className="mb-4 inline-flex rounded-full bg-[#F4F7FA] px-3 py-1.5 font-[Montserrat] text-[11px] font-bold uppercase tracking-[1.5px] text-[#395563]">
-                  {post.category}
-                </span>
-                <h3 className="mb-3 font-[Montserrat] text-[24px] font-semibold leading-[30px] text-[#161C2D] max-[413px]:text-[20px] max-[413px]:leading-[26px]">
-                  {post.title}
-                </h3>
-                <p className="mb-5 font-[Montserrat] text-[15px] leading-[24px] text-[#6B6A66]">
-                  {post.excerpt}
+                <h1 className="max-w-5xl text-[44px] font-semibold leading-[0.9] tracking-[-0.055em] text-white sm:text-[64px] lg:text-[96px] mix-blend-plus-lighter">
+                  Stories for <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFFFFF] to-[#345261] italic font-serif">ambitious minds.</span>
+                </h1>
+
+                <p className="mt-8 max-w-2xl text-base leading-[1.8] text-white/60 md:text-xl font-medium tracking-tight">
+                  Deep-dives into branding, digital growth, and the strategic
+                  decisions that define the modern competitive landscape.
                 </p>
 
-                <div className="mb-5 flex flex-wrap gap-4 text-[#6B6A66]">
-                  <span className="inline-flex items-center gap-2 font-[Montserrat] text-[12px] font-semibold uppercase tracking-[1.2px]">
-                    <CalendarDays className="h-4 w-4 text-[#395563]" />
-                    {post.date}
-                  </span>
-                  <span className="inline-flex items-center gap-2 font-[Montserrat] text-[12px] font-semibold uppercase tracking-[1.2px]">
-                    <Clock3 className="h-4 w-4 text-[#395563]" />
-                    {post.readTime}
-                  </span>
+                <div className="mt-12 grid gap-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
+                  <div className="relative group/search">
+                    <Search className="absolute left-6 top-1/2 h-5 w-5 -translate-y-1/2 text-white/30 group-focus-within/search:text-[#345261] transition-colors" />
+                    <input
+                      type="text"
+                      placeholder="Keywords, insights, or industry trends..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="h-16 w-full rounded-2xl border border-white/10 bg-[#161C2D]/5 pl-16 pr-6 text-white text-base placeholder:text-white/20 backdrop-blur-3xl outline-none transition-all focus:border-[#345261]/40 focus:bg-[#161C2D]/10 shadow-2xl"
+                    />
+                  </div>
+
+                  <div className="flex h-16 items-center justify-center gap-4 rounded-2xl border border-white/10 bg-[#161C2D]/5 px-8 text-[11px] font-bold uppercase tracking-[0.2em] text-[#6B6A66] backdrop-blur-3xl">
+                    <TrendingUp size={16} className="text-[#6B6A66]" />
+                    <span>{posts.length} ANALYTICS</span>
+                  </div>
+                </div>
+              </motion.div>
+
+              {featuredPost && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.3, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                  className="relative rounded-[32px] border border-white/10 bg-[#161C2D]/[0.03] p-4 shadow-[0_40px_120px_rgba(0,0,0,0.4)] backdrop-blur-[40px] saturate-[180%] group/featured"
+                >
+                  <div className="overflow-hidden rounded-[24px] relative aspect-[16/9]">
+                    {featuredPost.image ? (
+                      <motion.img
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ duration: 1.5, ease: "easeOut" }}
+                        src={featuredPost.image}
+                        alt={featuredPost.title}
+                        className="h-full w-full object-cover grayscale-[0.2] group-hover/featured:grayscale-0 transition-all duration-1000"
+                      />
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(135deg,#161C2D,#345261)] text-white/60">
+                        Archive Fragment
+                      </div>
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#161C2D]/80 via-transparent to-transparent opacity-0 group-hover/featured:opacity-100 transition-opacity duration-700" />
+                  </div>
+
+                  <div className="p-4 pt-8">
+                    <div className="mb-6 flex flex-wrap items-center gap-4 text-[10px] font-bold uppercase tracking-[0.3em] text-[#345261]">
+                      <span className="bg-[#345261] px-4 py-1.5 rounded-full text-white shadow-xl">
+                        SPOTLIGHT
+                      </span>
+                      <span className="text-white/40">{featuredPost.category}</span>
+                    </div>
+
+                    <h2 className="text-[26px] font-semibold leading-[1.1] tracking-[-0.05em] text-white mb-4">
+                      {featuredPost.title}
+                    </h2>
+
+                    <p className="mb-6 line-clamp-1 text-sm leading-relaxed text-white/50 font-medium">
+                      {featuredPost.excerpt}
+                    </p>
+
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-6 text-[10px] font-bold uppercase tracking-[0.2em] text-white/30">
+                        <span className="flex items-center gap-2 italic font-serif lowercase capitalize tracking-normal text-white/50 text-sm">
+                          {featuredPost.date}
+                        </span>
+                        <span className="flex items-center gap-2">
+                          <Clock3 size={14} /> {featuredPost.readTime}
+                        </span>
+                      </div>
+
+                      <MagneticButton
+                        onClick={() => navigate(`/blog/${featuredPost.id}`)}
+                        className="h-16 w-16 rounded-full bg-[#345261] text-white flex items-center justify-center shadow-[0_0_40px_rgba(52,82,97,0.3)] hover:bg-white hover:text-[#161C2D] transition-all duration-300"
+                      >
+                        <ArrowRight size={24} />
+                      </MagneticButton>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </div>
+          </div>
+        </section>
+
+        <section className="relative z-10 mt-32 px-6 md:px-10 xl:px-16">
+          <div className="mx-auto max-w-[1440px]">
+
+            <div className="grid gap-16 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+
+              {/* Left Column: The Syndicate Index */}
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <div className="mb-12 text-left">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.5em] text-[#345261] mb-6">
+                    THE EXPLORATION HUB
+                  </p>
+                  <h2 className="text-[48px] md:text-[72px] font-semibold tracking-[-0.065em] text-[#161C2D] leading-[0.85] mb-8">
+                    The Insight <br />
+                    <span className="italic font-serif text-[#345261]/80">Compass.</span>
+                  </h2>
+                  <p className="max-w-xl text-lg text-[#161C2D]/50 font-medium leading-relaxed text-left">
+                    Navigate through our curated domains of strategic intelligence. Filter the syndicate archive to match your objective.
+                  </p>
+                </div>
+
+                {/* <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                {categories.map((cat, i) => (
+                  <motion.button
+                    key={cat}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 }}
+                    onClick={() => setActiveCategory(cat)}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className={`relative p-5 rounded-2xl border-l-4 transition-all duration-500 text-left group/cat shadow-sm ${activeCategory === cat
+                        ? "bg-[#161C2D] border-[#345261] shadow-[0_20px_40px_rgba(22,33,43,0.15)]"
+                        : "bg-[#F4F7FA] border-[#161C2D]/5 hover:bg-white hover:border-[#345261]"
+                      }`}
+                  >
+                    <div className="flex items-center justify-between mb-2">
+                      <span className={`text-[9px] font-bold uppercase tracking-[0.3em] transition-colors duration-500 ${activeCategory === cat ? "text-white/40" : "text-[#161C2D]/30"
+                        }`}>
+                        Domain
+                      </span>
+                      <div className={`h-1.5 w-1.5 rounded-full transition-all duration-500 ${activeCategory === cat ? "bg-[#345261] animate-pulse" : "bg-[#161C2D]/10"
+                        }`} />
+                    </div>
+                    
+                    <h4 className={`text-base font-bold tracking-tight transition-colors duration-500 ${activeCategory === cat ? "text-white" : "text-[#161C2D]"
+                      }`}>
+                      {cat}
+                    </h4>
+
+                 
+                    {activeCategory === cat && (
+                      <motion.div
+                        layoutId="activeGlow"
+                        className="absolute inset-0 bg-gradient-to-br from-[#345261]/5 to-transparent pointer-events-none"
+                      />
+                    )}
+                  </motion.button>
+                ))}
+              </div> */}
+              </motion.div>
+
+              {/* Right Column: The Dashboard metrics */}
+              <div className="grid gap-6">
+
+                {/* Archive Scale Card */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="relative overflow-hidden rounded-[40px] border border-[#161C2D]/5 bg-white p-10 shadow-[0_45px_100px_rgba(22,33,43,0.05)] group"
+                >
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#161C2D]/20 mb-4">
+                        Archive Fragment Count
+                      </p>
+                      <h3 className="text-8xl font-light tracking-[-0.08em] text-[#161C2D] leading-none mb-4">
+                        {posts.length}
+                      </h3>
+                      <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#345261]">
+                        Intelligence units cataloged
+                      </p>
+                    </div>
+                    <TrendingUp className="text-[#345261]/20 group-hover:text-[#345261]/40 transition-colors duration-700" size={40} />
+                  </div>
+                  {/* Decorative Pattern */}
+                  <div className="absolute -bottom-8 -right-8 h-48 w-48 bg-[#345261]/5 rounded-full blur-3xl pointer-events-none" />
+                </motion.div>
+
+                <div className="grid grid-cols-2 gap-6">
+                  {/* Domain Card */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2 }}
+                    className="rounded-[40px] border border-[#161C2D]/5 bg-[#161C2D] p-8 text-white relative overflow-hidden group"
+                  >
+                    <Sparkles className="text-[#345261] mb-6 opacity-40 group-hover:opacity-100 transition-opacity" size={24} />
+                    <p className="text-[9px] font-bold uppercase tracking-[0.3em] text-white/30 mb-2">Unique Domains</p>
+                    <h4 className="text-5xl font-light tracking-tight">{categories.length - 1}</h4>
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
+                  </motion.div>
+
+                  {/* Frequency Card */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3 }}
+                    className="rounded-[40px] border border-[#161C2D]/5 bg-[#F4F7FA] p-8 relative overflow-hidden flex flex-col justify-between"
+                  >
+                    <div className="flex justify-between items-start">
+                      <p className="text-[9px] font-bold uppercase tracking-[0.3em] text-[#161C2D]/30">Update Pulse</p>
+                      <motion.div
+                        animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
+                        transition={{ duration: 3, repeat: Infinity }}
+                        className="h-2 w-2 rounded-full bg-[#345261]"
+                      />
+                    </div>
+                    <div>
+                      <h4 className="text-3xl font-semibold tracking-[-0.04em] text-[#161C2D] italic font-serif">Weekly</h4>
+                      <p className="mt-1 text-[10px] font-bold tracking-[0.1em] text-[#345261]/60">SYNDICATE DISPATCH</p>
+                    </div>
+                  </motion.div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        {featuredPost && (
+          <section className="mx-auto mt-24 max-w-[1440px] px-6 md:px-10 xl:px-16">
+            <div className="mb-12 flex items-baseline justify-between gap-6 border-b border-[#6B6A66]/5 pb-12">
+              <div>
+                <p className="text-[11px] font-bold uppercase tracking-[0.5em] text-[#345261] mb-4">
+                  THE SYNDICATE
+                </p>
+                <h2 className="text-[40px] font-semibold tracking-[-0.06em] text-[#161C2D] md:text-[56px] leading-[0.9]">
+                  Featured Observation
+                </h2>
+              </div>
+              <div className="hidden lg:block max-w-sm text-[15px] leading-relaxed text-[#161C2D]/40 font-medium">
+                Refined editorial hierarchy designed for depth, visual clarity, and high-impact storytelling.
+              </div>
+            </div>
+
+            <div className="grid gap-12 xl:grid-cols-[1.1fr_0.9fr]">
+              <div className="flex flex-col gap-10 h-full">
+                {featuredPost && (
+                  <motion.article
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="group relative overflow-hidden rounded-[48px] border border-[#161C2D]/5 bg-white shadow-[0_40px_100px_rgba(22,33,43,0.06)] hover:shadow-[0_40px_100px_rgba(22,33,43,0.12)] transition-shadow duration-1000 flex flex-col h-fit"
+                  >
+                    <div className="flex flex-col flex-1">
+
+                      {/* Image section — heading overlaid at the bottom */}
+                      <div className="relative h-[600px] flex-shrink-0 overflow-hidden">
+                        {featuredPost.image ? (
+                          <motion.img
+                            whileHover={{ scale: 1.05 }}
+                            transition={{ duration: 1.2 }}
+                            src={featuredPost.image}
+                            alt={featuredPost.title}
+                            className="h-full w-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-[1.5s]"
+                          />
+                        ) : (
+                          <div className="flex h-full items-center justify-center bg-[#161C2D] text-white/10 uppercase tracking-[1em] text-xs">
+                            Fragment
+                          </div>
+                        )}
+
+                        {/* Strong gradient so heading is readable */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#161C2D] via-[#161C2D]/60 to-transparent" />
+
+                        {/* Category badge — top left */}
+                        <div className="absolute left-8 top-8">
+                          <div className="rounded-full bg-[#161C2D]/95 px-5 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-white shadow-2xl backdrop-blur-md">
+                            {featuredPost.category}
+                          </div>
+                        </div>
+
+                        {/* Heading — bottom of image */}
+                        <div className="absolute bottom-0 left-0 right-0 p-8 pb-10">
+                          <h2 className="text-[30px] font-semibold leading-[1.1] tracking-[-0.05em] sm:text-[48px] text-white">
+                            {featuredPost.title}
+                          </h2>
+                        </div>
+                      </div>
+
+                      {/* Content below image */}
+                      <div className="p-8 pb-10 md:p-10 md:pb-10 flex flex-col gap-3">
+                        <p className="text-base leading-relaxed text-[#161C2D]/50 font-medium line-clamp-3 pb-5">
+                          {featuredPost.excerpt}
+                        </p>
+
+                        <button
+                          onClick={() => navigate(`/blog/${featuredPost.id}`)}
+                          className="inline-flex items-center gap-4 rounded-full bg-[#345261] px-8 py-4 text-[11px] font-bold uppercase tracking-[0.3em] text-white w-fit hover:bg-white hover:text-[#345261] transition-all duration-300 group"
+                        >
+                          Read Strategy
+                          <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-2" />
+                        </button>
+                      </div>
+
+                    </div>
+                  </motion.article>
+                )}
+
+                {featuredSmallLeft && (
+                  <motion.article
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    onClick={() => navigate(`/blog/${featuredSmallLeft.id}`)}
+                    className="group cursor-pointer rounded-[32px] border border-[#161C2D]/5 bg-white p-6 shadow-[0_20px_60px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_60px_rgba(213,164,107,0.15)] transition-all duration-700"
+                  >
+                    <div className="grid grid-cols-[160px_1fr] gap-8 items-center">
+                      <div className="overflow-hidden rounded-2xl aspect-square">
+                        {featuredSmallLeft.image ? (
+                          <img
+                            src={featuredSmallLeft.image}
+                            alt={featuredSmallLeft.title}
+                            className="h-full w-full object-cover grayscale-[0.8] group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000"
+                          />
+                        ) : (
+                          <div className="flex h-full items-center justify-center bg-[#161C2D]/5 text-[9px] font-bold tracking-[0.3em] text-[#161C2D]/20">ARCHIVE</div>
+                        )}
+                      </div>
+
+                      <div className="pr-4">
+                        <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.3em] text-[#345261]">
+                          {featuredSmallLeft.category}
+                        </p>
+                        <h3 className="line-clamp-2 text-[24px] font-semibold leading-tight text-[#161C2D] group-hover:translate-x-3 transition-transform duration-500">
+                          {featuredSmallLeft.title}
+                        </h3>
+                        <div className="mt-5 flex items-center gap-6 text-[10px] font-bold uppercase tracking-[0.1em] text-[#161C2D]/25">
+                          <span className="italic tracking-normal text-xs text-[#161C2D]/40">{featuredSmallLeft.date}</span>
+                          <span>{featuredSmallLeft.readTime}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.article>
+                )}
+              </div>
+
+              <div className="flex flex-col gap-6">
+                {spotlightPosts.map((post, index) => (
+                  <motion.article
+                    key={post.id}
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.15, duration: 0.8 }}
+                    onClick={() => navigate(`/blog/${post.id}`)}
+                    className="group cursor-pointer rounded-[32px] border border-[#161C2D]/5 bg-white p-6 shadow-[0_20px_60px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_60px_rgba(213,164,107,0.15)] transition-all duration-700"
+                  >
+                    <div className="grid grid-cols-[140px_1fr] gap-8 items-center">
+                      <div className="overflow-hidden rounded-2xl aspect-square">
+                        {post.image ? (
+                          <img
+                            src={post.image}
+                            alt={post.title}
+                            className="h-full w-full object-cover grayscale-[0.8] group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000"
+                          />
+                        ) : (
+                          <div className="flex h-full items-center justify-center bg-[#161C2D]/5 text-[9px] font-bold tracking-[0.3em] text-white/20">ARCHIVE</div>
+                        )}
+                      </div>
+
+                      <div className="pr-4">
+                        <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.3em] text-[#345261]">
+                          {post.category}
+                        </p>
+                        <h3 className="line-clamp-2 text-[20px] font-semibold leading-tight text-[#161C2D] group-hover:translate-x-3 transition-transform duration-500">
+                          {post.title}
+                        </h3>
+                        <div className="mt-5 flex items-center gap-6 text-[10px] font-bold uppercase tracking-[0.1em] text-[#161C2D]/25">
+                          <span className="italic tracking-normal text-xs text-[#161C2D]/40">{post.date}</span>
+                          <span>{post.readTime}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.article>
+                ))}
+
+                <div className="flex-1 rounded-[36px] bg-[#161C2D] p-10 text-white relative overflow-hidden group border border-white/5 flex flex-col min-h-[400px]">
+                  {/* Animated Background Orbs */}
+                  <motion.div
+                    animate={{
+                      scale: [1, 1.2, 1],
+                      opacity: [0.2, 0.3, 0.2],
+                      x: [0, 20, 0],
+                      y: [0, -20, 0]
+                    }}
+                    transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute top-0 right-0 h-64 w-64 bg-[#345261]/20 rounded-full blur-[100px]"
+                  />
+                  <motion.div
+                    animate={{
+                      scale: [1, 1.3, 1],
+                      opacity: [0.1, 0.2, 0.1],
+                      x: [0, -30, 0],
+                      y: [0, 40, 0]
+                    }}
+                    transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                    className="absolute bottom-0 left-0 h-48 w-48 bg-[#345261]/30 rounded-full blur-[80px]"
+                  />
+
+                  <div className="relative z-10 flex flex-col h-full">
+                    <div className="flex items-center justify-between mb-10">
+                      <div className="inline-flex items-center gap-3 rounded-full border border-[#345261]/20 bg-[#345261]/5 px-4 py-2 backdrop-blur-md">
+                        <Sparkles className="h-4 w-4 text-[#345261] animate-pulse" />
+                        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#345261]">
+                          PREMIUM ETHOS
+                        </span>
+                      </div>
+                      <TrendingUp size={20} className="text-white/10 group-hover:text-[#345261]/40 transition-colors duration-700" />
+                    </div>
+
+                    <h3 className="text-3xl font-semibold leading-[1.2] tracking-tight mb-8 font-serif italic text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-white/40">
+                      Where strategic depth meets cinematic editorial clarity.
+                    </h3>
+
+                    <p className="text-white/40 text-base leading-relaxed font-medium mb-12 max-w-[90%]">
+                      Experience our curated insights in an environment built for high-bandwidth concentration and artistic appreciation.
+                    </p>
+
+                    <div className="mt-auto flex items-center justify-between pt-8 border-t border-white/5">
+                      <span className="text-[9px] font-bold uppercase tracking-[0.4em] text-white/20">The Syndicate Vision</span>
+                      <div className="flex items-center gap-4">
+                        <div className="flex -space-x-3">
+                          {[1, 2, 3].map(i => (
+                            <div key={i} className="h-8 w-8 rounded-full border-2 border-[#0c1217] bg-[#161C2D]/5 backdrop-blur-sm" />
+                          ))}
+                        </div>
+                        <span className="h-1 w-1 rounded-full bg-[#345261]/40 animate-pulse" />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Hover Sweep Effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.03] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none" />
+                </div>
+              </div>
+            </div>
+
+            {/* Featured Pagination Controls */}
+            {totalFeaturedPages > 1 && (
+              <div className="mt-16 flex items-center justify-center gap-4">
+                <button
+                  disabled={featuredPage === 1}
+                  onClick={() => setFeaturedPage(prev => Math.max(1, prev - 1))}
+                  className="group flex h-12 w-12 items-center justify-center rounded-full border border-[#6B6A66]/10 bg-[#161C2D] shadow-sm hover:border-[#345261]/50 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                >
+                  <ChevronRight className="rotate-180 text-white group-hover:text-[#345261]" size={20} />
+                </button>
+
+                <div className="flex gap-2">
+                  {[...Array(totalFeaturedPages)].map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setFeaturedPage(i + 1)}
+                      className={`h-2.5 rounded-full transition-all duration-500 ${featuredPage === i + 1 ? "w-10 bg-[#345261]" : "w-2.5 bg-[#161C2D]/10 hover:bg-[#161C2D]/20"
+                        }`}
+                    />
+                  ))}
                 </div>
 
                 <button
-                  type="button"
-                  onClick={() => navigate(`/blog/${post.id}`)}
-                  className="inline-flex items-center gap-2 font-[Montserrat] text-[12px] font-bold uppercase tracking-[1.5px] text-[#395563] hover:opacity-80 transition-opacity"
+                  disabled={featuredPage === totalFeaturedPages}
+                  onClick={() => setFeaturedPage(prev => Math.min(totalFeaturedPages, prev + 1))}
+                  className="group flex h-12 w-12 items-center justify-center rounded-full border border-[#6B6A66]/10 bg-[#161C2D] shadow-sm hover:border-[#345261]/50 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
                 >
-                  Read More
-                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  <ChevronRight className="text-white group-hover:text-[#345261]" size={20} />
                 </button>
               </div>
-            </article>
-          ))}
+            )}
+          </section>
+        )}
+
+        {/* Grid Archive section */}
+        <section className="mx-auto mt-32 max-w-[1440px] px-6 pb-30 md:px-10 xl:px-16">
+          <div className="mb-20 flex flex-col gap-8 md:flex-row md:items-end md:justify-between border-b border-[#6B6A66]/5 pb-10">
+            <div>
+              <p className="text-[11px] font-bold uppercase tracking-[0.5em] text-[#345261] mb-4">
+                THE RECENT CATALOG
+              </p>
+              <h2 className="text-[34px] font-semibold tracking-[-0.06em] text-[#161C2D] md:text-[64px] leading-[0.8]">
+                Browse the Archive.
+              </h2>
+            </div>
+
+            <p className="max-w-xl text-lg leading-relaxed text-[#161C2D]/40 font-medium">
+              A comprehensive index of tactical thoughts, creative investigations, and strategic findings.
+            </p>
+          </div>
+
+          {articlePosts.length > 0 ? (
+            <AnimatePresence mode="popLayout">
+              <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+                {articlePosts.map((post, index) => (
+                  <motion.article
+                    key={post.id}
+                    layout
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: index * 0.05 }}
+                    onClick={() => navigate(`/blog/${post.id}`)}
+                    className="group cursor-pointer overflow-hidden rounded-[40px] border border-[#161C2D]/5 bg-white shadow-[0_32px_80px_-16px_rgba(22,33,43,0.05)] hover:shadow-[0_45px_100px_rgba(213,164,107,0.15)] transition-all duration-700 hover:-translate-y-4 flex flex-col h-full"
+                  >
+                    <div className="relative overflow-hidden aspect-video">
+                      {post.image ? (
+                        <img
+                          src={post.image}
+                          alt={post.title}
+                          className="h-full w-full object-cover grayscale-[0.5] group-hover:grayscale-0 transition-all duration-1000 scale-105 group-hover:scale-100"
+                        />
+                      ) : (
+                        <div className="flex h-full items-center justify-center bg-[#161C2D] text-white/5 uppercase tracking-[1em] text-[8px]">Archive Image</div>
+                      )}
+
+                      <div className="absolute inset-0 bg-gradient-to-at from-[#101920]/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                      <div className="absolute left-6 top-6 rounded-full bg-[#161C2D]/95 px-5 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-white shadow-2xl backdrop-blur-md transition-all group-hover:bg-[#161C2D] group-hover:text-white">
+                        {post.category}
+                      </div>
+                    </div>
+
+                    <div className="p-8 flex-grow flex flex-col pb-0">
+                      <div className="mb-6 flex flex-wrap items-center gap-4 text-[10px] font-bold uppercase tracking-[0.2em] text-[#161C2D]/30">
+                        <span className="italic tracking-normal text-sm text-[#161C2D]/40 font-serif lowercase capitalize">{post.date}</span>
+                        <span className="h-1 w-1 rounded-full bg-[#345261]/40" />
+                        <span>{post.readTime}</span>
+                      </div>
+
+                      <h3 className="text-[24px] font-semibold leading-[1.1] tracking-[-0.04em] text-[#161C2D] mb-4 group-hover:text-[#345261] transition-all duration-500">
+                        {post.title}
+                      </h3>
+
+                      <p className="line-clamp-2 text-sm leading-relaxed text-[#161C2D]/50 mb-6 font-medium h-[50px]">
+                        {post.excerpt}
+                      </p>
+                    </div>
+
+                    <div className="mt-auto border-t border-[#6B6A66]/5 px-8 pt-6 pb-8 flex items-center justify-between">
+                      <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#161C2D]">Explore Entry</span>
+                      <div className="h-12 w-12 rounded-full bg-[#161C2D]/5 flex items-center justify-center group-hover:bg-[#161C2D] group-hover:text-white transition-all transform group-hover:translate-x-2">
+                        <ChevronRight size={18} />
+                      </div>
+                    </div>
+                  </motion.article>
+                ))}
+              </div>
+            </AnimatePresence>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="rounded-[48px] border-[2px] border-dashed border-[#6B6A66]/10 bg-[#161C2D]/30 px-6 py-40 text-center"
+            >
+              <div className="mx-auto mb-8 flex h-24 w-24 items-center justify-center rounded-full bg-[#161C2D]/5 text-[#161C2D]/10">
+                <Search size={40} />
+              </div>
+              <h3 className="text-2xl font-semibold text-[#161C2D] tracking-tight">No intelligence found.</h3>
+              <p className="mt-4 text-[#161C2D]/30 font-medium">Refine your inquiry or explore the full archive.</p>
+            </motion.div>
+          )}
+        </section>
+      </div>
+
+      {/* Newsletter section - COMPACT CINEMATIC BREAKOUT */}
+      <section className="relative w-full py-24 overflow-hidden bg-[#161C2D] group">
+        {/* Cinematic Auras */}
+        <motion.div
+          animate={{ scale: [1, 1.2, 1], rotate: [0, 45, 0] }}
+          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+          className="absolute -right-20 -top-20 h-[500px] w-[500px] rounded-full bg-[#345261]/10 blur-[120px] mix-blend-screen"
+        />
+
+
+        <div className="mx-auto max-w-[1440px] px-6 md:px-10 xl:px-16 relative z-10 flex flex-col md:flex-row items-center justify-between gap-16">
+          <div className="max-w-2xl">
+            <div className="flex items-center gap-4 mb-8">
+              <span className="h-[2px] w-12 bg-[#345261]" />
+              <p className="text-[11px] font-bold uppercase tracking-[0.5em] text-[#345261]">
+                THE DISPATCH
+              </p>
+            </div>
+
+            <h2 className="text-[44px] sm:text-[60px] font-semibold leading-[0.85] tracking-[-0.06em] text-white">
+              Stay in <br />
+              <span className="italic font-serif text-white">the loop.</span>
+            </h2>
+
+            <p className="mt-8 max-w-xl text-lg text-white/40 leading-relaxed font-medium">
+              Curated strategic intelligence and design-thinking insights delivered
+              directly to your secure inbox.
+            </p>
+
+            <div className="mt-12 flex flex-col sm:flex-row gap-4 max-w-xl">
+              <input
+                type="email"
+                placeholder="EMAIL ADDRESS"
+                className="h-16 flex-1 rounded-2xl border border-white/5 bg-[#161C2D]/5 px-8 text-white placeholder:text-white/20 outline-none backdrop-blur-3xl focus:border-[#345261]/40 focus:bg-[#161C2D]/10 transition-all text-[11px] font-bold uppercase tracking-[2px]"
+              />
+              <MagneticButton className="h-16 px-12 rounded-2xl bg-[#345261] text-white text-[11px] font-bold uppercase tracking-[3px] hover:bg-[#161C2D] transition-all shadow-2xl">
+                Subscribe
+              </MagneticButton>
+            </div>
+          </div>
+
+          <div className="relative hidden lg:block w-[400px] h-[340px]">
+            <motion.div
+              style={{ rotateZ: 5 }}
+              whileHover={{ rotateZ: 0, scale: 1.02 }}
+              className="absolute inset-0 rounded-[48px] border border-white/10 bg-[#161C2D]/5 backdrop-blur-3xl overflow-hidden shadow-2xl transition-all duration-700"
+            >
+              <img
+                src={img5}
+                alt="Intelligence"
+                className="h-full w-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-1000 grayscale group-hover:grayscale-0"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#161C2D] to-transparent opacity-40" />
+            </motion.div>
+            <Sparkles className="absolute -top-6 -right-6 h-12 w-12 text-[#345261] animate-pulse" />
+          </div>
         </div>
       </section>
 
-      <div className="-mt-[40px] relative z-10">
+      <div className="relative z-10 -mt-20">
         <Support />
       </div>
+
     </div>
   );
 }

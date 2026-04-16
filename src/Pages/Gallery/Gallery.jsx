@@ -279,8 +279,10 @@
 //   );
 // }
 
-import { useState, useEffect } from "react";
-import { ArrowUpRight, Sparkles } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
+import { ArrowUpRight, Sparkles, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import Support from "../About/Components/Support";
 import bannerImg from "../../assets/portfolio-banner.jpg";
 
@@ -291,6 +293,33 @@ export default function Gallery() {
   const [galleryItems, setGalleryItems] = useState([]);
   const [filters, setFilters] = useState(["All"]);
   const [loading, setLoading] = useState(true);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [isZoomed, setIsZoomed] = useState(false);
+  const sidebarRef = useRef(null);
+  const [isSidebarHovered, setIsSidebarHovered] = useState(false);
+
+  // Seamless Circular Auto-Scroll for Sidebar
+  useEffect(() => {
+    let animationFrameId;
+    const scrollSpeed = 0.35; // Reduced speed for smoother, cinematic feel
+
+    const scroll = () => {
+      if (selectedItem && sidebarRef.current && !isSidebarHovered) {
+        const container = sidebarRef.current;
+        container.scrollTop += scrollSpeed;
+
+        // If we've scrolled past the first set of items, reset to top
+        // This relies on the items being duplicated in the JSX
+        if (container.scrollTop >= container.scrollHeight / 2) {
+          container.scrollTop = 0;
+        }
+      }
+      animationFrameId = requestAnimationFrame(scroll);
+    };
+
+    animationFrameId = requestAnimationFrame(scroll);
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [selectedItem, isSidebarHovered]);
 
   useEffect(() => {
     const fetchGalleries = async () => {
@@ -298,16 +327,16 @@ export default function Gallery() {
         const response = await fetch(`${API_BASE_URL}/api/gallery`);
         const data = await response.json();
 
-        // Dynamically create filters from gallery titles
-        const titles = data.map((g) => g.title).filter(Boolean);
-        setFilters(["All", ...new Set(titles)]);
+        // Extract unique categories for filters
+        const uniqueCategories = [...new Set(data.map((g) => g.category).filter(Boolean))];
+        setFilters(["All", ...uniqueCategories]);
 
         // Flatten all items from all galleries
         const items = data.flatMap((gallery) =>
           (gallery.items || []).map((item, idx) => ({
             id: item._id || `${gallery._id}-${idx}`,
-            title: item.name || gallery.title || "Untiled",
-            category: gallery.title || "Other",
+            title: gallery.title || "Untitled",
+            category: gallery.category || gallery.title || "Gallery",
             // ✅ SECURE URL: Using the backend proxy instead of static uploads
             image: `${API_BASE_URL}/api/gallery/view/${item.url.split("/").pop()}`,
             type: item.type, // image or video
@@ -354,6 +383,23 @@ export default function Gallery() {
       ? galleryItems
       : galleryItems.filter((item) => item.category === activeFilter);
 
+  const handleOpen = (item) => {
+    setSelectedItem(item);
+    setIsZoomed(false);
+    document.body.style.overflow = "hidden";
+  };
+
+  const handleClose = () => {
+    setSelectedItem(null);
+    setIsZoomed(false);
+    document.body.style.overflow = "auto";
+  };
+
+  const toggleZoom = (e) => {
+    e.stopPropagation();
+    setIsZoomed(!isZoomed);
+  };
+
   return (
     <div className="select-none">
       {" "}
@@ -372,10 +418,10 @@ export default function Gallery() {
         <div className="absolute bottom-[-60px] right-[8%] h-[220px] w-[220px] rounded-full bg-[#f4d6ae]/20 blur-3xl" />
 
         <div
-          className="relative px-[100px] pb-[72px] pt-[120px] text-white max-[1400px]:px-[50px]
-          max-[1024px]:px-10 max-[1024px]:pt-[100px]
-          max-[768px]:px-6 max-[768px]:pb-16 max-[768px]:pt-[88px]
-          max-[413px]:px-4 max-[413px]:pb-12 max-[413px]:pt-[76px]"
+          className="relative px-[100px] pb-[40px] pt-[80px] text-white max-[1400px]:px-[50px]
+          max-[1024px]:px-10 max-[1024px]:pt-[60px]
+          max-[768px]:px-6 max-[768px]:pb-10 max-[768px]:pt-[50px]
+          max-[413px]:px-4 max-[413px]:pb-8 max-[413px]:pt-[40px]"
         >
           {/* Header content remains same */}
           <p className="font-[Montserrat] text-[13px] font-semibold uppercase tracking-[2.6px] text-white/75">
@@ -411,11 +457,11 @@ export default function Gallery() {
         </div>
       </section>
       {/* Filter and Grid Section */}
-      <section className="px-[100px] pt-[60px] pb-[100px] border-b-[0.8px] border-[#E5E5E5] bg-[#f5f1e8]
+      <section className="px-[100px] pt-[40px] pb-[100px] border-b-[0.8px] border-[#E5E5E5] bg-[#F4F7FA]
         max-[1400px]:px-[50px]
         max-[1200px]:px-10
         max-[768px]:px-6
-        max-[413px]:px-5 max-[413px]:pt-8 max-[413px]:pb-20">
+        max-[413px]:px-5 max-[413px]:pt-6 max-[413px]:pb-12">
         <div className="relative flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-[620px]">
             <p className="font-[Montserrat] text-[13px] font-semibold uppercase tracking-[2.4px] text-[#7a6550]">
@@ -433,7 +479,7 @@ export default function Gallery() {
                 className={`rounded-full px-5 py-3 font-[Montserrat] text-[12px] font-semibold uppercase tracking-[1.7px] transition-all duration-300 ${
                   activeFilter === filter
                     ? "bg-[#15242d] text-white shadow-lg"
-                    : "bg-white text-[#314650] hover:bg-[#efe5d5]"
+                    : "bg-white text-[#314650] hover:bg-[#395563] hover:text-white"
                 }`}
               >
                 {filter}
@@ -442,7 +488,7 @@ export default function Gallery() {
           </div>
         </div>
 
-        <div className="relative mt-12 grid auto-rows-[220px] gap-5 md:grid-cols-2 lg:grid-cols-3 lg:auto-rows-[240px]">
+        <div id="gallery-grid" className="relative mt-12 grid auto-rows-[220px] gap-5 md:grid-cols-2 lg:grid-cols-3 lg:auto-rows-[240px]">
           {loading ? (
             <div className="col-span-full flex h-[400px] items-center justify-center">
               <div className="h-10 w-10 animate-spin rounded-full border-4 border-[#15242d] border-t-transparent" />
@@ -453,8 +499,8 @@ export default function Gallery() {
               return (
                 <article
                   key={item.id}
-                  // onContextMenu={(e) => e.preventDefault()} // ✅ Disable right click
-                  className={`group relative overflow-hidden rounded-[28px] bg-[#15242d] transition-all duration-500 hover:-translate-y-2 ${itemSize}`}
+                  onClick={() => handleOpen(item)}
+                  className={`group relative overflow-hidden rounded-[28px] bg-[#15242d] transition-all duration-500 hover:-translate-y-2 cursor-pointer ${itemSize}`}
                 >
                   {/* ✅ PROTECTIVE OVERLAY: Prevents direct interaction with the media */}
                   {/* <div className="absolute inset-0 z-20 cursor-default" onContextMenu={(e) => e.preventDefault()} /> */}
@@ -512,9 +558,159 @@ export default function Gallery() {
         </div>
       </section>
 
-      <div className="-mt-[40px] relative z-10">
-        <Support />
-      </div>
+        <div className="-mt-[40px] relative z-10">
+          <Support />
+        </div>
+
+      {/* CINEMATIC VIEWER MODAL - PORTALED TO BODY TO FIX CENTERING */}
+      {typeof document !== "undefined" && createPortal(
+        <AnimatePresence>
+          {selectedItem && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[1000] flex items-center justify-center bg-[#05080a]/90 backdrop-blur-xl p-4 lg:p-10 pointer-events-auto"
+              onClick={handleClose}
+            >
+              <motion.div
+                initial={{ scale: 0.95, opacity: 0, y: 30 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ scale: 0.95, opacity: 0, y: 30 }}
+                transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                className="relative flex h-[85vh] w-full max-w-[900px] overflow-hidden rounded-[40px] border border-white/10 bg-[#0c1217] shadow-[0_45px_150px_rgba(0,0,0,0.9)]"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Immersive Blurred Backdrop (Inside Modal) */}
+                <motion.div
+                  key={selectedItem.image}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 0.25 }}
+                  className="absolute inset-0 z-0 bg-cover bg-center blur-[100px] scale-110 pointer-events-none"
+                  style={{ backgroundImage: `url(${selectedItem.image})` }}
+                />
+
+                {/* MAIN VIEWING AREA */}
+                <div className="relative flex flex-1 flex-col items-center justify-center p-6 lg:p-8 overflow-hidden">
+                  {/* Close Button (Mobile Only) */}
+                  <button
+                    onClick={handleClose}
+                    className="absolute top-6 right-6 z-50 lg:hidden flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-xl"
+                  >
+                    <X size={24} />
+                  </button>
+
+                  {/* Media Container */}
+                  <motion.div
+                    key={selectedItem.id}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className={`relative z-10 flex h-full w-full items-center justify-center transition-all duration-700 ${isZoomed ? "scale-110 cursor-zoom-out" : "scale-100 cursor-zoom-in"}`}
+                    onClick={toggleZoom}
+                  >
+                    <div className="relative group/shadow max-h-full w-fit overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
+                      {selectedItem.type === "video" ? (
+                        <video
+                          src={selectedItem.image}
+                          autoPlay
+                          loop
+                          controls
+                          className="max-h-[82vh] w-auto transition-transform"
+                          onClick={(e) => e.stopPropagation()}
+                        />
+                      ) : (
+                        <img
+                          src={selectedItem.image}
+                          alt={selectedItem.title}
+                          className="max-h-[82vh] w-auto object-contain select-none scale-[1.02]"
+                          draggable="false"
+                        />
+                      )}
+                    </div>
+                  </motion.div>
+                </div>
+
+                {/* PREMIUM SIDEBAR (Desktop) */}
+                <div className="hidden lg:flex w-[280px] flex-col bg-black/40 border-l border-white/10 backdrop-blur-[60px] relative z-20 overflow-hidden">
+                  <div className="p-8 flex flex-col h-full overflow-hidden">
+                    {/* Meta Header */}
+                    <div className="flex justify-between items-start mb-12">
+                      <div className="max-w-[80%]">
+                        <span className="inline-block text-[10px] font-bold uppercase tracking-[4px] text-white/40 mb-4 px-2 py-0.5 border border-white/10 rounded-sm">
+                          {selectedItem.category}
+                        </span>
+                        <h2 className="text-3xl font-semibold text-white tracking-tight leading-tight font-[Montserrat]">
+                          {selectedItem.title}
+                        </h2>
+                      </div>
+                      <button
+                        onClick={handleClose}
+                        className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 text-white/40 hover:text-white hover:bg-white/10 transition-all duration-500 hover:rotate-90"
+                      >
+                        <X size={20} />
+                      </button>
+                    </div>
+
+                    {/* Related Grid - SEAMLESS CIRCULAR AUTO SCROLLING CONTAINER */}
+                    <div 
+                      ref={sidebarRef}
+                      onMouseEnter={() => setIsSidebarHovered(true)}
+                      onMouseLeave={() => setIsSidebarHovered(false)}
+                      className="flex-1 space-y-8 no-scrollbar overflow-y-auto pr-1 select-none"
+                    >
+                      <div className="pb-10 pt-4">
+                        <div className="flex items-center justify-between mb-5">
+                          <h3 className="text-[10px] font-bold uppercase tracking-[2px] text-white/60">
+                            Collection
+                          </h3>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-3 pb-4">
+                          {galleryItems
+                            .filter((item) => item.category === selectedItem.category)
+                            .map((item, idx) => (
+                              <motion.div
+                                key={`${item.id}-${idx}`}
+                                whileHover={{ scale: 1.04, y: -2 }}
+                                whileTap={{ scale: 0.98 }}
+                                onClick={() => {
+                                  setSelectedItem(item);
+                                  setIsZoomed(false);
+                                }}
+                                className={`aspect-[4/3] rounded-xl overflow-hidden cursor-pointer border transition-all duration-300 ${
+                                  selectedItem.id === item.id
+                                    ? "border-[#f3c98f] ring-2 ring-[#f3c98f]/20"
+                                    : "border-white/5 hover:border-white/20"
+                                }`}
+                              >
+                                <img
+                                  src={item.image}
+                                  className={`w-full h-full object-cover transition-all duration-500 pointer-events-none ${
+                                    selectedItem.id === item.id ? "opacity-100 scale-110" : "opacity-40 hover:opacity-100"
+                                  }`}
+                                  alt={item.title}
+                                />
+                              </motion.div>
+                            ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Footer Section */}
+                    <div className="mt-10 pt-10 border-t border-white/10">
+                      <div className="flex items-center justify-between text-white/30 text-[10px] font-[Montserrat] tracking-wider uppercase">
+                        <p>© SPANGLES 2026</p>
+                        <p className="animate-pulse">Click Media to Zoom</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </div>
   );
 }
