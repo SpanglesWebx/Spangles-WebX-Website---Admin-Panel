@@ -58,12 +58,25 @@ const MagneticButton = ({ children, className, onClick }) => {
 };
 
 // --- DATA UTILITIES ---
-const calculateReadTime = (content = "") => {
-  const wordsPerMinute = 200;
-  const text = content.replace(/<[^>]*>/g, "").trim();
-  const words = text ? text.split(/\s+/).length : 0;
-  const minutes = Math.max(1, Math.ceil(words / wordsPerMinute));
-  return `${minutes} min read`;
+const getTimeAgo = (date) => {
+  if (!date) return "";
+  const now = new Date();
+  const past = new Date(date);
+  const diffInMS = now - past;
+
+  const seconds = Math.floor(diffInMS / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+  const months = Math.floor(days / 30);
+  const years = Math.floor(days / 365);
+
+  if (seconds < 60) return "just now";
+  if (minutes < 60) return `${minutes} min ago`;
+  if (hours < 24) return `${hours} hr ago`;
+  if (days < 30) return `${days} day${days > 1 ? "s" : ""} ago`;
+  if (months < 12) return `${months} month${months > 1 ? "s" : ""} ago`;
+  return `${years} year${years > 1 ? "s" : ""} ago`;
 };
 
 const getExcerpt = (content = "", length = 155) => {
@@ -112,7 +125,7 @@ export default function Blog() {
               tags: blog.tags || [],
               createdAt: blog.createdAt,
               date: formatDate(blog.createdAt),
-              readTime: calculateReadTime(blog.content),
+              timeAgo: getTimeAgo(blog.createdAt),
               featured: blog.featured || false,
             };
           })
@@ -150,6 +163,10 @@ export default function Blog() {
 
   const categories = useMemo(() => {
     return ["All Stories", ...new Set(posts.map((post) => post.category))];
+  }, [posts]);
+
+  const totalTags = useMemo(() => {
+    return new Set(posts.flatMap(post => post.tags || [])).size;
   }, [posts]);
 
   const filteredPosts = useMemo(() => {
@@ -220,8 +237,8 @@ export default function Blog() {
           <div className="absolute -left-16 top-24 h-80 w-80 rounded-full bg-[#345261]/25 blur-[120px]" />
           <div className="absolute right-0 top-0 h-[500px] w-[500px] rounded-full bg-[#6B6A66]/20 blur-[150px]" />
 
-          <div className="relative mx-auto max-w-[1440px] px-6 pb-8 pt-16 md:px-10 xl:px-16">
-            <div className="grid min-h-[480px] gap-10 xl:grid-cols-[1.1fr_0.9fr] xl:items-end">
+          <div className="relative mx-auto max-w-[1440px] px-6 pb-8 pt-20 md:px-10 md:pt-16 min-[1015px]:px-16">
+            <div className="grid min-h-[480px] gap-10 md:gap-12 min-[1015px]:grid-cols-[1.1fr_0.9fr] min-[1015px]:items-end">
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -243,7 +260,7 @@ export default function Blog() {
                   </span>
                 </motion.div>
 
-                <h1 className="max-w-5xl text-[44px] font-semibold leading-[0.9] tracking-[-0.055em] text-white sm:text-[64px] lg:text-[96px] mix-blend-plus-lighter">
+                <h1 className="max-w-5xl text-[36px] min-[414px]:text-[44px] font-semibold leading-[0.9] tracking-[-0.055em] text-white sm:text-[64px] min-[1015px]:text-[96px] mix-blend-plus-lighter">
                   Stories for <br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFFFFF] to-[#345261] italic font-serif">ambitious minds.</span>
                 </h1>
@@ -253,7 +270,7 @@ export default function Blog() {
                   decisions that define the modern competitive landscape.
                 </p>
 
-                <div className="mt-12 grid gap-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
+                <div className="mt-10 md:mt-12 grid gap-4 md:gap-6 min-[1015px]:grid-cols-[minmax(0,1fr)_auto] min-[1015px]:items-center">
                   <div className="relative group/search">
                     <Search className="absolute left-6 top-1/2 h-5 w-5 -translate-y-1/2 text-white/30 group-focus-within/search:text-[#345261] transition-colors" />
                     <input
@@ -318,7 +335,7 @@ export default function Blog() {
                           {featuredPost.date}
                         </span>
                         <span className="flex items-center gap-2">
-                          <Clock3 size={14} /> {featuredPost.readTime}
+                          <Clock3 size={14} /> {featuredPost.timeAgo}
                         </span>
                       </div>
 
@@ -336,10 +353,10 @@ export default function Blog() {
           </div>
         </section>
 
-        <section className="relative z-10 mt-32 px-6 md:px-10 xl:px-16">
+        <section className="relative z-10 mt-10 md:mt-16 px-6 md:px-10 min-[1095px]:px-16">
           <div className="mx-auto max-w-[1440px]">
 
-            <div className="grid gap-16 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+            <div className="grid gap-12 md:gap-16 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
 
               {/* Left Column: The Syndicate Index */}
               <motion.div
@@ -348,11 +365,11 @@ export default function Blog() {
                 viewport={{ once: true }}
                 transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
               >
-                <div className="mb-12 text-left">
+                <div className="max-[413px]:mb-0 mb-12 text-left">
                   <p className="text-[11px] font-bold uppercase tracking-[0.5em] text-[#345261] mb-6">
                     THE EXPLORATION HUB
                   </p>
-                  <h2 className="text-[48px] md:text-[72px] font-semibold tracking-[-0.065em] text-[#161C2D] leading-[0.85] mb-8">
+                  <h2 className="text-[38px] min-[414px]:text-[48px] md:text-[72px] font-semibold tracking-[-0.065em] text-[#161C2D] leading-[0.85] mb-8">
                     The Insight <br />
                     <span className="italic font-serif text-[#345261]/80">Compass.</span>
                   </h2>
@@ -411,18 +428,18 @@ export default function Blog() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  className="relative overflow-hidden rounded-[40px] border border-[#161C2D]/5 bg-white p-10 shadow-[0_45px_100px_rgba(22,33,43,0.05)] group"
+                  className="relative overflow-hidden rounded-[40px] border border-[#161C2D]/5 bg-white p-6 md:p-10 shadow-[0_45px_100px_rgba(22,33,43,0.05)] group"
                 >
                   <div className="flex items-start justify-between">
                     <div>
                       <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#161C2D]/20 mb-4">
-                        Archive Fragment Count
+                        Categories Cataloged
                       </p>
-                      <h3 className="text-8xl font-light tracking-[-0.08em] text-[#161C2D] leading-none mb-4">
-                        {posts.length}
+                      <h3 className="text-6xl md:text-8xl font-light tracking-[-0.08em] text-[#161C2D] leading-none mb-4">
+                        {categories.length - 1}
                       </h3>
                       <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#345261]">
-                        Intelligence units cataloged
+                        Unique intelligence domains
                       </p>
                     </div>
                     <TrendingUp className="text-[#345261]/20 group-hover:text-[#345261]/40 transition-colors duration-700" size={40} />
@@ -438,11 +455,11 @@ export default function Blog() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.2 }}
-                    className="rounded-[40px] border border-[#161C2D]/5 bg-[#161C2D] p-8 text-white relative overflow-hidden group"
+                    className="rounded-[40px] border border-[#161C2D]/5 bg-[#161C2D] p-6 md:p-8 text-white relative overflow-hidden group"
                   >
                     <Sparkles className="text-[#345261] mb-6 opacity-40 group-hover:opacity-100 transition-opacity" size={24} />
-                    <p className="text-[9px] font-bold uppercase tracking-[0.3em] text-white/30 mb-2">Unique Domains</p>
-                    <h4 className="text-5xl font-light tracking-tight">{categories.length - 1}</h4>
+                    <p className="text-[9px] font-bold uppercase tracking-[0.3em] text-white/30 mb-2">Strategic Tags</p>
+                    <h4 className="text-4xl md:text-5xl font-light tracking-tight">{totalTags}</h4>
                     <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
                   </motion.div>
 
@@ -452,7 +469,7 @@ export default function Blog() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.3 }}
-                    className="rounded-[40px] border border-[#161C2D]/5 bg-[#F4F7FA] p-8 relative overflow-hidden flex flex-col justify-between"
+                    className="rounded-[40px] border border-[#161C2D]/5 bg-[#F4F7FA] p-6 md:p-8 relative overflow-hidden flex flex-col justify-between"
                   >
                     <div className="flex justify-between items-start">
                       <p className="text-[9px] font-bold uppercase tracking-[0.3em] text-[#161C2D]/30">Update Pulse</p>
@@ -463,7 +480,7 @@ export default function Blog() {
                       />
                     </div>
                     <div>
-                      <h4 className="text-3xl font-semibold tracking-[-0.04em] text-[#161C2D] italic font-serif">Weekly</h4>
+                      <h4 className="text-2xl md:text-3xl font-semibold tracking-[-0.04em] text-[#161C2D] italic font-serif">Weekly</h4>
                       <p className="mt-1 text-[10px] font-bold tracking-[0.1em] text-[#345261]/60">SYNDICATE DISPATCH</p>
                     </div>
                   </motion.div>
@@ -476,8 +493,8 @@ export default function Blog() {
         </section>
 
         {featuredPost && (
-          <section className="mx-auto mt-24 max-w-[1440px] px-6 md:px-10 xl:px-16">
-            <div className="mb-12 flex items-baseline justify-between gap-6 border-b border-[#6B6A66]/5 pb-12">
+          <section className="mx-auto mt-10 md:mt-16 max-w-[1440px] px-6 md:px-10 min-[1015px]:px-16">
+            <div className="mb-6 md:mb-8 min-[1015px]:mb-12 flex items-baseline justify-between gap-6 border-b border-[#6B6A66]/5 pb-6 md:pb-8 min-[1015px]:pb-12">
               <div>
                 <p className="text-[11px] font-bold uppercase tracking-[0.5em] text-[#345261] mb-4">
                   THE SYNDICATE
@@ -491,19 +508,19 @@ export default function Blog() {
               </div>
             </div>
 
-            <div className="grid gap-12 xl:grid-cols-[1.1fr_0.9fr]">
+            <div className="grid gap-10 md:gap-12 min-[1015px]:grid-cols-[1.1fr_0.9fr]">
               <div className="flex flex-col gap-10 h-full">
                 {featuredPost && (
                   <motion.article
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="group relative overflow-hidden rounded-[48px] border border-[#161C2D]/5 bg-white shadow-[0_40px_100px_rgba(22,33,43,0.06)] hover:shadow-[0_40px_100px_rgba(22,33,43,0.12)] transition-shadow duration-1000 flex flex-col h-fit"
+                    className="group relative overflow-hidden rounded-[48px] border border-[#161C2D]/5 bg-white shadow-[0_40px_100px_rgba(22,33,43,0.06)] hover:shadow-[0_40px_100px_rgba(22,33,43,0.12)] transition-shadow duration-1000 flex flex-col flex-1 max-[1030px]:hidden"
                   >
                     <div className="flex flex-col flex-1">
 
                       {/* Image section — heading overlaid at the bottom */}
-                      <div className="relative h-[600px] flex-shrink-0 overflow-hidden">
+                      <div className="relative h-[350px] md:h-[450px] lg:h-[600px] flex-shrink-0 overflow-hidden">
                         {featuredPost.image ? (
                           <motion.img
                             whileHover={{ scale: 1.05 }}
@@ -530,14 +547,14 @@ export default function Blog() {
 
                         {/* Heading — bottom of image */}
                         <div className="absolute bottom-0 left-0 right-0 p-8 pb-10">
-                          <h2 className="text-[30px] font-semibold leading-[1.1] tracking-[-0.05em] sm:text-[48px] text-white">
+                          <h2 className="text-[26px] min-[414px]:text-[30px] font-semibold leading-[1.1] tracking-[-0.05em] sm:text-[48px] text-white">
                             {featuredPost.title}
                           </h2>
                         </div>
                       </div>
 
                       {/* Content below image */}
-                      <div className="p-8 pb-10 md:p-10 md:pb-10 flex flex-col gap-3">
+                      <div className="p-6 pb-8 md:p-10 md:pb-10 flex flex-col gap-3">
                         <p className="text-base leading-relaxed text-[#161C2D]/50 font-medium line-clamp-3 pb-5">
                           {featuredPost.excerpt}
                         </p>
@@ -551,6 +568,45 @@ export default function Blog() {
                         </button>
                       </div>
 
+                    </div>
+                  </motion.article>
+                )}
+
+                {/* Mobile/Tablet view for featuredPost (<=1030px) */}
+                {featuredPost && (
+                  <motion.article
+                    initial={{ opacity: 0, x: -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0, duration: 0.8 }}
+                    onClick={() => navigate(`/blog/${featuredPost.id}`)}
+                    className="group cursor-pointer rounded-[32px] border border-[#161C2D]/5 bg-white p-6 shadow-[0_20px_60px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_60px_rgba(213,164,107,0.15)] transition-all duration-700 min-[1031px]:hidden"
+                  >
+                    <div className="grid grid-cols-[140px_1fr] gap-8 items-center">
+                      <div className="overflow-hidden rounded-2xl aspect-square">
+                        {featuredPost.image ? (
+                          <img
+                            src={featuredPost.image}
+                            alt={featuredPost.title}
+                            className="h-full w-full object-cover grayscale-[0.8] group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000"
+                          />
+                        ) : (
+                          <div className="flex h-full items-center justify-center bg-[#161C2D]/5 text-[9px] font-bold tracking-[0.3em] text-white/20">ARCHIVE</div>
+                        )}
+                      </div>
+
+                      <div className="pr-4">
+                        <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.3em] text-[#345261]">
+                          {featuredPost.category}
+                        </p>
+                        <h3 className="line-clamp-2 text-[18px] md:text-[20px] font-semibold leading-tight text-[#161C2D] group-hover:translate-x-3 transition-transform duration-500">
+                          {featuredPost.title}
+                        </h3>
+                        <div className="mt-5 flex items-center gap-6 text-[10px] font-bold uppercase tracking-[0.1em] text-[#161C2D]/25">
+                          <span className="italic tracking-normal text-xs text-[#161C2D]/40">{featuredPost.date}</span>
+                          <span>{featuredPost.timeAgo}</span>
+                        </div>
+                      </div>
                     </div>
                   </motion.article>
                 )}
@@ -580,29 +636,28 @@ export default function Blog() {
                         <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.3em] text-[#345261]">
                           {featuredSmallLeft.category}
                         </p>
-                        <h3 className="line-clamp-2 text-[24px] font-semibold leading-tight text-[#161C2D] group-hover:translate-x-3 transition-transform duration-500">
+                        <h3 className="line-clamp-2 text-[18px] md:text-[24px] font-semibold leading-tight text-[#161C2D] group-hover:translate-x-3 transition-transform duration-500">
                           {featuredSmallLeft.title}
                         </h3>
                         <div className="mt-5 flex items-center gap-6 text-[10px] font-bold uppercase tracking-[0.1em] text-[#161C2D]/25">
                           <span className="italic tracking-normal text-xs text-[#161C2D]/40">{featuredSmallLeft.date}</span>
-                          <span>{featuredSmallLeft.readTime}</span>
+                          <span>{featuredSmallLeft.timeAgo}</span>
                         </div>
                       </div>
                     </div>
                   </motion.article>
                 )}
-              </div>
 
-              <div className="flex flex-col gap-6">
-                {spotlightPosts.map((post, index) => (
+                {/* Secondary spotlight posts moved to left at 1030px below */}
+                {spotlightPosts.slice(0, 2).map((post, index) => (
                   <motion.article
-                    key={post.id}
-                    initial={{ opacity: 0, x: 30 }}
+                    key={`${post.id}-left`}
+                    initial={{ opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: index * 0.15, duration: 0.8 }}
+                    transition={{ delay: index * 0.1, duration: 0.8 }}
                     onClick={() => navigate(`/blog/${post.id}`)}
-                    className="group cursor-pointer rounded-[32px] border border-[#161C2D]/5 bg-white p-6 shadow-[0_20px_60px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_60px_rgba(213,164,107,0.15)] transition-all duration-700"
+                    className="group cursor-pointer rounded-[32px] border border-[#161C2D]/5 bg-white p-6 shadow-[0_20px_60px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_60px_rgba(213,164,107,0.15)] transition-all duration-700 min-[1031px]:hidden"
                   >
                     <div className="grid grid-cols-[140px_1fr] gap-8 items-center">
                       <div className="overflow-hidden rounded-2xl aspect-square">
@@ -621,12 +676,53 @@ export default function Blog() {
                         <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.3em] text-[#345261]">
                           {post.category}
                         </p>
-                        <h3 className="line-clamp-2 text-[20px] font-semibold leading-tight text-[#161C2D] group-hover:translate-x-3 transition-transform duration-500">
+                        <h3 className="line-clamp-2 text-[18px] md:text-[20px] font-semibold leading-tight text-[#161C2D] group-hover:translate-x-3 transition-transform duration-500">
                           {post.title}
                         </h3>
                         <div className="mt-5 flex items-center gap-6 text-[10px] font-bold uppercase tracking-[0.1em] text-[#161C2D]/25">
                           <span className="italic tracking-normal text-xs text-[#161C2D]/40">{post.date}</span>
-                          <span>{post.readTime}</span>
+                          <span>{post.timeAgo}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.article>
+                ))}
+              </div>
+
+              <div className="flex flex-col gap-6 h-full">
+                {spotlightPosts.map((post, index) => (
+                  <motion.article
+                    key={post.id}
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.15, duration: 0.8 }}
+                    onClick={() => navigate(`/blog/${post.id}`)}
+                    className={`group cursor-pointer rounded-[32px] border border-[#161C2D]/5 bg-white p-6 shadow-[0_20px_60px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_60px_rgba(213,164,107,0.15)] transition-all duration-700 ${index < 2 ? "max-[1030px]:hidden" : ""}`}
+                  >
+                    <div className="grid grid-cols-[140px_1fr] gap-8 items-center">
+                      <div className="overflow-hidden rounded-2xl aspect-square">
+                        {post.image ? (
+                          <img
+                            src={post.image}
+                            alt={post.title}
+                            className="h-full w-full object-cover grayscale-[0.8] group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000"
+                          />
+                        ) : (
+                          <div className="flex h-full items-center justify-center bg-[#161C2D]/5 text-[9px] font-bold tracking-[0.3em] text-white/20">ARCHIVE</div>
+                        )}
+                      </div>
+
+                      <div className="pr-4">
+                        <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.3em] text-[#345261]">
+                          {post.category}
+                        </p>
+                        <h3 className="line-clamp-2 text-[18px] md:text-[20px] font-semibold leading-tight text-[#161C2D] group-hover:translate-x-3 transition-transform duration-500">
+                          {post.title}
+                        </h3>
+                        <div className="mt-5 flex items-center gap-6 text-[10px] font-bold uppercase tracking-[0.1em] text-[#161C2D]/25">
+                          <span className="italic tracking-normal text-xs text-[#161C2D]/40">{post.date}</span>
+                          <span>{post.timeAgo}</span>
                         </div>
                       </div>
                     </div>
@@ -667,7 +763,7 @@ export default function Blog() {
                       <TrendingUp size={20} className="text-white/10 group-hover:text-[#345261]/40 transition-colors duration-700" />
                     </div>
 
-                    <h3 className="text-3xl font-semibold leading-[1.2] tracking-tight mb-8 font-serif italic text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-white/40">
+                    <h3 className="text-2xl md:text-3xl font-semibold leading-[1.2] tracking-tight mb-8 font-serif italic text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-white/40">
                       Where strategic depth meets cinematic editorial clarity.
                     </h3>
 
@@ -729,8 +825,8 @@ export default function Blog() {
         )}
 
         {/* Grid Archive section */}
-        <section className="mx-auto mt-32 max-w-[1440px] px-6 pb-30 md:px-10 xl:px-16">
-          <div className="mb-20 flex flex-col gap-8 md:flex-row md:items-end md:justify-between border-b border-[#6B6A66]/5 pb-10">
+        <section className="mx-auto mt-10 md:mt-16 max-w-[1440px] px-6 pb-10 md:pb-16 md:px-10 min-[1015px]:px-16">
+          <div className="max-[413px]:mb-8 mb-20 flex flex-col gap-8 md:flex-row md:items-end md:justify-between border-b border-[#6B6A66]/5 pb-10">
             <div>
               <p className="text-[11px] font-bold uppercase tracking-[0.5em] text-[#345261] mb-4">
                 THE RECENT CATALOG
@@ -747,7 +843,7 @@ export default function Blog() {
 
           {articlePosts.length > 0 ? (
             <AnimatePresence mode="popLayout">
-              <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-8 md:gap-10 md:grid-cols-2 lg:grid-cols-3">
                 {articlePosts.map((post, index) => (
                   <motion.article
                     key={post.id}
@@ -757,7 +853,7 @@ export default function Blog() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: index * 0.05 }}
                     onClick={() => navigate(`/blog/${post.id}`)}
-                    className="group cursor-pointer overflow-hidden rounded-[40px] border border-[#161C2D]/5 bg-white shadow-[0_32px_80px_-16px_rgba(22,33,43,0.05)] hover:shadow-[0_45px_100px_rgba(213,164,107,0.15)] transition-all duration-700 hover:-translate-y-4 flex flex-col h-full"
+                    className={`group cursor-pointer overflow-hidden rounded-[40px] border border-[#161C2D]/5 bg-white shadow-[0_32px_80px_-16px_rgba(22,33,43,0.05)] hover:shadow-[0_45px_100px_rgba(213,164,107,0.15)] transition-all duration-700 hover:-translate-y-4 flex flex-col h-full ${index > 0 ? "max-[413px]:hidden" : ""}`}
                   >
                     <div className="relative overflow-hidden aspect-video">
                       {post.image ? (
@@ -780,7 +876,7 @@ export default function Blog() {
                       <div className="mb-6 flex flex-wrap items-center gap-4 text-[10px] font-bold uppercase tracking-[0.2em] text-[#161C2D]/30">
                         <span className="italic tracking-normal text-sm text-[#161C2D]/40 font-serif lowercase capitalize">{post.date}</span>
                         <span className="h-1 w-1 rounded-full bg-[#345261]/40" />
-                        <span>{post.readTime}</span>
+                        <span>{post.timeAgo}</span>
                       </div>
 
                       <h3 className="text-[24px] font-semibold leading-[1.1] tracking-[-0.04em] text-[#161C2D] mb-4 group-hover:text-[#345261] transition-all duration-500">
@@ -828,7 +924,7 @@ export default function Blog() {
         />
 
 
-        <div className="mx-auto max-w-[1440px] px-6 md:px-10 xl:px-16 relative z-10 flex flex-col md:flex-row items-center justify-between gap-16">
+        <div className="mx-auto max-w-[1440px] px-6 md:px-10 min-[1095px]:px-16 relative z-10 flex flex-col md:flex-row items-center justify-between gap-16">
           <div className="max-w-2xl">
             <div className="flex items-center gap-4 mb-8">
               <span className="h-[2px] w-12 bg-[#345261]" />

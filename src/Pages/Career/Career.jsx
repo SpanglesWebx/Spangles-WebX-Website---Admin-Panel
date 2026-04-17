@@ -342,73 +342,45 @@ export default function Career() {
             jobs.map((job) => (
               <div
                 key={job._id}
-                className="bg-white rounded-[12px] pt-[30px] px-6 pb-6 border border-[#EAECE9] max-[413px]:px-[20px] max-[413px]:pt-[20px] max-[413px]:pb-[24px] flex flex-col justify-between"
+                className="bg-white rounded-[12px] px-4 py-4 shadow-[0_2px_15px_rgba(0,0,0,0.04)] border border-[#EAECE9] flex flex-col"
               >
-                <div>
-                  {/* Top Row */}
-                  <div className="flex justify-between items-center mb-15 text-xs text-gray-500 max-[413px]:mb-[80px] max-[413px]:flex-row max-[413px]:justify-between">
-                    {/* Type */}
-                    <span className="flex items-center gap-2 rounded-[10px] border border-[#EAECE9] px-4 py-1.5 max-[413px]:px-[10px] max-[413px]:py-[4px] max-[413px]:rounded-[6px]">
-                      <span className="w-1.5 h-1.5 bg-[#395563] rounded-[2px] max-[413px]:w-[4px] max-[413px]:h-[4px]"></span>
-                      <span className="font-[Montserrat] font-normal text-[16px] leading-[28.8px] text-[#161C2D] max-[413px]:text-[12px] max-[413px]:leading-[18px]">
-                        {job.jobType}
-                      </span>
-                    </span>
-
-                    {/* Location */}
-                    <span className="flex items-center gap-2">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-[16px] h-[20px] text-[#345261] max-[413px]:w-[14px] max-[413px]:h-[16px]"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"
-                        />
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                        />
-                      </svg>
-                      <span className="font-[Montserrat] font-normal text-[16px] leading-[32px] text-[#161C2D] max-[413px]:text-[12px] max-[413px]:leading-[18px]">
-                        {job.location}
-                      </span>
-                    </span>
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="font-[Montserrat] font-semibold text-[26px] leading-[29.28px] text-[#161C2D] mb-4 max-[413px]:text-[16px] max-[413px]:leading-[22px] max-[413px]:mb-[24px]">
-                    {job.jobTitle}
-                  </h3>
+                {/* Top dark bar */}
+                <div className="bg-[#395563] rounded-[8px] px-5 py-4 flex justify-between items-center mb-12">
+                  <span className="bg-white text-[#395563] font-[Montserrat] font-bold text-[11px] px-3 py-1 rounded-full">
+                    {job.jobType}
+                  </span>
+                  <span className="text-white font-[Montserrat] font-semibold text-[15px]">
+                    {job.location}
+                  </span>
                 </div>
 
-                {/* Button */}
-                <button
-                  onClick={() => handleKnowMore(job)}
-                  className="bg-[#2f4858] w-fit px-6.5 py-4.5 text-white font-[Montserrat] font-bold text-[12px] leading-[18px] uppercase text-center rounded-md flex items-center justify-center gap-2 max-[413px]:px-[16px] max-[413px]:py-[10px] max-[413px]:text-[10px]"
-                >
-                  KNOW MORE{" "}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 max-[413px]:w-[12px] max-[413px]:h-[12px]"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="2"
+                {/* Bottom Row */}
+                <div className="px-2 pb-1 flex justify-between items-center max-[768px]:flex-col max-[768px]:items-start max-[768px]:gap-4">
+                  <h3 className="font-[Montserrat] font-bold text-[20px] text-[#395563]">
+                    {job.jobTitle}
+                  </h3>
+                  
+                  <button
+                    onClick={() => handleKnowMore(job)}
+                    className="group border border-[#395563] text-[#395563] hover:bg-[#395563] hover:text-white transition-colors duration-300 px-5 py-2.5 rounded-[6px] font-[Montserrat] font-semibold text-[14px] flex items-center gap-2 max-[768px]:w-full max-[768px]:justify-center"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M5 12h14M13 5l7 7-7 7"
-                    />
-                  </svg>
-                </button>
+                    Know more
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M5 12h14M13 5l7 7-7 7"
+                      />
+                    </svg>
+                  </button>
+                </div>
               </div>
             ))
           ) : (

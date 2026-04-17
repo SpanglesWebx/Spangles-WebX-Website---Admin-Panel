@@ -10,12 +10,12 @@ import Support from "../About/Components/Support";
 import { useNavigate } from "react-router-dom";
 import Serviceicon from "../../assets/Service-icon.png"; // change to your icon
 
-
 export const services = [
   {
-    title: "Cyber Security",
+    title: "Website Development",
     image: cyberImg,
-    description: "Protect your systems and data from cyber threats.",
+    description:
+      "We build powerful, pixel-perfect websites that don’t just look good—they grow your business.",
     advantages: [
       "Threat detection and prevention",
       "Network security monitoring",
@@ -44,9 +44,10 @@ export const services = [
   },
 
   {
-    title: "Digital Services",
+    title: "Web App Development",
     image: digitalImg,
-    description: "Boost your online presence with smart digital solutions.",
+    description:
+      "Transforming ideas into scalable, user-friendly web apps that work seamlessly across every device.",
     advantages: [
       "Social media management",
       "Search engine optimization (SEO)",
@@ -75,9 +76,10 @@ export const services = [
   },
 
   {
-    title: "Product Design",
+    title: "Mobile App Development",
     image: productImg,
-    description: "Design user-friendly and visually stunning products.",
+    description:
+      "Building intuitive mobile apps that connect brands with users anytime, anywhere.",
     advantages: [
       "User-centered design approach",
       "Wireframing and prototyping",
@@ -106,9 +108,10 @@ export const services = [
   },
 
   {
-    title: "Web Development",
+    title: "Software Testing",
     image: webImg,
-    description: "Build modern and scalable web applications.",
+    description:
+      "Ensuring flawless performance with rigorous testing for reliable, high-quality software.",
     advantages: [
       "Responsive design",
       "SEO optimization",
@@ -137,9 +140,10 @@ export const services = [
   },
 
   {
-    title: "Software Testing",
+    title: "UI / UX Designing",
     image: testingImg,
-    description: "Ensure your software is bug-free and reliable.",
+    description:
+      "Crafting intuitive and engaging designs that turn users into loyal customers.",
     advantages: [
       "Manual and automated testing",
       "Performance and load testing",
@@ -168,7 +172,7 @@ export const services = [
   },
 
   {
-    title: "App Development",
+    title: "Software Development",
     image: appImg,
     description: "Create powerful mobile apps for iOS and Android.",
     advantages: [
@@ -240,14 +244,13 @@ const Services = () => {
       </div>
 
       {/* Services Grid */}
-      <div className="px-[100px] pt-[60px] pb-[100px] border-b-[0.8px] border-[#E5E5E5]
+      <div
+        className="px-[100px] pt-[60px] pb-[100px] border-b-[0.8px] border-[#E5E5E5]
 max-[1400px]:px-[50px]
 max-[1200px]:px-10
 max-[768px]:px-6
-max-[413px]:px-5 max-[413px]:pt-8 max-[413px]:pb-20">
-
-
-
+max-[413px]:px-5 max-[413px]:pt-8 max-[413px]:pb-20"
+      >
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-[1030px]:grid-cols-2 max-[413px]:!grid-cols-1 gap-x-[30px] gap-y-[50px] max-[413px]:gap-y-10">
           {services.map((service, index) => (
             <div

@@ -82,7 +82,7 @@ export default function HeroSection() {
       </section>
 
       {/* VIDEO SECTION */}
-      <section className="relative z-20 pb-16 bg-transparent -mt-32 max-[413px]:-mt-[120px] max-[413px]:pb-0">
+      <section className="relative z-20 pb-16 min-[1440px]:pb-24 bg-transparent -mt-32 max-[413px]:-mt-[120px] max-[413px]:pb-0">
         {/* CURVE IMAGE (BACKGROUND) - moved to section level for full width relative positioning */}
         <img
           src={scurve}
@@ -129,7 +129,7 @@ export default function HeroSection() {
               <img
                 src={imgvibe}
                 alt="Preview"
-                className="h-[550px] w-full object-cover max-[1024px]:h-[420px] max-[413px]:h-[400px]"
+                className="h-[550px] w-full object-cover min-[1440px]:h-[600px] max-[1024px]:h-[420px] max-[413px]:h-[400px]"
               />
             </div>
           </div>

@@ -209,7 +209,7 @@ export default function SmoothStack() {
               </h3>
 
               {/* 📝 TEXT */}
-              <p className="mb-4 min-[414px]:mb-4 min-[1025px]:mb-5 max-w-[480px] font-montserrat text-[14px] min-[414px]:text-[16px] min-[1025px]:text-[18px] font-normal leading-[1.6] min-[1025px]:leading-[32px] tracking-[0em] text-[#6B6A66]">
+              <p className="mb-4 min-[414px]:mb-4 min-[1025px]:mb-5 w-[400px] font-montserrat text-[14px] min-[400px]:text-[16px] min-[1025px]:text-[18px] font-normal leading-[1.6] min-[1025px]:leading-[32px] tracking-[0em] text-[#6B6A66]">
                 Ask agreed answer rather joy nature admire wisdom. Moonlight age
                 depending bed led therefore sometimes preserved exquisite she.
                 An fail up so shot leaf wise in. Minuter highest his arrived for

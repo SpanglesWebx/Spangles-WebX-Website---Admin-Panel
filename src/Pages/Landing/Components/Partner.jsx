@@ -56,8 +56,8 @@ max-[413px]:overflow-hidden"
                 Expert Team of Developers & Designers
               </h3>
               <p className="font-montserrat font-normal text-[14px] leading-[25.56px] tracking-[-0.18px] text-[#6B6A66] max-w-[300px] max-[413px]:leading-[20px] max-[413px]:text-[12px] max-[413px]:max-w-[260px]">
-                With lots of unique blocks, you can easily build a page without
-                coding.
+                A powerhouse of creative designers and skilled developers
+                turning ideas into impactful digital solutions.
               </p>
             </div>
           </div>
@@ -76,8 +76,8 @@ max-[413px]:overflow-hidden"
                 Modern, Scalable Tech Stack
               </h3>
               <p className="font-montserrat font-normal text-[14px] leading-[25.56px] tracking-[-0.18px] text-[#6B6A66] max-w-[300px] max-[413px]:leading-[20px] max-[413px]:text-[12px] max-[413px]:max-w-[260px]">
-                With lots of unique blocks, you can easily build a page without
-                coding.
+                Empowering your business with a modern, scalable tech stack
+                designed for growth and performance.
               </p>
             </div>
           </div>
@@ -96,8 +96,8 @@ max-[413px]:overflow-hidden"
                 Timely Delivery & Ongoing Support
               </h3>
               <p className="font-montserrat font-normal text-[14px] leading-[25.56px] tracking-[-0.18px] text-[#6B6A66] max-w-[300px] max-[413px]:leading-[20px] max-[413px]:text-[12px] max-[413px]:max-w-[260px]">
-                With lots of unique blocks, you can easily build a page without
-                coding.
+                Ensuring timely delivery and reliable ongoing support to keep
+                your projects running smoothly.
               </p>
             </div>
           </div>
@@ -116,8 +116,8 @@ max-[413px]:overflow-hidden"
                 100% Project Transparency
               </h3>
               <p className="font-montserrat font-normal text-[14px] leading-[25.56px] tracking-[-0.18px] text-[#6B6A66] max-w-[300px] max-[413px]:leading-[20px] max-[413px]:text-[12px] max-[413px]:max-w-[260px]">
-                With lots of unique blocks, you can easily build a page without
-                coding.
+                Experience complete project transparency with clear updates and
+                full visibility at every stage.
               </p>
             </div>
           </div>
@@ -132,9 +132,11 @@ max-[413px]:overflow-hidden"
             <h3 className="font-montserrat font-bold text-[28px] leading-[38.78px] tracking-[-1.06px] text-[#161C2D] mb-[14px] max-[413px]:text-[18px] max-[413px]:leading-[28px]">
               Ready to launch your next project?
             </h3>
-            <p className="font-montserrat font-normal text-[18px] leading-[28.2px] tracking-[-0.18px] text-[#6B6A66] max-w-[480px] max-[413px]:text-[12px] max-[413px]:leading-[20px] max-[413px]:max-w-[320px]">
-              With lots of unique blocks, you can easily build a page without
-              coding. Build your next landing page.
+           <p className="font-montserrat font-normal w-[900px] text-[18px] leading-[28.2px] tracking-[-0.18px] text-[#6B6A66] max-w-[700px] max-[413px]:text-[12px] max-[413px]:leading-[20px] max-[413px]:max-w-[320px]">
+              Ready to launch your next project? We combine creativity,
+              technology, and expertise to bring your vision to life. With a
+              focus on quality and timely delivery, we ensure your project
+              succeeds from start to finish.
             </p>
           </div>
 

@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+import missionIcon from "../../../assets/Mission.png";
+import visionIcon from "../../../assets/Vision.png";
+import valuesIcon from "../../../assets/Values.png";
 
 export default function MissionVision() {
   const missionCount = useCounter(2.5);
@@ -74,8 +77,8 @@ export default function MissionVision() {
 
           {/* Stat Box */}
           <div className="pl-[clamp(10px,3vw,80px)] max-[1024px]:pl-0">
-            <div className="border border-green-300 w-[70px] h-[70px] rounded-[10px] flex items-center justify-center mb-3">
-              📊
+            <div className="w-[70px] h-[70px] rounded-[10px] flex items-center justify-center mb-3 bg-white shadow-sm">
+              <img src={missionIcon} alt="Mission icon" className="w-[32px] h-[32px] object-contain" />
             </div>
             <p className="text-[#6B6A66] text-[18px] mb-5 leading-[26px] max-[768px]:text-[14px] max-[768px]:leading-[22px]">
               Our Growth, Compare to Last Financial Year
@@ -95,8 +98,8 @@ export default function MissionVision() {
 
           {/* Stat Box */}
           <div className="pr-[clamp(10px,3vw,80px)] max-[1024px]:pr-0 max-[1024px]:order-3">
-            <div className="border border-green-300 w-[70px] h-[70px] rounded-[10px] flex items-center justify-center mb-3">
-              👤
+            <div className="w-[70px] h-[70px] rounded-[10px] flex items-center justify-center mb-3 bg-white shadow-sm">
+              <img src={visionIcon} alt="Vision icon" className="w-[32px] h-[32px] object-contain" />
             </div>
             <p className="text-[#6B6A66] text-[18px] mb-5 leading-[26px] max-[768px]:text-[14px] max-[768px]:leading-[22px]">
               Our Growth, Compare to Last Financial Year
@@ -152,8 +155,8 @@ export default function MissionVision() {
 
           {/* Stat Box */}
           <div className="pl-[clamp(10px,3vw,80px)] max-[1024px]:pl-0">
-            <div className="border border-green-300 w-[70px] h-[70px] rounded-[10px] flex items-center justify-center mb-3">
-              💡
+            <div className="w-[70px] h-[70px] rounded-[10px] flex items-center justify-center mb-3 bg-white shadow-sm">
+              <img src={valuesIcon} alt="Values icon" className="w-[32px] h-[32px] object-contain" />
             </div>
             <p className="text-[#6B6A66] text-[18px] mb-5 leading-[26px] max-[768px]:text-[14px] max-[768px]:leading-[22px]">
               High Retention Reflects our Commitment to Success.
