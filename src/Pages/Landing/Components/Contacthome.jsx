@@ -120,8 +120,8 @@ export default function ContactSection() {
                   placeholder="Your Name *"
                   value={values.name}
                   onChange={(e) => setField("name", e.target.value)}
-                  className={`w-full h-[48px] font-montserrat font-normal text-[14px] leading-[100%] tracking-[0px] text-[#34526180] align-middle px-[15px] py-[20px] border rounded-[10px] outline-none focus:border-[#E8ECEF] max-[413px]:bg-white  ${
-                    errors.name ? "border-red-500" : "border-[#E8ECEF]"
+                  className={`w-full h-[48px] font-montserrat font-normal text-[14px] leading-[100%] tracking-[0px] text-[#345261] align-middle px-[15px] py-[20px] border rounded-[10px] outline-none focus:border-gray-300 placeholder:text-[#677289] max-[413px]:bg-white  ${
+                    errors.name ? "border-red-500" : "border-gray-300"
                   }`}
                 />
                 {errors.name ? (
@@ -136,8 +136,8 @@ export default function ContactSection() {
                   placeholder="Phone Number *"
                   value={values.phone}
                   onChange={(e) => setField("phone", e.target.value)}
-                  className={`w-full h-[48px] font-montserrat font-normal text-[14px] leading-[100%] text-[#34526180] px-[15px] border rounded-[10px] outline-none focus:border-[#395563] max-[413px]:bg-white  ${
-                    errors.phone ? "border-red-500" : "border-[#E8ECEF]"
+                  className={`w-full h-[48px] font-montserrat font-normal text-[14px] leading-[100%] text-[#345261] px-[15px] border rounded-[10px] outline-none focus:border-gray-300 placeholder:text-[#677289] max-[413px]:bg-white  ${
+                    errors.phone ? "border-red-500" : "border-gray-300"
                   }`}
                 />
                 {errors.phone ? (
@@ -156,8 +156,8 @@ export default function ContactSection() {
                   placeholder="Email Address *"
                   value={values.email}
                   onChange={(e) => setField("email", e.target.value)}
-                  className={`w-full h-[48px] font-montserrat font-normal text-[14px] leading-[100%] text-[#34526180] px-[15px] border rounded-[10px] outline-none focus:border-[#395563] max-[413px]:bg-white  ${
-                    errors.email ? "border-red-500" : "border-[#E8ECEF]"
+                  className={`w-full h-[48px] font-montserrat font-normal text-[14px] leading-[100%] text-[#345261] px-[15px] border rounded-[10px] outline-none focus:border-gray-300 placeholder:text-[#677289] max-[413px]:bg-white  ${
+                    errors.email ? "border-red-500" : "border-gray-300"
                   }`}
                 />
                 {errors.email ? (
@@ -172,7 +172,7 @@ export default function ContactSection() {
                   placeholder="Subject"
                   value={values.subject}
                   onChange={(e) => setField("subject", e.target.value)}
-                  className="w-full h-[48px] font-montserrat font-normal text-[14px] leading-[100%] text-[#34526180] px-[15px] border border-[#E8ECEF] rounded-[10px] outline-none focus:border-[#395563] max-[413px]:bg-white"
+                  className="w-full h-[48px] font-montserrat font-normal text-[14px] leading-[100%] text-[#345261] px-[15px] border border-gray-300 rounded-[10px] outline-none focus:border-gray-300 placeholder:text-[#677289] max-[413px]:bg-white"
                 />
               </div>
             </div>
@@ -184,8 +184,8 @@ export default function ContactSection() {
                 rows="4"
                 value={values.message}
                 onChange={(e) => setField("message", e.target.value)}
-                className={`w-full font-montserrat font-normal text-[14px] leading-[100%] text-[#34526180] px-[15px] py-[20px] border rounded-[10px] outline-none resize-none focus:border-[#395563] max-[413px]:bg-white ${
-                  errors.message ? "border-red-500" : "border-[#E8ECEF]"
+                className={`w-full font-montserrat font-normal text-[14px] leading-[100%] text-[#345261] px-[15px] py-[20px] border rounded-[10px] outline-none resize-none focus:border-gray-300 placeholder:text-[#677289] max-[413px]:bg-white ${
+                  errors.message ? "border-red-500" : "border-gray-300"
                 }`}
               ></textarea>
               {errors.message ? (

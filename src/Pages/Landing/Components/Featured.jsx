@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useLayoutEffect } from "react";
+import { useLocation } from "react-router-dom";
 import img1 from "../../../assets/portfolio1.jpg";
 import img2 from "../../../assets/portfolio2.jpg";
 import img3 from "../../../assets/portfolio3.jpg";
@@ -21,10 +22,32 @@ const projects = [
 ];
 
 export default function FeaturedWorkStack() {
+  const { pathname } = useLocation();
+
+  useLayoutEffect(() => {
+    // Ultimate Nudge: Forces a complete hardware-level reflow of the sticky container
+    // This is the only way to GUARANTEE sticky re-calculation in Chrome after route changes.
+    const stack = document.getElementById("featured-stack");
+    if (stack) {
+      stack.style.display = "none";
+      stack.offsetHeight; // Trigger reflow
+      stack.style.display = "flex";
+    }
+
+    const nudge = () => {
+      window.dispatchEvent(new Event("resize"));
+      window.scrollBy(0, 1);
+      window.scrollBy(0, -1);
+    };
+
+    const timer = setTimeout(nudge, 100);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div className="relative bg-[#395563] [clip-path:inset(0_0_0_0)] [-webkit-clip-path:inset(0_0_0_0)]">
+    <div className="relative bg-[#395563] overflow-visible">
       {/* Internal wrapper for relative stickiness tracking */}
-      <div className="relative z-[1]">
+      <div className="relative z-[1] overflow-visible">
         {/* HEADER WRAPPER - Limits sticky duration so the header scrolls away exactly when the last card arrives */}
         <div className="absolute top-0 left-0 right-0 h-[calc(100%-300px)] max-[1201px]:h-[calc(100%-350px)] max-[1025px]:h-[calc(100%-400px)] max-[413px]:h-[calc(100%-550px)] pointer-events-none">
           <div className="sticky top-0 z-[5] bg-transparent text-center pt-[80px] max-[1201px]:pt-[75px] max-[1025px]:pt-[70px] max-[413px]:pt-[70px] px-[20px] pb-[40px] max-[1201px]:pb-[30px] max-[1025px]:pb-[25px] max-[413px]:pb-[20px] pointer-events-auto">
@@ -53,11 +76,11 @@ export default function FeaturedWorkStack() {
 
         {/* STACK SECTION */}
         {/* We use a flex-column with gap to explicitly create the scroll track without tricky margin collapsing */}
-        <div className="pt-[250px] max-[1201px]:pt-[250px] max-[1025px]:pt-[250px] max-[413px]:pt-[250px] flex flex-col gap-[60vh] max-[1201px]:gap-[50vh] max-[1025px]:gap-[40vh] max-[413px]:gap-[40vh] pb-0">
+        <div id="featured-stack" className="pt-[250px] max-[1201px]:pt-[250px] max-[1025px]:pt-[250px] max-[413px]:pt-[250px] flex flex-col gap-[60vh] max-[1201px]:gap-[50vh] max-[1025px]:gap-[40vh] max-[413px]:gap-[40vh] pb-0">
           {projects.map((item, index) => (
             <div
               key={index}
-              className="sticky top-[280px] max-[1201px]:top-[260px] max-[1025px]:top-[250px] max-[413px]:top-[250px] transform-gpu will-change-transform"
+              className="sticky top-[280px] max-[1201px]:top-[260px] max-[1025px]:top-[250px] max-[413px]:top-[250px]"
               style={{ zIndex: 10 + index }}
             >
               <div className="mx-[90px] max-[1201px]:mx-[60px] max-[1025px]:mx-[40px] max-[413px]:mx-[24px] flex justify-between items-center max-[413px]:flex-col max-[413px]:items-start gap-[40px] max-[1201px]:gap-[30px] max-[1025px]:gap-[25px] max-[413px]:gap-[25px] bg-[#4c6571] rounded-[16px] p-[45px] max-[1201px]:p-[35px] max-[1025px]:p-[30px] max-[413px]:p-[24px] border border-[rgba(255,255,255,0.1)] min-h-[280px] max-[1201px]:min-h-[260px] max-[1025px]:min-h-[240px] max-[413px]:min-h-0">

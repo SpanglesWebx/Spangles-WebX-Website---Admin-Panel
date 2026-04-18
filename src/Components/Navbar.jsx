@@ -1,7 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { ChevronDown, Menu, X } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import logo from "../assets/Webx-nav-Logo_03.jpg"; // Make sure to have this image in your assets folder
+import sideLogo from "../assets/side-logo.png";
+import bannerBg from "../assets/nav-luxury-v4.png";
 
 import { services } from "../Pages/Services/Services";
 
@@ -31,6 +34,13 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const isLandingPage = location.pathname === "/";
 
+  const { scrollY } = useScroll();
+
+  // Dynamic gradient opacity based on scroll
+  const navBgOpacity = useTransform(scrollY, [0, 500], [0, 0.95]);
+  const navGlassBlur = useTransform(scrollY, [0, 500], [0, 40]);
+  const navShadowOpacity = useTransform(scrollY, [0, 500], [0, 0.4]);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 8);
@@ -43,7 +53,7 @@ export default function Navbar() {
   }, [location.pathname]);
 
   const linkBase =
-    "relative inline-flex items-center gap-1 whitespace-nowrap text-[13px] font-bold tracking-[0.08em] text-[#212529D4] hover:text-[#212529] pb-7 min-[1025px]:max-[1025px]:text-[12px] min-[1025px]:max-[1025px]:tracking-[0.05em] min-[1025px]:max-[1025px]:pb-6";
+    `relative inline-flex items-center gap-1 whitespace-nowrap text-[12px] font-bold tracking-[0.08em] pb-7 min-[1025px]:max-[1025px]:text-[11px] min-[1025px]:max-[1025px]:tracking-[0.05em] min-[1025px]:max-[1025px]:pb-6 transition-colors duration-[1000ms] ease-in-out ${isScrolled ? "text-white hover:text-gray-200" : "text-[#212529D4] hover:text-[#212529]"}`;
 
   const navLinkClass = useMemo(
     () =>
@@ -58,36 +68,48 @@ export default function Navbar() {
 
         return [
           linkBase,
-          "after:absolute after:left-0 after:bottom-0 after:h-[4px] after:bg-[#345261] after:transition-all after:duration-300",
+          `after:absolute after:left-1/2 after:bottom-0 after:h-[4px] after:transition-all after:duration-[1000ms] after:ease-in-out after:-translate-x-1/2 ${isScrolled ? "after:bg-white" : "after:bg-[#345261]"}`,
           trulyActive ? "after:w-full" : "after:w-0",
         ].join(" ");
       },
-    [linkBase, location.pathname],
+    [linkBase, location.pathname, isScrolled],
   );
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-[1000] transition-colors duration-300 ${
-        isLandingPage && !isScrolled ? "bg-transparent" : "bg-white"
-      }`}
+      className="fixed top-0 left-0 w-full z-[1000]"
     >
-      {/* Navbar */}
-      <div className="w-full border-b-1 border-[#ebebeb]">
-        <div className="max-w-[1440px] px-[25px] h-[80px] grid grid-cols-[1fr_2fr_1fr] items-end min-[1025px]:max-[1025px]:grid-cols-[180px_1fr_180px] min-[1025px]:max-[1025px]:px-[20px] max-[1025px]:h-[80px] max-[1025px]:grid-cols-[1fr_auto] max-[1025px]:items-center max-[1025px]:px-[20px] max-[413px]:h-[72px] max-[413px]:grid-cols-[1fr_auto] max-[413px]:items-center max-[413px]:px-[16px]">
+      <motion.div
+        className="absolute inset-0 z-0"
+        style={{
+          background: `linear-gradient(to bottom, rgba(52, 82, 97, 1), rgba(22, 28, 45, 1))`,
+          opacity: navBgOpacity,
+          backdropFilter: useTransform(navGlassBlur, b => `blur(${b}px)`),
+          boxShadow: useTransform(navShadowOpacity, s => `0 40px 120px rgba(0,0,0,0.4)`)
+        }}
+      />
+
+      {/* Background for non-landing pages when not scrolled (fallback to pure white if desired) */}
+      {!isLandingPage && !isScrolled && (
+        <div className="absolute inset-0 z-[-1] bg-white transition-opacity duration-1000" />
+      )}
+      {/* Navbar Content */}
+      <div className={`relative z-10 w-full border-b transition-colors duration-1000 ${isScrolled ? "border-white/10" : "border-[#ebebeb]"}`}>
+        <div className="max-w-[1440px] px-[25px] h-[70px] grid grid-cols-[1fr_2fr_1fr] items-end min-[1025px]:max-[1025px]:grid-cols-[180px_1fr_180px] min-[1025px]:max-[1025px]:px-[20px] max-[1025px]:h-[60px] max-[1025px]:grid-cols-[1fr_auto] max-[1025px]:items-end max-[1025px]:px-[20px] max-[413px]:h-[56px] max-[413px]:grid-cols-[1fr_auto] max-[413px]:items-end max-[413px]:px-[16px]">
           {/* Logo */}
           <NavLink
             to="/"
-            className="leading-none mb-6 flex items-center justify-self-start min-[1025px]:max-[1025px]:mb-5 max-[1025px]:mb-0"
+            className="leading-none mb-3 flex items-center justify-self-start min-[1025px]:max-[1025px]:mb-3 max-[1025px]:mb-0"
           >
             <img
-              src={logo}
-              alt="Spangles Webx"
-              className="w-[200px] h-auto object-contain min-[1025px]:max-[1025px]:w-[170px] max-[1025px]:w-[170px] max-[413px]:w-[150px]"
+              src={isScrolled ? sideLogo : logo}
+              alt="WebX Logo"
+              className="h-[40px] w-auto object-contain transition-all duration-[1000ms] min-[1025px]:max-[1025px]:w-[140px] max-[1025px]:w-[140px] max-[413px]:w-[120px]"
             />
           </NavLink>
 
           {/* Desktop links */}
-          <ul className="hidden min-[1026px]:flex items-end justify-center gap-[40px] justify-self-center">
+          <ul className="hidden min-[1026px]:flex items-end justify-center gap-[30px] justify-self-center">
             {LINKS.map((l) => (
               <li key={l.to} className={l.hasDropdown ? "group relative" : ""}>
                 <NavLink
@@ -109,7 +131,7 @@ export default function Navbar() {
                           <NavLink
                             to={sub.to}
                             state={sub.state}
-                            className="block px-6 py-2 text-[14px] font-medium text-[#212529D4] hover:text-[#345261] hover:bg-gray-50 transition-colors"
+                            className="block px-6 py-2 text-[13px] font-medium text-[#212529D4] hover:text-[#345261] hover:bg-gray-50 transition-colors"
                           >
                             {sub.label}
                           </NavLink>
@@ -125,10 +147,10 @@ export default function Navbar() {
           {/* Desktop CTA */}
           <NavLink
             to="/contact"
-            className="hidden min-[1026px]:inline-flex items-center mb-4 justify-center gap-3 rounded-[8px] bg-[#345261] pl-[26px] pr-[26px] py-[18px] text-[12px] leading-[18px] font-bold uppercase text-white font-montserrat justify-self-end"
+            className={`hidden min-[1026px]:inline-flex items-center mb-4 justify-center gap-3 rounded-[8px] px-[20px] py-[12px] text-[11px] leading-[18px] font-bold uppercase font-montserrat justify-self-end transition-colors duration-[1000ms] ease-in-out ${isScrolled ? "text-white" : "bg-[#345261] text-white"}`}
           >
             CONTACT US
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="transition-colors duration-[1000ms] ease-in-out">
               <path
                 d="M2 7H11M11 7L7 3M11 7L7 11"
                 stroke="white"
@@ -141,7 +163,7 @@ export default function Navbar() {
 
           {/* Mobile toggle */}
           <button
-            className="hidden max-[1025px]:inline-flex items-center justify-center p-2 text-[#212529D4]"
+            className={`hidden max-[1025px]:inline-flex items-center justify-center p-2 transition-colors duration-[1000ms] ease-in-out ${isScrolled ? "text-white" : "text-[#212529D4]"}`}
             onClick={() => setOpen((v) => !v)}
           >
             {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -177,7 +199,7 @@ export default function Navbar() {
                         onClick={() => setOpen(false)}
                         className={({ isActive }) =>
                           [
-                            "inline-flex items-center gap-1 whitespace-nowrap text-[12px] font-bold tracking-[0.08em] text-[#212529D4] py-2",
+                            "inline-flex items-center gap-1 whitespace-nowrap text-[11px] font-bold tracking-[0.08em] text-[#212529D4] py-2",
                             isActive ? "text-[#212529]" : "",
                           ].join(" ")
                         }
@@ -213,7 +235,7 @@ export default function Navbar() {
                               to={sub.to}
                               state={sub.state}
                               onClick={() => setOpen(false)}
-                              className="inline-flex items-center text-[14px] text-[#6b6b6b] hover:text-[#212529]"
+                              className="inline-flex items-center text-[13px] text-[#6b6b6b] hover:text-[#212529]"
                             >
                               {sub.label}
                             </NavLink>
@@ -229,7 +251,7 @@ export default function Navbar() {
                 <NavLink
                   to="/contact"
                   onClick={() => setOpen(false)}
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-[8px] bg-[#345261] px-[22px] py-[16px] text-[12px] font-bold tracking-[0.08em] text-white"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-[8px] bg-[#345261] px-[18px] py-[12px] text-[11px] font-bold tracking-[0.08em] text-white"
                 >
                   CONTACT US <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -254,3 +276,4 @@ export default function Navbar() {
     </header>
   );
 }
+

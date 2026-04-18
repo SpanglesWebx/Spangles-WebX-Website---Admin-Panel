@@ -135,7 +135,7 @@ export default function SmoothStack() {
         {cards.map((card, index) => (
           <motion.div
             key={card.id}
-            className="absolute left-1/2 top-[60px] flex flex-col min-[414px]:flex-row h-[330px] min-[414px]:h-[400px] min-[1025px]:h-[450px] w-[95%] min-[1025px]:w-[800px] rounded-xl bg-white shadow-[0px_20px_60px_0px_#2E213D14]"
+            className="absolute left-1/2 top-[60px] flex flex-col min-[414px]:flex-row h-[280px] min-[414px]:h-[320px] min-[1025px]:h-[350px] w-[95%] min-[1025px]:w-[800px] rounded-xl bg-white shadow-[0px_20px_60px_0px_#2E213D14]"
             animate={{
               width:
                 window.innerWidth < 414
@@ -174,7 +174,7 @@ export default function SmoothStack() {
             {/* 🖼 IMAGE (FLOAT STYLE) */}
             {(index === 0 || (isAnimating && index === 1)) && (
               <div className="absolute left-6 min-[414px]:left-8 min-[1025px]:left-[40px] top-[-40px] min-[414px]:top-[-50px] min-[1025px]:top-[-60px] flex items-end gap-3 min-[414px]:block">
-                <div className="w-[110px] min-[414px]:w-[200px] min-[1025px]:w-[300px] h-[130px] min-[414px]:h-[350px] min-[1025px]:h-[510px] overflow-hidden rounded-xl min-[1025px]:rounded-b-none shadow-lg min-[1025px]:shadow-none">
+                <div className="w-[110px] min-[414px]:w-[200px] min-[1025px]:w-[300px] h-[130px] min-[414px]:h-[280px] min-[1025px]:h-[410px] overflow-hidden rounded-xl min-[1025px]:rounded-b-none shadow-lg min-[1025px]:shadow-none">
                   <img
                     src={card.image}
                     className="h-full w-full object-cover"
@@ -209,7 +209,7 @@ export default function SmoothStack() {
               </h3>
 
               {/* 📝 TEXT */}
-              <p className="mb-4 min-[414px]:mb-4 min-[1025px]:mb-5 w-[400px] font-montserrat text-[14px] min-[400px]:text-[16px] min-[1025px]:text-[18px] font-normal leading-[1.6] min-[1025px]:leading-[32px] tracking-[0em] text-[#6B6A66]">
+              <p className="mb-4 min-[350px]:mb-4 min-[1025px]:mb-5 font-montserrat text-[16px] leading-[24px] text-[#6B6A66] max-w-[350px]">
                 Ask agreed answer rather joy nature admire wisdom. Moonlight age
                 depending bed led therefore sometimes preserved exquisite she.
                 An fail up so shot leaf wise in. Minuter highest his arrived for

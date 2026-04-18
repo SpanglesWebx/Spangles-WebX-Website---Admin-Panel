@@ -7,12 +7,12 @@ import carrer from "../../assets/career.png"; // change to your careers image
 import Support from "../About/Components/Support";
 
 const inputClass = (error) =>
-  `w-full h-[45px] px-3 border rounded-[10px] 
-  font-[Montserrat] font-medium text-[16px] leading-[100%] tracking-[0%] text-[#345261] outline-none
+  `w-full h-[35px] px-3 border rounded-[10px] 
+  font-[Montserrat] font-medium text-[14px] leading-[100%] tracking-[0%] text-[#345261] outline-none placeholder:text-[13px] placeholder:font-normal
   flex items-center
   ${error ? "border-red-500" : "border-[#2F2F2F]"}`;
 
-const Modal = ({ children, onClose }) => {
+const Modal = ({ children, onClose, customClasses }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -27,7 +27,7 @@ const Modal = ({ children, onClose }) => {
         onClick={onClose}
       >
         <motion.div
-          className="bg-white rounded-2xl shadow-xl w-[1200px] px-[80px] py-[100px] relative self-start max-[1201px]:w-[90%] max-[768px]:py-[60px] max-[768px]:px-[40px] max-[413px]:w-full max-[413px]:min-h-[70vh] max-[413px]:rounded-t-[24px] max-[413px]:rounded-b-[10px] max-[413px]:px-[20px] max-[413px]:py-[40px] max-[413px]:overflow-x-hidden max-[413px]:mb-0 max-[413px]:mt-0"
+          className={customClasses || "bg-white rounded-2xl shadow-xl w-[1200px] px-[80px] py-[100px] relative self-start max-[1201px]:w-[90%] max-[768px]:py-[60px] max-[768px]:px-[40px] max-[413px]:w-full max-[413px]:min-h-[70vh] max-[413px]:rounded-t-[24px] max-[413px]:rounded-b-[10px] max-[413px]:px-[20px] max-[413px]:py-[40px] max-[413px]:overflow-x-hidden max-[413px]:mb-0 max-[413px]:mt-0"}
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.9, opacity: 0 }}
@@ -87,11 +87,11 @@ export default function Career() {
     if (showDetails || showForm || showSuccess) {
       document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = "";
     }
 
     return () => {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = "";
     };
   }, [showDetails, showForm, showSuccess]);
 
@@ -345,7 +345,7 @@ export default function Career() {
                 className="bg-white rounded-[12px] px-4 py-4 shadow-[0_2px_15px_rgba(0,0,0,0.04)] border border-[#EAECE9] flex flex-col"
               >
                 {/* Top dark bar */}
-                <div className="bg-[#395563] rounded-[8px] px-5 py-4 flex justify-between items-center mb-12">
+                <div className="bg-[#395563] rounded-[8px] px-5 py-4 flex justify-between items-center mb-7">
                   <span className="bg-white text-[#395563] font-[Montserrat] font-bold text-[11px] px-3 py-1 rounded-full">
                     {job.jobType}
                   </span>
@@ -415,32 +415,32 @@ export default function Career() {
 
       {/* Details Modal */}
       {showDetails && (
-        <Modal onClose={() => setShowDetails(false)}>
-          <h2 className=" w-[65%] font-[Montserrat] font-medium text-[50px] leading-[60px] tracking-[-1px] text-[#345261] mb-5 max-[1025px]:w-[80%] max-[1025px]:text-[48px] max-[768px]:w-full max-[768px]:text-[40px] max-[768px]:leading-[48px] max-[413px]:text-[20px] max-[413px]:leading-[28px] max-[413px]:tracking-[-0.02em] max-[413px]:mb-[20px] max-[413px]:pr-[30px] max-[413px]:w-full">
+        <Modal onClose={() => setShowDetails(false)} customClasses="bg-white rounded-2xl shadow-xl w-[1100px] px-[60px] py-[60px] relative self-start max-[1201px]:w-[90%] max-[768px]:py-[60px] max-[768px]:px-[40px] max-[413px]:w-full max-[413px]:min-h-[70vh] max-[413px]:rounded-t-[24px] max-[413px]:rounded-b-[10px] max-[413px]:px-[20px] max-[413px]:py-[40px] max-[413px]:overflow-x-hidden max-[413px]:mb-0 max-[413px]:mt-0">
+          <h2 className=" w-[65%] font-[Montserrat] font-medium text-[29px] leading-[39px] tracking-[-1px] text-[#345261] mb-4 max-[1025px]:w-[80%] max-[1025px]:text-[28px] max-[768px]:w-full max-[768px]:text-[24px] max-[768px]:leading-[32px] max-[413px]:text-[20px] max-[413px]:leading-[28px] max-[413px]:tracking-[-0.02em] max-[413px]:mb-[16px] max-[413px]:pr-[30px] max-[413px]:w-full">
             {selectedJob?.jobTitle}
           </h2>
-          <div className="flex gap-10 max-[768px]:flex-col max-[413px]:flex-col max-[413px]:gap-[20px]">
+          <div className="flex gap-8 max-[768px]:flex-col max-[413px]:flex-col max-[413px]:gap-[20px]">
             {/* LEFT SECTION */}
             <div className="w-[65%] max-[768px]:w-full max-[413px]:w-full">
-              <p className="font-[Montserrat] font-normal text-[18px] leading-[32px] text-[#6B6A66] align-middle mb-9 max-[413px]:text-[14px] max-[413px]:leading-[26px] max-[413px]:mb-[30px]">
+              <p className="font-[Montserrat] font-normal text-[13px] leading-[23px] text-[#6B6A66] align-middle mb-6 max-[413px]:text-[14px] max-[413px]:leading-[26px] max-[413px]:mb-[24px]">
                 We help transform the world’s most important businesses into
                 vigorous, agile organizations that anticipate the unpredictable,
                 adapt rapidly to disruption and outcompete their opposition.
               </p>
 
               {/* Job Description */}
-              <h3 className="font-[Montserrat] font-medium text-[26px] leading-[32px] tracking-[-1px] text-[#345261] align-middle mb-5 max-[413px]:text-[18px] max-[413px]:leading-[24px] max-[413px]:tracking-[-0.01em] max-[413px]:mb-[12px]">
+              <h3 className="font-[Montserrat] font-medium text-[17px] leading-[23px] tracking-[-1px] text-[#345261] align-middle mb-3 max-[413px]:text-[18px] max-[413px]:leading-[24px] max-[413px]:tracking-[-0.01em] max-[413px]:mb-[12px]">
                 Job description
               </h3>
-              <p className="font-[Montserrat] font-normal text-[18px] leading-[32px] text-[#6B6A66] align-middle mb-6 max-[413px]:text-[14px] max-[413px]:leading-[26px] max-[413px]:mb-[30px]">
+              <p className="font-[Montserrat] font-normal text-[13px] leading-[23px] text-[#6B6A66] align-middle mb-4 max-[413px]:text-[14px] max-[413px]:leading-[26px] max-[413px]:mb-[30px]">
                 {selectedJob?.jobSummary || "Join our team and help us build amazing products."}
               </p>
 
               {/* Responsibilities */}
-              <h3 className="font-[Montserrat] font-medium text-[26px] leading-[32px] tracking-[-1px] text-[#345261] align-middle mb-5 max-[413px]:text-[18px] max-[413px]:leading-[24px] max-[413px]:tracking-[-0.01em] max-[413px]:mb-[14px]">
+              <h3 className="font-[Montserrat] font-medium text-[17px] leading-[23px] tracking-[-1px] text-[#345261] align-middle mb-3 max-[413px]:text-[18px] max-[413px]:leading-[24px] max-[413px]:tracking-[-0.01em] max-[413px]:mb-[14px]">
                 Key Responsibilities:
               </h3>
-              <ul className="font-[Montserrat] text-[16px] leading-[30px] text-[#6B6A66] mb-9 list-disc pl-5 space-y-1 marker:text-[#345261] marker:text-lg max-[413px]:text-[14px] max-[413px]:leading-[26px] max-[413px]:mb-[25px] max-[413px]:pl-[14px] max-[413px]:space-y-[12px] max-[413px]:marker:text-[14px]">
+              <ul className="font-[Montserrat] text-[13px] leading-[23px] text-[#6B6A66] mb-6 list-disc pl-5 space-y-1 marker:text-[#345261] marker:text-lg max-[413px]:text-[14px] max-[413px]:leading-[26px] max-[413px]:mb-[25px] max-[413px]:pl-[14px] max-[413px]:space-y-[12px] max-[413px]:marker:text-[14px]">
                 {selectedJob?.responsibilities ? (
                   selectedJob.responsibilities.split('\n').filter(line => line.trim()).map((res, i) => (
                     <li key={i}>{res}</li>
@@ -455,10 +455,10 @@ export default function Career() {
               </ul>
 
               {/* Requirements */}
-              <h3 className="font-[Montserrat] font-medium text-[26px] leading-[32px] tracking-[-1px] text-[#345261] align-middle mb-5 max-[413px]:text-[18px] max-[413px]:leading-[24px] max-[413px]:tracking-[-0.01em] max-[413px]:mb-[14px]">
+              <h3 className="font-[Montserrat] font-medium text-[17px] leading-[23px] tracking-[-1px] text-[#345261] align-middle mb-3 max-[413px]:text-[18px] max-[413px]:leading-[24px] max-[413px]:tracking-[-0.01em] max-[413px]:mb-[14px]">
                 Requirements:
               </h3>
-              <ul className="font-[Montserrat] text-[16px] leading-[30px] text-[#6B6A66] mb-9 list-disc pl-5 space-y-1 marker:text-[#345261] marker:text-lg max-[413px]:text-[14px] max-[413px]:leading-[26px] max-[413px]:mb-[25px] max-[413px]:pl-[14px] max-[413px]:space-y-[12px] max-[413px]:marker:text-[14px]">
+              <ul className="font-[Montserrat] text-[13px] leading-[23px] text-[#6B6A66] mb-6 list-disc pl-5 space-y-1 marker:text-[#345261] marker:text-lg max-[413px]:text-[14px] max-[413px]:leading-[26px] max-[413px]:mb-[25px] max-[413px]:pl-[14px] max-[413px]:space-y-[12px] max-[413px]:marker:text-[14px]">
                 {selectedJob?.requiredQualifications && selectedJob.requiredQualifications.length > 0 ? (
                   selectedJob.requiredQualifications.map((req, i) => (
                     <li key={i}>{req}</li>
@@ -471,7 +471,7 @@ export default function Career() {
                   </>
                 )}
               </ul>
-              <p className="font-[Montserrat] font-normal text-[18px] leading-[32px] text-[#6B6A66] align-middle mb-6 max-[413px]:text-[14px] max-[413px]:leading-[26px] max-[413px]:mb-[10px]">
+              <p className="font-[Montserrat] font-normal text-[13px] leading-[23px] text-[#6B6A66] align-middle mb-4 max-[413px]:text-[14px] max-[413px]:leading-[26px] max-[413px]:mb-[10px]">
                 If you're passionate about delivering exceptional digital
                 experiences, we'd love to hear from you.
               </p>
@@ -481,25 +481,25 @@ export default function Career() {
             <div className="w-[35%] max-[768px]:w-full max-[413px]:w-full max-[413px]:mt-0">
               <div className="rounded-lg">
                 <div className="space-y-4 text-[14px] text-gray-600 max-[413px]:space-y-[16px]">
-                  <div className="flex items-center gap-3 font-[Montserrat] font-normal text-[17px] leading-[32px] text-[#161C2D] align-middle max-[413px]:text-[14px] max-[413px]:leading-[22px]">
-                    <Calendar size={23} className="max-[413px]:w-[18px] max-[413px]:h-[18px]" />
+                  <div className="flex items-center gap-3 font-[Montserrat] font-normal text-[13px] leading-[23px] text-[#161C2D] align-middle max-[413px]:text-[14px] max-[413px]:leading-[22px]">
+                    <Calendar size={17} className="max-[413px]:w-[18px] max-[413px]:h-[18px]" />
                     <span>{selectedJob?.jobType || "Full time"}</span>
                   </div>
 
-                  <div className="flex items-center gap-3 font-[Montserrat] font-normal text-[17px] leading-[32px] text-[#161C2D] align-middle max-[413px]:text-[14px] max-[413px]:leading-[22px]">
-                    <Clock size={23} className="max-[413px]:w-[18px] max-[413px]:h-[18px]" />
+                  <div className="flex items-center gap-3 font-[Montserrat] font-normal text-[13px] leading-[23px] text-[#161C2D] align-middle max-[413px]:text-[14px] max-[413px]:leading-[22px]">
+                    <Clock size={17} className="max-[413px]:w-[18px] max-[413px]:h-[18px]" />
                     <span>09:00 am - 05:00 pm</span>
                   </div>
 
-                  <div className="flex items-center gap-3 font-[Montserrat] font-normal text-[17px] leading-[32px] text-[#161C2D] align-middle max-[413px]:text-[14px] max-[413px]:leading-[22px]">
-                    <MapPin size={23} className="max-[413px]:w-[18px] max-[413px]:h-[18px]" />
+                  <div className="flex items-center gap-3 font-[Montserrat] font-normal text-[13px] leading-[23px] text-[#161C2D] align-middle max-[413px]:text-[14px] max-[413px]:leading-[22px]">
+                    <MapPin size={17} className="max-[413px]:w-[18px] max-[413px]:h-[18px]" />
                     <span>{selectedJob?.location}</span>
                   </div>
                 </div>
 
                 <button
                   onClick={handleApplyNow}
-                  className="mt-5 w-fit bg-[#2F4858] text-white text-[13px] font-bold px-4.5 py-4 rounded-md flex items-center justify-center gap-2 max-[768px]:w-[200px] max-[413px]:mt-[40px] max-[413px]:w-full max-[413px]:py-[14px] max-[413px]:text-[12px] max-[413px]:rounded-[8px]"
+                  className="mt-5 w-fit bg-[#2F4858] text-white text-[12px] font-bold px-4 py-3 rounded-md flex items-center justify-center gap-2 max-[768px]:w-[200px] max-[413px]:mt-[40px] max-[413px]:w-full max-[413px]:py-[12px] max-[413px]:rounded-[8px]"
                 >
                   APPLY NOW{" "}
                   <svg
@@ -526,15 +526,15 @@ export default function Career() {
 
       {/* Form Modal */}
       {showForm && (
-        <Modal onClose={() => setShowForm(false)}>
+        <Modal onClose={() => setShowForm(false)} customClasses="bg-white rounded-2xl shadow-xl w-[900px] px-[60px] py-[60px] relative self-start max-[1201px]:w-[90%] max-[768px]:py-[60px] max-[768px]:px-[40px] max-[413px]:w-full max-[413px]:min-h-[70vh] max-[413px]:rounded-t-[24px] max-[413px]:rounded-b-[10px] max-[413px]:px-[20px] max-[413px]:py-[40px] max-[413px]:overflow-x-hidden max-[413px]:mb-0 max-[413px]:mt-0">
           <div className="md:px-6 max-[413px]:px-0">
             {/* Heading */}
-            <h2 className="font-[Montserrat] font-semibold text-[36px] leading-[100%] tracking-[0%] text-[#345261] mb-7.5 max-[1201px]:text-[32px] max-[1025px]:text-[28px] max-[413px]:text-[24px] max-[413px]:leading-[32px] max-[413px]:mb-[12px] max-[413px]:tracking-[-0.01em]">
+            <h2 className="font-[Montserrat] font-semibold text-[28px] leading-[100%] tracking-[0%] text-[#345261] mb-5 max-[1201px]:text-[26px] max-[1025px]:text-[24px] max-[413px]:text-[22px] max-[413px]:leading-[32px] max-[413px]:mb-[12px] max-[413px]:tracking-[-0.01em]">
               Application for {selectedJob?.jobTitle}
             </h2>
 
             {/* Description */}
-            <p className="font-[Montserrat] font-normal text-[18px] leading-[100%] tracking-[0%] text-[#6B6A66] mb-15 max-w-2xl max-[1025px]:text-[16px] max-[1025px]:mb-10 max-[413px]:text-[14px] max-[413px]:leading-[24px] max-[413px]:mb-8">
+            <p className="font-[Montserrat] font-normal text-[13px] leading-[23px] tracking-[0%] text-[#6B6A66] mb-10 max-w-2xl max-[1025px]:text-[14px] max-[1025px]:mb-10 max-[413px]:text-[14px] max-[413px]:leading-[24px] max-[413px]:mb-8">
               Thank you for your interest in working with us. To get to know you
               better, we'd like if you could fill out some information. Once we
               receive your application, we'll be in touch if you are found
@@ -542,11 +542,11 @@ export default function Career() {
             </p>
 
             {/* Form */}
-            <form onSubmit={handleSubmit} className="space-y-[50px] max-[1025px]:space-y-[20px] max-[413px]:space-y-0 text-left">
+            <form onSubmit={handleSubmit} className="space-y-[24px] max-[1025px]:space-y-[20px] max-[413px]:space-y-0 text-left">
               {/* Row 0: Job Info (Pre-filled) */}
-              <div className="grid md:grid-cols-2 gap-[50px] max-[1201px]:gap-[30px] max-[1025px]:gap-[20px] max-[413px]:gap-0 max-[413px]:flex max-[413px]:flex-col">
+              <div className="grid md:grid-cols-2 gap-[30px] max-[1201px]:gap-[20px] max-[1025px]:gap-[15px] max-[413px]:gap-0 max-[413px]:flex max-[413px]:flex-col">
                 <div className="max-[413px]:mb-[20px]">
-                  <label className="font-[Montserrat] font-medium text-[16px] leading-[100%] tracking-[0%] text-[#161C2D] mb-6.5 block max-[1025px]:mb-4 max-[413px]:mb-[8px] max-[413px]:text-[14px]">
+                  <label className="font-[Montserrat] font-medium text-[13px] leading-[100%] tracking-[0%] text-[#161C2D] mb-2.5 block max-[1025px]:mb-2 max-[413px]:mb-[8px] max-[413px]:text-[14px]">
                     For which position are you applying?
                   </label>
                   <input
@@ -557,7 +557,7 @@ export default function Career() {
                 </div>
 
                 <div className="max-[413px]:mb-[20px]">
-                  <label className="font-[Montserrat] font-medium text-[16px] leading-[100%] tracking-[0%] text-[#161C2D] mb-6.5 block max-[1025px]:mb-4 max-[413px]:mb-[8px] max-[413px]:text-[14px]">
+                  <label className="font-[Montserrat] font-medium text-[13px] leading-[100%] tracking-[0%] text-[#161C2D] mb-2.5 block max-[1025px]:mb-2 max-[413px]:mb-[8px] max-[413px]:text-[14px]">
                     Designation
                   </label>
                   <input
@@ -569,9 +569,9 @@ export default function Career() {
               </div>
 
               {/* Row 1: Name & Mobile */}
-              <div className="grid md:grid-cols-2 gap-[50px] max-[1201px]:gap-[30px] max-[1025px]:gap-[20px] max-[413px]:gap-0 max-[413px]:flex max-[413px]:flex-col">
+              <div className="grid md:grid-cols-2 gap-[30px] max-[1201px]:gap-[20px] max-[1025px]:gap-[15px] max-[413px]:gap-0 max-[413px]:flex max-[413px]:flex-col">
                 <div className="max-[413px]:mb-[20px]">
-                  <label className="font-[Montserrat] font-medium text-[16px] leading-[100%] tracking-[0%] text-[#161C2D] mb-6.5 block max-[1025px]:mb-4 max-[413px]:mb-[8px] max-[413px]:text-[14px]">
+                  <label className="font-[Montserrat] font-medium text-[13px] leading-[100%] tracking-[0%] text-[#161C2D] mb-2.5 block max-[1025px]:mb-2 max-[413px]:mb-[8px] max-[413px]:text-[14px]">
                     Your Name*
                   </label>
                   <div className="relative">
@@ -604,7 +604,7 @@ export default function Career() {
                 </div>
 
                 <div className="max-[413px]:mb-[20px]">
-                  <label className="font-[Montserrat] font-medium text-[16px] leading-[100%] tracking-[0%] text-[#161C2D] mb-6.5 block max-[1025px]:mb-4 max-[413px]:mb-[8px] max-[413px]:text-[14px]">
+                  <label className="font-[Montserrat] font-medium text-[13px] leading-[100%] tracking-[0%] text-[#161C2D] mb-2.5 block max-[1025px]:mb-2 max-[413px]:mb-[8px] max-[413px]:text-[14px]">
                     Mobile Number*
                   </label>
                   <div className="relative">
@@ -639,9 +639,9 @@ export default function Career() {
               </div>
 
               {/* Row 2: Email & Experience */}
-              <div className="grid md:grid-cols-2 gap-[50px] max-[1201px]:gap-[30px] max-[1025px]:gap-[20px] max-[413px]:gap-0 max-[413px]:flex max-[413px]:flex-col">
+              <div className="grid md:grid-cols-2 gap-[30px] max-[1201px]:gap-[20px] max-[1025px]:gap-[15px] max-[413px]:gap-0 max-[413px]:flex max-[413px]:flex-col">
                 <div className="max-[413px]:mb-[20px]">
-                  <label className="font-[Montserrat] font-medium text-[16px] leading-[100%] tracking-[0%] text-[#161C2D] mb-6.5 block max-[1025px]:mb-4 max-[413px]:mb-[8px] max-[413px]:text-[14px]">
+                  <label className="font-[Montserrat] font-medium text-[13px] leading-[100%] tracking-[0%] text-[#161C2D] mb-2.5 block max-[1025px]:mb-2 max-[413px]:mb-[8px] max-[413px]:text-[14px]">
                     Email Id*
                   </label>
                   <input
@@ -664,7 +664,7 @@ export default function Career() {
                 </div>
 
                 <div className="max-[413px]:mb-[20px]">
-                  <label className="font-[Montserrat] font-medium text-[16px] leading-[100%] tracking-[0%] text-[#161C2D] mb-6.5 block max-[1025px]:mb-4 max-[413px]:mb-[8px] max-[413px]:text-[14px]">
+                  <label className="font-[Montserrat] font-medium text-[13px] leading-[100%] tracking-[0%] text-[#161C2D] mb-2.5 block max-[1025px]:mb-2 max-[413px]:mb-[8px] max-[413px]:text-[14px]">
                     Professional Experience*
                   </label>
                   <input
@@ -691,7 +691,7 @@ export default function Career() {
 
               {/* Row 3: Skill Set (Dynamic Tags) */}
               <div className="w-full">
-                <label className="font-[Montserrat] font-medium text-[16px] leading-[100%] tracking-[0%] text-[#161C2D] mb-6.5 block max-[1025px]:mb-4 max-[413px]:mb-[8px] max-[413px]:text-[14px]">
+                <label className="font-[Montserrat] font-medium text-[13px] leading-[100%] tracking-[0%] text-[#161C2D] mb-2.5 block max-[1025px]:mb-2 max-[413px]:mb-[8px] max-[413px]:text-[14px]">
                   Skill Set (optional - Press Enter to add)
                 </label>
 
@@ -745,9 +745,9 @@ export default function Career() {
               </div>
 
               {/* Row 4: Salary & Resume */}
-              <div className="grid md:grid-cols-2 gap-[50px] max-[1201px]:gap-[30px] max-[1025px]:gap-[20px] max-[413px]:gap-0 max-[413px]:mb-[30px] max-[413px]:flex max-[413px]:flex-col">
+              <div className="grid md:grid-cols-2 gap-[30px] max-[1201px]:gap-[20px] max-[1025px]:gap-[15px] max-[413px]:gap-0 max-[413px]:mb-[30px] max-[413px]:flex max-[413px]:flex-col">
                 <div className="max-[413px]:mb-[20px]">
-                  <label className="font-[Montserrat] font-medium text-[16px] leading-[100%] tracking-[0%] text-[#161C2D] mb-6.5 block max-[1025px]:mb-4 max-[413px]:mb-[8px] max-[413px]:text-[14px]">
+                  <label className="font-[Montserrat] font-medium text-[13px] leading-[100%] tracking-[0%] text-[#161C2D] mb-2.5 block max-[1025px]:mb-2 max-[413px]:mb-[8px] max-[413px]:text-[14px]">
                     Salary Expectation (annually) (optional)
                   </label>
                   <input
@@ -764,17 +764,36 @@ export default function Career() {
                 </div>
 
                 <div className="max-[413px]:mb-[20px]">
-                  <label className="font-[Montserrat] font-medium text-[16px] leading-[100%] tracking-[0%] text-[#161C2D] mb-6.5 block max-[1025px]:mb-4 max-[413px]:mb-[8px] max-[413px]:text-[14px]">
+                  <label className="font-[Montserrat] font-medium text-[13px] leading-[100%] tracking-[0%] text-[#161C2D] mb-2.5 block max-[1025px]:mb-2 max-[413px]:mb-[8px] max-[413px]:text-[14px]">
                     Resume*
                   </label>
 
                   <label
-                    className={`w-full h-[45px] border rounded-[10px] flex items-center justify-center cursor-pointer max-[413px]:h-[45px]
-                    ${errors.resume ? "border-red-500" : "border-[#2F2F2F]"}`}
+                    className={`w-full py-1.5 border rounded-[10px] flex items-center justify-center cursor-pointer overflow-hidden
+                    ${errors.resume ? "border-red-500" : "border-[#2F2F2F]"}
+                    ${resume ? "min-h-[45px]" : "h-[35px] max-[413px]:h-[35px]"}`}
                   >
-                    <span className="font-[Montserrat] font-medium text-[14px] text-[#345261] underline text-center truncate px-2">
-                      {resume ? resume.name : "Upload your Resume"}
-                    </span>
+                    <div className={`flex justify-center w-full px-2 overflow-hidden ${resume ? "flex-col items-center gap-0.5" : "items-center gap-1.5"}`}>
+                      {resume ? (
+                        <>
+                          <div className="flex items-center gap-1">
+                            <svg className="w-[12px] h-[12px] text-green-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                            </svg>
+                            <span className="font-[Montserrat] font-medium text-[#345261] text-[11px] no-underline">
+                              Uploaded Successfully
+                            </span>
+                          </div>
+                          <span className="font-[Montserrat] font-medium text-[#6B6A66] text-[10px] truncate w-full text-center">
+                            {resume.name}
+                          </span>
+                        </>
+                      ) : (
+                        <span className="font-[Montserrat] font-medium text-[#345261] truncate text-[14px] underline">
+                          Upload your Resume
+                        </span>
+                      )}
+                    </div>
                     <input
                       type="file"
                       className="hidden"
@@ -813,7 +832,7 @@ export default function Career() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="bg-[#2f4858] text-white font-[Montserrat] font-bold text-[12px] leading-[18px] tracking-[0%] uppercase text-center align-middle px-5 py-4.5 rounded-[10px] flex items-center justify-center gap-2 max-[413px]:w-full max-[413px]:py-[14px] max-[413px]:rounded-[8px] disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="bg-[#2f4858] text-white font-[Montserrat] font-bold text-[11px] leading-[18px] tracking-[0%] uppercase text-center align-middle px-4 py-3 rounded-[10px] flex items-center justify-center gap-2 max-[413px]:w-full max-[413px]:py-[12px] max-[413px]:rounded-[8px] disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   {submitting ? "SUBMITTING..." : "APPLY NOW"}{" "}
                   {!submitting && (
@@ -840,7 +859,7 @@ export default function Career() {
       )}
       {/* Success Modal */}
       {showSuccess && (
-        <Modal onClose={() => setShowSuccess(false)}>
+        <Modal onClose={() => setShowSuccess(false)} customClasses="bg-white rounded-2xl shadow-xl w-[80%] px-[80px] py-[60px] relative self-start max-[768px]:py-[50px] max-[768px]:px-[60px] max-[413px]:w-full max-[413px]:min-h-[40vh] max-[413px]:rounded-t-[24px] max-[413px]:rounded-b-[10px] max-[413px]:px-[20px] max-[413px]:py-[40px] max-[413px]:overflow-x-hidden max-[413px]:mb-0 max-[413px]:mt-0">
           <div className="flex flex-col items-center justify-center text-center px-4 sm:px-6 md:px-8 max-[413px]:absolute max-[413px]:top-1/2 max-[413px]:left-1/2 max-[413px]:-translate-x-1/2 max-[413px]:-translate-y-1/2 max-[413px]:w-full">
 
             <img

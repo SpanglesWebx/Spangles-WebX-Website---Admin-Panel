@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import React, { useEffect } from "react";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import About from "./Pages/About/About";
@@ -16,14 +17,21 @@ import ServiceDetails from "./Pages/Services/ServiceDetails";
 function App() {
   const { pathname } = useLocation();
 
+  useEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+
+    // Clean up any leaked inline styles from other pages to keep the Home page environment fresh
+    document.body.style.overflow = "";
+    document.documentElement.style.overflow = "";
+  }, [pathname]);
+
   return (
     <div className="w-full max-w-[100vw]">
       <ScrollToTop />
       <Navbar />
-      <main
-        key={pathname}
-        className="animate-fade-in pt-[97px] max-[413px]:pt-[85px]"
-      >
+      <main className=" pt-[97px] max-[413px]:pt-[85px]">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />

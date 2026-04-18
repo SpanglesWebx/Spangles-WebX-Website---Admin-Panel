@@ -1,49 +1,49 @@
-@import "tailwindcss";
+ @import "tailwindcss";
 
-@theme {
-  --font-mont: "Montserrat", ui-sans-serif, system-ui, sans-serif;
-}
+ @theme {
+   --font-mont: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+ }
 
-body {
-  @apply font-mont;
-  margin: 0;
-  overflow-x: clip;
-  max-width: 100%;
-}
+ body {
+   @apply font-mont;
+   margin: 0;
+   overflow-x: clip;
+   max-width: 100%;
+ }
 
-html {
-  overflow-x: clip;
-  scroll-behavior: smooth;
-}
+ html {
+   overflow-x: clip;
+   scroll-behavior: smooth;
+ }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
+ @keyframes fadeIn {
+   from {
+     opacity: 0;
+     transform: translateY(8px);
+   }
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+   to {
+     opacity: 1;
+     transform: translateY(0);
+   }
+ }
 
-.animate-fade-in {
-  animation: fadeIn 0.4s ease-out forwards;
-}
+ .animate-fade-in {
+   animation: fadeIn 0.4s ease-out forwards;
+ }
 
-/* ✅ ADD THIS AT THE BOTTOM */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
 
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
+ .no-scrollbar::-webkit-scrollbar {
+   display: none;
+ }
 
-@media (max-width: 413px) {
-  .hero-spiral {
-    transform: scale(1.12) translateX(0%) !important;
-  }
-}
+ .no-scrollbar {
+   -ms-overflow-style: none;
+   scrollbar-width: none;
+ }
+
+ @media (max-width: 413px) {
+   .hero-spiral {
+     transform: scale(1.12) translateX(0%) !important;
+   }
+ }

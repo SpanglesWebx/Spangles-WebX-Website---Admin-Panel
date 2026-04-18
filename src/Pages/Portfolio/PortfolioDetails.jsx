@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { useState, useEffect, useRef, useLayoutEffect } from "react";
+import { ArrowRight } from "lucide-react";
 import Support from "../About/Components/Support";
 import img1 from "../../assets/portfolio1.jpg";
 import img2 from "../../assets/portfolio2.jpg";
@@ -389,9 +390,8 @@ function ProjectImageSlider({ images }) {
             }}
           >
             <span
-              className={`h-3 w-3 rounded-full transition-colors duration-300 ${
-                i === activeDotIndex ? "bg-[#345261]" : "bg-gray-400"
-              }`}
+              className={`h-3 w-3 rounded-full transition-colors duration-300 ${i === activeDotIndex ? "bg-[#345261]" : "bg-gray-400"
+                }`}
             />
           </button>
         ))}
@@ -400,8 +400,116 @@ function ProjectImageSlider({ images }) {
   );
 }
 
+const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000";
+
 const PortfolioDetails = () => {
   const location = useLocation();
+
+  const [form, setForm] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    subject: "",
+    message: "",
+    type: "quote",
+  });
+
+  const [errors, setErrors] = useState({});
+  const [focusedField, setFocusedField] = useState(null);
+  const [showToast, setShowToast] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    if (showToast) {
+      const timer = setTimeout(() => setShowToast(false), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [showToast]);
+
+  const validate = () => {
+    let newErrors = {};
+
+    if (!form.name.trim()) {
+      newErrors.name = "Please enter your name.";
+    } else if (form.name.length > 30) {
+      newErrors.name = "Name cannot exceed 30 characters.";
+    }
+
+    const phoneRegex = /^[0-9]{10}$/;
+    if (!form.phone.trim()) {
+      newErrors.phone = "Enter your phone number.";
+    } else if (!phoneRegex.test(form.phone)) {
+      newErrors.phone = "Phone number must be exactly 10 digits.";
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!form.email.trim()) {
+      newErrors.email = "Email address is required.";
+    } else if (!emailRegex.test(form.email)) {
+      newErrors.email = "Please enter a valid email address.";
+    }
+
+    if (!form.message.trim()) {
+      newErrors.message = "Message field cannot be empty.";
+    } else if (form.message.length > 1000) {
+      newErrors.message = "Message cannot exceed 1000 characters.";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    let newValue = value;
+
+    if (name === "name") {
+      newValue = value.slice(0, 30);
+    } else if (name === "phone") {
+      newValue = value.replace(/\D/g, "").slice(0, 10);
+    } else if (name === "subject") {
+      newValue = value.slice(0, 50);
+    } else if (name === "message") {
+      newValue = value.slice(0, 1000);
+    }
+
+    setForm({ ...form, [name]: newValue });
+
+    if (errors[name]) {
+      setErrors({ ...errors, [name]: "" });
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    if (e) e.preventDefault();
+    if (validate() && !isSubmitting) {
+      setIsSubmitting(true);
+      try {
+        const res = await fetch(`${API_BASE}/api/contact`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(form),
+        });
+
+        if (!res.ok) throw new Error("Submission failed");
+
+        setShowToast(true);
+        setForm({
+          name: "",
+          phone: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+      } catch (err) {
+        console.error("Error submitting form:", err);
+      } finally {
+        setIsSubmitting(false);
+      }
+    }
+  };
 
   const currentProject =
     allProjects.find((p) => p.id === location.state?.id) || allProjects[0];
@@ -485,87 +593,178 @@ const PortfolioDetails = () => {
               onSubmit={(e) => e.preventDefault()}
             >
               <div className="flex gap-[30px] mb-4 max-xl:gap-6 max-lg:gap-5 max-md:gap-4 max-sm:gap-3 max-sm:mb-3 max-[413px]:flex-col max-[413px]:gap-4 max-[413px]:mb-0">
-                <div className="flex flex-col max-md:min-w-0 max-md:flex-1 max-[413px]:w-full">
+                <div className="flex-1 flex flex-col max-md:min-w-0 max-[413px]:w-full relative">
                   <label
                     htmlFor="name"
-                    className="mb-1 font-montserrat font-medium text-[14px] uppercase leading-[14px] text-[#182F27] max-md:text-[13px] max-md:leading-[13px] max-sm:mb-1.5"
+                    className="mb-2 font-montserrat font-medium text-[14px] uppercase leading-[14px] text-[#182F27] max-md:text-[13px] max-md:leading-[13px] max-sm:mb-1.5"
                   >
-                    Name
+                    Your Name *
                   </label>
-                  <input
-                    id="name"
-                    type="text"
-                    placeholder="Enter name here"
-                    className="w-[156px] border border-gray-300 px-4.5 py-4 text-[12px] font-montserrat font-medium placeholder-[#34526166] leading-[12px] rounded-[10px] max-lg:w-[148px] max-lg:py-3.5 max-md:w-full max-md:min-w-0 max-md:py-3.5 max-sm:px-3 max-sm:text-[11px] max-[413px]:w-full"
-                  />
+                  <div className="relative">
+                    <input
+                      id="name"
+                      name="name"
+                      type="text"
+                      placeholder="Your Name *"
+                      value={form.name}
+                      onChange={handleInputChange}
+                      onFocus={() => setFocusedField("name")}
+                      onBlur={() => setFocusedField(null)}
+                      className={`w-full border ${errors.name ? "border-red-500" : "border-gray-300"} px-3 py-3 text-[12px] font-montserrat font-medium placeholder-[#34526166] leading-[12px] rounded-[10px] outline-none focus:border-[#345261] max-lg:py-3.5 max-md:py-3.5 max-sm:px-3 max-sm:text-[11px]`}
+                    />
+                    {focusedField === "name" && (
+                      <span className="absolute right-3 bottom-2 text-[10px] text-gray-400 font-montserrat pointer-events-none">
+                        {form.name.length}/30
+                      </span>
+                    )}
+                  </div>
+                  {errors.name && (
+                    <p className="text-red-500 text-[11px] mt-1">{errors.name}</p>
+                  )}
                 </div>
-                <div className="flex flex-col max-md:min-w-0 max-md:flex-1 max-[413px]:w-full">
+                <div className="flex-1 flex flex-col max-md:min-w-0 max-[413px]:w-full">
                   <label
                     htmlFor="email"
                     className="mb-2 font-montserrat font-medium text-[14px] uppercase leading-[14px] text-[#182F27] max-md:text-[13px] max-md:leading-[13px] max-md:mb-1.5 max-sm:mb-1.5"
                   >
-                    Email
+                    Email Address *
                   </label>
                   <input
                     id="email"
+                    name="email"
                     type="email"
-                    placeholder="Your email address"
-                    className="w-[156px] border border-gray-300 px-4.5 py-4 text-[12px] font-montserrat font-medium placeholder-[#34526166] leading-[12px] rounded-[10px] max-lg:w-[148px] max-lg:py-3.5 max-md:w-full max-md:min-w-0 max-md:py-3.5 max-sm:px-3 max-sm:text-[11px] max-[413px]:w-full"
+                    placeholder="Email Address *"
+                    value={form.email}
+                    onChange={handleInputChange}
+                    className={`w-full border ${errors.email ? "border-red-500" : "border-gray-300"} px-3 py-3 text-[12px] font-montserrat font-medium placeholder-[#34526166] leading-[12px] rounded-[10px] outline-none focus:border-[#345261] max-lg:py-3.5 max-md:py-3.5 max-sm:px-3 max-sm:text-[11px]`}
                   />
+                  {errors.email && (
+                    <p className="text-red-500 text-[11px] mt-1">{errors.email}</p>
+                  )}
                 </div>
               </div>
 
               <div className="flex gap-[30px] mb-4 max-xl:gap-6 max-lg:gap-5 max-md:gap-4 max-sm:gap-3 max-sm:mb-3 max-[413px]:flex-col max-[413px]:gap-4 max-[413px]:mb-0">
-                <div className="flex flex-col max-md:min-w-0 max-md:flex-1 max-[413px]:w-full">
+                <div className="flex-1 flex flex-col max-md:min-w-0 max-[413px]:w-full">
                   <label
                     htmlFor="phone"
                     className="mb-2 font-montserrat font-medium text-[14px] uppercase leading-[14px] text-[#182F27] max-md:text-[13px] max-md:leading-[13px] max-md:mb-1.5 max-sm:mb-1.5"
                   >
-                    Phone
+                    Phone Number *
                   </label>
                   <input
                     id="phone"
+                    name="phone"
                     type="text"
-                    placeholder="Your phone number"
-                    className="w-[156px] border border-gray-300 px-4.5 py-4 text-[12px] font-montserrat font-medium placeholder-[#34526166] leading-[12px] rounded-[10px] max-lg:w-[148px] max-lg:py-3.5 max-md:w-full max-md:min-w-0 max-md:py-3.5 max-sm:px-3 max-sm:text-[11px] max-[413px]:w-full"
+                    placeholder="Phone Number *"
+                    value={form.phone}
+                    onChange={handleInputChange}
+                    className={`w-full border ${errors.phone ? "border-red-500" : "border-gray-300"} px-3 py-3 text-[12px] font-montserrat font-medium placeholder-[#34526166] leading-[12px] rounded-[10px] outline-none focus:border-[#345261] max-lg:py-3.5 max-md:py-3.5 max-sm:px-3 max-sm:text-[11px]`}
                   />
+                  {errors.phone && (
+                    <p className="text-red-500 text-[11px] mt-1">{errors.phone}</p>
+                  )}
                 </div>
-                <div className="flex flex-col max-md:min-w-0 max-md:flex-1 max-[413px]:w-full">
+                <div className="flex-1 flex flex-col max-md:min-w-0 max-[413px]:w-full">
                   <label
-                    htmlFor="company"
+                    htmlFor="subject"
                     className="mb-2 font-montserrat font-medium text-[14px] uppercase leading-[14px] text-[#182F27] max-md:text-[13px] max-md:leading-[13px] max-md:mb-1.5 max-sm:mb-1.5"
                   >
-                    Company
+                    Subject
                   </label>
-                  <input
-                    id="company"
-                    type="text"
-                    placeholder="Your company name"
-                    className="w-[156px] border border-gray-300 px-4.5 py-4 text-[12px] font-montserrat font-medium placeholder-[#34526166] leading-[12px] rounded-[10px] max-lg:w-[148px] max-lg:py-3.5 max-md:w-full max-md:min-w-0 max-md:py-3.5 max-sm:px-3 max-sm:text-[11px] max-[413px]:w-full"
-                  />
+                  <div className="relative">
+                    <input
+                      id="subject"
+                      name="subject"
+                      type="text"
+                      placeholder="Subject"
+                      value={form.subject}
+                      onChange={handleInputChange}
+                      onFocus={() => setFocusedField("subject")}
+                      onBlur={() => setFocusedField(null)}
+                      className={`w-full border ${errors.subject ? "border-red-500" : "border-gray-300"} px-3 py-3 text-[12px] font-montserrat font-medium placeholder-[#34526166] leading-[12px] rounded-[10px] outline-none focus:border-[#345261] max-lg:py-3.5 max-md:py-3.5 max-sm:px-3 max-sm:text-[11px]`}
+                    />
+                    {focusedField === "subject" && (
+                      <span className="absolute right-3 bottom-2 text-[10px] text-gray-400 font-montserrat pointer-events-none">
+                        {form.subject.length}/50
+                      </span>
+                    )}
+                  </div>
+                  {errors.subject && (
+                    <p className="text-red-500 text-[11px] mt-1">{errors.subject}</p>
+                  )}
                 </div>
               </div>
 
-              <div className="flex flex-col max-md:w-full max-[413px]:w-full">
+              <div className="flex flex-col max-md:w-full max-[413px]:w-full relative">
                 <label
                   htmlFor="message"
-                  className="mb-5 font-montserrat font-medium text-[14px] uppercase leading-[14px] text-[#182F27] max-lg:mb-4 max-md:mb-3 max-md:text-[13px] max-md:leading-[13px] max-sm:mb-4"
+                  className="mb-2 font-montserrat font-medium text-[14px] uppercase leading-[14px] text-[#182F27] max-lg:mb-4 max-md:mb-3 max-md:text-[13px] max-md:leading-[13px] max-sm:mb-4"
                 >
-                  Message
+                  Message *
                 </label>
-                <textarea
-                  id="message"
-                  placeholder="Your message goes here..."
-                  className="w-full border mb-5 border-gray-300 px-3 py-4 text-[12px] font-montserrat font-medium placeholder-[#34526166] leading-[12px] rounded-[10px] h-[80px] max-lg:mb-4 max-lg:py-3.5 max-md:mb-4 max-sm:min-h-[88px] max-[413px]:min-h-[100px]"
-                ></textarea>
+                <div className="relative">
+                  <textarea
+                    id="message"
+                    name="message"
+                    placeholder="Message *"
+                    value={form.message}
+                    onChange={handleInputChange}
+                    onFocus={() => setFocusedField("message")}
+                    onBlur={() => setFocusedField(null)}
+                    className={`w-full border mb-3 ${errors.message ? "border-red-500" : "border-gray-300"} px-3 py-4 text-[12px] font-montserrat font-medium placeholder-[#34526166] leading-[12px] rounded-[10px] h-[80px] outline-none focus:border-[#345261] max-lg:mb-4 max-lg:py-3.5 max-md:mb-4 max-sm:min-h-[88px] max-[413px]:min-h-[100px]`}
+                  ></textarea>
+                  {focusedField === "message" && (
+                    <span className="absolute right-3 bottom-4 text-[10px] text-gray-400 font-montserrat pointer-events-none">
+                      {form.message.length}/1000
+                    </span>
+                  )}
+                </div>
+                {errors.message && (
+                  <p className="text-red-500 text-[11px] mb-4">{errors.message}</p>
+                )}
               </div>
 
-              <button
-                type="submit"
-                className=" px-[26px] py-[15px] bg-[#345261] text-white text-[18px] leading-[100%] tracking-[0%] text-center align-middle font-bold font-[Montserrat] rounded-[10px] hover:bg-[#1f2a30] max-lg:px-6 max-lg:py-3.5 max-lg:text-[17px] max-md:w-full max-md:py-3.5 max-md:text-[16px] max-sm:px-5 max-[413px]:block max-[413px]:w-full"
-              >
-                Submit
-              </button>
+              <div className="flex items-center gap-4 flex-wrap">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  onClick={handleSubmit}
+                  className="px-[26px] py-[15px] bg-[#345261] text-white text-[18px] leading-[100%] tracking-[0%] text-center align-middle font-bold font-[Montserrat] rounded-[10px] hover:bg-[#1f2a30] max-lg:px-6 max-lg:py-3.5 max-lg:text-[17px] max-md:w-full max-md:py-3.5 max-md:text-[16px] max-sm:px-5 max-[413px]:block max-[413px]:w-full disabled:opacity-50"
+                >
+                  {isSubmitting ? "SENDING..." : "Submit"}
+                </button>
+
+                {/* Success Toast */}
+                <div
+                  className={`flex items-center gap-2 px-4 py-3 rounded-[10px] transition-all duration-500 ease-out ${showToast
+                    ? "opacity-100 translate-x-0"
+                    : "opacity-0 -translate-x-4 pointer-events-none"
+                    }`}
+                  style={{
+                    background: "linear-gradient(135deg, #2f4858 0%, #395563 100%)",
+                  }}
+                >
+                  <div className="w-5 h-5 rounded-full bg-emerald-400/30 flex items-center justify-center flex-shrink-0">
+                    <svg
+                      className="w-3 h-3 text-emerald-300"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={3}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </div>
+                  <span className="text-white font-montserrat text-[12px] font-medium whitespace-nowrap">
+                    Message sent successfully!
+                  </span>
+                </div>
+              </div>
             </form>
           </div>
         </div>

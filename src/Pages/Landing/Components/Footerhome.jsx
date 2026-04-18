@@ -4,7 +4,7 @@ import logo25 from "../../../assets/Webx-nav-Logo_03.jpg"; // Make sure to have 
 
 export default function Footer() {
   return (
-    <footer className="bg-white px-18.75 pt-22.5 pt-[270px] pb-10 text-sm max-[413px]:px-4 max-[413px]:pt-10 max-[413px]:pt-[60px] max-[413px]:pb-6">
+    <footer className="bg-white px-18.75 pt-22.5 pt-[270px] pb-5 text-sm max-[413px]:px-4 max-[413px]:pt-10 max-[413px]:pt-[60px] max-[413px]:pb-3">
       <div className="grid md:grid-cols-3 gap-10 mb-20 max-[413px]:gap-6 max-[413px]:mb-4">
         {/* Left Section */}
         <div>
@@ -45,7 +45,7 @@ export default function Footer() {
 
             <ul className="space-y-[30px] max-[413px]:space-y-[18px]">
               <li>
-                <Link to="/careers">Careers</Link>
+                <Link to="/career">Careers</Link>
               </li>
               <li>
                 <Link to="/contact">Contact us</Link>
@@ -80,7 +80,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom Section */}
-      <div className="flex flex-col md:flex-row justify-between items-center py-10 text-gray-400 text-xs max-[413px]:py-6 max-[413px]:gap-2 max-[413px]:text-center">
+      <div className="flex flex-col md:flex-row justify-between items-center py-5 text-gray-400 text-xs max-[413px]:py-3 max-[413px]:gap-2 max-[413px]:text-center">
         <p className="font-montserrat text-[16px] leading-[24px] text-[#6B6A66] max-[413px]:text-[14px] max-[413px]:leading-[20px] max-[413px]:order-2">
           Copyright © 2021 Spangles Webx. All Rights Reserved.
         </p>
