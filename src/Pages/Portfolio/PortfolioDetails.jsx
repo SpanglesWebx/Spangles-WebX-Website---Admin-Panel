@@ -730,7 +730,7 @@ const PortfolioDetails = () => {
                   type="submit"
                   disabled={isSubmitting}
                   onClick={handleSubmit}
-                  className="px-[26px] py-[15px] bg-[#345261] text-white text-[18px] leading-[100%] tracking-[0%] text-center align-middle font-bold font-[Montserrat] rounded-[10px] hover:bg-[#1f2a30] max-lg:px-6 max-lg:py-3.5 max-lg:text-[17px] max-md:w-full max-md:py-3.5 max-md:text-[16px] max-sm:px-5 max-[413px]:block max-[413px]:w-full disabled:opacity-50"
+                  className="cursor-pointer px-[26px] py-[15px] bg-[#345261] text-white text-[18px] leading-[100%] tracking-[0%] text-center align-middle font-bold font-[Montserrat] rounded-[10px] hover:bg-[#2a3d45] transition duration-300 max-lg:px-6 max-lg:py-3.5 max-lg:text-[17px] max-md:w-full max-md:py-3.5 max-md:text-[16px] max-sm:px-5 max-[413px]:block max-[413px]:w-full disabled:opacity-50"
                 >
                   {isSubmitting ? "SENDING..." : "Submit"}
                 </button>

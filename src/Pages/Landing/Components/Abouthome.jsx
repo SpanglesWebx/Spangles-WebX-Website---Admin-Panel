@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import AboutImage from "../../../assets/about-image.png"; // Make sure to have this image in your assets folder
 import growthIcon from "../../../assets/growthIcon.png"; // Make sure to have this image in your assets folder
@@ -34,6 +35,8 @@ function CountUp({ to, durationMs = 2000, suffix = "" }) {
   );
 }
 export default function AboutSection() {
+  const navigate = useNavigate();
+
   return (
     <section className="bg-[#ffffff]">
       <div className="w-full px-[100px] py-[100px] grid md:grid-cols-2 gap-16 items-center md:max-[1025px]:items-start max-[1025px]:gap-12 max-[1025px]:px-[60px] max-[1025px]:py-[70px] max-[413px]:px-4 max-[413px]:py-[60px] max-[413px]:gap-10">
@@ -96,7 +99,10 @@ export default function AboutSection() {
             </div>
           </div>
 
-          <button className="bg-[#395563] text-white px-[25px] py-[14px] rounded-[10px] text-[16px] font-semibold leading-[100%] text-center font-montserrat hover:bg-[#243a47] transition max-[413px]:w-full max-[413px]:max-w-[200px] max-[413px]:text-[12px] max-[413px]:px-[25px] max-[413px]:py-[18px]">
+          <button
+            onClick={() => navigate('/about')}
+            className="cursor-pointer bg-[#395563] text-white px-[25px] py-[14px] rounded-[10px] text-[16px] font-semibold leading-[100%] text-center font-montserrat hover:bg-[#243a47] transition max-[413px]:w-full max-[413px]:max-w-[200px] max-[413px]:text-[12px] max-[413px]:px-[25px] max-[413px]:py-[18px]"
+          >
             Read More
           </button>
         </div>

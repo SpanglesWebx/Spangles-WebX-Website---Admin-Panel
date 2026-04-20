@@ -256,7 +256,7 @@ export default function Blog() {
                     <span className="relative block h-2 w-2 rounded-full bg-[#345261]" />
                   </div>
                   <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#345261]">
-                    Strategic Intelligence
+                    Insights & Stories
                   </span>
                 </motion.div>
 
@@ -266,8 +266,8 @@ export default function Blog() {
                 </h1>
 
                 <p className="mt-8 max-w-2xl text-base leading-[1.8] text-white/60 md:text-xl font-medium tracking-tight">
-                  Deep-dives into branding, digital growth, and the strategic
-                  decisions that define the modern competitive landscape.
+                  Explore actionable strategies, design trends, marketing insights,
+                  and web development best practices that drive business success.
                 </p>
 
                 <div className="mt-10 md:mt-12 grid gap-4 md:gap-6 min-[1015px]:grid-cols-[minmax(0,1fr)_auto] min-[1015px]:items-center">
@@ -275,7 +275,7 @@ export default function Blog() {
                     <Search className="absolute left-6 top-1/2 h-5 w-5 -translate-y-1/2 text-white/30 group-focus-within/search:text-[#345261] transition-colors" />
                     <input
                       type="text"
-                      placeholder="Keywords, insights, or industry trends..."
+                      placeholder="Search articles, topics, or keywords..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       className="h-16 w-full rounded-2xl border border-white/10 bg-[#161C2D]/5 pl-16 pr-6 text-white text-base placeholder:text-white/20 backdrop-blur-3xl outline-none transition-all focus:border-[#345261]/40 focus:bg-[#161C2D]/10 shadow-2xl"
@@ -284,7 +284,7 @@ export default function Blog() {
 
                   <div className="flex h-16 items-center justify-center gap-4 rounded-2xl border border-white/10 bg-[#161C2D]/5 px-8 text-[11px] font-bold uppercase tracking-[0.2em] text-[#6B6A66] backdrop-blur-3xl">
                     <TrendingUp size={16} className="text-[#6B6A66]" />
-                    <span>{posts.length} ANALYTICS</span>
+                    <span>{posts.length} ARTICLES</span>
                   </div>
                 </div>
               </motion.div>
@@ -367,14 +367,14 @@ export default function Blog() {
               >
                 <div className="max-[413px]:mb-0 mb-12 text-left">
                   <p className="text-[11px] font-bold uppercase tracking-[0.5em] text-[#345261] mb-6">
-                    THE EXPLORATION HUB
+                    THE BLOG ARCHIVE
                   </p>
                   <h2 className="text-[38px] min-[414px]:text-[48px] md:text-[72px] font-semibold tracking-[-0.065em] text-[#161C2D] leading-[0.85] mb-8">
                     The Insight <br />
                     <span className="italic font-serif text-[#345261]/80">Compass.</span>
                   </h2>
                   <p className="max-w-xl text-lg text-[#161C2D]/50 font-medium leading-relaxed text-left">
-                    Navigate through our curated domains of strategic intelligence. Filter the syndicate archive to match your objective.
+                    Browse through our collection of expertly-written articles covering web design, development, branding, and digital strategy.
                   </p>
                 </div>
 
@@ -433,13 +433,13 @@ export default function Blog() {
                   <div className="flex items-start justify-between">
                     <div>
                       <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#161C2D]/20 mb-4">
-                        Categories Cataloged
+                        Categories Available
                       </p>
-                      <h3 className="text-6xl md:text-8xl font-light tracking-[-0.08em] text-[#161C2D] leading-none mb-4">
+                      <h3 className="text-5xl md:text-7xl italic font-serif tracking-[-0.08em] text-[#345261]/80 leading-none mb-4">
                         {categories.length - 1}
                       </h3>
                       <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#345261]">
-                        Unique intelligence domains
+                        Content categories
                       </p>
                     </div>
                     <TrendingUp className="text-[#345261]/20 group-hover:text-[#345261]/40 transition-colors duration-700" size={40} />
@@ -458,8 +458,8 @@ export default function Blog() {
                     className="rounded-[40px] border border-[#161C2D]/5 bg-[#161C2D] p-6 md:p-8 text-white relative overflow-hidden group"
                   >
                     <Sparkles className="text-[#345261] mb-6 opacity-40 group-hover:opacity-100 transition-opacity" size={24} />
-                    <p className="text-[9px] font-bold uppercase tracking-[0.3em] text-white/30 mb-2">Strategic Tags</p>
-                    <h4 className="text-4xl md:text-5xl font-light tracking-tight">{totalTags}</h4>
+                    <p className="text-[9px] font-bold uppercase tracking-[0.3em] text-white/30 mb-2">Blog Tags</p>
+                    <h4 className="text-4xl md:text-5xl italic font-serif tracking-tight text-[#FFFFFF]/80">{totalTags}</h4>
                     <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
                   </motion.div>
 
@@ -472,7 +472,7 @@ export default function Blog() {
                     className="rounded-[40px] border border-[#161C2D]/5 bg-[#F4F7FA] p-6 md:p-8 relative overflow-hidden flex flex-col justify-between"
                   >
                     <div className="flex justify-between items-start">
-                      <p className="text-[9px] font-bold uppercase tracking-[0.3em] text-[#161C2D]/30">Update Pulse</p>
+                      <p className="text-[9px] font-bold uppercase tracking-[0.3em] text-[#161C2D]/30">Publishing Schedule</p>
                       <motion.div
                         animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
                         transition={{ duration: 3, repeat: Infinity }}
@@ -480,8 +480,8 @@ export default function Blog() {
                       />
                     </div>
                     <div>
-                      <h4 className="text-2xl md:text-3xl font-semibold tracking-[-0.04em] text-[#161C2D] italic font-serif">Weekly</h4>
-                      <p className="mt-1 text-[10px] font-bold tracking-[0.1em] text-[#345261]/60">SYNDICATE DISPATCH</p>
+                      <h4 className="text-2xl md:text-3xl font-semibold tracking-[-0.04em] text-[#161C2D] italic font-serif">Bi-Weekly</h4>
+                      <p className="mt-1 text-[10px] font-bold tracking-[0.1em] text-[#345261]/60">NEW ARTICLES</p>
                     </div>
                   </motion.div>
                 </div>
@@ -497,14 +497,14 @@ export default function Blog() {
             <div className="mb-6 md:mb-8 min-[1015px]:mb-12 flex items-baseline justify-between gap-6 border-b border-[#6B6A66]/5 pb-6 md:pb-8 min-[1015px]:pb-12">
               <div>
                 <p className="text-[11px] font-bold uppercase tracking-[0.5em] text-[#345261] mb-4">
-                  THE SYNDICATE
+                  TRENDING EDITS
                 </p>
                 <h2 className="text-[40px] font-semibold tracking-[-0.06em] text-[#161C2D] md:text-[56px] leading-[0.9]">
-                  Featured Observation
+                  Fresh <span className="italic font-serif text-[#345261]/80">Insights</span>
                 </h2>
               </div>
               <div className="hidden lg:block max-w-sm text-[15px] leading-relaxed text-[#161C2D]/40 font-medium">
-                Refined editorial hierarchy designed for depth, visual clarity, and high-impact storytelling.
+                Curated articles selected for their expertise, relevance, and value to our digital community.
               </div>
             </div>
 
@@ -561,7 +561,7 @@ export default function Blog() {
 
                         <button
                           onClick={() => navigate(`/blog/${featuredPost.id}`)}
-                          className="inline-flex items-center gap-4 rounded-full bg-[#345261] px-8 py-4 text-[11px] font-bold uppercase tracking-[0.3em] text-white w-fit hover:bg-white hover:text-[#345261] transition-all duration-300 group"
+                          className="inline-flex items-center gap-4 rounded-full bg-[#345261] px-8 py-4 text-[11px] font-bold uppercase tracking-[0.3em] text-white w-fit hover:bg-[#2a3d45] transition-all duration-300 group cursor-pointer"
                         >
                           Read Strategy
                           <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-2" />
@@ -764,11 +764,11 @@ export default function Blog() {
                     </div>
 
                     <h3 className="text-2xl md:text-3xl font-semibold leading-[1.2] tracking-tight mb-8 font-serif italic text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-white/40">
-                      Where strategic depth meets cinematic editorial clarity.
+                      Where knowledge meets inspiration.
                     </h3>
 
                     <p className="text-white/40 text-base leading-relaxed font-medium mb-12 max-w-[90%]">
-                      Experience our curated insights in an environment built for high-bandwidth concentration and artistic appreciation.
+                      Join thousands of digital professionals staying updated with the latest trends, tips, and strategies.
                     </p>
 
                     <div className="mt-auto flex items-center justify-between pt-8 border-t border-white/5">
@@ -829,15 +829,15 @@ export default function Blog() {
           <div className="max-[413px]:mb-8 mb-20 flex flex-col gap-8 md:flex-row md:items-end md:justify-between border-b border-[#6B6A66]/5 pb-10">
             <div>
               <p className="text-[11px] font-bold uppercase tracking-[0.5em] text-[#345261] mb-4">
-                THE RECENT CATALOG
-              </p>
-              <h2 className="text-[34px] font-semibold tracking-[-0.06em] text-[#161C2D] md:text-[64px] leading-[0.8]">
-                Browse the Archive.
-              </h2>
-            </div>
+                  LATEST ARTICLES
+                </p>
+                <h2 className="text-[34px] font-semibold tracking-[-0.06em] text-[#161C2D] md:text-[64px] leading-[0.8]">
+                  Browse the <span className="italic font-serif text-[#345261]/80">Archive.</span>
+                </h2>
+              </div>
 
             <p className="max-w-xl text-lg leading-relaxed text-[#161C2D]/40 font-medium">
-              A comprehensive index of tactical thoughts, creative investigations, and strategic findings.
+              Discover more insights, tutorials, and industry perspectives from our growing collection of articles.
             </p>
           </div>
 
@@ -867,7 +867,7 @@ export default function Blog() {
                       )}
 
                       <div className="absolute inset-0 bg-gradient-to-at from-[#101920]/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                      <div className="absolute left-6 top-6 rounded-full bg-[#161C2D]/95 px-5 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-white shadow-2xl backdrop-blur-md transition-all group-hover:bg-[#161C2D] group-hover:text-white">
+                      <div className="absolute left-6 top-6 rounded-full bg-[#345261]/95 px-5 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-white shadow-2xl backdrop-blur-md transition-all group-hover:bg-[#345261] group-hover:text-white">
                         {post.category}
                       </div>
                     </div>
@@ -890,7 +890,7 @@ export default function Blog() {
 
                     <div className="mt-auto border-t border-[#6B6A66]/5 px-8 pt-6 pb-8 flex items-center justify-between">
                       <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#161C2D]">Explore Entry</span>
-                      <div className="h-12 w-12 rounded-full bg-[#161C2D]/5 flex items-center justify-center group-hover:bg-[#161C2D] group-hover:text-white transition-all transform group-hover:translate-x-2">
+                      <div className="h-12 w-12 rounded-full bg-[#161C2D]/5 flex items-center justify-center group-hover:bg-[#345261] group-hover:text-white transition-all transform group-hover:translate-x-2">
                         <ChevronRight size={18} />
                       </div>
                     </div>
@@ -929,28 +929,29 @@ export default function Blog() {
             <div className="flex items-center gap-4 mb-8">
               <span className="h-[2px] w-12 bg-[#345261]" />
               <p className="text-[11px] font-bold uppercase tracking-[0.5em] text-[#345261]">
-                THE DISPATCH
+                NEWSLETTER
               </p>
             </div>
 
             <h2 className="text-[44px] sm:text-[60px] font-semibold leading-[0.85] tracking-[-0.06em] text-white">
-              Stay in <br />
-              <span className="italic font-serif text-white">the loop.</span>
+              Never Miss <br />
+              <span className="italic font-serif text-white">an Update.</span>
             </h2>
 
             <p className="mt-8 max-w-xl text-lg text-white/40 leading-relaxed font-medium">
-              Curated strategic intelligence and design-thinking insights delivered
-              directly to your secure inbox.
+              Get the latest articles, design tips, and industry insights delivered
+              directly to your inbox every two weeks.
             </p>
 
             <div className="mt-12 flex flex-col sm:flex-row gap-4 max-w-xl">
               <input
                 type="email"
-                placeholder="EMAIL ADDRESS"
-                className="h-16 flex-1 rounded-2xl border border-white/5 bg-[#161C2D]/5 px-8 text-white placeholder:text-white/20 outline-none backdrop-blur-3xl focus:border-[#345261]/40 focus:bg-[#161C2D]/10 transition-all text-[11px] font-bold uppercase tracking-[2px]"
+                placeholder="your@email.com"
+                className="h-16 flex-1 rounded-2xl border border-white/5 bg-[#161C2D]/5 px-8 text-white placeholder:text-white/30 outline-none backdrop-blur-3xl focus:border-[#345261]/40 focus:bg-[#161C2D]/10 transition-all text-sm font-medium normal-case"
+                style={{ textTransform: 'none' }}
               />
-              <MagneticButton className="h-16 px-12 rounded-2xl bg-[#345261] text-white text-[11px] font-bold uppercase tracking-[3px] hover:bg-[#161C2D] transition-all shadow-2xl">
-                Subscribe
+              <MagneticButton className="h-16 px-12 rounded-2xl bg-[#345261] text-white text-[11px] font-bold uppercase tracking-[3px] hover:bg-[#161C2D] transition-all duration-500 ease-out shadow-2xl hover:shadow-[0_0_40px_rgba(52,82,97,0.4)] hover:scale-105">
+                Get Updates
               </MagneticButton>
             </div>
           </div>

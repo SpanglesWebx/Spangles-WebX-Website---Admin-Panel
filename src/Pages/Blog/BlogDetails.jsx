@@ -87,7 +87,7 @@ export default function BlogDetails() {
         setRelatedPosts(relData.filter(p => p._id !== id).slice(0, 3));
 
         // Extract unique categories
-        const cats = [...new Set(relData.map(p => p.category || "General"))];
+        const cats = [...new Set(relData.map(p => p.category || "Tech Trends"))];
         setAllCategories(cats);
 
         // Extract unique tags
@@ -168,7 +168,7 @@ export default function BlogDetails() {
           onClick={() => navigate("/blog")}
           className="mt-4 rounded-xl bg-[#161C2D] px-8 py-4 font-bold uppercase text-white shadow-xl"
         >
-          Back to Insights
+          Back to Trends
         </button>
       </div>
     );
@@ -202,7 +202,7 @@ export default function BlogDetails() {
           >
             <div className="flex items-center justify-center gap-4 mb-4">
               <span className="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[10px] font-bold uppercase tracking-[3px] text-white self-center">
-                {blog.category || "General"}
+                {blog.category || "Innovation"}
               </span>
               <span className="text-white/40 text-[10px] uppercase font-bold tracking-[2px]">
                 {getTimeAgo(blog.createdAt)}
@@ -218,7 +218,7 @@ export default function BlogDetails() {
                 <div className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center border border-white/10">
                   <Sparkles size={18} className="text-[#345261]" />
                 </div>
-                <span className="text-[12px] font-bold uppercase tracking-[1px] text-white">Editorial Team</span>
+                <span className="text-[12px] font-bold uppercase tracking-[1px] text-white">Innovation Hub</span>
               </div>
               <div className="h-4 w-[1px] bg-white/20" />
               <span className="text-[12px] font-bold uppercase tracking-[1px]">{formatDate(blog.createdAt)}</span>
@@ -272,8 +272,8 @@ export default function BlogDetails() {
             <div className="mt-10 md:mt-20 pt-8 md:pt-16 border-t border-[#161C2D]/5">
               <div className="flex items-center justify-between flex-wrap gap-6 md:gap-8">
                 <div>
-                  <h4 className="text-[14px] font-bold text-[#161C2D] mb-2 uppercase tracking-wide">Enjoyed the read?</h4>
-                  <p className="text-[#6B6A66]">Share this story with your creative network.</p>
+                  <h4 className="text-[14px] font-bold text-[#161C2D] mb-2 uppercase tracking-wide">Found this valuable?</h4>
+                  <p className="text-[#6B6A66]">Share this trend insight with your tech community.</p>
                 </div>
                 <div className="flex gap-4">
                   <button className="flex items-center gap-3 px-6 py-4 bg-[#F4F7FA] text-[#345261] rounded-2xl font-bold uppercase text-[11px] tracking-[1.5px] hover:bg-[#161C2D] hover:text-white transition-all">
@@ -292,7 +292,7 @@ export default function BlogDetails() {
             <div className="space-y-8 md:space-y-12">
               <div className="relative mb-6 md:mb-10 overflow-hidden rounded-2xl bg-[#F4F7FA] border-l-4 border-[#161C2D] py-4 px-6 shadow-sm">
                 <div className="flex items-center justify-between">
-                  <h4 className="text-[12px] font-bold uppercase tracking-[2px] text-[#161C2D]">Recent Stories</h4>
+                  <h4 className="text-[12px] font-bold uppercase tracking-[2px] text-[#161C2D]">Latest Trends</h4>
                   <div className="h-1.5 w-1.5 rounded-full bg-[#345261] animate-pulse" />
                 </div>
               </div>
@@ -307,7 +307,7 @@ export default function BlogDetails() {
                     <div className="flex gap-2 text-[#6B6A66] text-[9px] font-bold uppercase tracking-[1.5px]">
                       <span>{formatDate(post.createdAt)}</span>
                       <span>•</span>
-                      <span>{post.category || "General"}</span>
+                      <span>{post.category || "Tech Trends"}</span>
                     </div>
                     <h5 className="text-[15px] font-bold leading-tight text-[#161C2D] group-hover:text-[#345261] transition-colors line-clamp-2">
                       {post.title}
@@ -320,7 +320,7 @@ export default function BlogDetails() {
               <div className="bg-[#1c202b] rounded-[24px] md:rounded-[32px] p-6 md:p-8 shadow-[0_20px_50px_rgba(22,33,45,0.15)] relative overflow-hidden group">
                 <div className="flex items-center gap-3 mb-6 md:mb-8 pb-4 md:pb-6 border-b border-white/10 relative z-10">
                   <Sparkles className="text-[#345261] opacity-80 group-hover:opacity-100 transition-opacity" size={24} />
-                  <h3 className="text-white text-lg md:text-xl font-bold tracking-tight group-hover:text-white/90 transition-colors">Strategic Tags</h3>
+                  <h3 className="text-white text-xl md:text-2xl italic font-serif tracking-tight group-hover:text-white/90 transition-colors">Trend Tags</h3>
                 </div>
                 <div className="flex flex-wrap gap-x-4 md:gap-x-6 gap-y-3 md:gap-y-4 relative z-10">
                   {(allTags.length > 0
@@ -349,7 +349,7 @@ export default function BlogDetails() {
               <div className="bg-[#1c202b] rounded-[24px] md:rounded-[32px] p-6 md:p-8 shadow-[0_20px_50px_rgba(22,33,45,0.15)] relative overflow-hidden group">
                 <div className="flex items-center gap-3 mb-6 md:mb-8 pb-4 md:pb-6 border-b border-white/10 relative z-10">
                   <Sparkles className="text-[#345261] opacity-80 group-hover:opacity-100 transition-opacity" size={24} />
-                  <h3 className="text-white text-lg md:text-xl font-bold tracking-tight group-hover:text-white/90 transition-colors">Categories</h3>
+                  <h3 className="text-white text-xl md:text-2xl italic font-serif tracking-tight group-hover:text-white/90 transition-colors">Tech Categories</h3>
                 </div>
                 <div className="flex flex-wrap gap-x-4 md:gap-x-6 gap-y-3 md:gap-y-4 relative z-10">
                   {allCategories.map((cat, idx) => {
@@ -386,15 +386,15 @@ export default function BlogDetails() {
         <div className="mb-10 md:mb-20 flex flex-col gap-6 md:gap-8 md:flex-row md:items-end md:justify-between border-b border-[#6B6A66]/5 pb-6 md:pb-10">
           <div>
             <p className="text-[11px] font-bold uppercase tracking-[0.5em] text-[#345261] mb-4">
-              THE RECENT CATALOG
+              TREND ARCHIVE
             </p>
             <h2 className="text-[28px] min-[414px]:text-[34px] font-semibold tracking-[-0.06em] text-[#161C2D] md:text-[64px] leading-[0.8]">
-              Keep exploring.
+              Keep <span className="italic font-serif text-[#345261]/80">exploring.</span>
             </h2>
           </div>
           <div className="flex flex-col gap-4">
             <p className="max-w-xl text-lg leading-relaxed text-[#161C2D]/40 font-medium">
-              A comprehensive index of tactical thoughts, creative investigations, and strategic findings.
+              Explore the bleeding edge of innovation with bold perspectives on next-gen technologies and digital frontiers.
             </p>
             {(activeSidebarCategory || activeSidebarTag) && (
               <div className="flex items-center gap-3">
@@ -433,8 +433,8 @@ export default function BlogDetails() {
                     alt={post.title}
                     className="w-full h-full object-cover grayscale-[0.5] group-hover:grayscale-0 transition-all duration-1000 scale-105 group-hover:scale-100"
                   />
-                  <div className="absolute left-6 top-6 rounded-full bg-[#161C2D]/95 px-5 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-white shadow-2xl backdrop-blur-md">
-                    {post.category || "General"}
+                  <div className="absolute left-6 top-6 rounded-full bg-[#345261]/95 px-5 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-white shadow-2xl backdrop-blur-md transition-all group-hover:bg-[#345261] group-hover:text-white">
+                    {post.category || "Tech Trends"}
                   </div>
                 </div>
 
@@ -458,7 +458,7 @@ export default function BlogDetails() {
 
                 <div className="mt-auto border-t border-[#6B6A66]/5 px-6 md:px-8 pt-4 md:pt-6 pb-6 md:pb-8 flex items-center justify-between">
                   <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#161C2D]">Explore Entry</span>
-                  <div className="h-12 w-12 rounded-full bg-[#161C2D]/5 flex items-center justify-center group-hover:bg-[#161C2D] group-hover:text-white transition-all transform group-hover:translate-x-2">
+                  <div className="h-12 w-12 rounded-full bg-[#161C2D]/5 flex items-center justify-center group-hover:bg-[#345261] group-hover:text-white transition-all transform group-hover:translate-x-2">
                     <ChevronRight size={18} />
                   </div>
                 </div>
@@ -467,7 +467,7 @@ export default function BlogDetails() {
           </div>
         ) : (
           <div className="py-20 text-center">
-            <p className="text-[#6B6A66] italic">No other stories found with this criteria.</p>
+            <p className="text-[#6B6A66] italic">No matching trends found with this filter.</p>
             <button
               onClick={() => { setActiveSidebarCategory(null); setActiveSidebarTag(null); }}
               className="mt-4 px-8 py-3 bg-[#161C2D] text-white rounded-xl font-bold uppercase text-[11px] tracking-[1px] hover:bg-[#345261] transition-all"

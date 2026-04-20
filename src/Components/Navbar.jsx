@@ -4,7 +4,7 @@ import { ChevronDown, Menu, X } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import logo from "../assets/Webx-nav-Logo_03.jpg"; // Make sure to have this image in your assets folder
 import sideLogo from "../assets/side-logo.png";
-import bannerBg from "../assets/nav-luxury-v4.png";
+
 
 import { services } from "../Pages/Services/Services";
 
@@ -36,10 +36,10 @@ export default function Navbar() {
 
   const { scrollY } = useScroll();
 
-  // Dynamic gradient opacity based on scroll
-  const navBgOpacity = useTransform(scrollY, [0, 500], [0, 0.95]);
-  const navGlassBlur = useTransform(scrollY, [0, 500], [0, 40]);
-  const navShadowOpacity = useTransform(scrollY, [0, 500], [0, 0.4]);
+  // Dynamic gradient opacity based on scroll (reduced duration)
+  const navBgOpacity = useTransform(scrollY, [0, 300], [0, 0.85]);
+  const navGlassBlur = useTransform(scrollY, [0, 300], [0, 40]);
+  const navShadowOpacity = useTransform(scrollY, [0, 300], [0, 0.4]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -104,7 +104,7 @@ export default function Navbar() {
             <img
               src={isScrolled ? sideLogo : logo}
               alt="WebX Logo"
-              className="h-[40px] w-auto object-contain transition-all duration-[1000ms] min-[1025px]:max-[1025px]:w-[140px] max-[1025px]:w-[140px] max-[413px]:w-[120px]"
+              className="h-[40px] w-[140px] object-contain transition-all duration-[1000ms] min-[1025px]:max-[1025px]:w-[140px] max-[1025px]:w-[140px] max-[413px]:w-[120px]"
             />
           </NavLink>
 

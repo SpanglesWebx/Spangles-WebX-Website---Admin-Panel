@@ -61,8 +61,7 @@ export default function MissionVision() {
               Our Mission
             </h2>
             <p className="text-[#6B6A66] text-[18px] leading-[26px] max-[768px]:text-[14px] max-[768px]:leading-[22px]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. elit
-              tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+              To empower businesses with cutting-edge digital solutions that drive growth and innovation in the modern marketplace.
             </p>
           </div>
 
@@ -123,8 +122,7 @@ export default function MissionVision() {
               Our Vision
             </h2>
             <p className="text-[#6B6A66] text-[18px] leading-[26px] max-[768px]:text-[14px] max-[768px]:leading-[22px]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. elit
-              tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+              To be the leading force in digital transformation, creating seamless experiences that connect people and technology worldwide.
             </p>
           </div>
         </div>
@@ -140,8 +138,7 @@ export default function MissionVision() {
               Our Core Values
             </h2>
             <p className="text-[#6B6A66] text-[18px] leading-[26px] max-[768px]:text-[14px] max-[768px]:leading-[22px]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. elit
-              tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+              We uphold integrity, creativity, and excellence in every project, ensuring sustainable success for our clients and communities.
             </p>
           </div>
 

@@ -169,11 +169,7 @@ const ServiceDetails = () => {
           <div className="flex-[1.2] max-[413px]:px-6">
             {/* Paragraph */}
             <p className="font-[Montserrat] font-normal text-[16px] leading-[32px] text-[#6B6A66] mb-6">
-              Life is busy, and your time is precious. Let us take care of the
-              cleaning so you can enjoy a fresh, spotless living space without
-              the hassle. Our residential cleaning services are tailored to fit
-              your unique needs, delivering the highest standards of cleanliness
-              and care.
+              {service.detailedDescription}
             </p>
 
             {/* Heading */}
@@ -234,21 +230,23 @@ const ServiceDetails = () => {
   max-[768px]:flex-col max-[768px]:items-center max-[768px]:gap-4
 ">
 
-          <p className="
-    font-[Montserrat] font-bold text-[14px] leading-[21px] tracking-[2.24px] text-[#345261] uppercase
-    max-[413px]:text-[12px] max-[413px]:leading-[18px]
-  ">
+          <button
+            onClick={() => navigate('/services')}
+            className="cursor-pointer font-[Montserrat] font-bold text-[14px] leading-[21px] tracking-[2.24px] text-[#345261] uppercase bg-transparent border-none p-0 max-[413px]:text-[12px] max-[413px]:leading-[18px]"
+          >
             View All Services
-          </p>
+          </button>
 
-          <button className="
-    group bg-[#345261] text-white px-[25px] py-[16px] rounded-[10px] text-[12px] leading-[18px] font-bold uppercase flex items-center gap-2 mr-0
+          <button
+            onClick={() => navigate('/services')}
+            className="
+    group cursor-pointer bg-[#345261] hover:bg-[#2a3d45] text-white px-[25px] py-[16px] rounded-[10px] text-[12px] leading-[18px] font-bold uppercase flex items-center gap-2 mr-0 transition duration-300
 
     max-[1201px]:mr-0
     max-[1025px]:mr-0
 
-    max-[768px]:mr-0 
-    max-[768px]:w-[50%] 
+    max-[768px]:mr-0
+    max-[768px]:w-[50%]
     max-[768px]:justify-center
 
     max-[1201px]:px-[22px] max-[1201px]:py-[14px]

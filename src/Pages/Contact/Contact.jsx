@@ -344,14 +344,14 @@ rounded-lg bg-gray-100 group-hover:bg-[#2f4858] transition-all duration-300"
               <button
                 onClick={handleSubmit}
                 disabled={isSubmitting}
-                className="group bg-[#395563] border border-[#5E6FB5]
+                className="group bg-[#395563] hover:bg-[#2a3d45] cursor-pointer border border-[#5E6FB5]
     px-[35px] py-[20px] rounded-[10px]
     text-white uppercase
     font-montserrat font-bold text-[12px] leading-[18px]
     flex items-center justify-center gap-2
     max-[480px]:w-full max-[480px]:py-4
     mb-0 max-[413px]:mb-[35px]
-    disabled:opacity-50"
+    disabled:opacity-50 transition-all duration-300"
               >
                 {isSubmitting ? "SENDING..." : "SEND MESSAGE"}
                 <ArrowRight
@@ -396,7 +396,7 @@ rounded-lg bg-gray-100 group-hover:bg-[#2f4858] transition-all duration-300"
           <div className="w-full h-[400px] md:h-full">
             <iframe
               title="map"
-              src="https://maps.google.com/maps?q=SPANGLES%20WEBX%208.2824082%2C77.2731045&z=17&output=embed"
+              src="https://maps.google.com/maps?q=SPANGLES+WEBX+(8.2824082,77.2731045)&z=17&output=embed"
               className="w-full h-full rounded-lg"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"

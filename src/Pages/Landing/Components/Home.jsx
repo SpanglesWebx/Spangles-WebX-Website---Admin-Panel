@@ -1,9 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import spiralBg from "../../../assets/Spiral.png"; // Make sure to have this image in your assets folder
 import scurve from "../../../assets/s-shape3.png"; // Make sure to have this image in your assets folder
 import imgvibe from "../../../assets/imgvibe.jpg"; // Make sure to have this image in your assets folder
 
 export default function HeroSection() {
+  const navigate = useNavigate();
   return (
     <div className="overflow-x-clip">
       <section className="relative bg-[#ffffff] pt-30 pb-60 max-[1201px]:pb-52 max-[1024px]:pb-48 max-[413px]:pt-25 max-[413px]:pb-[220px]">
@@ -75,7 +77,10 @@ export default function HeroSection() {
           </p>
 
           {/* BUTTON */}
-          <button className="rounded-[10px] border-[0.75px] border-transparent bg-[#395563] px-[15px] py-[12px] text-center font-montserrat text-[14px] font-semibold leading-[100%] text-white transition hover:bg-[#2f4650] max-[413px]:mx-auto max-[413px]:block max-[413px]:max-w-[220px] max-[413px]:rounded-[10px]  max-[413px]:px-[16px] max-[413px]:py-[16px] max-[413px]:text-[14px]">
+          <button
+            onClick={() => navigate("/services")}
+            className="rounded-[10px] border-[0.75px] border-transparent bg-[#395563] cursor-pointer px-[15px] py-[12px] text-center font-montserrat text-[14px] font-semibold leading-[100%] text-white transition hover:bg-[#2a3d45] max-[413px]:mx-auto max-[413px]:block max-[413px]:max-w-[220px] max-[413px]:rounded-[10px]  max-[413px]:px-[16px] max-[413px]:py-[16px] max-[413px]:text-[14px]"
+          >
             Explore Services
           </button>
         </div>
@@ -126,11 +131,66 @@ export default function HeroSection() {
             />
             {/* MAIN IMAGE CARD */}
             <div className="relative z-10 w-full max-w-4xl overflow-hidden rounded-xl border border-gray-100 shadow-lg max-[413px]:rounded-[18px] max-[413px]:border-[#E8EAED]">
-              <img
-                src={imgvibe}
-                alt="Preview"
+              <video
                 className="h-[550px] w-full object-cover min-[1440px]:h-[600px] max-[1024px]:h-[420px] max-[413px]:h-[400px]"
-              />
+                autoPlay
+                loop
+                muted
+                playsInline
+              >
+                {/* <source
+                  src="https://cdn.pixabay.com/video/2019/10/10/27725-365890983_large.mp4"
+                  type="video/mp4"
+                /> */}
+
+                {/* <source
+                  src="https://cdn.pixabay.com/video/2023/08/01/174086-850404739_large.mp4"
+                  type="video/mp4"
+                /> */}
+
+                <source
+                  src="https://cdn.pixabay.com/video/2024/06/06/215500_large.mp4"
+                  type="video/mp4"
+                />
+
+                {/* <source
+                  src="https://cdn.pixabay.com/video/2023/10/01/183108-870151713_large.mp4"
+                  type="video/mp4"
+                /> */}
+{/* 
+                <source
+                  src="https://cdn.pixabay.com/video/2023/07/19/172170-846731303_large.mp4"
+                  type="video/mp4"
+                /> */}
+
+                {/* <source
+                  src="https://cdn.pixabay.com/video/2023/10/01/183108-870151713_large.mp4"
+                  type="video/mp4"
+                /> */}
+
+                {/* <source
+                  src="https://cdn.pixabay.com/video/2026/02/27/337090_large.mp4"
+                  type="video/mp4"
+                /> */}
+
+                {/* <source
+                  src="https://cdn.pixabay.com/video/2023/07/21/172529-847499878_large.mp4"
+                  type="video/mp4"
+                /> */}
+
+                {/* <source
+                  src="https://cdn.pixabay.com/video/2019/10/09/27706-365890968_large.mp4"
+                  type="video/mp4"
+                /> */}
+
+                {/* <source
+                  src="https://cdn.pixabay.com/video/2019/10/10/27725-365890983_large.mp4"
+                  type="video/mp4"
+                /> */}
+
+
+
+              </video>
             </div>
           </div>
         </div>

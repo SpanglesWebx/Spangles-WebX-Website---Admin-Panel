@@ -1,10 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import icon1 from "../../../assets/icon1.png";
 import icon2 from "../../../assets/icon2.png";
 import icon3 from "../../../assets/icon3.png";
 import icon4 from "../../../assets/icon-4.png";
 
 const WhyChooseUs = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="bg-[#Ffffff] py-[90px] relative overflow-hidden max-[413px]:bg-[#F4F7FA] max-[413px]:py-[60px]">
       {/* Dots Pattern */}
@@ -140,7 +143,10 @@ max-[413px]:overflow-hidden"
             </p>
           </div>
 
-          <button className="bg-[#395563] hover:bg-[#2f4650] text-white font-montserrat font-bold text-[12px] leading-[18px] tracking-[0px] uppercase text-center align-middle px-[25px] py-[17px] rounded-[10px] flex items-center justify-center gap-2 whitespace-nowrap transition max-[413px]:px-[27px] max-[413px]:py-[16px]">
+          <button
+            onClick={() => navigate('/about')}
+            className="group cursor-pointer bg-[#395563] hover:bg-[#2f4650] text-white font-montserrat font-bold text-[12px] leading-[18px] tracking-[0px] uppercase text-center align-middle px-[25px] py-[17px] rounded-[10px] flex items-center justify-center gap-2 whitespace-nowrap transition max-[413px]:px-[27px] max-[413px]:py-[16px]"
+          >
             GET START
             <svg
               xmlns="http://www.w3.org/2000/svg"

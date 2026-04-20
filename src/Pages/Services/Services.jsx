@@ -16,29 +16,30 @@ export const services = [
     image: cyberImg,
     description:
       "We build powerful, pixel-perfect websites that don’t just look good—they grow your business.",
+    detailedDescription: "Our website development services create stunning, functional websites that drive business growth. We combine advanced technology with creative design to deliver sites that are not only visually appealing but also optimized for performance, security, and user engagement.",
     advantages: [
-      "Threat detection and prevention",
-      "Network security monitoring",
-      "Data protection and encryption",
-      "Vulnerability assessments",
-      "Risk analysis and reporting",
+      "Responsive design",
+      "Accessibility compliance",
+      "Fast loading performance",
+      "Secure architecture",
+      "Cross-browser compatibility",
     ],
     whyChoose: [
       {
-        title: "Experienced Team",
-        desc: "Certified experts ensuring top-level security.",
+        title: "Experienced Developers",
+        desc: "Skilled team with years of expertise in web development.",
       },
       {
-        title: "Advanced Tools",
-        desc: "We use the latest cybersecurity technologies.",
+        title: "Modern Frameworks",
+        desc: "Using React, Node.js, and the latest technologies.",
       },
       {
-        title: "24/7 Monitoring",
-        desc: "Constant protection for your systems.",
+        title: "Custom Solutions",
+        desc: "Tailored websites designed for your specific business needs.",
       },
       {
-        title: "Reliable Support",
-        desc: "Quick response to security incidents.",
+        title: "Post-Launch Support",
+        desc: "Ongoing maintenance, updates, and technical support.",
       },
     ],
   },
@@ -48,12 +49,13 @@ export const services = [
     image: digitalImg,
     description:
       "Transforming ideas into scalable, user-friendly web apps that work seamlessly across every device.",
+    detailedDescription: "We develop scalable web applications that meet your unique business requirements. Our team uses the latest frameworks and best practices to build applications that are secure, efficient, and user-friendly, ensuring seamless integration and high performance.",
     advantages: [
-      "Social media management",
-      "Search engine optimization (SEO)",
-      "Content marketing strategies",
-      "Brand awareness campaigns",
-      "Analytics and performance tracking",
+      "Scalable architecture",
+      "Cross-platform compatibility",
+      "Secure data handling",
+      "Intuitive user interfaces",
+      "High performance optimization",
     ],
     whyChoose: [
       {
@@ -80,12 +82,13 @@ export const services = [
     image: productImg,
     description:
       "Building intuitive mobile apps that connect brands with users anytime, anywhere.",
+    detailedDescription: "Transform your ideas into innovative mobile applications for iOS and Android. Our development process focuses on user-centric design, robust functionality, and cross-platform compatibility, delivering apps that enhance user experience and drive business success.",
     advantages: [
-      "User-centered design approach",
-      "Wireframing and prototyping",
-      "UI/UX optimization",
-      "Interactive design systems",
-      "Consistency across platforms",
+      "Cross-platform development",
+      "User-friendly interfaces",
+      "High performance apps",
+      "Secure data handling",
+      "Scalable architecture",
     ],
     whyChoose: [
       {
@@ -112,38 +115,7 @@ export const services = [
     image: webImg,
     description:
       "Ensuring flawless performance with rigorous testing for reliable, high-quality software.",
-    advantages: [
-      "Responsive design",
-      "SEO optimization",
-      "Fast loading performance",
-      "Secure architecture",
-      "Cross-browser compatibility",
-    ],
-    whyChoose: [
-      {
-        title: "Modern Technologies",
-        desc: "We use React, Node, and latest frameworks.",
-      },
-      {
-        title: "Custom Solutions",
-        desc: "Tailored websites for your business needs.",
-      },
-      {
-        title: "High Performance",
-        desc: "Optimized for speed and scalability.",
-      },
-      {
-        title: "Ongoing Support",
-        desc: "We maintain and update your website.",
-      },
-    ],
-  },
-
-  {
-    title: "UI / UX Designing",
-    image: testingImg,
-    description:
-      "Crafting intuitive and engaging designs that turn users into loyal customers.",
+    detailedDescription: "Ensure the quality and reliability of your software with our comprehensive testing services. We perform thorough manual and automated testing to identify and resolve issues, guaranteeing that your product meets the highest standards before launch.",
     advantages: [
       "Manual and automated testing",
       "Performance and load testing",
@@ -172,15 +144,49 @@ export const services = [
   },
 
   {
+    title: "UI / UX Designing",
+    image: testingImg,
+    description:
+      "Crafting intuitive and engaging designs that turn users into loyal customers.",
+    detailedDescription: "Elevate your digital products with exceptional UI/UX design. Our designers create intuitive interfaces that prioritize user experience, combining aesthetics with functionality to build designs that are both beautiful and effective.",
+    advantages: [
+      "User-centered design approach",
+      "Wireframing and prototyping",
+      "UI/UX optimization",
+      "Interactive design systems",
+      "Consistency across platforms",
+    ],
+    whyChoose: [
+      {
+        title: "Creative Designers",
+        desc: "Skilled team focused on innovation and usability.",
+      },
+      {
+        title: "User Experience Focus",
+        desc: "Designs that improve customer satisfaction.",
+      },
+      {
+        title: "Modern Tools",
+        desc: "We use Figma, Adobe XD, and more.",
+      },
+      {
+        title: "Fast Iterations",
+        desc: "Quick feedback and design improvements.",
+      },
+    ],
+  },
+
+  {
     title: "Software Development",
     image: appImg,
     description: "Create powerful mobile apps for iOS and Android.",
+    detailedDescription: "From concept to deployment, we provide end-to-end software development solutions. Our experts build custom software tailored to your needs, using agile methodologies to deliver scalable, secure, and innovative products.",
     advantages: [
-      "Cross-platform development",
-      "User-friendly interfaces",
-      "High performance apps",
-      "Secure data handling",
+      "Custom software solutions",
+      "Agile development process",
       "Scalable architecture",
+      "Secure coding practices",
+      "Ongoing maintenance and support",
     ],
     whyChoose: [
       {

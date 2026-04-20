@@ -136,7 +136,10 @@ export default function ServicesSection() {
               </p>
 
               {/* BUTTON (RIGHT) */}
-              <button className="font-montserrat font-bold text-[12px] leading-[18px] uppercase text-[#395563] bg-white px-[25px] py-[16px] rounded-lg flex items-center gap-2 whitespace-nowrap max-[1025px]:absolute max-[1025px]:bottom-12 max-[1025px]:left-1/2 max-[1025px]:-translate-x-1/2 max-[768px]:left-10 max-[768px]:translate-x-0 max-[413px]:absolute max-[413px]:left-6 max-[413px]:bottom-8">
+              <button
+                onClick={() => navigate('/services')}
+                className="group cursor-pointer font-montserrat font-bold text-[12px] leading-[18px] uppercase text-[#395563] bg-white px-[25px] py-[16px] rounded-lg flex items-center gap-2 whitespace-nowrap max-[1025px]:absolute max-[1025px]:bottom-12 max-[1025px]:left-1/2 max-[1025px]:-translate-x-1/2 max-[768px]:left-10 max-[768px]:translate-x-0 max-[413px]:absolute max-[413px]:left-6 max-[413px]:bottom-8"
+              >
                 ALL SERVICES
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

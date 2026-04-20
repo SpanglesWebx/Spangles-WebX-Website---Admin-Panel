@@ -255,17 +255,17 @@
 //           <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
 //             <div>
 //               <p className="font-[Montserrat] text-[12px] font-semibold uppercase tracking-[2.2px] text-white/55">
-//                 Visual Flow
+//                 Festival Flow
 //               </p>
 //               <h2 className="mt-2 font-[Montserrat] text-[30px] font-semibold leading-[34px] tracking-[-1.2px] max-[413px]:text-[24px] max-[413px]:leading-[28px]">
-//                 Fresh look, lighter content, stronger motion.
+//                 Joyful festivals, vibrant celebrations, strong cultural bonds in our company community.
 //               </h2>
 //             </div>
 
 //             <div className="flex items-center gap-3 self-start rounded-full bg-white/10 px-5 py-3 backdrop-blur-md">
 //               <span className="h-2.5 w-2.5 rounded-full bg-[#f3c98f] shadow-[0_0_18px_rgba(243,201,143,0.9)]" />
 //               <span className="font-[Montserrat] text-[12px] font-semibold uppercase tracking-[1.8px] text-white/75">
-//                 Modern gallery system
+//                 Dynamic festival celebration platform
 //               </span>
 //             </div>
 //           </div>
@@ -425,24 +425,24 @@ export default function Gallery() {
         >
           {/* Header content remains same */}
           <p className="font-[Montserrat] text-[13px] font-semibold uppercase tracking-[2.6px] text-white/75">
-            Home / Gallery
+            Home / Festivals
           </p>
           <div className="mt-6 grid gap-10 lg:grid-cols-[minmax(0,1fr)_260px] lg:items-end">
             <div className="max-w-[720px]">
               <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-md">
                 <Sparkles className="h-4 w-4 text-[#f3c98f]" />
                 <span className="font-[Montserrat] text-[11px] font-semibold uppercase tracking-[2px] text-white/85">
-                  New Gallery Mood
+                  Festival Highlights
                 </span>
               </div>
               <h1 className="mt-6 max-w-[760px] font-[Montserrat] text-[64px] font-semibold leading-[68px] max-[1030px]:text-[52px] max-[1030px]:leading-[58px] max-[768px]:text-[42px] max-[768px]:leading-[48px] max-[413px]:text-[30px] max-[413px]:leading-[36px]">
-                Clean visuals, sharper motion, no clutter.
+                Vibrant festivals, cultural celebrations, joyful traditions.
               </h1>
             </div>
             <div className="rounded-[28px] border border-white/14 bg-white/8 p-5 backdrop-blur-xl">
               <div className="flex items-center justify-between">
                 <span className="font-[Montserrat] text-[11px] font-semibold uppercase tracking-[2px] text-white/65">
-                  Selected
+                  Celebrated
                 </span>
                 <span className="font-[Montserrat] text-[32px] font-semibold leading-none text-white max-[1030px]:text-[28px] max-[413px]:text-[24px]">
                   {visibleItems.length.toString().padStart(2, "0")}
@@ -450,7 +450,7 @@ export default function Gallery() {
               </div>
               <div className="mt-4 h-[1px] bg-white/12" />
               <p className="mt-4 font-[Montserrat] text-[14px] text-white/70 max-[1030px]:text-[13px] max-[413px]:text-[12px]">
-                Minimal copy. More focus on layout, image depth, and movement.
+                Capturing moments. Showcasing cultural celebrations, festive events, and company traditions for community engagement.
               </p>
             </div>
           </div>
@@ -465,10 +465,10 @@ export default function Gallery() {
         <div className="relative flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-[620px]">
             <p className="font-[Montserrat] text-[13px] font-semibold uppercase tracking-[2.4px] text-[#7a6550]">
-              Curated Frames
+              Cultural Moments
             </p>
-            <h2 className="mt-3 font-[Montserrat] text-[42px] font-semibold text-[#14222b] max-[1030px]:text-[36px] max-[1030px]:leading-[40px] max-[768px]:text-[32px] max-[768px]:leading-[36px] max-[413px]:text-[28px] max-[413px]:leading-[32px]">
-              Simple layout. Premium feel.
+            <h2 className="mt-3 font-[Montserrat] text-[42px] font-semibold text-[#345261] max-[1030px]:text-[36px] max-[1030px]:leading-[40px] max-[768px]:text-[32px] max-[768px]:leading-[36px] max-[413px]:text-[28px] max-[413px]:leading-[32px]">
+              Festive designs. Celebrating company cultural events and traditions.
             </h2>
           </div>
           <div className="flex flex-wrap gap-3">
@@ -476,10 +476,10 @@ export default function Gallery() {
               <button
                 key={filter}
                 onClick={() => setActiveFilter(filter)}
-                className={`rounded-full px-5 py-3 font-[Montserrat] text-[12px] font-semibold uppercase tracking-[1.7px] transition-all duration-300 max-[1030px]:px-4 max-[1030px]:py-2.5 max-[1030px]:text-[11px] max-[413px]:text-[10px] ${
+                className={`rounded-full px-5 py-3 font-[Montserrat] text-[12px] font-semibold uppercase tracking-[1.7px] transition-all duration-300 cursor-pointer max-[1030px]:px-4 max-[1030px]:py-2.5 max-[1030px]:text-[11px] max-[413px]:text-[10px] ${
                   activeFilter === filter
-                    ? "bg-[#15242d] text-white shadow-lg"
-                    : "bg-white text-[#314650] hover:bg-[#395563] hover:text-white"
+                    ? "bg-[#345261] text-white shadow-lg"
+                    : "bg-white text-[#314650] hover:bg-[#2a3d45] hover:text-white"
                 }`}
               >
                 {filter}
@@ -552,7 +552,7 @@ export default function Gallery() {
             })
           ) : (
             <div className="col-span-full flex h-[200px] flex-col items-center justify-center text-[#15242d]/60">
-              <p className="font-[Montserrat] text-[16px]">No items found.</p>
+              <p className="font-[Montserrat] text-[16px]">No festivals found.</p>
             </div>
           )}
         </div>
@@ -661,7 +661,7 @@ export default function Gallery() {
                       <div className="pb-10 max-[413px]:pb-2 pt-4 max-[413px]:pt-1">
                         <div className="flex items-center justify-between mb-5 max-[413px]:mb-2">
                           <h3 className="text-[10px] max-[413px]:text-[8px] font-bold uppercase tracking-[2px] text-white/60">
-                            Collection
+                            Festival Collection
                           </h3>
                         </div>
 
@@ -700,7 +700,7 @@ export default function Gallery() {
                     <div className="mt-10 pt-10 max-[413px]:mt-2 max-[413px]:pt-2 max-[413px]:hidden border-t border-white/10">
                       <div className="flex items-center justify-between text-white/30 text-[10px] font-[Montserrat] tracking-wider uppercase">
                         <p>© SPANGLES 2026</p>
-                        <p className="animate-pulse">Click Media to Zoom</p>
+                        <p className="animate-pulse">Click Festival Media to Zoom</p>
                       </div>
                     </div>
                   </div>

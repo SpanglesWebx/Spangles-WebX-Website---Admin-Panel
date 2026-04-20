@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import successImg from "../../assets/Success.png"; // change to your success image
 import { Calendar, Clock, MapPin } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -48,6 +49,7 @@ const Modal = ({ children, onClose, customClasses }) => {
 };
 
 export default function Career() {
+  const navigate = useNavigate();
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedJob, setSelectedJob] = useState(null);
@@ -294,7 +296,10 @@ export default function Career() {
               impactful web and mobile solutions.
             </p>
 
-            <button className="group font-[Montserrat] font-bold text-[12px] leading-[18px] uppercase bg-[#395563] text-white px-6 py-5 rounded-lg flex items-center justify-center gap-2 text-center transition-all duration-300 max-[413px]:px-[20px] max-[413px]:py-[14px] max-[413px]:text-[11px]">
+            <button
+              onClick={() => navigate("/contact")}
+              className="group font-[Montserrat] font-bold text-[12px] leading-[18px] uppercase bg-[#395563] hover:bg-[#2a3d45] cursor-pointer text-white px-6 py-5 rounded-lg flex items-center justify-center gap-2 text-center transition-all duration-300 max-[413px]:px-[20px] max-[413px]:py-[14px] max-[413px]:text-[11px]"
+            >
               CONTACT US NOW
               <svg
                 xmlns="http://www.w3.org/2000/svg"
