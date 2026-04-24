@@ -112,38 +112,38 @@ export default function ServicesSection() {
     max-[413px]:py-6
   "
         >
-          <div className="flex justify-between items-end gap-4 flex-wrap max-[1025px]:flex-nowrap max-[768px]:flex-wrap max-[413px]:flex-col max-[413px]:items-start max-[413px]:gap-6">
-            {/* LEFT */}
-            <div className="flex flex-col items-start">
+          <div className="flex justify-between items-end gap-[80px] max-[1201px]:gap-[60px] max-[1025px]:flex-col max-[1025px]:items-start max-[1025px]:gap-6">
+            {/* LEFT: Heading */}
+            <div className="flex flex-col items-start flex-shrink-0">
               <p className="font-montserrat font-bold text-[14px] leading-[21px] tracking-[2.24px] uppercase text-white/70 mb-4">
                 OUR SERVICE
               </p>
 
-              <h2 className="font-montserrat font-semibold text-[32px] leading-[55px] tracking-[-1.06px] max-w-[520px] max-[413px]:text-[24px] max-[413px]:leading-[32px] max-[413px]:max-w-[320px]">
-                We Offer a Wide <br className="hidden min-[1025px]:block" />
-                Variety of IT Services
+              <h2 className="font-montserrat font-semibold text-[32px] leading-[42px] tracking-[-1.06px] max-w-[350px] max-[1201px]:text-[30px] max-[1201px]:max-w-[300px] max-[413px]:text-[24px] max-[413px]:leading-[32px]">
+                We Offer a Wide Variety of IT Services
               </h2>
             </div>
 
-            <div className="max-w-[700px] w-full flex justify-between items-end gap-10 max-[1025px]:w-auto max-[413px]:flex-col max-[413px]:items-start max-[413px]:gap-5">
-              {/* DESCRIPTION (LEFT) */}
-              <p className="font-montserrat font-normal text-[16px] leading-[24px] text-white w-full max-[413px]:text-[14px] max-[413px]:leading-[20px]">
+            {/* RIGHT: Description + Button */}
+            <div className="flex-1 flex justify-between items-end gap-4 max-[1201px]:gap-4 max-[1025px]:w-full max-[413px]:flex-col max-[413px]:items-start">
+              {/* DESCRIPTION */}
+              <p className="font-montserrat font-normal text-[16px] leading-[24px] text-white/90 max-w-[650px] max-[1201px]:text-[15px] max-[1025px]:max-w-none max-[413px]:text-[14px] max-[413px]:leading-[20px]">
                 At Spangles Webx Pvt. Ld, we offer a comprehensive range of IT
-                services designed to empower businesses in the digital era.We
-                combine customer-focused approach to ensure every project is
+                services designed to empower businesses in the digital era. We
+                combine a customer-focused approach to ensure every project is
                 executed with precision, efficiency, and transparency, helping
                 your business grow and stay ahead in a competitive market.
               </p>
 
-              {/* BUTTON (RIGHT) */}
+              {/* BUTTON */}
               <button
                 onClick={() => navigate('/services')}
-                className="group cursor-pointer font-montserrat font-bold text-[12px] leading-[18px] uppercase text-[#395563] bg-white px-[25px] py-[16px] rounded-lg flex items-center gap-2 whitespace-nowrap max-[1025px]:absolute max-[1025px]:bottom-12 max-[1025px]:left-1/2 max-[1025px]:-translate-x-1/2 max-[768px]:left-10 max-[768px]:translate-x-0 max-[413px]:absolute max-[413px]:left-6 max-[413px]:bottom-8"
+                className="group cursor-pointer font-montserrat font-bold text-[12px] leading-[18px] uppercase text-[#395563] bg-white px-[25px] py-[16px] rounded-lg flex items-center gap-2 whitespace-nowrap transition-all duration-300 hover:bg-white/90 hover:scale-[1.02] max-[1025px]:mt-4 max-[413px]:w-full max-[413px]:justify-center"
               >
                 ALL SERVICES
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 max-[413px]:w-[12px] max-[413px]:h-[12px]"
+                  className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
