@@ -57,7 +57,7 @@ export default function FeaturedWorkStack() {
       <div className="relative z-[1] overflow-visible">
         {/* HEADER WRAPPER - Limits sticky duration so the header scrolls away exactly when the last card arrives */}
         <div className="absolute top-0 left-0 right-0 h-[calc(100%-300px)] max-[1201px]:h-[calc(100%-350px)] max-[1025px]:h-[calc(100%-400px)] max-[413px]:h-[calc(100%-550px)] pointer-events-none">
-          <div className="sticky top-[10px] z-[5] bg-transparent text-center pt-[80px] max-[1201px]:pt-[75px] max-[1025px]:pt-[70px] max-[413px]:pt-[70px] px-[20px] pb-[40px] max-[1201px]:pb-[30px] max-[1025px]:pb-[25px] max-[413px]:pb-[20px] pointer-events-auto">
+          <div className="sticky top-[5px] z-[5] bg-transparent text-center pt-[60px] max-[1201px]:pt-[55px] max-[1025px]:pt-[50px] max-[413px]:pt-[50px] px-[20px] pb-[40px] max-[1201px]:pb-[30px] max-[1025px]:pb-[25px] max-[413px]:pb-[20px] pointer-events-auto">
             {/* BACKGROUND ARC FOR HEADER (Placed identically inside the header so it scrolls synchronously!) */}
             <div className="absolute -top-[450px] -left-[700px] max-[1201px]:-top-[350px] max-[1201px]:-left-[600px] max-[1201px]:w-[800px] max-[1201px]:h-[900px] max-[1201px]:border-[150px] max-[1025px]:-top-[300px] max-[1025px]:-left-[480px] max-[1025px]:w-[700px] max-[1025px]:h-[700px] max-[1025px]:border-[130px] max-[413px]:-top-[250px] max-[413px]:-left-[350px] w-[900px] h-[1000px] max-[413px]:w-[500px] max-[413px]:h-[500px] rounded-full border-[100px] max-[413px]:border-[90px] border-[rgba(0,0,0,0.08)] pointer-events-none z-[-1]">
 
@@ -87,7 +87,7 @@ export default function FeaturedWorkStack() {
           {projects.map((item, index) => (
             <div
               key={index}
-              className="sticky top-[290px] max-[1201px]:top-[270px] max-[1025px]:top-[260px] max-[413px]:top-[260px]"
+              className="sticky top-[280px] max-[1201px]:top-[260px] max-[1025px]:top-[250px] max-[413px]:top-[250px]"
               style={{ zIndex: 10 + index }}
             >
               <div className="mx-[90px] max-[1201px]:mx-[60px] max-[1025px]:mx-[40px] max-[413px]:mx-[24px] flex justify-between items-center max-[413px]:flex-col max-[413px]:items-start gap-[40px] max-[1201px]:gap-[30px] max-[1025px]:gap-[25px] max-[413px]:gap-[25px] bg-[#4c6571] rounded-[16px] p-[45px] max-[1201px]:p-[35px] max-[1025px]:p-[30px] max-[413px]:p-[24px] border border-[rgba(255,255,255,0.1)] min-h-[280px] max-[1201px]:min-h-[260px] max-[1025px]:min-h-[240px] max-[413px]:min-h-0">
