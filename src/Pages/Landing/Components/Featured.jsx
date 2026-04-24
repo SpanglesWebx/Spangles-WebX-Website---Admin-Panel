@@ -83,11 +83,11 @@ export default function FeaturedWorkStack() {
 
         {/* STACK SECTION */}
         {/* We use a flex-column with gap to explicitly create the scroll track without tricky margin collapsing */}
-        <div id="featured-stack" className="pt-[250px] max-[1201px]:pt-[250px] max-[1025px]:pt-[250px] max-[413px]:pt-[250px] flex flex-col gap-[60vh] max-[1201px]:gap-[50vh] max-[1025px]:gap-[40vh] max-[413px]:gap-[40vh] pb-0">
+        <div id="featured-stack" className="pt-[250px] max-[1201px]:pt-[250px] max-[1025px]:pt-[250px] max-[413px]:pt-[250px] flex flex-col gap-[35vh] max-[1201px]:gap-[30vh] max-[1025px]:gap-[25vh] max-[413px]:gap-[25vh] pb-0">
           {projects.map((item, index) => (
             <div
               key={index}
-              className="sticky top-[280px] max-[1201px]:top-[260px] max-[1025px]:top-[250px] max-[413px]:top-[250px]"
+              className="sticky top-[220px] max-[1201px]:top-[260px] max-[1025px]:top-[250px] max-[413px]:top-[250px]"
               style={{ zIndex: 10 + index }}
             >
               <div className="mx-[90px] max-[1201px]:mx-[60px] max-[1025px]:mx-[40px] max-[413px]:mx-[24px] flex justify-between items-center max-[413px]:flex-col max-[413px]:items-start gap-[40px] max-[1201px]:gap-[30px] max-[1025px]:gap-[25px] max-[413px]:gap-[25px] bg-[#4c6571] rounded-[16px] p-[45px] max-[1201px]:p-[35px] max-[1025px]:p-[30px] max-[413px]:p-[24px] border border-[rgba(255,255,255,0.1)] min-h-[280px] max-[1201px]:min-h-[260px] max-[1025px]:min-h-[240px] max-[413px]:min-h-0">
