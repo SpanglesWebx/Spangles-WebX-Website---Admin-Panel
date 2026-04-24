@@ -37,9 +37,9 @@ export default function Navbar() {
   const { scrollY } = useScroll();
 
   // Dynamic gradient opacity based on scroll (reduced duration)
-  const navBgOpacity = useTransform(scrollY, [0, 300], [0, 0.85]);
-  const navGlassBlur = useTransform(scrollY, [0, 300], [0, 40]);
-  const navShadowOpacity = useTransform(scrollY, [0, 300], [0, 0.4]);
+  const navBgOpacity = useTransform(scrollY, [0, 200], [0, 0.9]);
+  const navGlassBlur = useTransform(scrollY, [0, 200], [0, 40]);
+  const navShadowOpacity = useTransform(scrollY, [0, 200], [0, 0.4]);
 
   useEffect(() => {
     const handleScroll = () => {
