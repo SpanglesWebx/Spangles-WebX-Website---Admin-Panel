@@ -8,11 +8,13 @@ export default function ServicesSection() {
   const navigate = useNavigate();
 
   const scroll = (direction) => {
-    if (scrollRef.current) {
-      const scrollAmount = scrollRef.current.offsetWidth;
+    if (scrollRef.current && scrollRef.current.children.length > 0) {
+      const isMobile = window.innerWidth <= 413;
+      const gap = 24;
+      const cardWidth = scrollRef.current.children[0].offsetWidth + gap;
 
       scrollRef.current.scrollBy({
-        left: direction === "left" ? -scrollAmount : scrollAmount,
+        left: direction === "left" ? -cardWidth : cardWidth,
         behavior: "smooth",
       });
     }
