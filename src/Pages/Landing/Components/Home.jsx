@@ -55,7 +55,7 @@ export default function HeroSection() {
           />
         </div>
 
-        <div className="relative z-10 mx-auto flex max-w-6xl flex-col items-center px-6 pt-10 text-center max-[413px]:px-6 max-[413px]:pt-6">
+        <div className="relative z-10 mx-auto flex max-w-6xl min-[1600px]:max-w-[1440px] min-[1920px]:max-w-[1600px] flex-col items-center px-6 pt-10 text-center max-[413px]:px-6 max-[413px]:pt-6">
           {/* BADGE */}
           <div className="mb-6 inline-block rounded-[10px] bg-gray-200 px-2.5 py-2.5 text-center font-montserrat text-[14px] font-bold capitalize leading-[18px] text-[#395563] max-[413px]:mb-5 max-[413px]:rounded-full max-[413px]:bg-[#E8EAED] max-[413px]:px-4 max-[413px]:py-2 max-[413px]:text-[12px] max-[413px]:font-semibold max-[413px]:leading-[16px] max-[413px]:text-[#4A5568]">
             Best Marketing Agency
@@ -117,7 +117,7 @@ export default function HeroSection() {
           />
         </svg>
 
-        <div className="mx-auto max-w-6xl px-6 max-[413px]:px-5">
+        <div className="mx-auto max-w-6xl min-[1600px]:max-w-[1440px] min-[1920px]:max-w-[1600px] px-6 max-[413px]:px-5">
           <div className="relative flex justify-center">
             {/* 413px: soft blue glow behind top-left of image */}
             <div
@@ -130,9 +130,9 @@ export default function HeroSection() {
               aria-hidden
             />
             {/* MAIN IMAGE CARD */}
-            <div className="relative z-10 w-full max-w-4xl overflow-hidden rounded-xl border border-gray-100 shadow-lg max-[413px]:rounded-[18px] max-[413px]:border-[#E8EAED]">
+            <div className="relative z-10 w-full max-w-4xl min-[1600px]:max-w-[1200px] min-[1920px]:max-w-[1440px] overflow-hidden rounded-xl border border-gray-100 shadow-lg max-[413px]:rounded-[18px] max-[413px]:border-[#E8EAED]">
               <video
-                className="h-[550px] w-full object-cover min-[1440px]:h-[600px] max-[1024px]:h-[420px] max-[413px]:h-[400px]"
+                className="h-[550px] w-full object-cover min-[1440px]:h-[600px] min-[1600px]:h-[700px] min-[1920px]:h-[800px] max-[1024px]:h-[420px] max-[413px]:h-[400px]"
                 autoPlay
                 loop
                 muted
