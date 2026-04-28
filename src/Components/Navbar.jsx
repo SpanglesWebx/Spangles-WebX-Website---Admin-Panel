@@ -95,7 +95,7 @@ export default function Navbar() {
       )}
       {/* Navbar Content */}
       <div className={`relative z-10 w-full border-b transition-colors duration-1000 ${isScrolled ? "border-white/10" : "border-[#ebebeb]"}`}>
-        <div className="max-w-[1440px] mx-auto min-[1600px]:max-w-[1600px] min-[2000px]:max-w-[1800px] px-[25px] h-[70px] grid grid-cols-[1fr_2fr_1fr] items-end min-[1025px]:max-[1025px]:grid-cols-[180px_1fr_180px] min-[1025px]:max-[1025px]:px-[20px] max-[1025px]:h-[60px] max-[1025px]:grid-cols-[1fr_auto] max-[1025px]:items-end max-[1025px]:px-[20px] max-[413px]:h-[56px] max-[413px]:grid-cols-[1fr_auto] max-[413px]:items-end max-[413px]:px-[16px]">
+        <div className="max-w-[1440px] mx-auto min-[1600px]:max-w-full px-[25px] h-[70px] grid grid-cols-[1fr_2fr_1fr] items-end min-[1025px]:max-[1025px]:grid-cols-[180px_1fr_180px] min-[1025px]:max-[1025px]:px-[20px] max-[1025px]:h-[60px] max-[1025px]:grid-cols-[1fr_auto] max-[1025px]:items-end max-[1025px]:px-[20px] max-[413px]:h-[56px] max-[413px]:grid-cols-[1fr_auto] max-[413px]:items-end max-[413px]:px-[16px]">
           {/* Logo */}
           <NavLink
             to="/"
