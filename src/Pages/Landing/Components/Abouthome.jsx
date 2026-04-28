@@ -71,7 +71,7 @@ export default function AboutSection() {
 
   return (
     <section className="bg-[#ffffff]">
-      <div className="w-full px-[100px] py-[100px] grid md:grid-cols-2 gap-16 items-center md:max-[1025px]:items-start max-[1025px]:gap-12 max-[1025px]:px-[60px] max-[1025px]:py-[70px] max-[413px]:px-4 max-[413px]:py-[60px] max-[413px]:gap-10">
+      <div className="w-full mx-auto min-[1600px]:max-w-full min-[1600px]:px-[150px] min-[1920px]:px-[250px] px-[100px] py-[100px] grid md:grid-cols-2 gap-16 items-center md:max-[1025px]:items-start max-[1025px]:gap-12 max-[1025px]:px-[60px] max-[1025px]:py-[70px] max-[413px]:px-4 max-[413px]:py-[60px] max-[413px]:gap-10">
         {/* LEFT IMAGE */}
         <div className="relative">
           <img
@@ -104,7 +104,7 @@ export default function AboutSection() {
             Webx is a tech
           </h2>
 
-          <p className="w-full max-w-lg font-montserrat font-normal text-[#6B6A66] text-[16px] leading-[23.65px] mb-10 max-[413px]:text-[14px] max-[413px]:leading-[20px] max-[413px]:mb-8">
+          <p className="w-full max-w-lg min-[1600px]:max-w-2xl min-[1920px]:max-w-3xl font-montserrat font-normal text-[#6B6A66] text-[16px] leading-[23.65px] mb-10 max-[413px]:text-[14px] max-[413px]:leading-[20px] max-[413px]:mb-8">
             Spangles Webx is a tech-driven company passionate about delivering
             innovative digital products. With a focus on design, usability, and
             performance, we help startups and enterprises scale with impactful
