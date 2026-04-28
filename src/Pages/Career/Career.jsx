@@ -272,10 +272,10 @@ export default function Career() {
       </div>
       {/* Intro Section */}
       <div className="bg-white flex justify-end min-[1441px]:justify-start max-[413px]:justify-center">
-        <div className="w-full max-w-[1400px] min-[1441px]:max-w-full grid grid-cols-[1fr_800px] min-[1441px]:grid-cols-[1fr_1.2fr] max-[1201px]:grid-cols-[1fr_600px] max-[1025px]:grid-cols-[1fr_500px] max-[768px]:grid-cols-1 max-[413px]:grid-cols-1 items-stretch">
+        <div className="w-full max-w-[1400px] min-[1441px]:max-w-full grid grid-cols-[1fr_600px] min-[1441px]:grid-cols-[1fr_1.2fr] max-[1201px]:grid-cols-[1fr_500px] max-[1025px]:grid-cols-[1fr_400px] max-[768px]:grid-cols-1 max-[413px]:grid-cols-1 items-center min-[1441px]:items-stretch">
 
           {/* LEFT CONTENT */}
-          <div className="py-24 pl-[100px] pr-10 min-[1441px]:pl-[100px] min-[1441px]:pr-20 min-[1441px]:flex min-[1441px]:flex-col min-[1441px]:justify-center min-[1441px]:items-start max-[1025px]:pl-[50px] max-[768px]:pl-[30px] max-[768px]:pr-[30px] max-[413px]:px-[14px] max-[413px]:py-[40px]">
+          <div className="py-16 min-[1441px]:py-24 pl-[100px] pr-10 min-[1441px]:pl-[100px] min-[1441px]:pr-20 min-[1441px]:flex min-[1441px]:flex-col min-[1441px]:justify-center min-[1441px]:items-start max-[1025px]:pl-[50px] max-[768px]:pl-[30px] max-[768px]:pr-[30px] max-[413px]:px-[14px] max-[413px]:py-[40px]">
 
             <p className="font-[Montserrat] font-bold text-[14px] leading-[21px] tracking-[2.24px] uppercase text-[#395563] mb-4 max-[413px]:text-[11px] max-[413px]:mb-3">
               OPPORTUNITIES WITH US
@@ -320,7 +320,7 @@ export default function Career() {
             <img
               src={carrer}
               alt="team"
-              className="w-[800px] min-[1441px]:w-full h-full object-cover object-right max-[1201px]:w-[600px] max-[1025px]:w-full max-[1025px]:object-left  max-[768px]:w-full max-[413px]:w-full max-[413px]:h-auto"
+              className="w-[600px] min-[1441px]:w-full h-full object-cover object-right max-[1201px]:w-[500px] max-[1025px]:w-full max-[1025px]:object-left  max-[768px]:w-full max-[413px]:w-full max-[413px]:h-auto"
             />
           </div>
         </div>
