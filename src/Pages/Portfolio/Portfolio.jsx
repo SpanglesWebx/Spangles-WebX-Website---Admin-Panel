@@ -124,9 +124,9 @@ const portfolio = [
       </div>
 
       {/* ✅ YOUR ORIGINAL SECTION (UNCHANGED) */}
-     <div className="bg-white pt-[60px] pb-[80px] border-b border-[#E5E5E5] px-[160px] 
+     <div className="bg-white pt-[60px] pb-[80px] border-b border-[#E5E5E5] px-[160px] min-[1441px]:px-[100px] min-[1441px]:w-full
      max-[1024px]:px-10 max-[768px]:px-6 max-[413px]:px-4 max-[413px]:pt-10 max-[413px]:pb-12 min-[1024px]:max-[1200px]:px-[120px]">
-        <div className="grid md:grid-cols-2 gap-15 mb-8.5 max-[1024px]:gap-12 max-[768px]:gap-10 max-[413px]:gap-6">
+        <div className="grid md:grid-cols-2 gap-15 min-[1441px]:gap-20 mb-8.5 max-[1024px]:gap-12 max-[768px]:gap-10 max-[413px]:gap-6">
        {(showAll ? portfolio : portfolio.slice(0, 6)).map((item) => (
             <div
               key={item.id}
@@ -136,7 +136,7 @@ const portfolio = [
               <img
                 src={item.image}
                 alt={item.title}
-                className="w-full h-[280px] object-cover max-[413px]:h-[230px]"
+                className="w-full h-[280px] min-[1441px]:h-[450px] object-cover max-[413px]:h-[230px]"
               />
 
               {/* Overlay */}
