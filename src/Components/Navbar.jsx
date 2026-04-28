@@ -147,13 +147,13 @@ export default function Navbar() {
           {/* Desktop CTA */}
           <NavLink
             to="/contact"
-            className={`hidden min-[1026px]:inline-flex items-center mb-4 justify-center gap-3 rounded-[8px] px-[20px] py-[12px] text-[11px] leading-[18px] font-bold uppercase font-montserrat justify-self-end transition-colors duration-[1000ms] ease-in-out ${isScrolled ? "text-white" : "bg-[#345261] text-white"}`}
+            className={`hidden min-[1026px]:inline-flex items-center mb-4 justify-center gap-3 px-[20px] py-[12px] text-[11px] leading-[18px] font-bold uppercase font-montserrat justify-self-end transition-all duration-[1000ms] ease-in-out ${isScrolled ? "border border-white text-white hover:bg-white hover:text-[#345261] rounded-[10px]" : "bg-[#345261] text-white rounded-[8px]"}`}
           >
             CONTACT US
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="transition-colors duration-[1000ms] ease-in-out">
               <path
                 d="M2 7H11M11 7L7 3M11 7L7 11"
-                stroke="white"
+                stroke="currentColor"
                 strokeWidth="1.8"
                 strokeLinecap="round"
                 strokeLinejoin="round"

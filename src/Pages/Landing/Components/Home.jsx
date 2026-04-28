@@ -138,55 +138,12 @@ export default function HeroSection() {
                 muted
                 playsInline
               >
-                {/* <source
-                  src="https://cdn.pixabay.com/video/2019/10/10/27725-365890983_large.mp4"
-                  type="video/mp4"
-                /> */}
+          
 
-                {/* <source
-                  src="https://cdn.pixabay.com/video/2023/08/01/174086-850404739_large.mp4"
-                  type="video/mp4"
-                /> */}
-
-                {/* <source
-                  src="https://cdn.pixabay.com/video/2024/06/06/215500_large.mp4"
-                  type="video/mp4"
-                /> */}
-{/* 
                 <source
                   src="https://cdn.pixabay.com/video/2023/10/01/183108-870151713_large.mp4"
-                  type="video/mp4"
-                /> */}
-
-                <source
-                  src="https://cdn.pixabay.com/video/2023/07/19/172170-846731303_large.mp4"
                   type="video/mp4"
                 />
-
-                {/* <source
-                  src="https://cdn.pixabay.com/video/2023/10/01/183108-870151713_large.mp4"
-                  type="video/mp4"
-                /> */}
-
-                {/* <source
-                  src="https://cdn.pixabay.com/video/2026/02/27/337090_large.mp4"
-                  type="video/mp4"
-                /> */}
-
-                {/* <source
-                  src="https://cdn.pixabay.com/video/2023/07/21/172529-847499878_large.mp4"
-                  type="video/mp4"
-                /> */}
-
-                {/* <source
-                  src="https://cdn.pixabay.com/video/2019/10/09/27706-365890968_large.mp4"
-                  type="video/mp4"
-                /> */}
-
-                {/* <source
-                  src="https://cdn.pixabay.com/video/2019/10/10/27725-365890983_large.mp4"
-                  type="video/mp4"
-                /> */}
 
 
 

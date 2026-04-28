@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import {
   FaFacebookF,
   FaTwitter,
@@ -14,12 +15,15 @@ export default function SupportBar() {
         {/* Logo */}
 
         <div className="flex items-center justify-center max-[1200px]:w-full max-[1200px]:justify-center max-[413px]:justify-start max-[413px]:items-center">
-          <img
-            src={logo}
-            alt="Spanglez Webx"
-            className="h-[100px] w-[200px] object-contain max-[413px]:h-[46px]"
-          />
+          <Link to="/" className="cursor-pointer">
+            <img
+              src={logo}
+              alt="Spanglez Webx"
+              className="h-[100px] w-[200px] object-contain max-[413px]:h-[46px]"
+            />
+          </Link>
         </div>
+
 
         {/* Divider (Desktop only) */}
         {/* <div className="h-[100px] w-[1px] bg-gray-200 max-[767px]:hidden max-[1200px]:hidden"></div> */}
@@ -30,18 +34,19 @@ export default function SupportBar() {
             CALL FOR SUPPORT
           </p>
           <a
-            href="tel:180012345678"
+            href="tel:+917708784111"
             className="block mt-1 font-montserrat font-normal text-[16px] leading-[36px] tracking-[0] align-middle uppercase text-[#EE6196] max-[413px]:text-[14px] max-[413px]:leading-[26px]"
           >
             +91 7708784111
           </a>
           <a
-            href="mailto:allan@spangles.com"
+            href="mailto:webxspangles@gmail.com"
             className="font-montserrat font-normal text-[16px] leading-[18px] tracking-[0] 
-  align-middle underline text-[#6B6A66] max-[413px]:text-[14px]"
+  align-middle text-[#6B6A66] max-[413px]:text-[14px]"
           >
             webxspangles@gmail.com
           </a>
+
         </div>
 
         {/* Divider */}
@@ -70,7 +75,7 @@ export default function SupportBar() {
 
           <div className="flex max-[1200px]:justify-center max-[413px]:gap-[12px]">
             <div className="p-[10px] rounded-[10px] cursor-pointer max-[413px]:p-[9px]">
-              <FaFacebookF className="text-[#345261] text-[18px] hover:text-[#345261] transition max-[413px]:text-[14px]" />
+              <FaFacebookF className="text-[#B3BDD1] text-[18px] hover:text-[#345261] transition max-[413px]:text-[14px]" />
             </div>
 
             <div className="p-[10px] rounded-[10px] cursor-pointer max-[413px]:p-[9px]">

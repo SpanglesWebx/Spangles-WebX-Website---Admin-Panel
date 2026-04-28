@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ServiceImg from "../../assets/Service-banner.jpg";
 import cyberImg from "../../assets/portfolio1.jpg";
 import digitalImg from "../../assets/portfolio2.jpg";
@@ -9,6 +9,7 @@ import appImg from "../../assets/portfolio6.jpg";
 import Support from "../About/Components/Support";
 import { useNavigate } from "react-router-dom";
 import Serviceicon from "../../assets/Service-icon.png"; // change to your icon
+import Preloader from "../../Components/Preloader";
 
 export const services = [
   {
@@ -211,6 +212,18 @@ export const services = [
 
 const Services = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 800);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return <Preloader />;
+  }
   return (
     <div className="w-full">
       {/* Hero Section */}

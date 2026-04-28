@@ -285,6 +285,7 @@ import { ArrowUpRight, Sparkles, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Support from "../About/Components/Support";
 import bannerImg from "../../assets/portfolio-banner.jpg";
+import Preloader from "../../Components/Preloader";
 
 const API_BASE_URL = "http://localhost:5000";
 
@@ -347,7 +348,10 @@ export default function Gallery() {
       } catch (error) {
         console.error("Failed to fetch galleries:", error);
       } finally {
-        setLoading(false);
+        // Synthetic delay for premium feel
+        setTimeout(() => {
+          setLoading(false);
+        }, 800);
       }
     };
 
@@ -383,16 +387,28 @@ export default function Gallery() {
       ? galleryItems
       : galleryItems.filter((item) => item.category === activeFilter);
 
+  useEffect(() => {
+    if (selectedItem) {
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+      document.documentElement.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+      document.documentElement.style.overflow = "auto";
+    };
+  }, [selectedItem]);
+
   const handleOpen = (item) => {
     setSelectedItem(item);
     setIsZoomed(false);
-    document.body.style.overflow = "hidden";
   };
 
   const handleClose = () => {
     setSelectedItem(null);
     setIsZoomed(false);
-    document.body.style.overflow = "auto";
   };
 
   const toggleZoom = (e) => {
@@ -430,7 +446,7 @@ export default function Gallery() {
           <div className="mt-6 grid gap-10 lg:grid-cols-[minmax(0,1fr)_260px] lg:items-end">
             <div className="max-w-[720px]">
               <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-md">
-                <Sparkles className="h-4 w-4 text-[#f3c98f]" />
+                <img src="/Web.jpg" className="h-4 w-4 rounded-full object-cover animate-pulse" alt="icon" />
                 <span className="font-[Montserrat] text-[11px] font-semibold uppercase tracking-[2px] text-white/85">
                   Festival Highlights
                 </span>
@@ -490,9 +506,7 @@ export default function Gallery() {
 
         <div id="gallery-grid" className="relative mt-12 grid auto-rows-[220px] gap-5 md:grid-cols-2 lg:grid-cols-3 lg:auto-rows-[240px]">
           {loading ? (
-            <div className="col-span-full flex h-[400px] items-center justify-center">
-              <div className="h-10 w-10 animate-spin rounded-full border-4 border-[#15242d] border-t-transparent" />
-            </div>
+            <Preloader />
           ) : visibleItems.length > 0 ? (
             visibleItems.map((item, index) => {
               const itemSize = index === 0 ? "lg:col-span-2 lg:row-span-2" : "";
@@ -605,27 +619,35 @@ export default function Gallery() {
                     key={selectedItem.id}
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    className={`relative z-10 flex h-full w-full items-center justify-center transition-all duration-700 ${isZoomed ? "scale-110 cursor-zoom-out" : "scale-100 cursor-zoom-in"}`}
+                    className={`relative z-10 flex flex-col h-full w-full items-center justify-center transition-all duration-700 group/shadow ${isZoomed ? "scale-110 cursor-zoom-out" : "scale-100 cursor-zoom-in"}`}
                     onClick={toggleZoom}
                   >
-                    <div className="relative group/shadow max-h-full w-fit max-[1201px]:w-full max-[1201px]:h-full max-[1201px]:flex max-[1201px]:justify-center overflow-hidden rounded-2xl max-[768px]:rounded-xl max-[413px]:rounded-none max-[413px]:border-none shadow-2xl">
+                    <div className="relative max-h-full w-fit max-[1201px]:w-full max-[1201px]:h-full max-[1201px]:flex max-[1201px]:justify-center overflow-hidden rounded-2xl max-[768px]:rounded-xl max-[413px]:rounded-none max-[413px]:border-none shadow-2xl">
                       {selectedItem.type === "video" ? (
                         <video
                           src={selectedItem.image}
                           autoPlay
                           loop
                           controls
-                          className="max-h-[82vh] max-[768px]:max-h-[75vh] w-auto max-[1201px]:w-full max-[1201px]:h-full max-[1201px]:object-cover transition-transform"
+                          className="max-h-[75vh] max-[768px]:max-h-[65vh] w-auto max-[1201px]:w-full max-[1201px]:h-full max-[1201px]:object-cover transition-transform"
                           onClick={(e) => e.stopPropagation()}
                         />
                       ) : (
                         <img
                           src={selectedItem.image}
                           alt={selectedItem.title}
-                          className="max-h-[82vh] max-[768px]:max-h-[75vh] w-auto max-[1201px]:w-full max-[1201px]:h-full max-[1201px]:object-cover select-none scale-[1.02]"
+                          className="max-h-[75vh] max-[768px]:max-h-[65vh] w-auto max-[1201px]:w-full max-[1201px]:h-full max-[1201px]:object-cover select-none scale-[1.02]"
                           draggable="false"
                         />
                       )}
+                    </div>
+
+                    {/* Zoom Instruction Text Below Image */}
+                    <div className="mt-3 opacity-0 group-hover/shadow:opacity-100 transition-all duration-500 pointer-events-none">
+                      <p className="text-white/30 text-[10px] font-[Montserrat] tracking-wider uppercase flex items-center gap-2">
+                        <span className="h-1 w-1 rounded-full bg-[#f3c98f] animate-pulse" />
+                        Click Festival Media to Zoom
+                      </p>
                     </div>
                   </motion.div>
                 </div>
@@ -696,11 +718,9 @@ export default function Gallery() {
                       </div>
                     </div>
 
-                    {/* Footer Section */}
                     <div className="mt-10 pt-10 max-[413px]:mt-2 max-[413px]:pt-2 max-[413px]:hidden border-t border-white/10">
-                      <div className="flex items-center justify-between text-white/30 text-[10px] font-[Montserrat] tracking-wider uppercase">
+                      <div className="flex items-center justify-center text-white/30 text-[10px] font-[Montserrat] tracking-wider uppercase">
                         <p>© SPANGLES 2026</p>
-                        <p className="animate-pulse">Click Festival Media to Zoom</p>
                       </div>
                     </div>
                   </div>

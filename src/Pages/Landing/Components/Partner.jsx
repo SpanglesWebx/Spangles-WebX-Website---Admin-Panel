@@ -144,7 +144,7 @@ max-[413px]:overflow-hidden"
           </div>
 
           <button
-            onClick={() => navigate('/about')}
+            onClick={() => navigate('/contact')}
             className="group cursor-pointer bg-[#395563] hover:bg-[#2f4650] text-white font-montserrat font-bold text-[12px] leading-[18px] tracking-[0px] uppercase text-center align-middle px-[25px] py-[17px] rounded-[10px] flex items-center justify-center gap-2 whitespace-nowrap transition max-[413px]:px-[27px] max-[413px]:py-[16px]"
           >
             GET START

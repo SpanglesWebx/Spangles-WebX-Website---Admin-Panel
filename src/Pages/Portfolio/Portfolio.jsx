@@ -1,6 +1,6 @@
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import { useState } from "react";
 import img1 from "../../assets/portfolio1.jpg";
 import img2 from "../../assets/portfolio2.jpg";
 import img3 from "../../assets/portfolio3.jpg";
@@ -10,6 +10,7 @@ import img6 from "../../assets/portfolio6.jpg";
 import img7 from "../../assets/portfolio7.jpg";
 import img8 from "../../assets/portfolio8.jpg";
 import Support from "../About/Components/Support";
+import Preloader from "../../Components/Preloader";
 // 👉 add your background image
 import bannerImg from "../../assets/portfolio-banner.jpg";
 
@@ -17,6 +18,18 @@ export default function Portfolio() {
   const navigate = useNavigate();
   const [showAll, setShowAll] = useState(false);
   const [clickedCard, setClickedCard] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 800);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return <Preloader />;
+  }
 const portfolio = [
   {
     id: 1,
@@ -26,15 +39,15 @@ const portfolio = [
   },
   {
     id: 2,
-    title: "Waltur Website",
+    title: "Renewable Energy Landing Page",
     image: img2,
-    desc: "Modern business website with performance optimization.",
+    desc: "Experience a dynamic landing page for renewable energy solutions, showcasing sustainable innovations that attracted eco-conscious visitors and drove conversions significantly.",
   },
   {
     id: 3,
-    title: "AI Project",
+    title: "Management Software",
     image: img3,
-    desc: "AI-powered insights for smarter decision making.",
+    desc: "Implement efficient management software that streamlined operations, enhanced productivity, and provided real-time insights for better decision-making processes across teams.",
   },
   {
     id: 4,

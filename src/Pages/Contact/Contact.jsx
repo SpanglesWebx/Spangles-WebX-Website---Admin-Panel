@@ -12,7 +12,7 @@ export default function Contact() {
 border border-[#E8ECEF] bg-white outline-none
 font-montserrat text-[14px] leading-[100%]
 placeholder:text-[#34526180]
-focus:border-[#2f4858]`;
+focus:border-[#345261]`;
 
   const [form, setForm] = useState({
     name: "",
@@ -155,9 +155,13 @@ focus:border-[#2f4858]`;
 
         <div className="grid md:grid-cols-3 gap-6 text-left">
           {/* Card */}
-          <div className="group bg-white px-7 py-5 rounded-xl border border-gray-200  transition-all duration-300 hover:-translate-y-1 hover:shadow-md text-left">
+          <div className="group bg-white px-7 py-5 rounded-xl border border-gray-200 relative overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#345261]/10 text-left">
+            {/* Mirrored Floating Accents - Increased Color Depth */}
+            <div className="absolute top-0 left-0 w-40 h-40 bg-gradient-to-bl from-[#345261]/25 to-transparent rounded-full -translate-y-1/2 -translate-x-1/2 group-hover:scale-150 group-hover:translate-x-1/4 transition-all duration-1000 ease-out opacity-80"></div>
+            <div className="absolute bottom-0 right-0 w-32 h-32 bg-[#345261]/15 rounded-full translate-y-1/2 translate-x-1/2 group-hover:scale-[2] group-hover:-translate-x-0 transition-all duration-1000 ease-out opacity-90"></div>
+
             <div
-              className="w-[76px] h-[76px] mb-6.5 flex items-center justify-center 
+              className="relative z-10 w-[76px] h-[76px] mb-6.5 flex items-center justify-center 
 rounded-lg bg-gray-100 group-hover:bg-[#2f4858] transition-all duration-300"
             >
               <img
@@ -170,18 +174,24 @@ rounded-lg bg-gray-100 group-hover:bg-[#2f4858] transition-all duration-300"
               />
             </div>
 
-            <h3 className=" font-montserrat text-[18px] leading-[28.2px] tracking-[-0.44px] text-[#161C2D] font-bold">
-              Call us
-            </h3>
+            <div className="relative z-10">
+              <h3 className=" font-montserrat text-[18px] leading-[28.2px] tracking-[-0.44px] text-[#161C2D] font-bold">
+                Call us
+              </h3>
 
-            <p className="mt-2 font-montserrat text-[14px] leading-[25.56px] tracking-[-0.18px] text-[#161C2D]">
-              Call us +91 7708784111 for any support and enquiries.
-            </p>
+              <p className="mt-2 font-montserrat text-[14px] leading-[25.56px] tracking-[-0.18px] text-[#161C2D]">
+                Call us <span className="font-bold">+91 7708784111</span> for any support and enquiries.
+              </p>
+            </div>
           </div>
 
           {/* Card */}
-          <div className="group bg-white px-7 py-5 rounded-xl border border-gray-200  transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-            <div className="w-[76px] h-[76px] mb-6.5  flex items-center justify-center rounded-lg bg-gray-100 text-gray-600 group-hover:bg-[#2f4858] group-hover:text-white transition-all duration-300">
+          <div className="group bg-white px-7 py-5 rounded-xl border border-gray-200 relative overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#345261]/10">
+            {/* Mirrored Floating Accents - Increased Color Depth */}
+            <div className="absolute top-0 left-0 w-40 h-40 bg-gradient-to-bl from-[#345261]/25 to-transparent rounded-full -translate-y-1/2 -translate-x-1/2 group-hover:scale-150 group-hover:translate-x-1/4 transition-all duration-1000 ease-out opacity-80"></div>
+            <div className="absolute bottom-0 right-0 w-32 h-32 bg-[#345261]/15 rounded-full translate-y-1/2 translate-x-1/2 group-hover:scale-[2] group-hover:-translate-x-0 transition-all duration-1000 ease-out opacity-90"></div>
+
+            <div className="relative z-10 w-[76px] h-[76px] mb-6.5  flex items-center justify-center rounded-lg bg-gray-100 text-gray-600 group-hover:bg-[#2f4858] group-hover:text-white transition-all duration-300">
               <img
                 src={mailIcon}
                 alt="email"
@@ -192,18 +202,24 @@ rounded-lg bg-gray-100 group-hover:bg-[#2f4858] transition-all duration-300"
               />
             </div>
 
-            <h3 className=" font-montserrat text-[18px] leading-[28.2px] tracking-[-0.44px] text-[#161C2D] font-bold">
-              Email us
-            </h3>
+            <div className="relative z-10">
+              <h3 className=" font-montserrat text-[18px] leading-[28.2px] tracking-[-0.44px] text-[#161C2D] font-bold">
+                Email us
+              </h3>
 
-            <p className="mt-2 font-montserrat text-[14px] leading-[25.56px] tracking-[-0.18px] text-[#161C2D]">
-              Send your email to webxspangles@gmail.com
-            </p>
+              <p className="mt-2 font-montserrat text-[14px] leading-[25.56px] tracking-[-0.18px] text-[#161C2D]">
+                Send your email to <span className="font-bold">webxspangles@gmail.com</span>
+              </p>
+            </div>
           </div>
 
           {/* Card */}
-          <div className="group bg-white px-7 py-5 rounded-xl border border-gray-200  transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-            <div className="w-[76px] h-[76px] mb-6.5  flex items-center justify-center rounded-lg bg-gray-100 text-gray-600 group-hover:bg-[#2f4858] group-hover:text-white transition-all duration-300">
+          <div className="group bg-white px-7 py-5 rounded-xl border border-gray-200 relative overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#345261]/10">
+            {/* Mirrored Floating Accents - Increased Color Depth */}
+            <div className="absolute top-0 left-0 w-40 h-40 bg-gradient-to-bl from-[#345261]/25 to-transparent rounded-full -translate-y-1/2 -translate-x-1/2 group-hover:scale-150 group-hover:translate-x-1/4 transition-all duration-1000 ease-out opacity-80"></div>
+            <div className="absolute bottom-0 right-0 w-32 h-32 bg-[#345261]/15 rounded-full translate-y-1/2 translate-x-1/2 group-hover:scale-[2] group-hover:-translate-x-0 transition-all duration-1000 ease-out opacity-90"></div>
+
+            <div className="relative z-10 w-[76px] h-[76px] mb-6.5  flex items-center justify-center rounded-lg bg-gray-100 text-gray-600 group-hover:bg-[#2f4858] group-hover:text-white transition-all duration-300">
               <img
                 src={chatIcon}
                 alt="chat"
@@ -214,20 +230,22 @@ rounded-lg bg-gray-100 group-hover:bg-[#2f4858] transition-all duration-300"
               />
             </div>
 
-            <h3 className=" font-montserrat text-[18px] leading-[28.2px] tracking-[-0.44px] text-[#161C2D] font-bold">
-              Chat with us
-            </h3>
+            <div className="relative z-10">
+              <h3 className=" font-montserrat text-[18px] leading-[28.2px] tracking-[-0.44px] text-[#161C2D] font-bold">
+                Chat with us
+              </h3>
 
-            <p className="mt-2 font-montserrat text-[14px] leading-[25.56px] tracking-[-0.18px] text-[#161C2D]">
-              Chat with us for quick support and queries.
-            </p>
+              <p className="mt-2 font-montserrat text-[14px] leading-[25.56px] tracking-[-0.18px] text-[#161C2D]">
+                Chat with us for quick support and queries.
+              </p>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Contact Form + Map */}
       {/* Contact Form + Map */}
-      <div className="bg-[#F4F7FA] py-[100px] px-[75px] max-[768px]:py-[60px] max-[768px]:px-[30px] max-[413px]:px-4 max-[413px]:py-[50px]">
+      <div id="contact-form" className="bg-[#F4F7FA] py-[100px] px-[75px] max-[768px]:py-[60px] max-[768px]:px-[30px] max-[413px]:px-4 max-[413px]:py-[50px]">
         <div className="w-full grid md:grid-cols-2 gap-[60px] items-stretch max-[768px]:gap-10">
           {/* Left Section - Form */}
           <div className="w-full">
@@ -396,7 +414,7 @@ rounded-lg bg-gray-100 group-hover:bg-[#2f4858] transition-all duration-300"
           <div className="w-full h-[400px] md:h-full">
             <iframe
               title="map"
-              src="https://maps.google.com/maps?q=SPANGLES+WEBX+(8.2824082,77.2731045)&z=17&output=embed"
+              src="https://maps.google.com/maps?q=SPANGLES+WEBX+(8.2824082,77.2731045)&z=15&output=embed"
               className="w-full h-full rounded-lg"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"

@@ -13,6 +13,7 @@ import { motion, AnimatePresence, useScroll, useSpring, useTransform } from "fra
 import Support from "../About/Components/Support";
 import bannerImg from "../../assets/Service-banner.jpg";
 import img5 from "../../assets/portfolio5.jpg";
+import Preloader from "../../Components/Preloader";
 
 const API_BASE = "http://localhost:5000";
 
@@ -205,16 +206,7 @@ export default function Blog() {
   const totalFeaturedPages = Math.ceil(filteredPosts.length / postsPerFeaturedPage);
 
   if (loading) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-[#F4F7FA]">
-        <div className="relative">
-          <div className="h-20 w-20 animate-spin rounded-full border-[1px] border-[#161C2D]/10 border-t-[#345261]" />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <Sparkles className="h-6 w-6 text-[#345261] animate-pulse" />
-          </div>
-        </div>
-      </div>
-    );
+    return <Preloader />;
   }
 
   return (
@@ -294,7 +286,8 @@ export default function Blog() {
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.3, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                  className="relative rounded-[32px] border border-white/10 bg-[#161C2D]/[0.03] p-4 shadow-[0_40px_120px_rgba(0,0,0,0.4)] backdrop-blur-[40px] saturate-[180%] group/featured"
+                  onClick={() => navigate(`/blog/${featuredPost.id}`)}
+                  className="relative cursor-pointer rounded-[32px] border border-white/10 bg-[#161C2D]/[0.03] p-4 shadow-[0_40px_120px_rgba(0,0,0,0.4)] backdrop-blur-[40px] saturate-[180%] group/featured"
                 >
                   <div className="overflow-hidden rounded-[24px] relative aspect-[16/9]">
                     {featuredPost.image ? (
@@ -457,7 +450,7 @@ export default function Blog() {
                     transition={{ delay: 0.2 }}
                     className="rounded-[40px] border border-[#161C2D]/5 bg-[#161C2D] p-6 md:p-8 text-white relative overflow-hidden group"
                   >
-                    <Sparkles className="text-[#345261] mb-6 opacity-40 group-hover:opacity-100 transition-opacity" size={24} />
+                    <img src="/Web.jpg" className="h-6 w-6 rounded-full object-cover mb-6 opacity-40 group-hover:opacity-100 transition-opacity" alt="icon" />
                     <p className="text-[9px] font-bold uppercase tracking-[0.3em] text-white/30 mb-2">Blog Tags</p>
                     <h4 className="text-4xl md:text-5xl italic font-serif tracking-tight text-[#FFFFFF]/80">{totalTags}</h4>
                     <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
@@ -515,7 +508,8 @@ export default function Blog() {
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="group relative overflow-hidden rounded-[48px] border border-[#161C2D]/5 bg-white shadow-[0_40px_100px_rgba(22,33,43,0.06)] hover:shadow-[0_40px_100px_rgba(22,33,43,0.12)] transition-shadow duration-1000 flex flex-col flex-1 max-[1030px]:hidden"
+                    onClick={() => navigate(`/blog/${featuredPost.id}`)}
+                    className="group cursor-pointer relative overflow-hidden rounded-[48px] border border-[#161C2D]/5 bg-white shadow-[0_40px_100px_rgba(22,33,43,0.06)] hover:shadow-[0_40px_100px_rgba(22,33,43,0.12)] transition-shadow duration-1000 flex flex-col flex-1 max-[1030px]:hidden"
                   >
                     <div className="flex flex-col flex-1">
 
@@ -755,7 +749,7 @@ export default function Blog() {
                   <div className="relative z-10 flex flex-col h-full">
                     <div className="flex items-center justify-between mb-10">
                       <div className="inline-flex items-center gap-3 rounded-full border border-[#345261]/20 bg-[#345261]/5 px-4 py-2 backdrop-blur-md">
-                        <Sparkles className="h-4 w-4 text-[#345261] animate-pulse" />
+                        <img src="/Web.jpg" className="h-4 w-4 rounded-full object-cover animate-pulse" alt="icon" />
                         <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#345261]">
                           PREMIUM ETHOS
                         </span>
@@ -969,7 +963,7 @@ export default function Blog() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#161C2D] to-transparent opacity-40" />
             </motion.div>
-            <Sparkles className="absolute -top-6 -right-6 h-12 w-12 text-[#345261] animate-pulse" />
+            <img src="/Web.jpg" className="absolute -top-6 -right-6 h-12 w-12 rounded-full object-cover animate-pulse shadow-2xl border-2 border-white/10" alt="icon" />
           </div>
         </div>
       </section>

@@ -4,17 +4,36 @@ import { useNavigate } from "react-router-dom";
 import AboutImage from "../../../assets/about-image.png"; // Make sure to have this image in your assets folder
 import growthIcon from "../../../assets/growthIcon.png"; // Make sure to have this image in your assets folder
 import starIcon from "../../../assets/starIcon.png"; // Make sure to have this image in your assets folder
-function CountUp({ to, durationMs = 2000, suffix = "" }) {
+function CountUp({ to, durationMs = 1000, suffix = "", decimals = 0 }) {
   const [value, setValue] = useState(0);
+  const [inView, setInView] = useState(false);
+  const ref = useRef(null);
   const rafRef = useRef(null);
   const startRef = useRef(null);
 
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!inView) return;
+
     const tick = (t) => {
       if (startRef.current === null) startRef.current = t;
       const elapsed = t - startRef.current;
       const progress = Math.min(1, elapsed / durationMs);
-      const next = Math.round(to * progress);
+      const next = (to * progress).toFixed(decimals);
       setValue(next);
       if (progress < 1) rafRef.current = requestAnimationFrame(tick);
     };
@@ -25,17 +44,30 @@ function CountUp({ to, durationMs = 2000, suffix = "" }) {
       rafRef.current = null;
       startRef.current = null;
     };
-  }, [to, durationMs]);
+  }, [to, durationMs, inView, decimals]);
 
   return (
-    <>
+    <span ref={ref}>
       {value}
       {suffix}
-    </>
+    </span>
   );
 }
 export default function AboutSection() {
   const navigate = useNavigate();
+
+  const calculateYears = () => {
+    const startDate = new Date("2025-04-26");
+    const today = new Date();
+    let years = today.getFullYear() - startDate.getFullYear();
+    const m = today.getMonth() - startDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < startDate.getDate())) {
+      years--;
+    }
+    return years >= 0 ? years : 0;
+  };
+
+  const yearsExperience = calculateYears();
 
   return (
     <section className="bg-[#ffffff]">
@@ -52,7 +84,7 @@ export default function AboutSection() {
               <img src={starIcon} alt="growth" className="w-[34px] h-[34px]" />
             </div>
             <div className="text-[44px] font-semibold leading-[1] text-[#395563] font-montserrat max-[413px]:text-[34px]">
-              <CountUp to={8} suffix="+" />
+              <CountUp to={yearsExperience} suffix="+" />
             </div>
             <div className="mt-2 text-[14px] font-normal leading-[20px] text-[#6B6A66] font-montserrat max-w-[120px] max-[413px]:text-[12px] max-[413px]:leading-[16px] max-[413px]:max-w-[110px]">
               Years Experience in Field
@@ -91,7 +123,7 @@ export default function AboutSection() {
             </div>
             <div>
               <div className="text-[50px] pb-4 font-semibold leading-[33.78px] text-[#395563] font-montserrat max-[413px]:text-[36px] max-[413px]:pb-2">
-                2.5 K
+                <CountUp to={2.5} decimals={1} suffix=" K" />
               </div>
               <p className="text-[14px] font-normal leading-[23.65px] text-[#6B6A66] font-montserrat">
                 Growth, Compare to Previous Year

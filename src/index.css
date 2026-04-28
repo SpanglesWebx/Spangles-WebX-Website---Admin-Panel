@@ -1,49 +1,94 @@
- @import "tailwindcss";
+@import "tailwindcss";
 
- @theme {
-   --font-mont: "Montserrat", ui-sans-serif, system-ui, sans-serif;
- }
+@theme {
+  --font-mont: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+}
 
- body {
-   @apply font-mont;
-   margin: 0;
-   overflow-x: clip;
-   max-width: 100%;
- }
+/* --- Custom Scrollbar Redesign --- */
+::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  display: none !important;
+}
 
- html {
-   overflow-x: clip;
-   scroll-behavior: smooth;
- }
+html {
+  overflow-x: clip;
+  scroll-behavior: smooth;
+  scrollbar-width: none !important;
+}
 
- @keyframes fadeIn {
-   from {
-     opacity: 0;
-     transform: translateY(8px);
-   }
+html::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 6px;
+  height: 100%;
+  background: #2a3d45;
+  z-index: 99999;
+  transform-origin: top;
+  transform: scaleY(0);
+  animation: scroll-v auto linear;
+  animation-timeline: scroll();
+}
 
-   to {
-     opacity: 1;
-     transform: translateY(0);
-   }
- }
+@keyframes scroll-v {
+  to {
+    transform: scaleY(1);
+  }
+}
 
- .animate-fade-in {
-   animation: fadeIn 0.4s ease-out forwards;
- }
+::-webkit-scrollbar-button {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent !important;
+}
 
 
- .no-scrollbar::-webkit-scrollbar {
-   display: none;
- }
+body {
+  @apply font-mont;
+  margin: 0;
+  overflow-x: clip;
+  max-width: 100%;
+}
 
- .no-scrollbar {
-   -ms-overflow-style: none;
-   scrollbar-width: none;
- }
+html {
+  overflow-x: clip;
+  scroll-behavior: smooth;
+}
 
- @media (max-width: 413px) {
-   .hero-spiral {
-     transform: scale(1.12) translateX(0%) !important;
-   }
- }
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@media (max-width: 413px) {
+  .hero-spiral {
+    transform: scale(1.12) translateX(0%) !important;
+  }
+}

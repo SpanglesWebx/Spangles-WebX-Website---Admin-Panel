@@ -16,18 +16,29 @@ const scrollToTop = () => {
 };
 
 const ScrollToTop = () => {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useLayoutEffect(() => {
-    console.log("ScrollToTop running for pathname:", pathname);
-    scrollToTop();
-    window.dispatchEvent(new Event("resize"));
-    const raf = requestAnimationFrame(() => {
+    if (hash) {
+      // Small delay to ensure the target page is rendered
+      const timeout = setTimeout(() => {
+        const id = hash.replace('#', '');
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+      return () => clearTimeout(timeout);
+    } else {
       scrollToTop();
       window.dispatchEvent(new Event("resize"));
-    });
-    return () => cancelAnimationFrame(raf);
-  }, [pathname]);
+      const raf = requestAnimationFrame(() => {
+        scrollToTop();
+        window.dispatchEvent(new Event("resize"));
+      });
+      return () => cancelAnimationFrame(raf);
+    }
+  }, [pathname, hash]);
 
   return null;
 };

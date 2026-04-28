@@ -18,6 +18,16 @@ const data = [
     name: "Sarah Williams",
     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330",
   },
+  {
+    id: 4,
+    name: "Michael Smith",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
+  },
+  {
+    id: 5,
+    name: "Emily Davis",
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80",
+  },
 ];
 
 export default function SmoothStack() {
@@ -161,7 +171,7 @@ export default function SmoothStack() {
                     : (index + 1) * (window.innerWidth < 414 ? 20 : 40)
                 : index * (window.innerWidth < 414 ? 20 : 40),
 
-              opacity: 1 - index * 0.15,
+              opacity: index >= 3 ? 0 : 1 - index * 0.15,
             }}
             transition={{
               duration: 0.6, // 🔥 slower = smoother grow

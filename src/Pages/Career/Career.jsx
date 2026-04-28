@@ -57,6 +57,7 @@ export default function Career() {
   const [showForm, setShowForm] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [showAllJobs, setShowAllJobs] = useState(false);
 
   useEffect(() => {
     const fetchJobs = async () => {
@@ -344,7 +345,7 @@ export default function Career() {
               <div className="w-10 h-10 border-4 border-[#395563] border-t-transparent rounded-full animate-spin"></div>
             </div>
           ) : jobs.length > 0 ? (
-            jobs.map((job) => (
+            (showAllJobs ? jobs : jobs.slice(0, 5)).map((job) => (
               <div
                 key={job._id}
                 className="bg-white rounded-[12px] px-4 py-4 shadow-[0_2px_15px_rgba(0,0,0,0.04)] border border-[#EAECE9] flex flex-col"
@@ -396,25 +397,30 @@ export default function Career() {
         </div>
 
         {/* Show All Button */}
-        <div className="flex justify-center mt-10 max-[413px]:mt-[30px]">
-          <button className="group font-[Montserrat] font-bold text-[14px] leading-[21px] tracking-[2.24px] uppercase text-[#395563] flex items-center gap-2 hover:opacity-80 transition max-[413px]:text-[12px]">
-            SHOW ALL
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth="2"
+        {jobs.length > 5 && (
+          <div className="flex justify-center mt-10 max-[413px]:mt-[30px]">
+            <button
+              onClick={() => setShowAllJobs(!showAllJobs)}
+              className="group font-[Montserrat] font-bold text-[14px] leading-[21px] tracking-[2.24px] uppercase text-[#395563] flex items-center gap-2 hover:opacity-80 transition max-[413px]:text-[12px]"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M5 12h14M13 5l7 7-7 7"
-              />
-            </svg>
-          </button>
-        </div>
+              {showAllJobs ? "SHOW LESS" : "SHOW ALL"}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className={`w-4 h-4 transition-transform duration-300 ${showAllJobs ? "rotate-90" : "group-hover:translate-x-1"}`}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M5 12h14M13 5l7 7-7 7"
+                />
+              </svg>
+            </button>
+          </div>
+        )}
       </div>{" "}
 
 

@@ -10,8 +10,26 @@ import img1 from "../../assets/portfolio1.jpg";
 import img2 from "../../assets/portfolio2.jpg";
 import img3 from "../../assets/portfolio3.jpg";
 import { useNavigate } from "react-router-dom";
+import Preloader from "../../Components/Preloader";
+import { useState } from "react";
+
 const ServiceDetails = () => {
   const location = useLocation();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 800);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (!loading) {
+      window.scrollTo(0, 0);
+    }
+  }, [loading]);
+
 
 
 
@@ -23,6 +41,8 @@ const ServiceDetails = () => {
       gallery: [img1, img2, img3],
     },
   );
+
+
 
   const scrollRef = useRef(null);
   const navigate = useNavigate();
@@ -44,7 +64,7 @@ const ServiceDetails = () => {
     let isHovered = false;
     const setHovered = () => { isHovered = true; };
     const setNotHovered = () => { isHovered = false; };
-    
+
     slider.addEventListener("mouseenter", setHovered);
     slider.addEventListener("mouseleave", setNotHovered);
     slider.addEventListener("touchstart", setHovered, { passive: true });
@@ -106,15 +126,24 @@ const ServiceDetails = () => {
       slider.removeEventListener("touchstart", setHovered);
       slider.removeEventListener("touchend", setNotHovered);
     };
-  }, []);
+  }, [loading]);
 
 
 
   useEffect(() => {
     if (location.state) {
       setService(location.state);
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
     }
   }, [location.state]);
+
+
+  if (loading) {
+    return <Preloader />;
+  }
+
 
   return (
     <div className="w-full text-gray-700">
@@ -223,7 +252,7 @@ const ServiceDetails = () => {
   max-[413px]:px-6 max-[413px]:pt-6 max-[413px]:pb-[120px] max-[413px]:mb-[80px]
 "
       >
-      
+
 
         <div className="
   flex justify-between items-center mb-[40px]
@@ -275,7 +304,7 @@ const ServiceDetails = () => {
 
         </div>
 
-        
+
 
         <div className="relative">
 
@@ -363,10 +392,10 @@ const ServiceDetails = () => {
                     gallery: [item.image],
                   });
 
-                  window.scrollTo({
-                    top: 0,
-                    behavior: "smooth",
-                  });
+                  window.scrollTo(0, 0);
+                  document.documentElement.scrollTop = 0;
+                  document.body.scrollTop = 0;
+
                 }}
                 className="
   relative group cursor-pointer rounded-xl overflow-hidden 

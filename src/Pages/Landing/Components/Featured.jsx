@@ -5,6 +5,7 @@ import img2 from "../../../assets/portfolio2.jpg";
 import img3 from "../../../assets/portfolio3.jpg";
 const projects = [
   {
+    id: 1,
     title: "Elon Date App",
     desc: "Explore the Elon Date App, a cutting-edge platform that revolutionized online dating with AI-driven matches, boosting connections and user satisfaction globally.",
     roi: "1200% increase in ROI",
@@ -12,6 +13,7 @@ const projects = [
     img: img1,
   },
   {
+    id: 2,
     title: "Renewable Energy Landing Page",
     desc: "Experience a dynamic landing page for renewable energy solutions, showcasing sustainable innovations that attracted eco-conscious visitors and drove conversions significantly.",
     roi: "800% increase in ROI",
@@ -19,6 +21,7 @@ const projects = [
     img: img2,
   },
   {
+    id: 3,
     title: "Management Software",
     desc: "Implement efficient management software that streamlined operations, enhanced productivity, and provided real-time insights for better decision-making processes across teams.",
     roi: "950% increase in ROI",
@@ -106,7 +109,7 @@ export default function FeaturedWorkStack() {
                   </div>
 
                   <button
-                    onClick={() => navigate('/portfolio')}
+                    onClick={() => navigate('/portfolio-details', { state: item })}
                     className="cursor-pointer font-montserrat font-bold text-[15px] max-[1201px]:text-[15px] max-[1025px]:text-[14px] max-[413px]:text-[13px] max-[1201px]:py-[14px] max-[1201px]:px-[18px] max-[1025px]:py-[12px] max-[1025px]:px-[16px] max-[413px]:py-[12px] max-[413px]:px-[18px] leading-[24.29px] tracking-[0px] mt-[20px] max-[413px]:mt-[20px] bg-[#395563] hover:bg-[#2f4650] text-white py-[13px] px-[17px] rounded-[10px] border-none transition duration-300"
                   >
                     Read Full Case Study

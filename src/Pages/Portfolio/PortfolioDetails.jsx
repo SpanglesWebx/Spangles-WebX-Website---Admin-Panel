@@ -1,7 +1,21 @@
-import { useLocation } from "react-router-dom";
-import { useState, useEffect, useRef, useLayoutEffect } from "react";
-import { ArrowRight } from "lucide-react";
+import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import {
+  ArrowLeft,
+  Calendar,
+  Tag,
+  ExternalLink,
+  ChevronRight,
+  ChevronLeft,
+  Monitor,
+  Smartphone,
+  Layout,
+  Layers,
+  ArrowRight,
+} from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import Support from "../About/Components/Support";
+import Preloader from "../../Components/Preloader";
 import img1 from "../../assets/portfolio1.jpg";
 import img2 from "../../assets/portfolio2.jpg";
 import img3 from "../../assets/portfolio3.jpg";
@@ -47,10 +61,10 @@ const allProjects = [
 
   {
     id: 2,
-    title: "Waltur Website",
+    title: "Renewable Energy Landing Page",
     image: img2,
     gallery: [img2, img4, img5],
-    desc: "Modern business website with performance optimization.",
+    desc: "Experience a dynamic landing page for renewable energy solutions, showcasing sustainable innovations that attracted eco-conscious visitors and drove conversions significantly.",
     fullDesc:
       "Spangles Webx is a tech-driven company passionate about delivering innovative digital products. With a focus on design, usability, and performance, we help startups and enterprises scale with impactful web and mobile solutions. we help startups and ",
     functionalities: [
@@ -79,10 +93,10 @@ const allProjects = [
 
   {
     id: 3,
-    title: "AI Project",
+    title: "Management Software",
     image: img3,
     gallery: [img3, img5, img6, img7],
-    desc: "AI-powered insights for smarter decision making.",
+    desc: "Implement efficient management software that streamlined operations, enhanced productivity, and provided real-time insights for better decision-making processes across teams.",
     fullDesc:
       "Spangles Webx is a tech-driven company passionate about delivering innovative digital products. With a focus on design, usability, and performance, we help startups and enterprises scale with impactful web and mobile solutions. we help startups and ",
     functionalities: [
@@ -404,6 +418,21 @@ const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000";
 
 const PortfolioDetails = () => {
   const location = useLocation();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 800);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (!loading) {
+      window.scrollTo(0, 0);
+    }
+  }, [loading]);
+
 
   const [form, setForm] = useState({
     name: "",
@@ -425,6 +454,11 @@ const PortfolioDetails = () => {
       return () => clearTimeout(timer);
     }
   }, [showToast]);
+
+  if (loading) {
+    return <Preloader />;
+  }
+
 
   const validate = () => {
     let newErrors = {};

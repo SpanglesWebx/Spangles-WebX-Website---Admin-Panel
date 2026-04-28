@@ -17,16 +17,17 @@ export default function Stats() {
       }
 
       if (p < 4000) {
-        p += 100;
+        p += 80; // Adjusted for 16ms interval
+        if (p > 4000) p = 4000;
         setProjects(p);
       }
 
       if (r < 4.9) {
-        r += 0.1;
+        r += 0.05; // Adjusted for 16ms interval
         if (r > 4.9) r = 4.9;
         setRating(parseFloat(r.toFixed(1)));
       }
-    }, 40);
+    }, 16); // 60fps for smoother animation
 
     setTimeout(() => clearInterval(interval), 2000);
 
@@ -45,19 +46,8 @@ export default function Stats() {
         </div>
 
         {/* Stats */}
-       <div className="
-  flex gap-[90px] text-center
-  max-[1024px]:gap-[60px]
-  max-[768px]:gap-[40px]
-  max-[480px]:gap-[25px]
-
-  max-[413px]:flex-col
-  max-[413px]:gap-[28px]
-  max-[413px]:items-start
-  max-[413px]:justify-start
-  max-[413px]:text-left
-">
-          <div>
+        <div className="flex gap-[90px] text-center max-[1024px]:gap-[60px] max-[768px]:gap-[40px] max-[480px]:gap-[25px] max-[413px]:flex-col max-[413px]:gap-[28px] max-[413px]:items-start max-[413px]:justify-start max-[413px]:text-left">
+          <div className="min-w-[120px] max-[413px]:min-w-0">
             <h2 className="text-[54px] leading-[64px] font-normal max-[768px]:text-[40px] max-[768px]:leading-[48px] max-[413px]:text-[44px] max-[413px]:leading-[50px]">
               {years}
               <span className="text-[54px] font-light ml-1 max-[768px]:text-[40px] max-[768px]:leading-[48px] max-[413px]:text-[44px] max-[413px]:leading-[50px]">
@@ -67,7 +57,7 @@ export default function Stats() {
             <p className="text-gray-500 text-sm max-[413px]:text-[14px] max-[413px]:leading-[20px]">Years of Experience</p>
           </div>
 
-          <div>
+          <div className="min-w-[120px] max-[413px]:min-w-0">
             <h2 className="text-[54px] leading-[64px] font-normal max-[768px]:text-[40px] max-[768px]:leading-[48px] max-[413px]:text-[44px] max-[413px]:leading-[50px]">
               4K
               <span className="sr-only">{projects}</span>
@@ -75,7 +65,7 @@ export default function Stats() {
             <p className="text-gray-500 text-sm max-[413px]:text-[14px] max-[413px]:leading-[20px]">Project Completed</p>
           </div>
 
-          <div>
+          <div className="min-w-[120px] max-[413px]:min-w-0">
             <h2 className="text-[54px] leading-[64px] font-normal max-[768px]:text-[40px] max-[768px]:leading-[48px] max-[413px]:text-[44px] max-[413px]:leading-[50px]">
               {rating}
             </h2>

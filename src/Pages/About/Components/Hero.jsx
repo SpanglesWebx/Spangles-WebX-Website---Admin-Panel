@@ -21,7 +21,7 @@ export default function Hero() {
   max-[413px]:leading-[28px] 
   max-[413px]:max-w-[340px]
 ">
-          <span className="max-[413px]:whitespace-nowrap">Spangles Webx is a</span>
+          <span className="max-[413px]:whitespace-nowrap">Spangles Webx is a </span>
           <br className="hidden max-[413px]:block" />
           tech-driven company
         </h1>
