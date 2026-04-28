@@ -125,7 +125,7 @@ export default function ServicesSection() {
             </div>
 
             {/* RIGHT: Description + Button */}
-            <div className="flex-1 flex justify-between items-end gap-4 max-[1201px]:gap-4 max-[1025px]:w-full max-[413px]:flex-col max-[413px]:items-start">
+            <div className="flex-1 flex justify-between min-[1600px]:justify-end min-[1600px]:gap-12 items-end gap-4 max-[1201px]:gap-4 max-[1025px]:w-full max-[413px]:flex-col max-[413px]:items-start">
               {/* DESCRIPTION */}
               <p className="font-montserrat font-normal text-[16px] leading-[24px] text-white/90 max-w-[650px] text-justify max-[1201px]:text-[15px] max-[1025px]:max-w-none max-[413px]:text-[14px] max-[413px]:leading-[20px]">
                 At Spangles Webx Pvt. Ld, we offer a comprehensive range of IT
