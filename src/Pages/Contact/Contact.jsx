@@ -130,10 +130,10 @@ focus:border-[#345261]`;
     <div>
       {/* Contact Cards Section */}
       <div
-        className="mx-[20px] sm:mx-[40px] md:mx-[67px] xl:mx-[67px] max-w-[1306px] pt-25 pb-20 text-center bg-[#ffffff] 
+        className="mx-[20px] sm:mx-[40px] md:mx-[67px] xl:mx-[67px] max-w-[1306px] min-[1441px]:max-w-full min-[1441px]:px-[100px] pt-25 pb-20 text-center bg-[#ffffff] 
       max-[768px]:pt-12 max-[768px]:pb-10 max-[413px]:pt-10 max-[413px]:pb-5 max-[413px]:mx-4"
       >
-        <div className="w-[520px] mx-auto text-center max-[768px]:w-full">
+        <div className="w-[520px] min-[1441px]:w-[700px] mx-auto text-center max-[768px]:w-full">
           <p className="text-[14px] font-bold tracking-[1.43px] leading-[100%] text-[#395563] uppercase text-center mb-2 max-[768px]:text-[13px] max-[413px]:text-[12px]">
             CONTACT US
           </p>
@@ -145,7 +145,7 @@ focus:border-[#345261]`;
           </h2>
 
           <p
-            className="font-montserrat text-[16px] leading-[22.5px] text-[#6B6A66] mb-20 max-w-[520px] mx-auto 
+            className="font-montserrat text-[16px] leading-[22.5px] text-[#6B6A66] mb-20 max-w-[520px] min-[1441px]:max-w-full min-[1441px]:text-left mx-auto min-[1441px]:mx-0
           max-[768px]:mb-12 max-[768px]:text-[15px] max-[413px]:mb-10 max-[413px]:text-[14px] max-[413px]:leading-[20px]"
           >
             Spangles Webx Private Limited offers tailored solutions in Web
@@ -153,21 +153,21 @@ focus:border-[#345261]`;
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 text-left">
+        <div className="grid md:grid-cols-3 gap-6 min-[1441px]:gap-16 text-left min-[1441px]:max-w-[1600px]">
           {/* Card */}
-          <div className="group bg-white px-7 py-5 rounded-xl border border-gray-200 relative overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#345261]/10 text-left">
+          <div className="group bg-white px-7 py-5 min-[1441px]:px-14 min-[1441px]:py-16 rounded-xl border border-gray-200 relative overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#345261]/10 text-left">
             {/* Mirrored Floating Accents - Increased Color Depth */}
             <div className="absolute top-0 left-0 w-40 h-40 bg-gradient-to-bl from-[#345261]/25 to-transparent rounded-full -translate-y-1/2 -translate-x-1/2 group-hover:scale-150 group-hover:translate-x-1/4 transition-all duration-1000 ease-out opacity-80"></div>
             <div className="absolute bottom-0 right-0 w-32 h-32 bg-[#345261]/15 rounded-full translate-y-1/2 translate-x-1/2 group-hover:scale-[2] group-hover:-translate-x-0 transition-all duration-1000 ease-out opacity-90"></div>
 
             <div
-              className="relative z-10 w-[76px] h-[76px] mb-6.5 flex items-center justify-center 
+              className="relative z-10 w-[76px] h-[76px] min-[1441px]:w-[100px] min-[1441px]:h-[100px] mb-6.5 flex items-center justify-center 
 rounded-lg bg-gray-100 group-hover:bg-[#2f4858] transition-all duration-300"
             >
               <img
                 src={phoneIcon}
                 alt="phone"
-                className="w-[36px] h-[36px] object-contain 
+                className="w-[36px] h-[36px] min-[1441px]:w-[44px] min-[1441px]:h-[44px] object-contain 
   transition-all duration-300
   [filter:brightness(0)_saturate(100%)_invert(27%)_sepia(17%)_saturate(748%)_hue-rotate(155deg)_brightness(94%)_contrast(90%)]
   group-hover:brightness-0 group-hover:invert"
@@ -175,27 +175,27 @@ rounded-lg bg-gray-100 group-hover:bg-[#2f4858] transition-all duration-300"
             </div>
 
             <div className="relative z-10">
-              <h3 className=" font-montserrat text-[18px] leading-[28.2px] tracking-[-0.44px] text-[#161C2D] font-bold">
+              <h3 className=" font-montserrat text-[18px] min-[1441px]:text-[22px] leading-[28.2px] tracking-[-0.44px] text-[#161C2D] font-bold">
                 Call us
               </h3>
 
-              <p className="mt-2 font-montserrat text-[14px] leading-[25.56px] tracking-[-0.18px] text-[#161C2D]">
+              <p className="mt-2 font-montserrat text-[14px] min-[1441px]:text-[16px] leading-[25.56px] tracking-[-0.18px] text-[#161C2D]">
                 Call us <span className="font-bold">+91 7708784111</span> for any support and enquiries.
               </p>
             </div>
           </div>
 
           {/* Card */}
-          <div className="group bg-white px-7 py-5 rounded-xl border border-gray-200 relative overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#345261]/10">
+          <div className="group bg-white px-7 py-5 min-[1441px]:px-14 min-[1441px]:py-16 rounded-xl border border-gray-200 relative overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#345261]/10">
             {/* Mirrored Floating Accents - Increased Color Depth */}
             <div className="absolute top-0 left-0 w-40 h-40 bg-gradient-to-bl from-[#345261]/25 to-transparent rounded-full -translate-y-1/2 -translate-x-1/2 group-hover:scale-150 group-hover:translate-x-1/4 transition-all duration-1000 ease-out opacity-80"></div>
             <div className="absolute bottom-0 right-0 w-32 h-32 bg-[#345261]/15 rounded-full translate-y-1/2 translate-x-1/2 group-hover:scale-[2] group-hover:-translate-x-0 transition-all duration-1000 ease-out opacity-90"></div>
 
-            <div className="relative z-10 w-[76px] h-[76px] mb-6.5  flex items-center justify-center rounded-lg bg-gray-100 text-gray-600 group-hover:bg-[#2f4858] group-hover:text-white transition-all duration-300">
+            <div className="relative z-10 w-[76px] h-[76px] min-[1441px]:w-[100px] min-[1441px]:h-[100px] mb-6.5  flex items-center justify-center rounded-lg bg-gray-100 text-gray-600 group-hover:bg-[#2f4858] group-hover:text-white transition-all duration-300">
               <img
                 src={mailIcon}
                 alt="email"
-                className="w-[36px] h-[36px] object-contain 
+                className="w-[36px] h-[36px] min-[1441px]:w-[44px] min-[1441px]:h-[44px] object-contain 
   transition-all duration-300
   [filter:brightness(0)_saturate(100%)_invert(27%)_sepia(17%)_saturate(748%)_hue-rotate(155deg)_brightness(94%)_contrast(90%)]
   group-hover:brightness-0 group-hover:invert"
@@ -203,27 +203,27 @@ rounded-lg bg-gray-100 group-hover:bg-[#2f4858] transition-all duration-300"
             </div>
 
             <div className="relative z-10">
-              <h3 className=" font-montserrat text-[18px] leading-[28.2px] tracking-[-0.44px] text-[#161C2D] font-bold">
+              <h3 className=" font-montserrat text-[18px] min-[1441px]:text-[22px] leading-[28.2px] tracking-[-0.44px] text-[#161C2D] font-bold">
                 Email us
               </h3>
 
-              <p className="mt-2 font-montserrat text-[14px] leading-[25.56px] tracking-[-0.18px] text-[#161C2D]">
+              <p className="mt-2 font-montserrat text-[14px] min-[1441px]:text-[16px] leading-[25.56px] tracking-[-0.18px] text-[#161C2D]">
                 Send your email to <span className="font-bold">webxspangles@gmail.com</span>
               </p>
             </div>
           </div>
 
           {/* Card */}
-          <div className="group bg-white px-7 py-5 rounded-xl border border-gray-200 relative overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#345261]/10">
+          <div className="group bg-white px-7 py-5 min-[1441px]:px-14 min-[1441px]:py-16 rounded-xl border border-gray-200 relative overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#345261]/10">
             {/* Mirrored Floating Accents - Increased Color Depth */}
             <div className="absolute top-0 left-0 w-40 h-40 bg-gradient-to-bl from-[#345261]/25 to-transparent rounded-full -translate-y-1/2 -translate-x-1/2 group-hover:scale-150 group-hover:translate-x-1/4 transition-all duration-1000 ease-out opacity-80"></div>
             <div className="absolute bottom-0 right-0 w-32 h-32 bg-[#345261]/15 rounded-full translate-y-1/2 translate-x-1/2 group-hover:scale-[2] group-hover:-translate-x-0 transition-all duration-1000 ease-out opacity-90"></div>
 
-            <div className="relative z-10 w-[76px] h-[76px] mb-6.5  flex items-center justify-center rounded-lg bg-gray-100 text-gray-600 group-hover:bg-[#2f4858] group-hover:text-white transition-all duration-300">
+            <div className="relative z-10 w-[76px] h-[76px] min-[1441px]:w-[100px] min-[1441px]:h-[100px] mb-6.5  flex items-center justify-center rounded-lg bg-gray-100 text-gray-600 group-hover:bg-[#2f4858] group-hover:text-white transition-all duration-300">
               <img
                 src={chatIcon}
                 alt="chat"
-                className="w-[36px] h-[36px] object-contain 
+                className="w-[36px] h-[36px] min-[1441px]:w-[44px] min-[1441px]:h-[44px] object-contain 
   transition-all duration-300
   [filter:brightness(0)_saturate(100%)_invert(27%)_sepia(17%)_saturate(748%)_hue-rotate(155deg)_brightness(94%)_contrast(90%)]
   group-hover:brightness-0 group-hover:invert"
@@ -231,11 +231,11 @@ rounded-lg bg-gray-100 group-hover:bg-[#2f4858] transition-all duration-300"
             </div>
 
             <div className="relative z-10">
-              <h3 className=" font-montserrat text-[18px] leading-[28.2px] tracking-[-0.44px] text-[#161C2D] font-bold">
+              <h3 className=" font-montserrat text-[18px] min-[1441px]:text-[22px] leading-[28.2px] tracking-[-0.44px] text-[#161C2D] font-bold">
                 Chat with us
               </h3>
 
-              <p className="mt-2 font-montserrat text-[14px] leading-[25.56px] tracking-[-0.18px] text-[#161C2D]">
+              <p className="mt-2 font-montserrat text-[14px] min-[1441px]:text-[16px] leading-[25.56px] tracking-[-0.18px] text-[#161C2D]">
                 Chat with us for quick support and queries.
               </p>
             </div>
@@ -245,8 +245,8 @@ rounded-lg bg-gray-100 group-hover:bg-[#2f4858] transition-all duration-300"
 
       {/* Contact Form + Map */}
       {/* Contact Form + Map */}
-      <div id="contact-form" className="bg-[#F4F7FA] py-[100px] px-[75px] max-[768px]:py-[60px] max-[768px]:px-[30px] max-[413px]:px-4 max-[413px]:py-[50px]">
-        <div className="w-full grid md:grid-cols-2 gap-[60px] items-stretch max-[768px]:gap-10">
+      <div id="contact-form" className="bg-[#F4F7FA] py-[100px] px-[75px] min-[1441px]:px-[100px] max-[768px]:py-[60px] max-[768px]:px-[30px] max-[413px]:px-4 max-[413px]:py-[50px]">
+        <div className="w-full max-w-full mx-auto min-[1441px]:max-w-[1600px] grid md:grid-cols-2 gap-[60px] items-stretch max-[768px]:gap-10">
           {/* Left Section - Form */}
           <div className="w-full">
             <h2 className="font-montserrat text-[46px] leading-[55.2px] text-[#345261] pb-6 font-semibold mb-3 max-[768px]:text-[36px] max-[768px]:leading-[44px] max-[413px]:text-[28px] max-[413px]:leading-[34px] max-[413px]:pb-4">

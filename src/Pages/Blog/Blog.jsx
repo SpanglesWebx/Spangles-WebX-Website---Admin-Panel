@@ -229,7 +229,7 @@ export default function Blog() {
           <div className="absolute -left-16 top-24 h-80 w-80 rounded-full bg-[#345261]/25 blur-[120px]" />
           <div className="absolute right-0 top-0 h-[500px] w-[500px] rounded-full bg-[#6B6A66]/20 blur-[150px]" />
 
-          <div className="relative mx-auto max-w-[1440px] px-6 pb-8 pt-20 md:px-10 md:pt-16 min-[1015px]:px-16">
+          <div className="relative mx-auto max-w-[1440px] min-[1441px]:max-w-[1600px] px-6 pb-8 pt-20 md:px-10 md:pt-16 min-[1015px]:px-16 min-[1441px]:px-[100px]">
             <div className="grid min-h-[480px] gap-10 md:gap-12 min-[1015px]:grid-cols-[1.1fr_0.9fr] min-[1015px]:items-end">
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
@@ -346,10 +346,10 @@ export default function Blog() {
           </div>
         </section>
 
-        <section className="relative z-10 mt-10 md:mt-16 px-6 md:px-10 min-[1095px]:px-16">
-          <div className="mx-auto max-w-[1440px]">
+        <section className="relative z-10 mt-10 md:mt-16 px-6 md:px-10 min-[1095px]:px-16 min-[1441px]:px-[100px]">
+          <div className="mx-auto max-w-[1440px] min-[1441px]:max-w-[1600px]">
 
-            <div className="grid gap-12 md:gap-16 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+            <div className="grid gap-12 md:gap-16 lg:grid-cols-[1.2fr_0.8fr] lg:items-center min-[1441px]:gap-12">
 
               {/* Left Column: The Syndicate Index */}
               <motion.div
@@ -486,7 +486,7 @@ export default function Blog() {
         </section>
 
         {featuredPost && (
-          <section className="mx-auto mt-10 md:mt-16 max-w-[1440px] px-6 md:px-10 min-[1015px]:px-16">
+          <section className="mx-auto mt-10 md:mt-16 max-w-[1440px] min-[1441px]:max-w-[1600px] px-6 md:px-10 min-[1015px]:px-16 min-[1441px]:px-[100px]">
             <div className="mb-6 md:mb-8 min-[1015px]:mb-12 flex items-baseline justify-between gap-6 border-b border-[#6B6A66]/5 pb-6 md:pb-8 min-[1015px]:pb-12">
               <div>
                 <p className="text-[11px] font-bold uppercase tracking-[0.5em] text-[#345261] mb-4">
@@ -501,7 +501,7 @@ export default function Blog() {
               </div>
             </div>
 
-            <div className="grid gap-10 md:gap-12 min-[1015px]:grid-cols-[1.1fr_0.9fr]">
+            <div className="grid gap-10 md:gap-12 min-[1015px]:grid-cols-[1.1fr_0.9fr] min-[1441px]:gap-10">
               <div className="flex flex-col gap-10 h-full">
                 {featuredPost && (
                   <motion.article
@@ -823,12 +823,12 @@ export default function Blog() {
           <div className="max-[413px]:mb-8 mb-20 flex flex-col gap-8 md:flex-row md:items-end md:justify-between border-b border-[#6B6A66]/5 pb-10">
             <div>
               <p className="text-[11px] font-bold uppercase tracking-[0.5em] text-[#345261] mb-4">
-                  LATEST ARTICLES
-                </p>
-                <h2 className="text-[34px] font-semibold tracking-[-0.06em] text-[#161C2D] md:text-[64px] leading-[0.8]">
-                  Browse the <span className="italic font-serif text-[#345261]/80">Archive.</span>
-                </h2>
-              </div>
+                LATEST ARTICLES
+              </p>
+              <h2 className="text-[34px] font-semibold tracking-[-0.06em] text-[#161C2D] md:text-[64px] leading-[0.8]">
+                Browse the <span className="italic font-serif text-[#345261]/80">Archive.</span>
+              </h2>
+            </div>
 
             <p className="max-w-xl text-lg leading-relaxed text-[#161C2D]/40 font-medium">
               Discover more insights, tutorials, and industry perspectives from our growing collection of articles.
