@@ -239,7 +239,7 @@ const Services = () => {
 
         {/* text */}
         <div
-          className="absolute inset-0 flex flex-col justify-end mx-auto min-[1600px]:max-w-[1440px] min-[1920px]:max-w-[1600px] px-[100px] pb-25 text-white 
+          className="absolute inset-0 flex flex-col justify-end px-[100px] pb-25 text-white 
     max-[1024px]:px-10 max-[1024px]:pb-20 
     max-[768px]:px-6 max-[768px]:pb-16 
     max-[413px]:px-4 max-[413px]:pb-10 
@@ -264,13 +264,13 @@ const Services = () => {
 
       {/* Services Grid */}
       <div
-        className="mx-auto min-[1600px]:max-w-[1440px] min-[1920px]:max-w-[1600px] px-[100px] pt-[60px] pb-[100px] border-b-[0.8px] border-[#E5E5E5]
+        className="px-[100px] pt-[60px] pb-[100px] border-b-[0.8px] border-[#E5E5E5]
 max-[1400px]:px-[50px]
 max-[1200px]:px-10
 max-[768px]:px-6
 max-[413px]:px-5 max-[413px]:pt-8 max-[413px]:pb-20"
       >
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-[1030px]:grid-cols-2 max-[413px]:!grid-cols-1 gap-x-[30px] min-[1600px]:gap-x-[40px] min-[1920px]:gap-x-[60px] gap-y-[50px] min-[1600px]:gap-y-[60px] min-[1920px]:gap-y-[80px] max-[413px]:gap-y-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-[1030px]:grid-cols-2 max-[413px]:!grid-cols-1 gap-x-[30px] min-[1441px]:gap-x-[20px] min-[1441px]:justify-center gap-y-[50px] min-[1441px]:gap-y-[40px] max-[413px]:gap-y-10">
           {services.map((service, index) => (
             <div
               key={index}
@@ -282,7 +282,7 @@ max-[413px]:px-5 max-[413px]:pt-8 max-[413px]:pb-20"
                   },
                 })
               }
-              className="relative group cursor-pointer rounded-xl overflow-hidden w-[390px] h-[432px] max-[1400px]:w-full max-[1400px]:max-w-[390px] max-[1400px]:mx-auto max-[413px]:h-[430px] shadow-[0px_0px_19.22px_0px_#00000012]"
+              className="relative group cursor-pointer rounded-xl overflow-hidden w-[390px] h-[432px] min-[1441px]:w-[480px] min-[1441px]:h-[540px] max-[1400px]:w-full max-[1400px]:max-w-[390px] max-[1400px]:mx-auto max-[413px]:h-[430px] shadow-[0px_0px_19.22px_0px_#00000012]"
             >
               {/* Image */}
               <img
