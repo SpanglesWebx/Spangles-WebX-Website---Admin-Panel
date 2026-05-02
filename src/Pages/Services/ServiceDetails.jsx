@@ -9,6 +9,12 @@ import Serviceicon from "../../assets/Service-icon.png"; // ✅ ADD THIS
 import img1 from "../../assets/portfolio1.jpg";
 import img2 from "../../assets/portfolio2.jpg";
 import img3 from "../../assets/portfolio3.jpg";
+import num01 from "../../assets/01.png";
+import num02 from "../../assets/02.png";
+import num03 from "../../assets/03.png";
+import num04 from "../../assets/04.png";
+import num05 from "../../assets/05.png";
+import num06 from "../../assets/06.png";
 import { useNavigate } from "react-router-dom";
 import Preloader from "../../Components/Preloader";
 import { useState } from "react";
@@ -202,46 +208,45 @@ const ServiceDetails = () => {
             </p>
 
             {/* Heading */}
-            <h2 className="font-[Montserrat] font-semibold text-[26px] leading-[26px] text-[#345261] mb-5">
+            <h2 className="font-[Montserrat] font-semibold text-[32px] leading-[38px] text-[#345261] mb-5 max-[1024px]:text-[28px] max-[768px]:text-[26px] max-[413px]:text-[20px]">
               Advantages of Service
             </h2>
 
-            <ul className="space-y-3 font-[Montserrat] font-normal text-[16px] leading-[32px] text-[#6B6A66]">
+            <div className="space-y-0 mt-16 relative">
               {service.advantages?.map((item, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  {/* Tick */}
-                  <span className="text-[#345261] text-[14px]">✔</span>
+                <div
+                  key={i}
+                  className={`flex items-center gap-20 max-[1024px]:gap-10 max-[768px]:flex-col max-[768px]:items-start max-[768px]:gap-4 ${i % 2 === 0 ? "flex-row" : "flex-row-reverse"
+                    }`}
+                >
+                  {/* Large Number Image */}
+                  <div className="flex-shrink-0 select-none relative">
+                    <img 
+                      src={[num01, num02, num03, num04, num05, num06][i] || num01}
+                      alt={`Number ${i + 1}`}
+                      className="w-[200px] h-[200px] object-contain max-[1024px]:w-[180px] max-[1024px]:h-[180px] max-[768px]:w-[140px] max-[768px]:h-[140px] max-[413px]:w-[110px] max-[413px]:h-[110px]"
+                    />
+                  </div>
 
-                  {/* Text */}
-                  <span>{item}</span>
-                </li>
+                  {/* Text Content */}
+                  <div className="z-10 flex-grow">
+                    <h3 className="font-[Montserrat] font-bold text-[24px] leading-[32px] text-[#345261] mb-3 max-[413px]:text-[20px]">
+                      {item.includes(':') ? item.split(':')[0] : item} :
+                    </h3>
+                    <p className="font-[Montserrat] font-normal text-[18px] leading-[30px] text-[#6B6A66] max-[413px]:text-[16px]">
+                      {item.includes(':') ? item.split(':')[1] : "We provide high-quality services tailored to your business needs, ensuring optimal results and professional excellence."}
+                    </p>
+                  </div>
+                </div>
               ))}
-            </ul>
-          </div>
-
-          {/* RIGHT COLUMN CARD */}
-          <div className="flex-1">
-            <div className="bg-[#F4F7FA4D] border border-[#EAECE9] rounded-xl px-[35px] py-[45px]">
-              <h3 className="font-[Montserrat] font-semibold text-[24px] leading-[36.6px] text-[#345261] mb-4">
-                Why Choose Our {service.title} Services?
-              </h3>
-
-              <ol className="space-y-2.5 text-[14px] text-[#6B6A66] leading-[22px]">
-                {service.whyChoose?.map((item, i) => (
-                  <li
-                    key={i}
-                    className="font-[Montserrat] font-normal text-[16px] leading-[30.03px] text-[#6B6A66]"
-                  >
-                    <span className="font-bold text-[#345261]">
-                      {i + 1}. {item.title}:
-                    </span>{" "}
-                    {item.desc}
-                  </li>
-                ))}
-              </ol>
             </div>
           </div>
+
         </div>
+
+        {/* RIGHT COLUMN (Empty or for other minor elements) */}
+
+
       </div>
 
       <div

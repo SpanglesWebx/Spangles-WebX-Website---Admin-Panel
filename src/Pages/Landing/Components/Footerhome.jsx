@@ -64,7 +64,7 @@ export default function Footer() {
         <div className="flex justify-end max-[1024px]:justify-start">
           <Link
             to="/contact#contact-form"
-            className="bg-[#345261]/5 p-8 rounded-[32px] border border-[#345261]/10 max-w-[340px] relative overflow-hidden group block transition-all duration-500 hover:shadow-2xl hover:shadow-[#345261]/10 hover:-translate-y-1"
+            className="bg-[#345261]/5 p-8 rounded-[32px] border border-[#345261]/10 max-w-[340px] relative overflow-hidden group block transition-all duration-500 hover:-translate-y-1"
           >
             {/* Animated Background Accent */}
             <div className="absolute -top-12 -right-12 w-32 h-32 bg-[#345261]/10 rounded-full group-hover:scale-[2.5] transition-transform duration-1000 ease-in-out"></div>
@@ -79,7 +79,7 @@ export default function Footer() {
               </p>
 
               <div
-                className="inline-flex items-center gap-3 bg-[#395563] text-white px-8 py-4 rounded-[10px] font-bold text-[12px] group-hover:bg-[#2a3d45] transition-all duration-500 shadow-xl shadow-[#345261]/20 group-hover:shadow-[#345261]/30 group/btn"
+                className="inline-flex items-center gap-3 bg-[#395563] text-white px-8 py-4 rounded-[10px] font-bold text-[12px] group-hover:bg-[#2a3d45] transition-all duration-500 group/btn"
               >
                 GET IN TOUCH
                 <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
@@ -92,21 +92,21 @@ export default function Footer() {
       {/* Bottom Section */}
       <div className="flex flex-col md:flex-row justify-between items-center py-5 text-gray-400 text-xs max-[413px]:py-3 max-[413px]:gap-2 max-[413px]:text-center">
         <p className="font-montserrat text-[16px] leading-[24px] text-[#6B6A66] max-[413px]:text-[14px] max-[413px]:leading-[20px] max-[413px]:order-2">
-          Copyright © {new Date().getFullYear()} Spangles Webx. All Rights Reserved.
+          Copyright © {new Date().getFullYear()} Spangles Webx Pvt Ltd. All Rights Reserved.
         </p>
 
         <div className="flex gap-4 mt-3 md:mt-0 max-[413px]:flex-col max-[413px]:gap-2 max-[413px]:order-1 max-[413px]:items-center">
           <div className="flex gap-4 max-[413px]:gap-2">
             <Link
               to="/privacy"
-              className="font-montserrat font-semibold text-[16px] leading-[100%] text-[#00000078]"
+              className="font-montserrat font-semibold text-[16px] leading-[100%] text-[#00000078] hover:text-[#345261] transition-colors"
             >
               Privacy Policy
             </Link>
             <span>|</span>
             <Link
               to="/terms"
-              className="font-montserrat font-semibold text-[16px] leading-[100%] text-[#00000078]"
+              className="font-montserrat font-semibold text-[16px] leading-[100%] text-[#00000078] hover:text-[#345261] transition-colors"
             >
               Terms & Conditions
             </Link>
