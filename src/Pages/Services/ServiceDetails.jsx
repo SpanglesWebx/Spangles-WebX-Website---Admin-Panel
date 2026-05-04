@@ -292,7 +292,7 @@ const ServiceDetails = () => {
 
             {/* Heading */}
             <h2 className="font-[Montserrat] font-semibold text-[32px] leading-[38px] text-[#345261] mb-10 max-[1024px]:text-[28px] max-[768px]:text-[26px] max-[413px]:text-[20px]">
-              Advantages of Service
+              {service.advantageHeading || "Advantages of Service"}
             </h2>
 
             <div className="space-y-0 mt-0 relative">
@@ -560,6 +560,29 @@ const ServiceDetails = () => {
                     {
                       q: "How do you ensure that the design meets the needs of our target audience?",
                       a: "We conduct thorough user research to understand the needs, preferences, and behaviors of your target audience, informing our design decisions and ensuring that the design resonates with users"
+                    }
+                  ];
+                } else if (service.title === "Software Development") {
+                  return [
+                    {
+                      q: "What is the typical lifecycle of a custom software development project at Spangles?",
+                      a: "We follow a structured Agile methodology, starting with in-depth requirement analysis and strategy, followed by UI/UX prototyping, development, rigorous quality assurance, and finally deployment. This ensures full transparency and allows for iterative feedback throughout the project."
+                    },
+                    {
+                      q: "How do you ensure the scalability of the software as my business grows?",
+                      a: "We build our software using modular architectures and scalable cloud-native technologies. This allows us to easily add new features, handle increased user traffic, and expand database capacity without compromising on performance or stability as your business evolves."
+                    },
+                    {
+                      q: "What measures do you take to maintain data security and privacy in custom applications?",
+                      a: "Security is integrated into every stage of our development process. We implement advanced encryption standards, secure API integrations, and regular vulnerability assessments to protect your proprietary data and ensure compliance with global privacy regulations."
+                    },
+                    {
+                      q: "Do you provide maintenance and updates after the software is successfully launched?",
+                      a: "Yes, we offer comprehensive post-launch support. This includes regular security patches, performance monitoring, bug fixes, and feature enhancements to ensure your software stays modern and fully operational as technology evolves."
+                    },
+                    {
+                      q: "Can custom software be integrated with our existing business tools and platforms?",
+                      a: "Absolutely. We specialize in building custom API bridges and middleware that allow your new software to communicate seamlessly with existing CRM, ERP, or other third-party tools, creating a unified and efficient digital ecosystem."
                     }
                   ];
                 } else {

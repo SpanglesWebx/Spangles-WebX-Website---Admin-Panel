@@ -43,6 +43,7 @@ export const services = [
       "Scalability and Flexibility",
       "Commitment to Quality",
     ],
+    advantageHeading: "Why a Professional Website is the Foundation of Your Business Success",
   },
 
   {
@@ -59,6 +60,9 @@ export const services = [
       "Competitive Advantage : Unique and innovative web applications that set your business apart from competitors.",
       "Data Security : Robust security measures to protect sensitive data and ensure compliance with regulations.",
       "Cost-Effective : Efficient use of resources and technology to deliver high-quality applications within budget.",
+      "Seamless Integration : We ensure your web app integrates flawlessly with existing systems and third-party APIs for a unified workflow.",
+      "Real-Time Data Processing : Our solutions leverage modern technologies for instant data updates and high-performance user interactions.",
+      "Advanced Cloud Hosting : We deploy your applications on secure, scalable cloud infrastructure to ensure maximum uptime and global accessibility.",
     ],
     keyComponents: [
       "Consultation and Planning",
@@ -72,6 +76,7 @@ export const services = [
       "Maintenance and Support",
       "Performance Optimization",
     ],
+    advantageHeading: "Building Powerful and Scalable Web Applications for Modern Businesses",
   },
 
   {
@@ -81,12 +86,16 @@ export const services = [
       "Experience the power of mobile with our app development service. We specialize in creating intuitive and feature-rich applications that engage users and drive results.",
     detailedDescription: "Experience the power of mobile with our app development service. We specialize in creating intuitive and feature-rich applications that engage users and drive results. From concept to launch, we're with you every step of the way, ensuring your app stands out in a crowded marketplace. Let's build something incredible together. The development of mobile apps is comparable to the production of other software, including web apps. Planning a smart digital solution, though, can be challenging.",
     advantages: [
-      "Expertise and Experience: With years of experience in the industry, Spangles Pvt Ltd boasts a team of highly skilled developers, designers, and project managers who excel in crafting innovative and user-centric mobile applications.",
-      "Customized Solutions: We understand that every client has unique requirements and objectives. At Spangles Pvt Ltd, we take a customized approach to mobile app development, ensuring that each app is tailored to meet the specific needs of our clients and their target audience.",
-      "Strategic Planning and Consulting: We offer strategic planning and consulting services to help clients define their app's goals, features, and monetization strategies, ensuring alignment with their business objectives.",
-      "User-Centric Design: User experience (UX) is at the forefront of our design process. We place a strong emphasis on creating intuitive, visually appealing, and engaging user interfaces that enhance usability and drive user satisfaction.",
-      "Quality Assurance and Testing: Quality is paramount in everything we do. Our dedicated quality assurance team conducts rigorous testing at every stage of development to identify and address any issues or bugs, ensuring that the final product meets the highest standards of performance, reliability, and security.",
-      "Timely Delivery: We understand the importance of meeting deadlines and strive to deliver projects on time and within budget. Our efficient project management practices and streamlined development processes enable us to consistently meet or exceed client expectations.",
+      "Expertise and Experience : With years of experience in the industry, we boast a team of highly skilled developers and designers who excel in crafting mobile apps.",
+      "Customized Solutions : We take a customized approach to mobile app development, ensuring that each app is tailored to meet specific needs of your audience.",
+      "Strategic Planning : We offer strategic consulting to help clients define their app's goals and features, ensuring alignment with business objectives.",
+      "User-Centric Design : We place a strong emphasis on creating intuitive, visually appealing, and engaging user interfaces that enhance usability.",
+      "Quality Assurance : Our dedicated team conducts rigorous testing at every stage of development to ensure the final product meets the highest standards.",
+      "Timely Delivery : We understand the importance of meeting deadlines and strive to deliver projects on time and within budget through efficient practices.",
+      "App Store Optimization (ASO) : We develop with visibility in mind, ensuring your app meets all criteria for high ranking in Apple and Google stores.",
+      "Multi-Platform Consistency : Our cross-platform solutions provide a native-like experience on both iOS and Android from a single codebase.",
+      "Offline Functionality : We implement smart caching and offline capabilities so your users can access core features without an internet connection.",
+      "Post-Launch Support : We provide continuous monitoring and updates to ensure your app stays compatible with the latest OS versions and devices.",
     ],
     keyComponents: [
       "Expertise and Experience",
@@ -96,6 +105,7 @@ export const services = [
       "Quality Assurance and Testing",
       "Timely Delivery",
     ],
+    advantageHeading: "Innovative Mobile Solutions Tailored to Your Business Goals",
   },
 
   {
@@ -105,11 +115,16 @@ export const services = [
       "At Spangles Webx Pvt Ltd, we believe that successful software is built not only with great design and development but also with precise and reliable testing. Our software testing services are designed to identify errors, improve functionality, and ensure smooth performance before deployment.",
     detailedDescription: "At Spangles Webx Pvt Ltd, we believe that successful software is built not only with great design and development but also with precise and reliable testing. Our software testing services are designed to identify errors, improve functionality, and ensure smooth performance before deployment. We perform detailed quality checks including functional testing, security testing, usability testing, and cross-platform compatibility testing. This helps us deliver software solutions that are secure, bug-free, and highly efficient. By maintaining strict quality assurance standards, we ensure every product meets client expectations and performs seamlessly in real-time business environments.",
     advantages: [
-      "Manual and automated testing",
-      "Performance and load testing",
-      "Bug tracking and reporting",
-      "Quality assurance processes",
-      "Improved product reliability",
+      "Precision and Reliability : We believe that successful software is built not only with great design but also with precise and reliable testing.",
+      "Comprehensive Quality Checks : We perform detailed checks including functional, security, and usability testing to ensure bug-free solutions.",
+      "Optimized Performance : Our testing ensures that your application handles traffic seamlessly and performs optimally under pressure.",
+      "Rigorous Security Standards : We identify and eliminate vulnerabilities through rigorous security testing, protecting your data and users.",
+      "Enhanced Product Reliability : By maintaining strict quality assurance, we ensure every product meets expectations and performs flawlessly.",
+      "Automated Efficiency : We leverage advanced automation testing tools to reduce manual errors and significantly speed up the release cycle of your software.",
+      "User-Centric Validation : Our usability testing ensures that the final product is intuitive, accessible, and meets the real-world needs of your target audience.",
+      "Scalability Assurance : We conduct rigorous load and stress testing to ensure your application remains stable and performant even during peak traffic periods.",
+      "Regression Testing Excellence : Every update is thoroughly tested against existing features to ensure new changes never break your established functionality.",
+      "Global Compatibility : We verify your software across multiple browsers, operating systems, and network conditions to ensure a flawless experience for all users.",
     ],
     keyComponents: [
       "Expertise and Experience",
@@ -123,6 +138,7 @@ export const services = [
       "Continuous Support and Improvement",
       "Proven Track Record",
     ],
+    advantageHeading: "Successful Software is Built with Precise and Reliable Testing",
   },
 
   {
@@ -154,6 +170,7 @@ export const services = [
       "Continuous Support",
       "Value for Investment",
     ],
+    advantageHeading: "Crafting Intuitive and Engaging Digital Experiences for Your Users",
   },
 
   {
@@ -185,6 +202,7 @@ export const services = [
       "Maintenance and Support",
       "Performance Optimization",
     ],
+    advantageHeading: "Custom Software Solutions to Streamline Your Business Growth",
   },
 ];
 
