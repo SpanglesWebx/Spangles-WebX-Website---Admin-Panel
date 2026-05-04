@@ -10,6 +10,7 @@ import Support from "../About/Components/Support";
 import { useNavigate } from "react-router-dom";
 import Serviceicon from "../../assets/Service-icon.png"; // change to your icon
 import Preloader from "../../Components/Preloader";
+import { motion } from "framer-motion";
 
 export const services = [
   {
@@ -267,19 +268,40 @@ max-[768px]:px-6
 max-[413px]:px-5 max-[413px]:pt-8 max-[413px]:pb-20"
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-[1030px]:grid-cols-2 max-[413px]:!grid-cols-1 gap-x-[30px] min-[1441px]:gap-x-[20px] min-[1441px]:justify-center gap-y-[50px] min-[1441px]:gap-y-[40px] max-[413px]:gap-y-10">
-          {services.map((service, index) => (
-            <div
-              key={index}
-              onClick={() =>
-                navigate("/service-details", {
-                  state: {
-                    ...service,
-                    gallery: [service.image], // can expand later
-                  },
-                })
-              }
-              className="relative group cursor-pointer rounded-xl overflow-hidden w-[390px] h-[432px] min-[1441px]:w-[480px] min-[1441px]:h-[540px] max-[1400px]:w-full max-[1400px]:max-w-[390px] max-[1400px]:mx-auto max-[413px]:h-[430px] shadow-[0px_0px_19.22px_0px_#00000012]"
-            >
+          {services.map((service, index) => {
+            const isLeft = index % 3 === 0;
+            const isCenter = index % 3 === 1;
+            const isRight = index % 3 === 2;
+
+            return (
+              <motion.div
+                key={index}
+                initial={
+                  isLeft
+                    ? { opacity: 0, x: -150, y: 30, rotate: -5, filter: "blur(10px)" }
+                    : isRight
+                    ? { opacity: 0, x: 150, y: 30, rotate: 5, filter: "blur(10px)" }
+                    : { opacity: 0, scale: 0.4, y: 100, filter: "blur(10px)" }
+                }
+                whileInView={{ opacity: 1, x: 0, y: 0, scale: 1, rotate: 0, filter: "blur(0px)" }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 70,
+                  damping: 15,
+                  mass: 1,
+                  delay: (index % 3) * 0.15,
+                }}
+                onClick={() =>
+                  navigate("/service-details", {
+                    state: {
+                      ...service,
+                      gallery: [service.image], // can expand later
+                    },
+                  })
+                }
+                className="relative group cursor-pointer rounded-xl overflow-hidden w-[390px] h-[432px] min-[1441px]:w-[480px] min-[1441px]:h-[540px] max-[1400px]:w-full max-[1400px]:max-w-[390px] max-[1400px]:mx-auto max-[413px]:h-[430px] shadow-[0px_0px_19.22px_0px_#00000012]"
+              >
               {/* Image */}
               <img
                 src={service.image}
@@ -350,8 +372,8 @@ max-[413px]:px-5 max-[413px]:pt-8 max-[413px]:pb-20"
                   {service.description}
                 </p>
               </div>
-            </div>
-          ))}
+            </motion.div>
+          )})}
         </div>
       </div>
 

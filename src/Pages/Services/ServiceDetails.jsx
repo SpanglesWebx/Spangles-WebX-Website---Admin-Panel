@@ -23,6 +23,7 @@ import num11 from "../../assets/11.png";
 import { useNavigate } from "react-router-dom";
 import Preloader from "../../Components/Preloader";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 // Website Development Icons
 import expertiseIcon from "../../assets/website/expertise.png";
@@ -120,6 +121,7 @@ const ServiceDetails = () => {
       title: "Cyber Security",
       image: img1,
       description: "Web designing in a powerful way...",
+      detailedDescription: "Web designing in a powerful way to make your business grow and reach more customers online with our expert services and professional team.",
       gallery: [img1, img2, img3],
     },
   );
@@ -281,7 +283,7 @@ const ServiceDetails = () => {
           {/* LEFT COLUMN */}
           <div className="flex-[1.2] max-[413px]:px-6">
             {/* Paragraph */}
-            {service.detailedDescription.split(/<\/br>|<br\s*\/?>/i).map((part, index) => (
+            {(service.detailedDescription || service.description || "").split(/<\/br>|<br\s*\/?>/i).map((part, index) => (
               <p
                 key={index}
                 className="font-[Montserrat] font-normal text-[16px] leading-[32px] text-[#6B6A66] mb-10 text-justify"
@@ -296,32 +298,47 @@ const ServiceDetails = () => {
             </h2>
 
             <div className="space-y-0 mt-0 relative">
-              {service.advantages?.map((item, i) => (
-                <div
-                  key={i}
-                  className={`flex items-center gap-20 max-[1024px]:gap-10 max-[768px]:flex-col max-[768px]:items-start max-[768px]:gap-4 ${i % 2 === 0 ? "flex-row" : "flex-row-reverse"
-                    }`}
-                >
-                  {/* Large Number Image */}
-                  <div className="flex-shrink-0 select-none relative">
-                    <img
-                      src={[num01, num02, num03, num04, num05, num06, num07, num08, num09, num10, num11][i] || num01}
-                      alt={`Number ${i + 1}`}
-                      className="w-[200px] h-[200px] object-contain max-[1024px]:w-[180px] max-[1024px]:h-[180px] max-[768px]:w-[140px] max-[768px]:h-[140px] max-[413px]:w-[110px] max-[413px]:h-[110px]"
-                    />
-                  </div>
+              {service.advantages?.map((item, i) => {
+                const isEven = i % 2 === 0;
+                return (
+                  <div
+                    key={i}
+                    className={`flex items-center gap-20 max-[1024px]:gap-10 max-[768px]:flex-col max-[768px]:items-start max-[768px]:gap-4 ${isEven ? "flex-row" : "flex-row-reverse"
+                      }`}
+                  >
+                    {/* Large Number Image */}
+                    <motion.div
+                      initial={{ opacity: 0, x: isEven ? -100 : 100 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true, amount: 0.3 }}
+                      transition={{ duration: 0.8, ease: "easeOut" }}
+                      className="flex-shrink-0 select-none relative"
+                    >
+                      <img
+                        src={[num01, num02, num03, num04, num05, num06, num07, num08, num09, num10, num11][i] || num01}
+                        alt={`Number ${i + 1}`}
+                        className="w-[200px] h-[200px] object-contain max-[1024px]:w-[180px] max-[1024px]:h-[180px] max-[768px]:w-[140px] max-[768px]:h-[140px] max-[413px]:w-[110px] max-[413px]:h-[110px]"
+                      />
+                    </motion.div>
 
-                  {/* Text Content */}
-                  <div className="z-10 flex-grow">
-                    <h3 className="font-[Montserrat] font-bold text-[24px] leading-[32px] text-[#345261] mb-3 max-[413px]:text-[20px]">
-                      {item.includes(':') ? item.split(':')[0] : item} :
-                    </h3>
-                    <p className="font-[Montserrat] font-normal text-[18px] leading-[30px] text-[#6B6A66] max-[413px]:text-[16px]">
-                      {item.includes(':') ? item.split(':')[1] : "We provide high-quality services tailored to your business needs, ensuring optimal results and professional excellence."}
-                    </p>
+                    {/* Text Content */}
+                    <motion.div
+                      initial={{ opacity: 0, x: isEven ? 100 : -100 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true, amount: 0.3 }}
+                      transition={{ duration: 0.8, ease: "easeOut" }}
+                      className="z-10 flex-grow"
+                    >
+                      <h3 className="font-[Montserrat] font-bold text-[24px] leading-[32px] text-[#345261] mb-3 max-[413px]:text-[20px]">
+                        {item.includes(':') ? item.split(':')[0] : item} :
+                      </h3>
+                      <p className="font-[Montserrat] font-normal text-[18px] leading-[30px] text-[#6B6A66] max-[413px]:text-[16px]">
+                        {item.includes(':') ? item.split(':')[1] : "We provide high-quality services tailored to your business needs, ensuring optimal results and professional excellence."}
+                      </p>
+                    </motion.div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
