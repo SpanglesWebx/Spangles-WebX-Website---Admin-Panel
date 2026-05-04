@@ -15,9 +15,72 @@ import num03 from "../../assets/03.png";
 import num04 from "../../assets/04.png";
 import num05 from "../../assets/05.png";
 import num06 from "../../assets/06.png";
+import num07 from "../../assets/07.png";
+import num08 from "../../assets/08.png";
+import num09 from "../../assets/09.png";
+import num10 from "../../assets/10.png";
+import num11 from "../../assets/11.png";
 import { useNavigate } from "react-router-dom";
 import Preloader from "../../Components/Preloader";
 import { useState } from "react";
+
+// Website Development Icons
+import expertiseIcon from "../../assets/website/expertise.png";
+import comprehensiveIcon from "../../assets/website/Comprehensive.png";
+import userIcon from "../../assets/website/user.png";
+import seoIcon from "../../assets/website/seo.png";
+import innovationIcon from "../../assets/website/innovation.png";
+import clientIcon from "../../assets/website/client.png";
+import affordabilityIcon from "../../assets/website/affordability.png";
+import provenIcon from "../../assets/website/proven.png";
+import scalabilityIcon from "../../assets/website/scalability.png";
+import commitmentIcon from "../../assets/website/commitment.png";
+
+// Web App Development Icons
+import consultationIcon from "../../assets/Web App/consulation.png";
+import uiuxIcon from "../../assets/Web App/uiux.png";
+import frontendIcon from "../../assets/Web App/download (20).png";
+import backendIcon from "../../assets/Web App/back.png";
+import apiIcon from "../../assets/Web App/api.png";
+import securityIcon from "../../assets/Web App/security.png";
+import testingIcon from "../../assets/Web App/testing.png";
+import deploymentIcon from "../../assets/Web App/Deployemnt.png";
+import maintenanceIcon from "../../assets/Web App/maintenence.png";
+import performanceIcon from "../../assets/Web App/Performance.png";
+
+// Mobile App Development Icons
+import expertiseMobileIcon from "../../assets/Mobile App/Expertise.png";
+import customizedIcon from "../../assets/Mobile App/customized.png";
+import strategicIcon from "../../assets/Mobile App/strategic.png";
+import userMobileIcon from "../../assets/Mobile App/user.png";
+import qualityIcon from "../../assets/Mobile App/Quality.png";
+import timelyIcon from "../../assets/Mobile App/Timely.png";
+
+// Software Testing Icons
+import expertiseTestingIcon from "../../assets/Software Testing/Expertise.png";
+import comprehensiveTestingIcon from "../../assets/Software Testing/comprehensive.png";
+import qualityTestingIcon from "../../assets/Software Testing/quality.png";
+import tailoredIcon from "../../assets/Software Testing/tailoed.png";
+import cuttingIcon from "../../assets/Software Testing/cutting.png";
+import costIcon from "../../assets/Software Testing/cost (2).png";
+import timelyTestingIcon from "../../assets/Software Testing/timely.png";
+import clientTestingIcon from "../../assets/Software Testing/client.png";
+import continuousIcon from "../../assets/Software Testing/continous.png";
+import provenTestingIcon from "../../assets/Software Testing/proven.png";
+
+import {
+  Users,
+  Palette,
+  Code,
+  Database,
+  Share2,
+  ShieldCheck,
+  CheckCircle2,
+  Server,
+  LifeBuoy,
+  Zap,
+  ArrowRight
+} from "lucide-react";
 
 const ServiceDetails = () => {
   const location = useLocation();
@@ -203,16 +266,21 @@ const ServiceDetails = () => {
           {/* LEFT COLUMN */}
           <div className="flex-[1.2] max-[413px]:px-6">
             {/* Paragraph */}
-            <p className="font-[Montserrat] font-normal text-[16px] leading-[32px] text-[#6B6A66] mb-6">
-              {service.detailedDescription}
-            </p>
+            {service.detailedDescription.split(/<\/br>|<br\s*\/?>/i).map((part, index) => (
+              <p 
+                key={index}
+                className="font-[Montserrat] font-normal text-[16px] leading-[32px] text-[#6B6A66] mb-10"
+              >
+                {part.trim()}
+              </p>
+            ))}
 
             {/* Heading */}
-            <h2 className="font-[Montserrat] font-semibold text-[32px] leading-[38px] text-[#345261] mb-5 max-[1024px]:text-[28px] max-[768px]:text-[26px] max-[413px]:text-[20px]">
+            <h2 className="font-[Montserrat] font-semibold text-[32px] leading-[38px] text-[#345261] mb-10 max-[1024px]:text-[28px] max-[768px]:text-[26px] max-[413px]:text-[20px]">
               Advantages of Service
             </h2>
 
-            <div className="space-y-0 mt-16 relative">
+            <div className="space-y-0 mt-0 relative">
               {service.advantages?.map((item, i) => (
                 <div
                   key={i}
@@ -221,8 +289,8 @@ const ServiceDetails = () => {
                 >
                   {/* Large Number Image */}
                   <div className="flex-shrink-0 select-none relative">
-                    <img 
-                      src={[num01, num02, num03, num04, num05, num06][i] || num01}
+                    <img
+                      src={[num01, num02, num03, num04, num05, num06, num07, num08, num09, num10, num11][i] || num01}
                       alt={`Number ${i + 1}`}
                       className="w-[200px] h-[200px] object-contain max-[1024px]:w-[180px] max-[1024px]:h-[180px] max-[768px]:w-[140px] max-[768px]:h-[140px] max-[413px]:w-[110px] max-[413px]:h-[110px]"
                     />
@@ -241,13 +309,99 @@ const ServiceDetails = () => {
               ))}
             </div>
           </div>
-
         </div>
 
-        {/* RIGHT COLUMN (Empty or for other minor elements) */}
+        {/* KEY COMPONENTS SECTION */}
+        {service.keyComponents && (
+          <div className="mt-24 px-6 md:px-0">
+            <h2 className="font-[Montserrat] font-semibold text-[32px] leading-[38px] text-[#345261] mb-12 text-center max-[1024px]:text-[28px] max-[768px]:text-[26px] max-[413px]:text-[20px]">
+              Key Components of {service.title}
+            </h2>
 
+            <div className="flex flex-wrap justify-center gap-6">
+              {service.keyComponents.map((comp, idx) => {
+                // Map titles to icons
+                const iconMap = {
+                  "Consultation and Planning": <img src={consultationIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "UI/UX Design": <img src={uiuxIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Front-End Development": <img src={frontendIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Back-End Development": <img src={backendIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "API Development and Integration": <img src={apiIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Security Implementation": <img src={securityIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Testing and Quality Assurance": <img src={testingIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Deployment and Hosting": <img src={deploymentIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Maintenance and Support": <img src={maintenanceIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Performance Optimization": <img src={performanceIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+
+                  // Website Development specific
+                  "Expertise and Professionalism": <img src={expertiseIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Comprehensive Service Offerings": <img src={comprehensiveIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "User Experience (UX) Focus": <img src={userIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "SEO and Digital Marketing Integration": <img src={seoIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Innovation and Technology": <img src={innovationIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Client-Centric Approach": <img src={clientIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Affordability and Value": <img src={affordabilityIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Proven Results": <img src={provenIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Scalability and Flexibility": <img src={scalabilityIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Commitment to Quality": <img src={commitmentIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+
+                  // Mobile App Development specific
+                  "Expertise and Experience": <img src={expertiseMobileIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Customized Solutions": <img src={customizedIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Strategic Planning and Consulting": <img src={strategicIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "User-Centric Design": <img src={userMobileIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Quality Assurance and Testing": <img src={qualityIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Timely Delivery": <img src={timelyIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+
+                  // Software Testing specific
+                  "Expertise and Experience": <img src={expertiseTestingIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Comprehensive Testing Solutions": <img src={comprehensiveTestingIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Quality Assurance": <img src={qualityTestingIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Tailored Testing Strategies": <img src={tailoredIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Cutting-Edge Tools and Technologies": <img src={cuttingIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Cost-Effective Solutions": <img src={costIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Timely Delivery": <img src={timelyTestingIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Client-Centric Approach": <img src={clientTestingIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Continuous Support and Improvement": <img src={continuousIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Proven Track Record": <img src={provenTestingIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+
+                  // UI / UX Designing specific
+                  "Innovative Approach": <Zap size={24} />,
+                  "Client-Centric Focus": <Users size={24} />,
+                  "Collaborative Partnership": <Share2 size={24} />,
+                  "Continuous Support": <LifeBuoy size={24} />,
+                  "Value for Investment": <Database size={24} />
+                };
+
+                return (
+                  <div 
+                    key={idx}
+                    className="group relative bg-[#F7F9FB] border border-[#E5E5E5] rounded-2xl p-6 transition-all duration-500 hover:bg-white flex flex-col items-center text-center gap-4 overflow-hidden w-full sm:w-[calc(50%-12px)] md:w-[calc(33.33%-16px)] lg:w-[calc(25%-18px)] min-[1440px]:w-[calc(20%-20px)] min-[1800px]:w-[calc(16.66%-20px)]"
+                  >
+                    {/* More Visible Background Swipe Effect */}
+                    <div className="absolute inset-0 bg-[#345261]/[0.08] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out pointer-events-none" />
+
+                    {/* Refined Dark Corner Shade */}
+                    <div className="absolute -right-16 -bottom-16 w-56 h-56 bg-radial-gradient from-[#345261]/40 via-[#345261]/15 to-transparent blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                    <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-[#345261]/30 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+                    <div className="relative z-10 w-14 h-14 rounded-xl bg-white text-[#345261] flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:bg-[#345261] group-hover:text-white border border-[#E5E5E5] group-hover:border-transparent">
+                      {iconMap[comp] || <Zap size={24} />}
+                    </div>
+                    <h3 className="relative z-10 font-[Montserrat] font-bold text-[15px] leading-[22px] text-[#345261]">
+                      {comp}
+                    </h3>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
 
       </div>
+
+      {/* RIGHT COLUMN (Empty or for other minor elements) */}
+
 
       <div
         className="
@@ -484,7 +638,7 @@ const ServiceDetails = () => {
                     {item.title}
                   </h3>
 
-                  <p className="font-normal text-[16px] leading-[23px] text-[#3955638F]">
+                  <p className="font-normal text-[16px] leading-[23px] text-[#3955638F] line-clamp-2 overflow-hidden" style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>
                     {item.description}
                   </p>
                 </div>

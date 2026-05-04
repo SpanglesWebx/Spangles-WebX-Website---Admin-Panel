@@ -38,6 +38,9 @@ export default function MissionVision() {
                   px-[clamp(20px,4vw,55px)] 
                   py-[clamp(40px,4vw,60px)] 
                   rounded-[20px] 
+                  min-[1441px]:mx-[100px]
+                  min-[1441px]:px-[100px]
+                  min-[1441px]:py-[80px]
                   max-[768px]:mx-6 
                   max-[768px]:px-[30px] 
                   max-[768px]:py-[40px] 
@@ -56,6 +59,8 @@ export default function MissionVision() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
           className="grid grid-cols-[1fr_450px_1fr] items-start mb-[40px] 
+                    min-[1441px]:grid-cols-[1fr_600px_1fr]
+                    min-[1441px]:mb-[60px]
                     max-[1024px]:grid-cols-[1fr_350px_1fr] 
                     max-[1024px]:gap-[30px] 
                     max-[900px]:grid-cols-1 
@@ -76,7 +81,7 @@ export default function MissionVision() {
           <div className="flex justify-start max-[1024px]:justify-start">
             <img
               src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc"
-              className="rounded-[14px] w-full max-w-[450px] max-[900px]:max-w-full h-[290px] max-[768px]:h-[220px] object-cover"
+              className="rounded-[14px] w-full max-w-[450px] min-[1441px]:max-w-[600px] h-[290px] min-[1441px]:h-[380px] max-[768px]:h-[220px] object-cover"
               alt="Mission"
             />
           </div>
@@ -102,6 +107,8 @@ export default function MissionVision() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
           className="grid grid-cols-[250px_450px_auto] items-start mb-[40px] 
+                    min-[1441px]:grid-cols-[300px_600px_auto]
+                    min-[1441px]:mb-[60px]
                     max-[1024px]:grid-cols-1 
                     max-[1024px]:gap-[30px] 
                     max-[900px]:gap-[20px] 
@@ -124,7 +131,7 @@ export default function MissionVision() {
           <div className="flex justify-start max-[1024px]:order-2 max-[1024px]:justify-start">
             <img
               src="https://images.unsplash.com/photo-1451187580459-43490279c0fa"
-              className="rounded-[14px] w-full max-w-[450px] max-[900px]:max-w-full h-[290px] max-[768px]:h-[220px] object-cover"
+              className="rounded-[14px] w-full max-w-[450px] min-[1441px]:max-w-[600px] h-[290px] min-[1441px]:h-[380px] max-[768px]:h-[220px] object-cover"
               alt="Vision"
             />
           </div>
@@ -147,6 +154,7 @@ export default function MissionVision() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
           className="grid grid-cols-[1fr_450px_1fr] items-start 
+                    min-[1441px]:grid-cols-[1fr_600px_1fr]
                     max-[1024px]:grid-cols-1 
                     gap-[clamp(20px,3vw,40px)]"
         >
@@ -164,7 +172,7 @@ export default function MissionVision() {
           <div className="flex justify-start max-[1024px]:justify-start">
             <img
               src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
-              className="rounded-[14px] w-full max-w-[450px] max-[900px]:max-w-full h-[290px] max-[768px]:h-[220px] object-cover"
+              className="rounded-[14px] w-full max-w-[450px] min-[1441px]:max-w-[600px] h-[290px] min-[1441px]:h-[380px] max-[768px]:h-[220px] object-cover"
               alt="Values"
             />
           </div>

@@ -16,7 +16,7 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import Support from "../About/Components/Support";
 import Preloader from "../../Components/Preloader";
-import img1 from "../../assets/portfolio1.jpg";
+import img1 from "../../assets/churchs.png";
 import img2 from "../../assets/portfolio2.jpg";
 import img3 from "../../assets/portfolio3.jpg";
 import img4 from "../../assets/portfolio4.jpg";
@@ -545,8 +545,12 @@ const PortfolioDetails = () => {
     }
   };
 
-  const currentProject =
-    allProjects.find((p) => p.id === location.state?.id) || allProjects[0];
+  const stateProject = location.state;
+  const projectFromData = allProjects.find((p) => p.id === stateProject?.id) || allProjects[0];
+  const currentProject = {
+    ...projectFromData,
+    ...stateProject, // Prioritize state (clicked image/title)
+  };
 
   return (
     <div className="font-sans text-gray-700 max-xl:overflow-x-hidden max-[413px]:overflow-x-hidden">

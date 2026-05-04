@@ -16,32 +16,32 @@ export const services = [
     title: "Website Development",
     image: cyberImg,
     description:
-      "We build powerful, pixel-perfect websites that don’t just look good—they grow your business.",
-    detailedDescription: "Our website development services create stunning, functional websites that drive business growth. We combine advanced technology with creative design to deliver sites that are not only visually appealing but also optimized for performance, security, and user engagement.",
+      "The task of thinking about, planning, and formatting electronic data to define their layout, colours, text, styles, structures, graphics, and images—as well as the usage of interactive features that show pages to site visitors—is known as web design.",
+    detailedDescription: "The task of thinking about, planning, and formatting electronic data to define their layout, colours, text, styles, structures, graphics, and images—as well as the usage of interactive features that show pages to site visitors—is known as web design. With eight years of expertise under our belt, we can handle any client requirement for web design and development.",
     advantages: [
-      "Responsive design",
-      "Accessibility compliance",
-      "Fast loading performance",
-      "Secure architecture",
-      "Cross-browser compatibility",
+      "First Impressions Matter : Your website is often the first interaction potential customers have with your business. A well-designed website creates a positive first impression and establishes credibility.",
+      "Brand Identity : A professionally designed website reflects your brand identity, reinforcing your brand's values, mission, and uniqueness.",
+      "User Experience (UX) : Good web design ensures an intuitive and enjoyable user experience, making it easy for visitors to navigate your site and find the information they need.",
+      "SEO Optimization : A well-designed website with proper SEO practices improves your search engine rankings, making it easier for potential customers to find you online.",
+      "Mobile Responsiveness : With the increasing use of mobile devices, having a responsive website design ensures your site looks and functions well on all screen sizes.",
+      "Competitive Advantage : A unique and modern website design sets you apart from competitors, making your business more attractive to potential customers.",
+      "Conversion Rates : Effective web design includes clear calls-to-action and optimized landing pages, which can significantly improve conversion rates and drive sales.",
+      "Customer Trust : A professional and aesthetically pleasing website builds trust with your audience, making them more likely to engage with your business.",
+      "Business Growth : A well-designed website can scale with your business, allowing you to add new features, services, and content as your business grows.",
+      "Cost-Effective Marketing : Your website acts as a 24/7 marketing tool, providing information, attracting leads, and promoting your products or services at all times.",
+      "Customer Engagement : Interactive and engaging web design elements, such as blogs, forums, and social media integration, encourage user interaction and foster a community around your brand.",
     ],
-    whyChoose: [
-      {
-        title: "Experienced Developers",
-        desc: "Skilled team with years of expertise in web development.",
-      },
-      {
-        title: "Modern Frameworks",
-        desc: "Using React, Node.js, and the latest technologies.",
-      },
-      {
-        title: "Custom Solutions",
-        desc: "Tailored websites designed for your specific business needs.",
-      },
-      {
-        title: "Post-Launch Support",
-        desc: "Ongoing maintenance, updates, and technical support.",
-      },
+    keyComponents: [
+      "Expertise and Professionalism",
+      "Comprehensive Service Offerings",
+      "User Experience (UX) Focus",
+      "SEO and Digital Marketing Integration",
+      "Innovation and Technology",
+      "Client-Centric Approach",
+      "Affordability and Value",
+      "Proven Results",
+      "Scalability and Flexibility",
+      "Commitment to Quality",
     ],
   },
 
@@ -49,32 +49,28 @@ export const services = [
     title: "Web App Development",
     image: digitalImg,
     description:
-      "Transforming ideas into scalable, user-friendly web apps that work seamlessly across every device.",
-    detailedDescription: "We develop scalable web applications that meet your unique business requirements. Our team uses the latest frameworks and best practices to build applications that are secure, efficient, and user-friendly, ensuring seamless integration and high performance.",
+      "Elevate your digital presence with our web application development service. We craft bespoke solutions tailored to your unique needs, combining innovation with functionality to deliver seamless user experiences.",
+    detailedDescription: "Elevate your digital presence with our web application development service. We craft bespoke solutions tailored to your unique needs, combining innovation with functionality to deliver seamless user experiences. Let's turn your ideas into reality and propel your business forward in the digital age. Software that runs within your web browser is dubbed an application. Companies need to provide services remotely and share information. Web applications are used by them to safely and conveniently communicate with customers.",
     advantages: [
-      "Scalable architecture",
-      "Cross-platform compatibility",
-      "Secure data handling",
-      "Intuitive user interfaces",
-      "High performance optimization",
+      "Custom Solutions : Tailored web applications that meet specific business requirements and goals.",
+      "Improved Efficiency : Streamlined processes and automated tasks that improve operational efficiency.",
+      "Enhanced User Engagement : Interactive and user-friendly applications that engage and retain users.",
+      "Scalability : Applications designed to grow with your business, accommodating new features and increased traffic.",
+      "Competitive Advantage : Unique and innovative web applications that set your business apart from competitors.",
+      "Data Security : Robust security measures to protect sensitive data and ensure compliance with regulations.",
+      "Cost-Effective : Efficient use of resources and technology to deliver high-quality applications within budget.",
     ],
-    whyChoose: [
-      {
-        title: "Data-Driven Strategy",
-        desc: "We use analytics to maximize your reach.",
-      },
-      {
-        title: "Creative Campaigns",
-        desc: "Engaging content that connects with your audience.",
-      },
-      {
-        title: "Multi-Channel Marketing",
-        desc: "We cover all major digital platforms.",
-      },
-      {
-        title: "Measurable Results",
-        desc: "Trackable growth and ROI-focused approach.",
-      },
+    keyComponents: [
+      "Consultation and Planning",
+      "UI/UX Design",
+      "Front-End Development",
+      "Back-End Development",
+      "API Development and Integration",
+      "Security Implementation",
+      "Testing and Quality Assurance",
+      "Deployment and Hosting",
+      "Maintenance and Support",
+      "Performance Optimization",
     ],
   },
 
@@ -82,8 +78,8 @@ export const services = [
     title: "Mobile App Development",
     image: productImg,
     description:
-      "Building intuitive mobile apps that connect brands with users anytime, anywhere.",
-    detailedDescription: "Transform your ideas into innovative mobile applications for iOS and Android. Our development process focuses on user-centric design, robust functionality, and cross-platform compatibility, delivering apps that enhance user experience and drive business success.",
+      "Experience the power of mobile with our app development service. We specialize in creating intuitive and feature-rich applications that engage users and drive results.",
+    detailedDescription: "Experience the power of mobile with our app development service. We specialize in creating intuitive and feature-rich applications that engage users and drive results. From concept to launch, we're with you every step of the way, ensuring your app stands out in a crowded marketplace. Let's build something incredible together. The development of mobile apps is comparable to the production of other software, including web apps. Planning a smart digital solution, though, can be challenging.",
     advantages: [
       "Cross-platform development",
       "User-friendly interfaces",
@@ -91,23 +87,13 @@ export const services = [
       "Secure data handling",
       "Scalable architecture",
     ],
-    whyChoose: [
-      {
-        title: "Creative Designers",
-        desc: "Skilled team focused on innovation and usability.",
-      },
-      {
-        title: "User Experience Focus",
-        desc: "Designs that improve customer satisfaction.",
-      },
-      {
-        title: "Modern Tools",
-        desc: "We use Figma, Adobe XD, and more.",
-      },
-      {
-        title: "Fast Iterations",
-        desc: "Quick feedback and design improvements.",
-      },
+    keyComponents: [
+      "Expertise and Experience",
+      "Customized Solutions",
+      "Strategic Planning and Consulting",
+      "User-Centric Design",
+      "Quality Assurance and Testing",
+      "Timely Delivery",
     ],
   },
 
@@ -115,8 +101,8 @@ export const services = [
     title: "Software Testing",
     image: webImg,
     description:
-      "Ensuring flawless performance with rigorous testing for reliable, high-quality software.",
-    detailedDescription: "Ensure the quality and reliability of your software with our comprehensive testing services. We perform thorough manual and automated testing to identify and resolve issues, guaranteeing that your product meets the highest standards before launch.",
+      "Spangles Pvt Ltd is a leading technology service provider in Nungambakkam, Chennai, India renowned for its Software testing services.",
+    detailedDescription: "Spangles Pvt Ltd is a leading technology service provider in Nungambakkam, Chennai, India renowned for its Software testing services. With a focus on quality assurance and reliability, we ensures that software products meet stringent standards of functionality, usability, and performance. We boasts extensive experience and expertise in the technology sector, positioning itself as a leader in providing cutting-edge solutions. Offering a suite of software testing services, we caters to diverse needs, including functional testing, usability testing, performance testing, security testing, and more.",
     advantages: [
       "Manual and automated testing",
       "Performance and load testing",
@@ -124,23 +110,17 @@ export const services = [
       "Quality assurance processes",
       "Improved product reliability",
     ],
-    whyChoose: [
-      {
-        title: "Expert QA Team",
-        desc: "Highly experienced testers ensuring quality.",
-      },
-      {
-        title: "Automation Tools",
-        desc: "Faster and more accurate testing processes.",
-      },
-      {
-        title: "Detailed Reports",
-        desc: "Clear insights into bugs and performance.",
-      },
-      {
-        title: "Reliable Delivery",
-        desc: "We ensure your product is market-ready.",
-      },
+    keyComponents: [
+      "Expertise and Experience",
+      "Comprehensive Testing Solutions",
+      "Quality Assurance",
+      "Tailored Testing Strategies",
+      "Cutting-Edge Tools and Technologies",
+      "Cost-Effective Solutions",
+      "Timely Delivery",
+      "Client-Centric Approach",
+      "Continuous Support and Improvement",
+      "Proven Track Record",
     ],
   },
 
@@ -149,31 +129,30 @@ export const services = [
     image: testingImg,
     description:
       "Crafting intuitive and engaging designs that turn users into loyal customers.",
-    detailedDescription: "Elevate your digital products with exceptional UI/UX design. Our designers create intuitive interfaces that prioritize user experience, combining aesthetics with functionality to build designs that are both beautiful and effective.",
+    detailedDescription: `Spangles Pvt Ltd is a top technology service provider located in Nungambakkam, Chennai, India. Specializing in UI/UX (User Interface/User Experience) designing services, We offer innovative solutions to businesses seeking to enhance their digital presence and user engagement. We earned a reputation as a leading technology service provider in the Nungambakkam, Chennai region, known for our expertise in UI/UX designing services. Our team comprises skilled professionals with extensive experience in crafting intuitive and visually appealing user interfaces and experiences.</br></br>We offers a comprehensive range of UI/UX design services tailored to meet the unique needs of our clients. From initial concept development to final implementation, our services cover all aspects of the design process, including user research, wireframing, prototyping, and usability testing. With our client centric approach, we prioritizes understanding the specific requirements and goals of each client. We collaborate closely with clients throughout the design process, ensuring that the final product aligns with our vision, brand identity, and target audience preferences. We has a proven track record of success, with a portfolio showcasing our past UI/UX design projects across various industries.</br></br>We offer comprehensive UI/UX designing services to create intuitive and visually appealing digital experiences that resonate with users and drive engagement.`,
     advantages: [
-      "User-centered design approach",
-      "Wireframing and prototyping",
-      "UI/UX optimization",
-      "Interactive design systems",
-      "Consistency across platforms",
+      "User Research : We conduct thorough user research to understand your target audience, their behaviors, needs, and pain points, informing our design decisions.",
+      "Wire framing : We create wireframes to outline the structure and layout of the interface, focusing on functionality and content organization before moving to visual design.",
+      "Prototyping : We develop interactive prototypes to visualize the user flow and interactions, allowing for user testing and validation before finalizing the design.",
+      "Visual Design : We craft visually appealing designs that align with your brand identity, incorporating colors, typography, imagery, and other visual elements to create a cohesive and engaging user interface.",
+      "Interaction Design : We design intuitive interactions and animations that enhance usability and provide feedback to users, creating a seamless and enjoyable user experience.",
+      "Responsive Design : We ensure that designs are responsive and adaptable to different devices and screen sizes, providing a consistent experience across desktop, tablet, and mobile platforms.",
+      "Usability Testing : We conduct usability testing to gather feedback from real users, identifying usability issues and areas for improvement to refine the design and enhance user satisfaction.",
+      "Accessibility : We design with accessibility in mind, ensuring that the interface is usable by all users, including those with disabilities, and complies with relevant accessibility standards and guidelines.",
+      "Iterative Design Process : We follow an iterative design process, continuously refining and improving the design based on user feedback and insights to achieve the best possible outcome.",
+      "Collaboration and Communication : We work closely with stakeholders to ensure the design aligns with business goals and user needs through constant feedback loops.",
     ],
-    whyChoose: [
-      {
-        title: "Creative Designers",
-        desc: "Skilled team focused on innovation and usability.",
-      },
-      {
-        title: "User Experience Focus",
-        desc: "Designs that improve customer satisfaction.",
-      },
-      {
-        title: "Modern Tools",
-        desc: "We use Figma, Adobe XD, and more.",
-      },
-      {
-        title: "Fast Iterations",
-        desc: "Quick feedback and design improvements.",
-      },
+    keyComponents: [
+      "Expertise and Experience",
+      "Innovative Approach",
+      "Client-Centric Focus",
+      "Customized Solutions",
+      "Quality Assurance",
+      "Collaborative Partnership",
+      "Proven Track Record",
+      "Timely Delivery",
+      "Continuous Support",
+      "Value for Investment",
     ],
   },
 
@@ -189,23 +168,17 @@ export const services = [
       "Secure coding practices",
       "Ongoing maintenance and support",
     ],
-    whyChoose: [
-      {
-        title: "Expert Developers",
-        desc: "Skilled in modern mobile technologies.",
-      },
-      {
-        title: "Custom App Solutions",
-        desc: "Apps tailored to your business goals.",
-      },
-      {
-        title: "Seamless Experience",
-        desc: "Smooth performance across devices.",
-      },
-      {
-        title: "Post-Launch Support",
-        desc: "Continuous updates and maintenance.",
-      },
+    keyComponents: [
+      "Consultation and Planning",
+      "UI/UX Design",
+      "Front-End Development",
+      "Back-End Development",
+      "API Development and Integration",
+      "Security Implementation",
+      "Testing and Quality Assurance",
+      "Deployment and Hosting",
+      "Maintenance and Support",
+      "Performance Optimization",
     ],
   },
 ];
@@ -350,7 +323,7 @@ max-[413px]:px-5 max-[413px]:pt-8 max-[413px]:pb-20"
                   {service.title}
                 </h3>
 
-                <p className="font-normal text-[16px] leading-[23.07px] text-[#3955638F] max-[413px]:text-[14px]">
+                <p className="font-normal text-[16px] leading-[23.07px] text-[#3955638F] max-[413px]:text-[14px] line-clamp-2 overflow-hidden" style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>
                   {service.description}
                 </p>
               </div>

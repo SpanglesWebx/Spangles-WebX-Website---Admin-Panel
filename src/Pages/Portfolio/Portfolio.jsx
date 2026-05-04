@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import img1 from "../../assets/portfolio1.jpg";
-import img2 from "../../assets/portfolio2.jpg";
-import img3 from "../../assets/portfolio3.jpg";
+import img1 from "../../assets/churchs.png";
+import img2 from "../../assets/church.png";
+import img3 from "../../assets/churc.png";
 import img4 from "../../assets/portfolio4.jpg";
 import img5 from "../../assets/portfolio5.jpg";
 import img6 from "../../assets/portfolio6.jpg";
@@ -30,58 +30,58 @@ export default function Portfolio() {
   if (loading) {
     return <Preloader />;
   }
-const portfolio = [
-  {
-    id: 1,
-    title: "Elon Date App",
-    image: img1,
-    desc: "Analytics-driven dating experience with smart matching.",
-  },
-  {
-    id: 2,
-    title: "Renewable Energy Landing Page",
-    image: img2,
-    desc: "Experience a dynamic landing page for renewable energy solutions, showcasing sustainable innovations that attracted eco-conscious visitors and drove conversions significantly.",
-  },
-  {
-    id: 3,
-    title: "Management Software",
-    image: img3,
-    desc: "Implement efficient management software that streamlined operations, enhanced productivity, and provided real-time insights for better decision-making processes across teams.",
-  },
-  {
-    id: 4,
-    title: "Hyper Design",
-    image: img4,
-    desc: "Minimal UI with futuristic interaction design.",
-  },
-  {
-    id: 5,
-    title: "Laptop UI",
-    image: img5,
-    desc: "Clean dashboard interface for productivity tools.",
-  },
-  {
-    id: 6,
-    title: "Fashion Mockup",
-    image: img6,
-    desc: "Trendy fashion showcase with modern layout.",
-  },
+  const portfolio = [
+    {
+      id: 1,
+      title: "Elon Date App",
+      image: img1,
+      desc: "An analytics-driven dating experience that uses smart matching algorithms to connect people based on deep interests and shared behaviors.",
+    },
+    {
+      id: 2,
+      title: "Renewable Energy",
+      image: img2,
+      desc: "Experience a dynamic landing page for renewable energy solutions, showcasing sustainable innovations that attracted eco-conscious visitors and drove conversions significantly.",
+    },
+    {
+      id: 3,
+      title: "Management Software",
+      image: img3,
+      desc: "Implement efficient management software that streamlined operations, enhanced productivity, and provided real-time insights for better decision-making processes across teams.",
+    },
+    {
+      id: 4,
+      title: "Hyper Design",
+      image: img4,
+      desc: "A minimal UI with futuristic interaction design that provides a seamless and immersive user experience across all digital touchpoints.",
+    },
+    {
+      id: 5,
+      title: "Laptop UI",
+      image: img5,
+      desc: "A clean dashboard interface designed for modern productivity tools, focusing on efficiency and ease of use for complex data workflows.",
+    },
+    {
+      id: 6,
+      title: "Fashion Mockup",
+      image: img6,
+      desc: "A trendy fashion showcase featuring a modern layout and high-quality visuals to highlight the latest styles and brand collections effectively.",
+    },
 
-  // 👉 NEW CARDS
-  {
-    id: 7,
-    title: "Creative Studio",
-    image: img7,
-    desc: "Creative branding and digital experience design.",
-  },
-  {
-    id: 8,
-    title: "Mobile UI Kit",
-    image: img8,
-    desc: "Modern mobile UI components and interactions.",
-  },
-];
+    // 👉 NEW CARDS
+    {
+      id: 7,
+      title: "Creative Studio",
+      image: img7,
+      desc: "Creative branding and digital experience design that helps businesses build a strong identity and connect with their audience meaningfully.",
+    },
+    {
+      id: 8,
+      title: "Mobile UI Kit",
+      image: img8,
+      desc: "A modern mobile UI kit featuring versatile components and smooth interactions designed to accelerate the development of high-quality apps.",
+    },
+  ];
 
   const goToDetails = (item) => {
     if (window.innerWidth <= 1024) {
@@ -96,7 +96,7 @@ const portfolio = [
   };
 
 
-  
+
   return (
     <div>
       {/* ✅ NEW BANNER SECTION (like your image) */}
@@ -127,7 +127,7 @@ const portfolio = [
       <div className="bg-white pt-[60px] pb-[80px] border-b border-[#E5E5E5] px-[100px] min-[1441px]:w-full
      max-[1024px]:px-10 max-[768px]:px-6 max-[413px]:px-4 max-[413px]:pt-10 max-[413px]:pb-12 min-[1024px]:max-[1200px]:px-[120px]">
         <div className="grid md:grid-cols-2 gap-15 min-[1441px]:gap-20 mb-8.5 max-[1024px]:gap-12 max-[768px]:gap-10 max-[413px]:gap-6">
-       {(showAll ? portfolio : portfolio.slice(0, 6)).map((item) => (
+          {(showAll ? portfolio : portfolio.slice(0, 6)).map((item) => (
             <div
               key={item.id}
               onClick={() => goToDetails(item)}
@@ -139,16 +139,19 @@ const portfolio = [
                 className="w-full h-[280px] min-[1441px]:h-[450px] object-cover max-[413px]:h-[230px]"
               />
 
-              {/* Overlay */}
-              <div className={`absolute inset-0 bg-black/30 transition-all duration-300 ${clickedCard === item.id ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`} />
+              {/* Bottom Gradient Shade */}
+              <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-[#345261]/90 via-[#345261]/40 to-transparent transition-opacity duration-300" />
 
-              {/* Content */}
-              <div className="absolute bottom-6 left-6 text-white max-[413px]:bottom-4 max-[413px]:left-4">
-                <h3 className="font-montserrat font-bold pb-1 text-[26px] leading-[29.28px] text-white max-[413px]:text-[22px] max-[413px]:leading-normal">
+              {/* Overlay (Full on hover) */}
+              <div className={`absolute inset-0 bg-[#345261]/20 transition-all duration-300 ${clickedCard === item.id ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`} />
+
+              {/* Content (Anchored to bottom, with fixed-height desc to align titles) */}
+              <div className="absolute bottom-5 left-8 right-8 text-white z-10">
+                <h3 className="font-montserrat font-bold pb-1 text-[26px] leading-[29.28px] text-white max-[413px]:text-[22px] max-[413px]:leading-normal line-clamp-1">
                   {item.title}
                 </h3>
 
-                <p className="font-montserrat font-medium text-[14px] leading-[24.29px] text-[#E2E2E2] max-[413px]:text-[12px] max-[413px]:leading-tight">
+                <p className="font-montserrat font-medium text-[14px] leading-[24.29px] text-[#E2E2E2] max-[413px]:text-[12px] max-[413px]:leading-tight line-clamp-2 h-[48px]">
                   {item.desc}
                 </p>
               </div>
@@ -166,7 +169,7 @@ const portfolio = [
         </div>
 
         <div className="text-center max-[413px]:my-6">
-         {/* <button
+          {/* <button
   onClick={() => setShowAll(true)}
   className="font-montserrat font-bold text-[14px] leading-[21px] tracking-[2.24px] uppercase text-[#395563] flex items-center gap-2 mx-auto"
 >
@@ -174,18 +177,18 @@ const portfolio = [
 </button> */}
 
 
-<button
-  onClick={() => setShowAll(!showAll)}
-  className="font-montserrat font-bold text-[14px] leading-[21px] tracking-[2.24px] uppercase text-[#395563] flex items-center gap-2 mx-auto max-[413px]:text-[13px]"
->
-  {showAll ? "SHOW LESS" : "SHOW ALL"} <ArrowRight size={14} />
-</button>
+          <button
+            onClick={() => setShowAll(!showAll)}
+            className="font-montserrat font-bold text-[14px] leading-[21px] tracking-[2.24px] uppercase text-[#395563] flex items-center gap-2 mx-auto max-[413px]:text-[13px]"
+          >
+            {showAll ? "SHOW LESS" : "SHOW ALL"} <ArrowRight size={14} />
+          </button>
         </div>
       </div>
 
       <div className="-mt-[40px] relative z-10">
-              <Support />
-            </div>
+        <Support />
+      </div>
     </div>
   );
 }
