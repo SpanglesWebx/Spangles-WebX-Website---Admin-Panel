@@ -68,6 +68,18 @@ import clientTestingIcon from "../../assets/Software Testing/client.png";
 import continuousIcon from "../../assets/Software Testing/continous.png";
 import provenTestingIcon from "../../assets/Software Testing/proven.png";
 
+// UI/UX Designing Icons
+import expertiseUIUXIcon from "../../assets/UIUX/expertise.png";
+import innovativeIcon from "../../assets/UIUX/inovative.png";
+import clientUIUXIcon from "../../assets/UIUX/Client.png";
+import customizedUIUXIcon from "../../assets/UIUX/customized.png";
+import qualityUIUXIcon from "../../assets/UIUX/Quality.png";
+import collaborativeIcon from "../../assets/UIUX/collaborative.png";
+import provenUIUXIcon from "../../assets/UIUX/proven.png";
+import timelyUIUXIcon from "../../assets/UIUX/timely.png";
+import continuousUIUXIcon from "../../assets/UIUX/continous.png";
+import valueIcon from "../../assets/UIUX/value.png";
+
 import {
   Users,
   Palette,
@@ -79,7 +91,8 @@ import {
   Server,
   LifeBuoy,
   Zap,
-  ArrowRight
+  ArrowRight,
+  MessageCircle
 } from "lucide-react";
 
 const ServiceDetails = () => {
@@ -110,6 +123,8 @@ const ServiceDetails = () => {
       gallery: [img1, img2, img3],
     },
   );
+
+  const [activeFaq, setActiveFaq] = React.useState(0);
 
 
 
@@ -267,9 +282,9 @@ const ServiceDetails = () => {
           <div className="flex-[1.2] max-[413px]:px-6">
             {/* Paragraph */}
             {service.detailedDescription.split(/<\/br>|<br\s*\/?>/i).map((part, index) => (
-              <p 
+              <p
                 key={index}
-                className="font-[Montserrat] font-normal text-[16px] leading-[32px] text-[#6B6A66] mb-10"
+                className="font-[Montserrat] font-normal text-[16px] leading-[32px] text-[#6B6A66] mb-10 text-justify"
               >
                 {part.trim()}
               </p>
@@ -366,15 +381,20 @@ const ServiceDetails = () => {
                   "Proven Track Record": <img src={provenTestingIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
 
                   // UI / UX Designing specific
-                  "Innovative Approach": <Zap size={24} />,
-                  "Client-Centric Focus": <Users size={24} />,
-                  "Collaborative Partnership": <Share2 size={24} />,
-                  "Continuous Support": <LifeBuoy size={24} />,
-                  "Value for Investment": <Database size={24} />
+                  "Expertise and Experience": <img src={expertiseUIUXIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Innovative Approach": <img src={innovativeIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Client-Centric Focus": <img src={clientUIUXIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Customized Solutions": <img src={customizedUIUXIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Quality Assurance": <img src={qualityUIUXIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Collaborative Partnership": <img src={collaborativeIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Proven Track Record": <img src={provenUIUXIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Timely Delivery": <img src={timelyUIUXIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Continuous Support": <img src={continuousUIUXIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Value for Investment": <img src={valueIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />
                 };
 
                 return (
-                  <div 
+                  <div
                     key={idx}
                     className="group relative bg-[#F7F9FB] border border-[#E5E5E5] rounded-2xl p-6 transition-all duration-500 hover:bg-white flex flex-col items-center text-center gap-4 overflow-hidden w-full sm:w-[calc(50%-12px)] md:w-[calc(33.33%-16px)] lg:w-[calc(25%-18px)] min-[1440px]:w-[calc(20%-20px)] min-[1800px]:w-[calc(16.66%-20px)]"
                   >
@@ -397,6 +417,232 @@ const ServiceDetails = () => {
             </div>
           </div>
         )}
+
+        {/* MODERN FAQ SECTION - NUMBER-LEAD DESIGN */}
+        <div className="mt-40 max-w-[1200px] mx-auto px-6 md:px-0 mb-0">
+          <div className="flex flex-col lg:flex-row gap-15">
+            {/* Left Side: Minimalist Purple Style */}
+            <div className="lg:w-2/5">
+              <div className="sticky top-32">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#345261]/5 border border-[#345261]/10 mb-8">
+                  <div className="w-5 h-5 rounded-md bg-[#345261] flex items-center justify-center">
+                    <span className="text-white text-[12px] font-bold">#</span>
+                  </div>
+                  <span className="font-[Montserrat] font-semibold text-[13px] text-[#345261]">
+                    Frequently asked questions
+                  </span>
+                </div>
+
+                <h2 className="font-[Montserrat] font-bold text-[50px] leading-[62px] text-[#1A1A1A] mb-8 tracking-tight">
+                  Frequently asked <br />
+                  <span className="text-[#345261]">questions</span>
+                </h2>
+
+                <p className="font-[Montserrat] font-normal text-[15px] leading-[26px] text-[#6B7280] max-w-[420px] opacity-80">
+                  Find answers to common inquiries about our {service.title} process. We've compiled the most essential information to help you understand how we deliver excellence.
+                </p>
+              </div>
+            </div>
+
+            {/* Right Side: Unique Number-Lead Accordion */}
+            <div className="lg:w-3/5 space-y-2">
+              {(() => {
+                if (service.title === "Website Development") {
+                  return [
+                    {
+                      q: "What services do you offer in web designing and development?",
+                      a: "We provide a comprehensive suite of services, including UI/UX design, responsive web design, front-end and back-end development, e-commerce solutions, CMS development, SEO, digital marketing, and ongoing website maintenance and support."
+                    },
+                    {
+                      q: "Do you provide custom web design?",
+                      a: "Yes, we offer fully customized web design services tailored to meet your brand's unique needs and goals, ensuring a distinctive and engaging user experience."
+                    },
+                    {
+                      q: "Can you develop e-commerce websites?",
+                      a: "Absolutely! We specialize in building robust e-commerce websites using platforms like Shopify, Magento, and WooCommerce, complete with secure payment gateway integration."
+                    },
+                    {
+                      q: "What CMS platforms do you work with?",
+                      a: "We work with leading CMS platforms including WordPress, Drupal, Joomla, and Shopify, allowing us to efficiently create and manage your website content."
+                    },
+                    {
+                      q: "What support do you offer after the website is launched?",
+                      a: "We provide comprehensive ongoing maintenance and support, including regular updates, troubleshooting, performance optimization, and security enhancements to ensure your website runs smoothly."
+                    }
+                  ];
+                } else if (service.title === "Web App Development") {
+                  return [
+                    {
+                      q: "What is web application development?",
+                      a: "Web application development is the process of creating software applications that run on web browsers. It’s important for businesses because it allows them to provide online services, reach a wider audience, streamline operations, and stay competitive in the digital marketplace."
+                    },
+                    {
+                      q: "What steps are involved in the web application development process?",
+                      a: "The web application development process typically includes requirement gathering, planning, design, development, testing, deployment, and maintenance. Each step involves various tasks and activities aimed at creating a functional and user-friendly web application."
+                    },
+                    {
+                      q: "How do you choose the right technology stack for my web application?",
+                      a: "We assess your project requirements, scalability needs, performance goals, budget constraints, and future growth plans to recommend the most suitable technology stack. Factors such as programming languages, frameworks, libraries, and databases are considered during this process."
+                    },
+                    {
+                      q: "What security measures do you implement to protect my web application?",
+                      a: "We prioritize security throughout the development lifecycle by implementing best practices such as secure coding, data encryption, authentication, authorization, input validation, and protection against common vulnerabilities like XSS, CSRF, and SQL injection. Regular security audits and updates are also conducted."
+                    },
+                    {
+                      q: "Can you integrate third-party APIs and services into my web application?",
+                      a: "Yes, we can integrate third-party APIs and services to enhance the functionality and features of your web application. This includes payment gateways, social media integration, mapping services, email services, analytics, and more, depending on your specific requirements."
+                    }
+                  ];
+                } else if (service.title === "Mobile App Development") {
+                  return [
+                    {
+                      q: "How long does it take to develop a mobile app?",
+                      a: "The time required to develop a mobile app can vary depending on factors such as the complexity of the app, the number of features and functionalities, the platform(s) targeted (iOS, Android, or both), the availability of resources, and the client's requirements. Simple apps may take a few weeks to develop, while complex apps can take several months or longer."
+                    },
+                    {
+                      q: "What platforms do you develop mobile apps for?",
+                      a: "We develop mobile apps for both iOS and Android platforms, ensuring compatibility with a wide range of devices and reaching a broader audience. We also offer cross-platform development solutions to maximize cost-effectiveness and efficiency."
+                    },
+                    {
+                      q: "How do you ensure the security of my mobile app?",
+                      a: "We prioritize security throughout the mobile app development lifecycle by implementing best practices such as secure coding, data encryption, authentication, authorization, input validation, and protection against common vulnerabilities like OWASP Top 10."
+                    },
+                    {
+                      q: "Can you help me with app store submission and approval?",
+                      a: "Yes, we assist our clients with the app store submission process for both the Apple App Store and Google Play Store. We ensure that the app meets the respective guidelines and requirements for submission and help navigate the approval process."
+                    },
+                    {
+                      q: "What steps are involved in the mobile app development process?",
+                      a: "The mobile app development process typically includes requirements gathering, design, development, testing, deployment, and maintenance. Each step involves various tasks and activities aimed at creating a functional and user-friendly mobile app."
+                    }
+                  ];
+                } else if (service.title === "Software Testing") {
+                  return [
+                    {
+                      q: "What is software testing, and why is it important?",
+                      a: "Software testing is the process of evaluating a software application to ensure it meets specified requirements and works as expected. It’s important because it helps identify defects early, reduce risks, and deliver high-quality software products."
+                    },
+                    {
+                      q: "What types of software testing are there?",
+                      a: "There are various types of software testing, including functional testing, performance testing, security testing, usability testing, regression testing, and more, each serving different purposes and objectives."
+                    },
+                    {
+                      q: "When should software testing be performed?",
+                      a: "Software testing should be performed throughout the software development lifecycle, starting from the initial stages of development and continuing until the final release. Testing early and often helps catch issues sooner, reducing the cost and effort of fixing them later."
+                    },
+                    {
+                      q: "How is software testing conducted?",
+                      a: "Software testing is conducted using various techniques, methodologies, and tools, depending on the type of testing being performed. It involves creating test cases, executing tests, analyzing results, and reporting defects to ensure that the software meets specified requirements and standards."
+                    },
+                    {
+                      q: "What are the benefits of software testing?",
+                      a: "Software testing offers numerous benefits, including improved software quality, enhanced user experience, reduced costs, increased customer satisfaction, risk mitigation, faster time- to-market, better performance, and competitive advantage."
+                    }
+                  ];
+                } else if (service.title === "UI / UX Designing") {
+                  return [
+                    {
+                      q: "What is UI/UX designing, and why is it important for digital products?",
+                      a: "UI/UX designing involves creating intuitive user interfaces and seamless user experiences for digital products. It’s essential for enhancing usability, engagement, and satisfaction among users."
+                    },
+                    {
+                      q: "What’s the difference between UI and UX design?",
+                      a: "UI (User Interface) design focuses on the visual elements of a digital product, such as layout, colors, typography, and imagery. UX (User Experience) design focuses on the overall experience of the user, including usability, accessibility, and interaction flow"
+                    },
+                    {
+                      q: "How does UI/UX design impact the success of a digital product?",
+                      a: "Good UI/UX design can significantly impact the success of a digital product by improving user satisfaction, increasing user engagement, reducing user errors, and ultimately driving business growth and success"
+                    },
+                    {
+                      q: "What steps are involved in the UI/UX design process?",
+                      a: "The UI/UX design process typically involves user research, wireframing, prototyping, visual design, interaction design, usability testing, and iteration based on user feedback."
+                    },
+                    {
+                      q: "How do you ensure that the design meets the needs of our target audience?",
+                      a: "We conduct thorough user research to understand the needs, preferences, and behaviors of your target audience, informing our design decisions and ensuring that the design resonates with users"
+                    }
+                  ];
+                } else {
+                  return [
+                    {
+                      q: `What is the typical timeline for a ${service.title} project?`,
+                      a: "Timeline varies by complexity, but most projects range from 4 to 12 weeks from discovery to final launch. We provide a detailed project roadmap during our initial consultation."
+                    },
+                    {
+                      q: "Do you provide ongoing support after the project is live?",
+                      a: "Yes, we offer comprehensive maintenance packages that include security updates, performance monitoring, and technical support to ensure your platform remains at its peak."
+                    },
+                    {
+                      q: "Is the final solution fully responsive for all mobile devices?",
+                      a: "Absolutely. Every project we undertake is built with a mobile-first philosophy, ensuring seamless performance and visual perfection across smartphones, tablets, and desktops."
+                    },
+                    {
+                      q: "How do we handle communication and updates during development?",
+                      a: "We prioritize transparency. You'll have a dedicated project manager and access to collaborative tools where you can track progress, view milestones, and provide feedback in real-time."
+                    },
+                    {
+                      q: "Can you help with migrating our existing platform to a new one?",
+                      a: "Our team specializes in complex migrations. We ensure zero data loss and minimal downtime while upgrading your system to a more modern and scalable architecture."
+                    }
+                  ];
+                }
+              })().map((faq, idx) => {
+                  const isOpen = activeFaq === idx;
+                  return (
+                    <div
+                      key={idx}
+                      className={`transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] border-b border-[#E5E5E5] last:border-none group px-4 py-3 ${isOpen ? 'bg-[#345261]/[0.02] rounded-xl' : 'hover:bg-[#345261]/[0.01]'
+                        }`}
+                    >
+                      <button
+                        onClick={() => setActiveFaq(isOpen ? -1 : idx)}
+                        className="w-full flex items-start gap-6 lg:gap-8 text-left group"
+                      >
+                        <div className="flex flex-col items-center pt-1">
+                          <span className={`font-[Montserrat] font-bold text-[14px] leading-none transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${isOpen ? 'text-[#345261] opacity-100 mb-0' : 'text-[#345261]/30 opacity-60'
+                            }`}>
+                            {idx + 1 < 10 ? `0${idx + 1}` : idx + 1}
+                          </span>
+                          <div className={`w-[2px] transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${isOpen ? 'h-10 bg-[#345261]' : 'h-0 bg-transparent'
+                            }`} />
+                        </div>
+
+                        <div className="flex-grow pb-4">
+                          <h3 className={`font-[Montserrat] font-bold text-[20px] leading-[32px] transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${isOpen ? 'text-[#345261] translate-x-1' : 'text-[#345261]/80 group-hover:text-[#345261] group-hover:translate-x-1'
+                            }`}>
+                            {faq.q}
+                          </h3>
+                        </div>
+
+                        <div className={`mt-2 flex-shrink-0 w-10 h-10 rounded-full border border-[#E5E5E5] flex items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${isOpen ? 'rotate-180 bg-[#345261] text-white border-transparent' : 'text-[#345261]/30 group-hover:text-[#345261] group-hover:border-[#345261]/20 group-hover:scale-110'
+                          }`}>
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                          </svg>
+                        </div>
+                      </button>
+
+                      <div className={`transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] overflow-hidden ${isOpen ? 'max-h-[400px] opacity-100 mt-0' : 'max-h-0 opacity-0'
+                        }`}>
+                        <div className={`flex gap-6 lg:gap-8 transition-transform duration-700 ease-out ${isOpen ? 'translate-y-0' : '-translate-y-4'
+                          }`}>
+                          {/* Spacer to align with number column */}
+                          <div className="w-[24px] lg:w-[32px] flex-shrink-0" />
+
+                          <div className="flex-grow">
+                            <p className="font-[Montserrat] font-normal text-[17px] leading-[32px] text-[#6B6A66] pl-6 border-l-2 border-[#E5E5E5] -ml-[5px] pr-4">
+                              {faq.a}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })
+              }
+            </div>
+          </div>
+        </div>
 
       </div>
 
@@ -646,10 +892,6 @@ const ServiceDetails = () => {
             ))}
           </div>
         </div>
-
-
-
-
       </div>
 
       {/* SUPPORT */}

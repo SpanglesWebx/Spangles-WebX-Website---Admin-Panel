@@ -134,9 +134,9 @@ import team3 from "../../../assets/Team3.jpg";
 
 const team = [
   {
-    name: "Hal Drummond",
-    role: "Sales Manager",
-    desc: "Driving sales growth and building strong client relationships.",
+    name: "Robert Vincent C",
+    role: "Managing Director",
+    desc: "I strongly believe that innovation is the key to every successful business transformation. Our company is built on the foundation of quality service, client satisfaction, and a commitment to delivering solutions that truly make a difference. We strive to understand every client’s unique needs and provide reliable digital strategies that support their growth. Together with our dedicated team, we are shaping a future where technology becomes a powerful tool for success. ",
     img: team1,
   },
   {
@@ -159,11 +159,11 @@ export default function Team() {
     <div className="px-[100px] py-[80px] bg-[#ffffff] max-[1024px]:px-[60px] max-[768px]:px-6 max-[413px]:px-4 max-[768px]:py-[55px] max-[413px]:py-[45px]">
       {/* Top Title */}
       <p className=" font-bold text-[14px] leading-[100%] mb-5 text-[#395563] tracking-[1.43px] text-center uppercase max-[768px]:text-[13px] max-[413px]:text-[12px]">
-        OUR TEAM
+        FROM THE DIRECTOR'S DESK
       </p>
 
       <h2 className="mb-15 font-semibold text-[32px] leading-[42.3px] tracking-[-1.06px] text-center text-[#161C2D] max-[768px]:text-[28px] max-[768px]:leading-[36px] max-[413px]:text-[24px] max-[413px]:leading-[32px]">
-        The Team Behind Impactful <br /> Digital Experiences
+        Guiding Our Journey Toward<br /> Digital Excellence
       </h2>
 
       {/* Single Card - Modern Split Design */}
@@ -173,10 +173,10 @@ export default function Team() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col min-[768px]:flex-row w-full max-w-[950px] bg-white rounded-[32px] overflow-hidden shadow-[0_0_80px_-10px_rgba(0,0,0,0.12)] border border-gray-50"
+          className="flex flex-col min-[768px]:flex-row w-full max-w-[1100px] bg-white rounded-[32px] overflow-hidden shadow-[0_0_80px_-10px_rgba(0,0,0,0.12)] border border-gray-50"
         >
           {/* Image Section */}
-          <div className="relative w-full min-[768px]:w-[42%] h-[320px] min-[768px]:h-[420px] overflow-hidden">
+          <div className="relative w-full min-[768px]:w-[42%] h-[320px] min-[768px]:h-[500px] overflow-hidden">
             {/* Inner Shade */}
             <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent z-10 pointer-events-none" />
             <img
@@ -198,7 +198,7 @@ export default function Team() {
 
             <div className="w-70 h-[1px] bg-gradient-to-r from-[#345261] to-transparent mb-8"></div>
 
-            <p className="font-montserrat text-[18px] leading-[1.6] text-[#6B6A66] mb-0 italic">
+            <p className="font-montserrat text-[18px] leading-[1.6] text-[#6B6A66] mb-0 italic text-justify">
               "{member.desc}"
             </p>
           </div>

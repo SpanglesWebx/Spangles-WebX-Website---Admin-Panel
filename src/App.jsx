@@ -4,6 +4,7 @@ import { AnimatePresence } from "framer-motion";
 import Preloader from "./Components/Preloader";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
+import WhatsAppIcon from "./Components/WhatsAppIcon";
 import About from "./Pages/About/About";
 import Home from "./Pages/Landing/HomeApp";
 import Services from "./Pages/Services/Services";
@@ -52,10 +53,23 @@ function App() {
       const percentage = (scrolled / height) * 100;
       document.documentElement.style.setProperty('--scroll-percent', `${percentage}%`);
     };
+
     window.addEventListener('scroll', handleScroll);
     handleScroll(); // Initial call
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, [pathname]);
+
+  const handleTrackClick = (e) => {
+    const height = window.innerHeight;
+    const scrollHeight = document.documentElement.scrollHeight;
+    if (scrollHeight > height) {
+      const targetScroll = (e.clientY / height) * (scrollHeight - height);
+      window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+    }
+  };
 
   return (
     <div className="w-full max-w-[100vw]">
@@ -63,7 +77,14 @@ function App() {
         {loading && <Preloader key="preloader" />}
       </AnimatePresence>
       <ScrollToTop />
+      {/* Clickable Scroll Track */}
+      <div 
+        onClick={handleTrackClick}
+        className="fixed top-0 right-0 w-[15px] h-full z-[100000] cursor-pointer"
+        title="Scroll to position"
+      />
       <Navbar />
+      <WhatsAppIcon />
       <main className=" pt-[97px] max-[413px]:pt-[85px]">
         <Routes>
           <Route path="/" element={<Home />} />

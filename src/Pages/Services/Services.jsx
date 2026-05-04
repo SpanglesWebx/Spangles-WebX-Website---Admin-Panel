@@ -81,11 +81,12 @@ export const services = [
       "Experience the power of mobile with our app development service. We specialize in creating intuitive and feature-rich applications that engage users and drive results.",
     detailedDescription: "Experience the power of mobile with our app development service. We specialize in creating intuitive and feature-rich applications that engage users and drive results. From concept to launch, we're with you every step of the way, ensuring your app stands out in a crowded marketplace. Let's build something incredible together. The development of mobile apps is comparable to the production of other software, including web apps. Planning a smart digital solution, though, can be challenging.",
     advantages: [
-      "Cross-platform development",
-      "User-friendly interfaces",
-      "High performance apps",
-      "Secure data handling",
-      "Scalable architecture",
+      "Expertise and Experience: With years of experience in the industry, Spangles Pvt Ltd boasts a team of highly skilled developers, designers, and project managers who excel in crafting innovative and user-centric mobile applications.",
+      "Customized Solutions: We understand that every client has unique requirements and objectives. At Spangles Pvt Ltd, we take a customized approach to mobile app development, ensuring that each app is tailored to meet the specific needs of our clients and their target audience.",
+      "Strategic Planning and Consulting: We offer strategic planning and consulting services to help clients define their app's goals, features, and monetization strategies, ensuring alignment with their business objectives.",
+      "User-Centric Design: User experience (UX) is at the forefront of our design process. We place a strong emphasis on creating intuitive, visually appealing, and engaging user interfaces that enhance usability and drive user satisfaction.",
+      "Quality Assurance and Testing: Quality is paramount in everything we do. Our dedicated quality assurance team conducts rigorous testing at every stage of development to identify and address any issues or bugs, ensuring that the final product meets the highest standards of performance, reliability, and security.",
+      "Timely Delivery: We understand the importance of meeting deadlines and strive to deliver projects on time and within budget. Our efficient project management practices and streamlined development processes enable us to consistently meet or exceed client expectations.",
     ],
     keyComponents: [
       "Expertise and Experience",
@@ -101,8 +102,8 @@ export const services = [
     title: "Software Testing",
     image: webImg,
     description:
-      "Spangles Pvt Ltd is a leading technology service provider in Nungambakkam, Chennai, India renowned for its Software testing services.",
-    detailedDescription: "Spangles Pvt Ltd is a leading technology service provider in Nungambakkam, Chennai, India renowned for its Software testing services. With a focus on quality assurance and reliability, we ensures that software products meet stringent standards of functionality, usability, and performance. We boasts extensive experience and expertise in the technology sector, positioning itself as a leader in providing cutting-edge solutions. Offering a suite of software testing services, we caters to diverse needs, including functional testing, usability testing, performance testing, security testing, and more.",
+      "At Spangles Webx Pvt Ltd, we believe that successful software is built not only with great design and development but also with precise and reliable testing. Our software testing services are designed to identify errors, improve functionality, and ensure smooth performance before deployment.",
+    detailedDescription: "At Spangles Webx Pvt Ltd, we believe that successful software is built not only with great design and development but also with precise and reliable testing. Our software testing services are designed to identify errors, improve functionality, and ensure smooth performance before deployment. We perform detailed quality checks including functional testing, security testing, usability testing, and cross-platform compatibility testing. This helps us deliver software solutions that are secure, bug-free, and highly efficient. By maintaining strict quality assurance standards, we ensure every product meets client expectations and performs seamlessly in real-time business environments.",
     advantages: [
       "Manual and automated testing",
       "Performance and load testing",
@@ -127,9 +128,8 @@ export const services = [
   {
     title: "UI / UX Designing",
     image: testingImg,
-    description:
-      "Crafting intuitive and engaging designs that turn users into loyal customers.",
-    detailedDescription: `Spangles Pvt Ltd is a top technology service provider located in Nungambakkam, Chennai, India. Specializing in UI/UX (User Interface/User Experience) designing services, We offer innovative solutions to businesses seeking to enhance their digital presence and user engagement. We earned a reputation as a leading technology service provider in the Nungambakkam, Chennai region, known for our expertise in UI/UX designing services. Our team comprises skilled professionals with extensive experience in crafting intuitive and visually appealing user interfaces and experiences.</br></br>We offers a comprehensive range of UI/UX design services tailored to meet the unique needs of our clients. From initial concept development to final implementation, our services cover all aspects of the design process, including user research, wireframing, prototyping, and usability testing. With our client centric approach, we prioritizes understanding the specific requirements and goals of each client. We collaborate closely with clients throughout the design process, ensuring that the final product aligns with our vision, brand identity, and target audience preferences. We has a proven track record of success, with a portfolio showcasing our past UI/UX design projects across various industries.</br></br>We offer comprehensive UI/UX designing services to create intuitive and visually appealing digital experiences that resonate with users and drive engagement.`,
+    description: "At Spangles Webx Pvt Ltd, we craft visually appealing and user-friendly UI/UX designs that create meaningful digital experiences. Our design approach focuses on understanding user behavior, business goals, and market trends to build interfaces that are both attractive and highly functional.",
+    detailedDescription: "At Spangles Webx Pvt Ltd, we craft visually appealing and user-friendly UI/UX designs that create meaningful digital experiences. Our design approach focuses on understanding user behavior, business goals, and market trends to build interfaces that are both attractive and highly functional. From wireframing to final prototyping, we ensure every screen is designed with clarity, simplicity, and smooth navigation in mind. We prioritize responsive layouts, engaging visuals, and seamless user journeys to increase customer interaction and satisfaction. With our creative UI/UX solutions, businesses can deliver products that not only look impressive but also provide exceptional usability across all devices.",
     advantages: [
       "User Research : We conduct thorough user research to understand your target audience, their behaviors, needs, and pain points, informing our design decisions.",
       "Wire framing : We create wireframes to outline the structure and layout of the interface, focusing on functionality and content organization before moving to visual design.",
@@ -159,14 +159,19 @@ export const services = [
   {
     title: "Software Development",
     image: appImg,
-    description: "Create powerful mobile apps for iOS and Android.",
-    detailedDescription: "From concept to deployment, we provide end-to-end software development solutions. Our experts build custom software tailored to your needs, using agile methodologies to deliver scalable, secure, and innovative products.",
+    description: "At Spangles Webx Pvt Ltd, we provide innovative and scalable software development solutions tailored to meet diverse business requirements. Our expert developers build custom software applications that streamline operations, improve productivity, and support long-term business growth.",
+    detailedDescription: "At Spangles Webx Pvt Ltd, we provide innovative and scalable software development solutions tailored to meet diverse business requirements. Our expert developers build custom software applications that streamline operations, improve productivity, and support long-term business growth. From requirement analysis to deployment, we follow a structured development process that ensures quality, security, and performance at every stage. We specialize in creating user-centric, feature-rich, and technology-driven software that adapts to changing market demands. With a commitment to excellence and modern development practices, we transform ideas into powerful digital solutions that help businesses stay ahead in a competitive world.",
     advantages: [
-      "Custom software solutions",
-      "Agile development process",
-      "Scalable architecture",
-      "Secure coding practices",
-      "Ongoing maintenance and support",
+      "Custom Business Solutions : Tailor-made software designed to match unique business operations and workflow requirements.",
+      "Improved Productivity : Automation of repetitive tasks helps employees save time and work more efficiently.",
+      "Better Data Management : Organized software systems make storing, accessing, and managing business data easier.",
+      "Enhanced Security : Advanced software solutions protect sensitive information from cyber threats and data breaches.",
+      "Scalability & Flexibility : Software can be upgraded and expanded easily as your business grows over time.",
+      "Cost Effective Operations : Reduces manual effort, paperwork, and operational expenses through digital automation.",
+      "Faster Decision Making : Real-time reports and analytics help management make quick and accurate decisions.",
+      "Seamless Integration : Custom software can connect with existing tools, applications, and business platforms smoothly.",
+      "Improved Customer Experience : Efficient software systems ensure faster service delivery and better customer satisfaction.",
+      "Competitive Advantage : Modern software technology gives businesses a stronger position in the digital marketplace.",
     ],
     keyComponents: [
       "Consultation and Planning",

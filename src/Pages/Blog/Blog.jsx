@@ -963,7 +963,38 @@ export default function Blog() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#161C2D] to-transparent opacity-40" />
             </motion.div>
-            <img src="/Web.jpg" className="absolute -top-6 -right-6 h-12 w-12 rounded-full object-cover animate-pulse shadow-2xl border-2 border-white/10" alt="icon" />
+            <div className="absolute -top-6 -right-6">
+              <div className="relative">
+                {/* Continuous Pulsing Rings (Bling Wave) */}
+                <motion.div
+                  animate={{ scale: [1, 1.6], opacity: [0, 0.4, 0] }}
+                  transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
+                  className="absolute inset-0 rounded-full border-2 border-white/40 z-0"
+                />
+                <motion.div
+                  animate={{ scale: [1, 2], opacity: [0, 0.2, 0] }}
+                  transition={{ repeat: Infinity, duration: 3, ease: "linear", delay: 1.5 }}
+                  className="absolute inset-0 rounded-full border border-white/20 z-0"
+                />
+
+                <div className="h-12 w-12 rounded-full overflow-hidden border-2 border-white/10 bg-[#161C2D] shadow-2xl relative z-10">
+                  <img
+                    src="/Web.jpg"
+                    className="h-full w-full object-cover"
+                    alt="icon"
+                  />
+                </div>
+
+                {/* Subtle orbiting dot (Always active) */}
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
+                  className="absolute inset-[-8px] z-20 pointer-events-none"
+                >
+                  <div className="absolute top-0 right-0 h-3 w-3 bg-white rounded-full shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
+                </motion.div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

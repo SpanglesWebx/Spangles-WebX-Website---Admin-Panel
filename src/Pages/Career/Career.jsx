@@ -271,12 +271,10 @@ export default function Career() {
         </div>
       </div>
       {/* Intro Section */}
-      <div className="bg-white flex justify-end min-[1441px]:justify-start max-[413px]:justify-center">
-        <div className="w-full max-w-[1400px] min-[1441px]:max-w-full grid grid-cols-[1fr_600px] min-[1441px]:grid-cols-[1fr_1.2fr] max-[1201px]:grid-cols-[1fr_500px] max-[1025px]:grid-cols-[1fr_400px] max-[768px]:grid-cols-1 max-[413px]:grid-cols-1 items-center min-[1441px]:items-stretch">
-
+      <div className="bg-white flex justify-end max-[413px]:justify-center">
+        <div className="w-full grid grid-cols-[1fr_1.2fr] max-[1025px]:grid-cols-[1fr_1fr] max-[768px]:grid-cols-1 items-stretch overflow-hidden">
           {/* LEFT CONTENT */}
-          <div className="py-16 min-[1441px]:py-24 pl-[100px] pr-10 min-[1441px]:pl-[100px] min-[1441px]:pr-20 min-[1441px]:flex min-[1441px]:flex-col min-[1441px]:justify-center min-[1441px]:items-start max-[1025px]:pl-[50px] max-[768px]:pl-[30px] max-[768px]:pr-[30px] max-[413px]:px-[14px] max-[413px]:py-[40px]">
-
+          <div className="py-16 min-[1441px]:py-24 pl-[100px] pr-10 min-[1441px]:pl-[150px] min-[1441px]:pr-20 flex flex-col justify-center items-start max-[1025px]:pl-[50px] max-[768px]:pl-[30px] max-[768px]:pr-[30px] max-[413px]:px-[14px] max-[413px]:py-[40px]">
             <p className="font-[Montserrat] font-bold text-[14px] leading-[21px] tracking-[2.24px] uppercase text-[#395563] mb-4 max-[413px]:text-[11px] max-[413px]:mb-3">
               OPPORTUNITIES WITH US
             </p>
@@ -290,11 +288,8 @@ export default function Career() {
               Join our <br /> innovative team
             </h2>
 
-            <p className="font-[Montserrat] font-normal text-[16px] leading-[23.65px] text-[#6B6A66] mb-7 max-[413px]:text-[14px] max-[413px]:leading-[22px] max-[413px]:mb-[30px]">
-              Spangles Webx is a tech-driven company passionate about delivering
-              innovative digital products. With a focus on design, usability,
-              and performance, we help startups and enterprises scale with
-              impactful web and mobile solutions.
+            <p className="font-[Montserrat] font-normal text-[16px] leading-[23.65px] text-[#6B6A66] mb-7 max-w-[550px] text-justify max-[413px]:text-[14px] max-[413px]:leading-[22px] max-[413px]:mb-[30px]">
+              Be the part of our company that thrives on creativity, technology, and collaboration. At Spangles Webx Pvt Ltd, we value talent, passion, and fresh ideas, offering opportunities to work on projects across web, mobile, and software solutions. Grow your career with us in a dynamic environment where learning, innovation, and teamwork are at the heart of everything we do.
             </p>
 
             <button
@@ -316,11 +311,11 @@ export default function Career() {
           </div>
 
           {/* RIGHT IMAGE */}
-          <div className="w-full h-full flex justify-end pt-[50px] max-[768px]:pt-[20px] max-[413px]:pt-0 max-[413px]:justify-center max-[413px]:hidden">
+          <div className="w-full h-full min-h-[450px] max-[413px]:hidden">
             <img
               src={carrer}
               alt="team"
-              className="w-[600px] min-[1441px]:w-full h-full object-cover object-right max-[1201px]:w-[500px] max-[1025px]:w-full max-[1025px]:object-left  max-[768px]:w-full max-[413px]:w-full max-[413px]:h-auto"
+              className="w-full h-full object-cover object-left"
             />
           </div>
         </div>
@@ -365,7 +360,7 @@ export default function Career() {
                   <h3 className="font-[Montserrat] font-bold text-[20px] text-[#395563]">
                     {job.jobTitle}
                   </h3>
-                  
+
                   <button
                     onClick={() => handleKnowMore(job)}
                     className="group border border-[#395563] text-[#395563] hover:bg-[#395563] hover:text-white transition-colors duration-300 px-5 py-2.5 rounded-[6px] font-[Montserrat] font-semibold text-[14px] flex items-center gap-2 max-[768px]:w-full max-[768px]:justify-center"
