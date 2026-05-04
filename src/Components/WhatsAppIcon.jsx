@@ -1,27 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaWhatsapp } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 
 const WhatsAppIcon = () => {
   const [isHovered, setIsHovered] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
 
-  const whatsappNumber = "+917708784111"; 
+  // Trigger "notification" effect after 3 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowNotification(true);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const whatsappNumber = "+917708784111";
   const message = "Hello! I'm interested in your services.";
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
   return (
-    <div className="fixed bottom-10 right-10 z-[9999] flex items-center gap-3">
+    <div className="fixed bottom-10 right-4 z-[9999] flex flex-col items-end">
       <AnimatePresence>
-        {isHovered && (
+        {(isHovered || showNotification) && (
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 20 }}
-            className="bg-white px-4 py-2 rounded-full shadow-[0_4px_15px_rgba(0,0,0,0.1)] border border-gray-100 hidden md:block"
+            initial={{ opacity: 0, y: 10, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 10, scale: 0.9 }}
+            className="mb-3 bg-[#25D366] text-white px-4 py-2 rounded-xl shadow-2xl relative cursor-pointer"
+            onClick={() => window.open(whatsappUrl, "_blank")}
           >
-            <p className="text-[#25D366] font-semibold text-sm whitespace-nowrap">
-              Chat with us on WhatsApp
+            <p className="font-bold text-xs whitespace-nowrap">
+              Hi! How can we help you?
             </p>
+            {/* Triangle Pointer */}
+            <div className="absolute -bottom-1.5 right-4 w-3 h-3 bg-[#25D366] rotate-45 -z-10" />
           </motion.div>
         )}
       </AnimatePresence>
@@ -30,14 +42,28 @@ const WhatsAppIcon = () => {
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
-        onMouseEnter={() => setIsHovered(true)}
+        onMouseEnter={() => {
+          setIsHovered(true);
+          setShowNotification(false); // Clear notification on hover
+        }}
         onMouseLeave={() => setIsHovered(false)}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        className="w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center text-white shadow-[0_4px_20px_rgba(37,211,102,0.4)] cursor-pointer overflow-hidden relative group"
+        className="w-11 h-11 bg-[#25D366] rounded-full flex items-center justify-center text-white shadow-[0_4px_20px_rgba(37,211,102,0.4)] cursor-pointer relative group"
       >
-        <FaWhatsapp size={32} />
-        
+        <FaWhatsapp size={24} />
+
+        {/* Notification Badge */}
+        {showNotification && (
+          <motion.span
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-white shadow-sm z-10"
+          >
+            1
+          </motion.span>
+        )}
+
         {/* Subtle pulse animation */}
         <span className="absolute inset-0 rounded-full bg-white/20 animate-ping opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
       </motion.a>
