@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 import AboutImage from "../../../assets/about-image.png"; // Make sure to have this image in your assets folder
 import growthIcon from "../../../assets/growthIcon.png"; // Make sure to have this image in your assets folder
@@ -73,7 +74,14 @@ export default function AboutSection() {
     <section className="bg-[#ffffff]">
       <div className="w-full mx-auto min-[1600px]:max-w-full min-[1600px]:px-[150px] min-[1920px]:px-[250px] px-[100px] py-[100px] grid md:grid-cols-2 gap-16 items-center md:max-[1025px]:items-start max-[1025px]:gap-12 max-[1025px]:px-[60px] max-[1025px]:py-[70px] max-[413px]:px-4 max-[413px]:py-[60px] max-[413px]:gap-10">
         {/* LEFT IMAGE */}
-        <div className="relative">
+        <motion.div 
+          initial={{ opacity: 0, x: "20%" }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          style={{ willChange: "transform, opacity", backfaceVisibility: "hidden" }}
+          className="relative"
+        >
           <img
             src={AboutImage}
             alt=""
@@ -90,10 +98,16 @@ export default function AboutSection() {
               Years Experience in Field
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* RIGHT CONTENT */}
-        <div>
+        <motion.div
+          initial={{ opacity: 0, x: "-20%" }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          style={{ willChange: "transform, opacity", backfaceVisibility: "hidden" }}
+        >
           <p className="text-[14px] font-bold tracking-[2.24px] leading-[21px] text-[#395563] max-[413px]:text-[10px] max-[413px]:mb-[10px] uppercase font-[Montserrat] mb-4">
             WHO WE ARE
           </p>
@@ -137,7 +151,7 @@ export default function AboutSection() {
           >
             Read More
           </button>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
