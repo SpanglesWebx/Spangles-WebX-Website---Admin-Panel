@@ -253,24 +253,35 @@ const ServiceDetails = () => {
     min-[1024px]:max-[1200px]:px-[72px]"
         >
           {/* breadcrumb */}
-          <p className="font-[Montserrat] font-bold text-[14px] leading-[21px] tracking-[2.24px] uppercase text-white max-[413px]:text-[12px]">
+          <motion.p 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            key={service.title + "-breadcrumb"}
+            transition={{ duration: 0.5 }}
+            className="font-[Montserrat] font-bold text-[14px] leading-[21px] tracking-[2.24px] uppercase text-white max-[413px]:text-[12px]"
+          >
             Home / Services
-          </p>
+          </motion.p>
 
           {/* heading */}
-          <h1
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            key={service.title + "-heading"}
+            transition={{ duration: 0.6, delay: 0.1 }}
             className="font-montserrat font-semibold text-[54px] leading-[62px] text-white mt-2 
       max-[1024px]:text-[48px] max-[1024px]:leading-[56px] 
       max-[768px]:text-[44px] max-[768px]:leading-[52px] 
       max-[413px]:text-[28px] max-[413px]:leading-[32px]"
           >
             {service.title}
-          </h1>
+          </motion.h1>
         </div>
       </div>
 
       {/* CONTENT SECTION */}
       <div
+        key={service.title}
         className="
   px-[100px] py-[100px]
   max-[1201px]:px-[80px] max-[1201px]:py-[80px]
@@ -308,10 +319,13 @@ const ServiceDetails = () => {
                   >
                     {/* Large Number Image */}
                     <motion.div
-                      initial={{ opacity: 0, x: isEven ? -100 : 100 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true, amount: 0.3 }}
-                      transition={{ duration: 0.8, ease: "easeOut" }}
+                      initial={{ opacity: 0, x: isEven ? -200 : 200, rotate: isEven ? -10 : 10 }}
+                      whileInView={{ opacity: 1, x: 0, rotate: 0 }}
+                      viewport={{ once: false, amount: 0.3, margin: "0px 0px -100px 0px" }}
+                      transition={{ 
+                        duration: 0.8,
+                        ease: "easeOut"
+                      }}
                       className="flex-shrink-0 select-none relative"
                     >
                       <img
@@ -323,10 +337,13 @@ const ServiceDetails = () => {
 
                     {/* Text Content */}
                     <motion.div
-                      initial={{ opacity: 0, x: isEven ? 100 : -100 }}
+                      initial={{ opacity: 0, x: isEven ? 200 : -200 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true, amount: 0.3 }}
-                      transition={{ duration: 0.8, ease: "easeOut" }}
+                      viewport={{ once: false, amount: 0.3, margin: "0px 0px -100px 0px" }}
+                      transition={{ 
+                        duration: 0.8,
+                        ease: "easeOut"
+                      }}
                       className="z-10 flex-grow"
                     >
                       <h3 className="font-[Montserrat] font-bold text-[24px] leading-[32px] text-[#345261] mb-3 max-[413px]:text-[20px]">
@@ -436,7 +453,13 @@ const ServiceDetails = () => {
         )}
 
         {/* MODERN FAQ SECTION - NUMBER-LEAD DESIGN */}
-        <div className="mt-40 max-w-[1200px] mx-auto px-6 md:px-0 mb-0">
+        <motion.div 
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="mt-40 max-w-[1200px] mx-auto px-6 md:px-0 mb-0"
+        >
           <div className="flex flex-col lg:flex-row gap-15">
             {/* Left Side: Minimalist Purple Style */}
             <div className="lg:w-2/5">
@@ -627,62 +650,62 @@ const ServiceDetails = () => {
                   ];
                 }
               })().map((faq, idx) => {
-                  const isOpen = activeFaq === idx;
-                  return (
-                    <div
-                      key={idx}
-                      className={`transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] border-b border-[#E5E5E5] last:border-none group px-4 py-3 ${isOpen ? 'bg-[#345261]/[0.02] rounded-xl' : 'hover:bg-[#345261]/[0.01]'
-                        }`}
+                const isOpen = activeFaq === idx;
+                return (
+                  <div
+                    key={idx}
+                    className={`transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] border-b border-[#E5E5E5] last:border-none group px-4 py-3 ${isOpen ? 'bg-[#345261]/[0.02] rounded-xl' : 'hover:bg-[#345261]/[0.01]'
+                      }`}
+                  >
+                    <button
+                      onClick={() => setActiveFaq(isOpen ? -1 : idx)}
+                      className="w-full flex items-start gap-6 lg:gap-8 text-left group"
                     >
-                      <button
-                        onClick={() => setActiveFaq(isOpen ? -1 : idx)}
-                        className="w-full flex items-start gap-6 lg:gap-8 text-left group"
-                      >
-                        <div className="flex flex-col items-center pt-1">
-                          <span className={`font-[Montserrat] font-bold text-[14px] leading-none transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${isOpen ? 'text-[#345261] opacity-100 mb-0' : 'text-[#345261]/30 opacity-60'
-                            }`}>
-                            {idx + 1 < 10 ? `0${idx + 1}` : idx + 1}
-                          </span>
-                          <div className={`w-[2px] transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${isOpen ? 'h-10 bg-[#345261]' : 'h-0 bg-transparent'
-                            }`} />
-                        </div>
-
-                        <div className="flex-grow pb-4">
-                          <h3 className={`font-[Montserrat] font-bold text-[20px] leading-[32px] transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${isOpen ? 'text-[#345261] translate-x-1' : 'text-[#345261]/80 group-hover:text-[#345261] group-hover:translate-x-1'
-                            }`}>
-                            {faq.q}
-                          </h3>
-                        </div>
-
-                        <div className={`mt-2 flex-shrink-0 w-10 h-10 rounded-full border border-[#E5E5E5] flex items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${isOpen ? 'rotate-180 bg-[#345261] text-white border-transparent' : 'text-[#345261]/30 group-hover:text-[#345261] group-hover:border-[#345261]/20 group-hover:scale-110'
+                      <div className="flex flex-col items-center pt-1">
+                        <span className={`font-[Montserrat] font-bold text-[14px] leading-none transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${isOpen ? 'text-[#345261] opacity-100 mb-0' : 'text-[#345261]/30 opacity-60'
                           }`}>
-                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                            <polyline points="6 9 12 15 18 9"></polyline>
-                          </svg>
-                        </div>
-                      </button>
+                          {idx + 1 < 10 ? `0${idx + 1}` : idx + 1}
+                        </span>
+                        <div className={`w-[2px] transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${isOpen ? 'h-10 bg-[#345261]' : 'h-0 bg-transparent'
+                          }`} />
+                      </div>
 
-                      <div className={`transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] overflow-hidden ${isOpen ? 'max-h-[400px] opacity-100 mt-0' : 'max-h-0 opacity-0'
+                      <div className="flex-grow pb-4">
+                        <h3 className={`font-[Montserrat] font-bold text-[20px] leading-[32px] transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${isOpen ? 'text-[#345261] translate-x-1' : 'text-[#345261]/80 group-hover:text-[#345261] group-hover:translate-x-1'
+                          }`}>
+                          {faq.q}
+                        </h3>
+                      </div>
+
+                      <div className={`mt-2 flex-shrink-0 w-10 h-10 rounded-full border border-[#E5E5E5] flex items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${isOpen ? 'rotate-180 bg-[#345261] text-white border-transparent' : 'text-[#345261]/30 group-hover:text-[#345261] group-hover:border-[#345261]/20 group-hover:scale-110'
                         }`}>
-                        <div className={`flex gap-6 lg:gap-8 transition-transform duration-700 ease-out ${isOpen ? 'translate-y-0' : '-translate-y-4'
-                          }`}>
-                          {/* Spacer to align with number column */}
-                          <div className="w-[24px] lg:w-[32px] flex-shrink-0" />
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                          <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                      </div>
+                    </button>
 
-                          <div className="flex-grow">
-                            <p className="font-[Montserrat] font-normal text-[17px] leading-[32px] text-[#6B6A66] pl-6 border-l-2 border-[#E5E5E5] -ml-[5px] pr-4">
-                              {faq.a}
-                            </p>
-                          </div>
+                    <div className={`transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] overflow-hidden ${isOpen ? 'max-h-[400px] opacity-100 mt-0' : 'max-h-0 opacity-0'
+                      }`}>
+                      <div className={`flex gap-6 lg:gap-8 transition-transform duration-700 ease-out ${isOpen ? 'translate-y-0' : '-translate-y-4'
+                        }`}>
+                        {/* Spacer to align with number column */}
+                        <div className="w-[24px] lg:w-[32px] flex-shrink-0" />
+
+                        <div className="flex-grow">
+                          <p className="font-[Montserrat] font-normal text-[17px] leading-[32px] text-[#6B6A66] pl-6 border-l-2 border-[#E5E5E5] -ml-[5px] pr-4">
+                            {faq.a}
+                          </p>
                         </div>
                       </div>
                     </div>
-                  );
-                })
+                  </div>
+                );
+              })
               }
             </div>
           </div>
-        </div>
+        </motion.div>
 
       </div>
 
