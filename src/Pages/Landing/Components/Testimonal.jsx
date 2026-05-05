@@ -121,7 +121,7 @@ export default function SmoothStack() {
       </div>
 
       <div
-        className="relative flex h-[480px] min-[414px]:h-[480px] min-[1025px]:h-[480px] w-full max-w-[1100px] items-center justify-center"
+        className="relative flex h-[520px] min-[414px]:h-[480px] min-[1025px]:h-[480px] w-full max-w-[1100px] items-center justify-center"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
@@ -145,7 +145,7 @@ export default function SmoothStack() {
         {cards.map((card, index) => (
           <motion.div
             key={card.id}
-            className="absolute left-1/2 top-[60px] flex flex-col min-[414px]:flex-row h-[280px] min-[414px]:h-[320px] min-[1025px]:h-[350px] w-[95%] min-[1025px]:w-[800px] rounded-xl bg-white shadow-[0px_20px_60px_0px_#2E213D14]"
+            className="absolute left-1/2 top-[60px] flex flex-col min-[414px]:flex-row h-[390px] min-[414px]:h-[320px] min-[1025px]:h-[350px] w-[95%] min-[1025px]:w-[800px] rounded-xl bg-white shadow-[0px_20px_60px_0px_#2E213D14]"
             animate={{
               width:
                 window.innerWidth < 414
@@ -219,7 +219,7 @@ export default function SmoothStack() {
               </h3>
 
               {/* 📝 TEXT */}
-              <p className="mb-4 min-[350px]:mb-4 min-[1025px]:mb-5 font-montserrat text-[16px] leading-[24px] text-[#6B6A66] max-w-[350px]">
+              <p className="mb-4 min-[350px]:mb-4 min-[1025px]:mb-5 font-montserrat text-[16px] leading-[24px] text-[#6B6A66] max-w-[350px] text-justify">
                 Ask agreed answer rather joy nature admire wisdom. Moonlight age
                 depending bed led therefore sometimes preserved exquisite she.
                 An fail up so shot leaf wise in. Minuter highest his arrived for
