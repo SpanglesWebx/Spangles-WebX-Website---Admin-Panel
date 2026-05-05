@@ -200,8 +200,6 @@ export const services = [
       "Security Implementation",
       "Testing and Quality Assurance",
       "Deployment and Hosting",
-      "Maintenance and Support",
-      "Performance Optimization",
     ],
     advantageHeading: "Custom Software Solutions to Streamline Your Business Growth",
   },
@@ -278,13 +276,13 @@ max-[413px]:px-5 max-[413px]:pt-8 max-[413px]:pb-20"
                 key={index}
                 initial={
                   isLeft
-                    ? { opacity: 0, x: -150, y: 30, rotate: -5, filter: "blur(10px)" }
+                    ? { opacity: 0, x: -50, y: 20, rotate: -5, filter: "blur(10px)" }
                     : isRight
-                      ? { opacity: 0, x: 150, y: 30, rotate: 5, filter: "blur(10px)" }
-                      : { opacity: 0, scale: 0.4, y: 100, filter: "blur(10px)" }
+                      ? { opacity: 0, x: 50, y: 20, rotate: 5, filter: "blur(10px)" }
+                      : { opacity: 0, scale: 0.8, y: 50, filter: "blur(10px)" }
                 }
                 whileInView={{ opacity: 1, x: 0, y: 0, scale: 1, rotate: 0, filter: "blur(0px)" }}
-                viewport={{ once: true, amount: 0.15 }}
+                viewport={{ once: true, amount: 0.1 }}
                 transition={{
                   type: "spring",
                   stiffness: 70,

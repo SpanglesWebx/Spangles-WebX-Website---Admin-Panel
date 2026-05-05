@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 import icon1 from "../../../assets/icon1.png";
 import icon2 from "../../../assets/icon2.png";
 import icon3 from "../../../assets/icon3.png";
@@ -45,7 +46,13 @@ max-[413px]:overflow-hidden"
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-[120px] gap-y-[50px] text-left max-[413px]:gap-y-[45px]">
           {/* Item 1 */}
-          <div className="flex items-start gap-[26px] max-[413px]:gap-[16px]">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.5, rotate: -15, x: -50 }}
+            whileInView={{ opacity: 1, scale: 1, rotate: 0, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "backOut", delay: 0.1 }}
+            className="flex items-start gap-[26px] max-[413px]:gap-[16px]"
+          >
             <div className="p-[20px] bg-[#E0E7FF] rounded-[10px] flex items-center justify-center max-[413px]:p-[16px]">
               <img
                 src={icon3}
@@ -63,10 +70,16 @@ max-[413px]:overflow-hidden"
                 turning ideas into impactful digital solutions.
               </p>
             </div>
-          </div>
+          </motion.div>
 
           {/* Item 2 */}
-          <div className="flex items-start gap-[26px] max-[413px]:gap-[16px]">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.5, rotate: 15, x: 50 }}
+            whileInView={{ opacity: 1, scale: 1, rotate: 0, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "backOut", delay: 0.2 }}
+            className="flex items-start gap-[26px] max-[413px]:gap-[16px]"
+          >
             <div className="p-[20px] bg-[#e6f4ee] rounded-[10px] flex items-center justify-center max-[413px]:p-[14px]">
               <img
                 src={icon4}
@@ -83,10 +96,16 @@ max-[413px]:overflow-hidden"
                 designed for growth and performance.
               </p>
             </div>
-          </div>
+          </motion.div>
 
           {/* Item 3 */}
-          <div className="flex items-start gap-[26px] max-[413px]:gap-[16px]">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.5, rotate: -15, x: -50 }}
+            whileInView={{ opacity: 1, scale: 1, rotate: 0, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "backOut", delay: 0.3 }}
+            className="flex items-start gap-[26px] max-[413px]:gap-[16px]"
+          >
             <div className="p-[20px] bg-[#dee1e6] rounded-[10px] flex items-center justify-center max-[413px]:p-[14px]">
               <img
                 src={icon1}
@@ -103,10 +122,16 @@ max-[413px]:overflow-hidden"
                 your projects running smoothly.
               </p>
             </div>
-          </div>
+          </motion.div>
 
           {/* Item 4 */}
-          <div className="flex items-start gap-[26px] max-[413px]:gap-[16px]">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.5, rotate: 15, x: 50 }}
+            whileInView={{ opacity: 1, scale: 1, rotate: 0, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "backOut", delay: 0.4 }}
+            className="flex items-start gap-[26px] max-[413px]:gap-[16px]"
+          >
             <div className="p-[20px] bg-[#f4e6e9] rounded-[10px] flex items-center justify-center max-[413px]:p-[14px]">
               <img
                 src={icon2}
@@ -123,7 +148,7 @@ max-[413px]:overflow-hidden"
                 full visibility at every stage.
               </p>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Divider */}

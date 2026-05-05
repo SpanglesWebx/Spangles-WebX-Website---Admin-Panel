@@ -314,19 +314,20 @@ const ServiceDetails = () => {
                 return (
                   <div
                     key={i}
-                    className={`flex items-center gap-20 max-[1024px]:gap-10 max-[768px]:flex-col max-[768px]:items-start max-[768px]:gap-4 ${isEven ? "flex-row" : "flex-row-reverse"
-                      }`}
+                    className={`flex items-center gap-20 max-[1024px]:gap-10 max-[768px]:flex-col max-[768px]:items-start max-[768px]:gap-6 ${isEven ? "flex-row" : "flex-row-reverse"
+                      } max-[768px]:!flex-col`}
                   >
                     {/* Large Number Image */}
                     <motion.div
-                      initial={{ opacity: 0, x: isEven ? -200 : 200, rotate: isEven ? -10 : 10 }}
+                      initial={{ opacity: 0, x: isEven ? "-20%" : "20%", rotate: isEven ? -10 : 10 }}
                       whileInView={{ opacity: 1, x: 0, rotate: 0 }}
-                      viewport={{ once: false, amount: 0.3, margin: "0px 0px -100px 0px" }}
+                      viewport={{ once: false, amount: 0.1 }}
                       transition={{ 
                         duration: 0.8,
                         ease: "easeOut"
                       }}
                       className="flex-shrink-0 select-none relative"
+                      style={{ willChange: "transform, opacity", backfaceVisibility: "hidden" }}
                     >
                       <img
                         src={[num01, num02, num03, num04, num05, num06, num07, num08, num09, num10, num11][i] || num01}
@@ -337,14 +338,15 @@ const ServiceDetails = () => {
 
                     {/* Text Content */}
                     <motion.div
-                      initial={{ opacity: 0, x: isEven ? 200 : -200 }}
+                      initial={{ opacity: 0, x: isEven ? "20%" : "-20%" }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: false, amount: 0.3, margin: "0px 0px -100px 0px" }}
+                      viewport={{ once: false, amount: 0.1 }}
                       transition={{ 
                         duration: 0.8,
                         ease: "easeOut"
                       }}
                       className="z-10 flex-grow"
+                      style={{ willChange: "transform, opacity", backfaceVisibility: "hidden" }}
                     >
                       <h3 className="font-[Montserrat] font-bold text-[24px] leading-[32px] text-[#345261] mb-3 max-[413px]:text-[20px]">
                         {item.includes(':') ? item.split(':')[0] : item} :
