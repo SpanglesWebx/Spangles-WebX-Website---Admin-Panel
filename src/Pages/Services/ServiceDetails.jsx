@@ -253,7 +253,7 @@ const ServiceDetails = () => {
     min-[1024px]:max-[1200px]:px-[72px]"
         >
           {/* breadcrumb */}
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             key={service.title + "-breadcrumb"}
@@ -303,71 +303,73 @@ const ServiceDetails = () => {
               </p>
             ))}
 
-            {/* Heading */}
-            <h2 className="font-[Montserrat] font-semibold text-[32px] leading-[38px] text-[#345261] mb-10 max-[1024px]:text-[28px] max-[768px]:text-[26px] max-[413px]:text-[20px]">
-              {service.advantageHeading || "Advantages of Service"}
-            </h2>
+            <div className="min-[1441px]:max-w-[1450px] min-[1441px]:mx-auto">
+              {/* Heading */}
+              <h2 className="font-[Montserrat] font-semibold text-[32px] leading-[38px] text-[#345261] mb-10 max-[1024px]:text-[28px] max-[768px]:text-[26px] max-[413px]:text-[20px]">
+                {service.advantageHeading || "Advantages of Service"}
+              </h2>
 
-            <div className="space-y-0 mt-0 relative">
-              {service.advantages?.map((item, i) => {
-                const isEven = i % 2 === 0;
-                return (
-                  <div
-                    key={i}
-                    className={`flex items-center gap-20 max-[1024px]:gap-10 max-[768px]:flex-col max-[768px]:items-start max-[768px]:gap-6 ${isEven ? "flex-row" : "flex-row-reverse"
-                      } max-[768px]:!flex-col`}
-                  >
-                    {/* Large Number Image */}
-                    <motion.div
-                      initial={{ opacity: 0, x: isEven ? "-20%" : "20%", rotate: isEven ? -10 : 10 }}
-                      whileInView={{ opacity: 1, x: 0, rotate: 0 }}
-                      viewport={{ once: false, amount: 0.1 }}
-                      transition={{ 
-                        duration: 0.8,
-                        ease: "easeOut"
-                      }}
-                      className="flex-shrink-0 select-none relative"
-                      style={{ willChange: "transform, opacity", backfaceVisibility: "hidden" }}
+              <div className="space-y-0 mt-0 relative">
+                {service.advantages?.map((item, i) => {
+                  const isEven = i % 2 === 0;
+                  return (
+                    <div
+                      key={i}
+                      className={`flex items-center gap-20 max-[1024px]:gap-10 max-[768px]:flex-col max-[768px]:items-start max-[768px]:gap-6 ${isEven ? "flex-row" : "flex-row-reverse"
+                        } max-[768px]:!flex-col`}
                     >
-                      {(() => {
-                        const numImages = [num01, num02, num03, num04, num05, num06, num07, num08, num09, num10, num11];
-                        const match = item.match(/^(\d+)/);
-                        const numIndex = match ? parseInt(match[1]) - 1 : i;
-                        return (
-                          <img
-                            src={numImages[numIndex] || numImages[i] || num01}
-                            alt={`Number ${numIndex + 1}`}
-                            className="w-[200px] h-[200px] object-contain max-[1024px]:w-[180px] max-[1024px]:h-[180px] max-[768px]:w-[140px] max-[768px]:h-[140px] max-[413px]:w-[110px] max-[413px]:h-[110px]"
-                          />
-                        );
-                      })()}
-                    </motion.div>
-
-                    {/* Text Content */}
-                    <motion.div
-                      initial={{ opacity: 0, x: isEven ? "20%" : "-20%" }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: false, amount: 0.1 }}
-                      transition={{ 
-                        duration: 0.8,
-                        ease: "easeOut"
-                      }}
-                      className="z-10 flex-grow"
-                      style={{ willChange: "transform, opacity", backfaceVisibility: "hidden" }}
-                    >
-                      <h3 className="font-[Montserrat] font-bold text-[24px] leading-[32px] text-[#345261] mb-3 max-[413px]:text-[20px]">
+                      {/* Large Number Image */}
+                      <motion.div
+                        initial={{ opacity: 0, x: isEven ? "-20%" : "20%", rotate: isEven ? -10 : 10 }}
+                        whileInView={{ opacity: 1, x: 0, rotate: 0 }}
+                        viewport={{ once: false, amount: 0.1 }}
+                        transition={{
+                          duration: 0.8,
+                          ease: "easeOut"
+                        }}
+                        className="flex-shrink-0 select-none relative"
+                        style={{ willChange: "transform, opacity", backfaceVisibility: "hidden" }}
+                      >
                         {(() => {
-                          let title = item.includes(":") ? item.split(":")[0] : item;
-                          return title.replace(/^\d+\s*[—\-]\s*/, "");
-                        })()} :
-                      </h3>
-                      <p className="font-[Montserrat] font-normal text-[18px] leading-[30px] text-[#6B6A66] max-[413px]:text-[16px]">
-                        {item.includes(":") ? item.split(":")[1].trim() : "We provide high-quality services tailored to your business needs, ensuring optimal results and professional excellence."}
-                      </p>
-                    </motion.div>
-                  </div>
-                );
-              })}
+                          const numImages = [num01, num02, num03, num04, num05, num06, num07, num08, num09, num10, num11];
+                          const match = item.match(/^(\d+)/);
+                          const numIndex = match ? parseInt(match[1]) - 1 : i;
+                          return (
+                            <img
+                              src={numImages[numIndex] || numImages[i] || num01}
+                              alt={`Number ${numIndex + 1}`}
+                              className="w-[200px] h-[200px] object-contain max-[1024px]:w-[180px] max-[1024px]:h-[180px] max-[768px]:w-[140px] max-[768px]:h-[140px] max-[413px]:w-[110px] max-[413px]:h-[110px]"
+                            />
+                          );
+                        })()}
+                      </motion.div>
+
+                      {/* Text Content */}
+                      <motion.div
+                        initial={{ opacity: 0, x: isEven ? "20%" : "-20%" }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: false, amount: 0.1 }}
+                        transition={{
+                          duration: 0.8,
+                          ease: "easeOut"
+                        }}
+                        className="z-10 flex-grow"
+                        style={{ willChange: "transform, opacity", backfaceVisibility: "hidden" }}
+                      >
+                        <h3 className="font-[Montserrat] font-bold text-[24px] leading-[32px] text-[#345261] mb-3 max-[413px]:text-[20px]">
+                          {(() => {
+                            let title = item.includes(":") ? item.split(":")[0] : item;
+                            return title.replace(/^\d+\s*[—\-]\s*/, "");
+                          })()} :
+                        </h3>
+                        <p className="font-[Montserrat] font-normal text-[18px] leading-[30px] text-[#6B6A66] max-[413px]:text-[16px]">
+                          {item.includes(":") ? item.split(":")[1].trim() : "We provide high-quality services tailored to your business needs, ensuring optimal results and professional excellence."}
+                        </p>
+                      </motion.div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
@@ -465,7 +467,7 @@ const ServiceDetails = () => {
         )}
 
         {/* MODERN FAQ SECTION - NUMBER-LEAD DESIGN */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.1 }}
