@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import icon1 from "../../../assets/icon1.png";
 import icon2 from "../../../assets/icon2.png";
 import icon3 from "../../../assets/icon3.png";
@@ -8,9 +8,45 @@ import icon4 from "../../../assets/icon-4.png";
 
 const WhyChooseUs = () => {
   const navigate = useNavigate();
+  const containerRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "center center"],
+  });
+
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
+  // Staggered scroll-linked animations for each item
+  const opacity1 = useTransform(smoothProgress, [0, 0.7], [0, 1]);
+  const scale1 = useTransform(smoothProgress, [0, 0.7], [0.5, 1]);
+  const x1 = useTransform(smoothProgress, [0, 0.7], [-50, 0]);
+  const r1 = useTransform(smoothProgress, [0, 0.7], [-15, 0]);
+
+  const opacity2 = useTransform(smoothProgress, [0.1, 0.8], [0, 1]);
+  const scale2 = useTransform(smoothProgress, [0.1, 0.8], [0.5, 1]);
+  const x2 = useTransform(smoothProgress, [0.1, 0.8], [50, 0]);
+  const r2 = useTransform(smoothProgress, [0.1, 0.8], [15, 0]);
+
+  const opacity3 = useTransform(smoothProgress, [0.2, 0.9], [0, 1]);
+  const scale3 = useTransform(smoothProgress, [0.2, 0.9], [0.5, 1]);
+  const x3 = useTransform(smoothProgress, [0.2, 0.9], [-50, 0]);
+  const r3 = useTransform(smoothProgress, [0.2, 0.9], [-15, 0]);
+
+  const opacity4 = useTransform(smoothProgress, [0.3, 1.0], [0, 1]);
+  const scale4 = useTransform(smoothProgress, [0.3, 1.0], [0.5, 1]);
+  const x4 = useTransform(smoothProgress, [0.3, 1.0], [50, 0]);
+  const r4 = useTransform(smoothProgress, [0.3, 1.0], [15, 0]);
 
   return (
-    <section className="bg-[#Ffffff] py-[90px] relative overflow-hidden max-[413px]:bg-[#F4F7FA] max-[413px]:py-[60px]">
+    <section
+      ref={containerRef}
+      className="bg-[#Ffffff] py-[90px] relative overflow-hidden max-[413px]:bg-[#F4F7FA] max-[413px]:py-[60px]"
+    >
       {/* Dots Pattern */}
       <div
         className="absolute left-[0px] top-[120px] grid grid-cols-8 gap-[8px] opacity-100 
@@ -46,11 +82,8 @@ max-[413px]:overflow-hidden"
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-[120px] gap-y-[50px] text-left max-[413px]:gap-y-[45px]">
           {/* Item 1 */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.5, rotate: -15, x: -50 }}
-            whileInView={{ opacity: 1, scale: 1, rotate: 0, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "backOut", delay: 0.1 }}
+          <motion.div
+            style={{ opacity: opacity1, scale: scale1, x: x1, rotate: r1 }}
             className="flex items-start gap-[26px] max-[413px]:gap-[16px]"
           >
             <div className="p-[20px] bg-[#E0E7FF] rounded-[10px] flex items-center justify-center max-[413px]:p-[16px]">
@@ -73,11 +106,8 @@ max-[413px]:overflow-hidden"
           </motion.div>
 
           {/* Item 2 */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.5, rotate: 15, x: 50 }}
-            whileInView={{ opacity: 1, scale: 1, rotate: 0, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "backOut", delay: 0.2 }}
+          <motion.div
+            style={{ opacity: opacity2, scale: scale2, x: x2, rotate: r2 }}
             className="flex items-start gap-[26px] max-[413px]:gap-[16px]"
           >
             <div className="p-[20px] bg-[#e6f4ee] rounded-[10px] flex items-center justify-center max-[413px]:p-[14px]">
@@ -99,11 +129,8 @@ max-[413px]:overflow-hidden"
           </motion.div>
 
           {/* Item 3 */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.5, rotate: -15, x: -50 }}
-            whileInView={{ opacity: 1, scale: 1, rotate: 0, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "backOut", delay: 0.3 }}
+          <motion.div
+            style={{ opacity: opacity3, scale: scale3, x: x3, rotate: r3 }}
             className="flex items-start gap-[26px] max-[413px]:gap-[16px]"
           >
             <div className="p-[20px] bg-[#dee1e6] rounded-[10px] flex items-center justify-center max-[413px]:p-[14px]">
@@ -125,11 +152,8 @@ max-[413px]:overflow-hidden"
           </motion.div>
 
           {/* Item 4 */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.5, rotate: 15, x: 50 }}
-            whileInView={{ opacity: 1, scale: 1, rotate: 0, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "backOut", delay: 0.4 }}
+          <motion.div
+            style={{ opacity: opacity4, scale: scale4, x: x4, rotate: r4 }}
             className="flex items-start gap-[26px] max-[413px]:gap-[16px]"
           >
             <div className="p-[20px] bg-[#f4e6e9] rounded-[10px] flex items-center justify-center max-[413px]:p-[14px]">
@@ -160,7 +184,7 @@ max-[413px]:overflow-hidden"
             <h3 className="font-montserrat font-bold text-[28px] leading-[38.78px] tracking-[-1.06px] text-[#161C2D] mb-[14px] max-[413px]:text-[18px] max-[413px]:leading-[28px]">
               Ready to launch your next project?
             </h3>
-           <p className="font-montserrat font-normal w-[900px] text-[18px] leading-[28.2px] tracking-[-0.18px] text-[#6B6A66] max-w-[700px] max-[413px]:text-[12px] max-[413px]:leading-[20px] max-[413px]:max-w-[320px]">
+            <p className="font-montserrat font-normal w-[900px] text-[18px] leading-[28.2px] tracking-[-0.18px] text-[#6B6A66] max-w-[700px] max-[413px]:text-[12px] max-[413px]:leading-[20px] max-[413px]:max-w-[320px]">
               Ready to launch your next project? We combine creativity,
               technology, and expertise to bring your vision to life. With a
               focus on quality and timely delivery, we ensure your project

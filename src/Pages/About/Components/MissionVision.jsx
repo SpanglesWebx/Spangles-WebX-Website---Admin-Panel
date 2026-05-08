@@ -73,7 +73,7 @@ export default function MissionVision() {
               Our Mission
             </h2>
             <p className="text-[#6B6A66] text-[18px] leading-[26px] max-[768px]:text-[14px] max-[768px]:leading-[22px] text-justify">
-              Our mission is to establish ourselves as a premier software development and technology company by delivering innovative and reliable solutions that align with industry standards and evolving client needs. We are committed to providing exceptional services that exceed expectations while fostering a culture of creativity and excellence. By creating a supportive and dynamic environment, we empower our employees to thrive in the ever-changing field of information technology, ensuring they contribute to delivering cutting-edge solutions that drive success for our clients and partners.
+            At Spangles Webx Pvt Ltd, our mission is to deliver innovative, reliable, and industry-standard technology solutions that help businesses grow and succeed. We are committed to excellence, creativity, and empowering our team to build cutting-edge digital solutions that exceed client expectations.
             </p>
           </div>
 
@@ -142,7 +142,7 @@ export default function MissionVision() {
               Our Vision
             </h2>
             <p className="text-[#6B6A66] text-[18px] leading-[26px] max-[768px]:text-[14px] max-[768px]:leading-[22px] text-justify">
-              Our vision is to be a leading software development and technology company, leveraging industry standards and advanced technologies to provide exceptional business and technological solutions to our clients. We strive to deliver unparalleled services and solutions while cultivating an innovative and efficient work environment that empowers our team to excel in the dynamic field of information technology. Achieving excellence for both our clients and employees remains at the core of our goals.
+           At Spangles Webx Pvt Ltd, our vision is to become a leading technology company delivering innovative and high-quality digital solutions that drive business success. We aim to build a creative and future-ready environment where excellence, innovation, and customer satisfaction remain at the heart of everything we do.
             </p>
           </div>
         </motion.div>
@@ -164,7 +164,7 @@ export default function MissionVision() {
               Our Core Values
             </h2>
             <p className="text-[#6B6A66] text-[18px] leading-[26px] max-[768px]:text-[14px] max-[768px]:leading-[22px] text-justify">
-              We firmly believe that the success of our company lies in a strong organisational structure and a motivated workforce. To achieve this, we actively recruit skilled professionals who share our vision and are dedicated to realising our goals. We foster an environment of collaboration, innovation, and continuous learning. This enables our team to enhance their skills, boost productivity, and stay ahead in a rapidly changing industry.
+          At Spangles Webx Pvt Ltd, we believe our success is driven by a talented team, strong collaboration, and continuous innovation. We create a supportive work environment that empowers professionals to grow, perform, and excel in the evolving technology industry.
             </p>
           </div>
 

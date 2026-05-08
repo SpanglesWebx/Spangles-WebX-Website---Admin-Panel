@@ -324,7 +324,7 @@ export default function ServicesSection() {
                     {item.title}
                   </h3>
 
-                  <p className="font-normal text-[16px] leading-[23px] text-[#3955638F]">
+                  <p className="font-normal text-[16px] leading-[23px] text-[#3955638F] line-clamp-2">
                     {item.description}
                   </p>
                 </div>

@@ -329,11 +329,18 @@ const ServiceDetails = () => {
                       className="flex-shrink-0 select-none relative"
                       style={{ willChange: "transform, opacity", backfaceVisibility: "hidden" }}
                     >
-                      <img
-                        src={[num01, num02, num03, num04, num05, num06, num07, num08, num09, num10, num11][i] || num01}
-                        alt={`Number ${i + 1}`}
-                        className="w-[200px] h-[200px] object-contain max-[1024px]:w-[180px] max-[1024px]:h-[180px] max-[768px]:w-[140px] max-[768px]:h-[140px] max-[413px]:w-[110px] max-[413px]:h-[110px]"
-                      />
+                      {(() => {
+                        const numImages = [num01, num02, num03, num04, num05, num06, num07, num08, num09, num10, num11];
+                        const match = item.match(/^(\d+)/);
+                        const numIndex = match ? parseInt(match[1]) - 1 : i;
+                        return (
+                          <img
+                            src={numImages[numIndex] || numImages[i] || num01}
+                            alt={`Number ${numIndex + 1}`}
+                            className="w-[200px] h-[200px] object-contain max-[1024px]:w-[180px] max-[1024px]:h-[180px] max-[768px]:w-[140px] max-[768px]:h-[140px] max-[413px]:w-[110px] max-[413px]:h-[110px]"
+                          />
+                        );
+                      })()}
                     </motion.div>
 
                     {/* Text Content */}
@@ -349,10 +356,13 @@ const ServiceDetails = () => {
                       style={{ willChange: "transform, opacity", backfaceVisibility: "hidden" }}
                     >
                       <h3 className="font-[Montserrat] font-bold text-[24px] leading-[32px] text-[#345261] mb-3 max-[413px]:text-[20px]">
-                        {item.includes(':') ? item.split(':')[0] : item} :
+                        {(() => {
+                          let title = item.includes(":") ? item.split(":")[0] : item;
+                          return title.replace(/^\d+\s*[—\-]\s*/, "");
+                        })()} :
                       </h3>
                       <p className="font-[Montserrat] font-normal text-[18px] leading-[30px] text-[#6B6A66] max-[413px]:text-[16px]">
-                        {item.includes(':') ? item.split(':')[1] : "We provide high-quality services tailored to your business needs, ensuring optimal results and professional excellence."}
+                        {item.includes(":") ? item.split(":")[1].trim() : "We provide high-quality services tailored to your business needs, ensuring optimal results and professional excellence."}
                       </p>
                     </motion.div>
                   </div>
