@@ -386,13 +386,17 @@ const ServiceDetails = () => {
                 // Map titles to icons
                 const iconMap = {
                   "Consultation and Planning": <img src={consultationIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Requirement Analysis": <img src={consultationIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "System Architecture Design": <img src={innovationIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
                   "UI/UX Design": <img src={uiuxIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
                   "Front-End Development": <img src={frontendIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
                   "Back-End Development": <img src={backendIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Database Management": <img src={backendIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
                   "API Development and Integration": <img src={apiIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
                   "Security Implementation": <img src={securityIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
                   "Testing and Quality Assurance": <img src={testingIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
                   "Deployment and Hosting": <img src={deploymentIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
+                  "Deployment and Maintenance": <img src={deploymentIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
                   "Maintenance and Support": <img src={maintenanceIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
                   "Performance Optimization": <img src={performanceIcon} alt="" className="w-8 h-8 object-contain transition-all duration-500 group-hover:brightness-0 group-hover:invert" />,
 
@@ -454,7 +458,7 @@ const ServiceDetails = () => {
                     <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-[#345261]/30 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
                     <div className="relative z-10 w-14 h-14 rounded-xl bg-white text-[#345261] flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:bg-[#345261] group-hover:text-white border border-[#E5E5E5] group-hover:border-transparent">
-                      {iconMap[comp] || <Zap size={24} />}
+                      {iconMap[comp.replace(/^\d+\s*[—\-]\s*/, "")] || iconMap[comp] || <Zap size={24} />}
                     </div>
                     <h3 className="relative z-10 font-[Montserrat] font-bold text-[15px] leading-[22px] text-[#345261]">
                       {comp}

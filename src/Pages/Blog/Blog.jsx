@@ -908,8 +908,8 @@ export default function Blog() {
         </section>
       </div>
 
-      {/* Newsletter section - COMPACT CINEMATIC BREAKOUT */}
-      <section className="relative w-full py-24 overflow-hidden bg-[#161C2D] group">
+      {/* Manifesto Section - SEAMLESS BREAKOUT */}
+      <section className="relative w-full pt-0 pb-24 overflow-hidden bg-[#161C2D] group border-t border-white/5">
         {/* Cinematic Auras */}
         <motion.div
           animate={{ scale: [1, 1.2, 1], rotate: [0, 45, 0] }}
@@ -918,36 +918,44 @@ export default function Blog() {
         />
 
 
-        <div className="mx-auto max-w-[1440px] min-[1441px]:max-w-[1800px] px-6 md:px-15 min-[1095px]:px-16 min-[1441px]:px-[60px] relative z-10 flex flex-col md:flex-row items-center justify-between gap-16">
-          <div className="max-w-2xl">
-            <div className="flex items-center gap-4 mb-8">
-              <span className="h-[2px] w-12 bg-[#345261]" />
-              <p className="text-[11px] font-bold uppercase tracking-[0.5em] text-[#345261]">
-                NEWSLETTER
-              </p>
+        <div className="mx-auto max-w-[1440px] min-[1441px]:max-w-[1800px] px-6 md:px-15 min-[1095px]:px-16 min-[1441px]:px-[60px] relative z-10 grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] items-center gap-12 lg:gap-20">
+          <div className="max-w-2xl text-left relative py-12">
+            {/* Background Decorative Letter */}
+            <div className="absolute -left-12 -top-10 text-[240px] font-bold text-white/[0.03] select-none pointer-events-none font-serif italic">
+              S
             </div>
 
-            <h2 className="text-[44px] sm:text-[60px] font-semibold leading-[0.85] tracking-[-0.06em] text-white">
-              Never Miss <br />
-              <span className="italic font-serif text-white">an Update.</span>
-            </h2>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="relative z-10"
+            >
+              <div className="flex items-center gap-4 mb-12">
+                <div className="h-1 w-1 rounded-full bg-[#345261] animate-pulse" />
+                <span className="text-[11px] font-bold uppercase tracking-[0.5em] text-[#345261]">
+                  Syndicate Manifesto
+                </span>
+              </div>
 
-            <p className="mt-8 max-w-xl text-lg text-white/40 leading-relaxed font-medium">
-              Get the latest articles, design tips, and industry insights delivered
-              directly to your inbox every two weeks.
-            </p>
+              <h2 className="text-[60px] sm:text-[80px] min-[1015px]:text-[100px] font-semibold leading-[0.8] tracking-[-0.06em] text-white">
+                Curated <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFFFFF] via-[#FFFFFF] to-[#345261] italic font-serif">Intelligence.</span>
+              </h2>
 
-            <div className="mt-12 flex flex-col sm:flex-row gap-4 max-w-xl">
-              <input
-                type="email"
-                placeholder="your@email.com"
-                className="h-16 flex-1 rounded-2xl border border-white/5 bg-[#161C2D]/5 px-8 text-white placeholder:text-white/30 outline-none backdrop-blur-3xl focus:border-[#345261]/40 focus:bg-[#161C2D]/10 transition-all text-sm font-medium normal-case"
-                style={{ textTransform: 'none' }}
-              />
-              <MagneticButton className="h-16 px-12 rounded-2xl bg-[#345261] text-white text-[11px] font-bold uppercase tracking-[3px] hover:bg-[#161C2D] transition-all duration-500 ease-out shadow-2xl hover:shadow-[0_0_40px_rgba(52,82,97,0.4)] hover:scale-105">
-                Get Updates
-              </MagneticButton>
-            </div>
+              <div className="mt-16 max-w-2xl">
+                <p className="text-[20px] md:text-[24px] text-white/40 leading-relaxed font-medium tracking-tight">
+                  We dissect the complex to deliver the essential. Strategic insights for the modern digital era, crafted with precision.
+                </p>
+              </div>
+
+              <div className="mt-20 flex items-center gap-6 opacity-30 group-hover:opacity-60 transition-opacity duration-1000">
+                <div className="h-[1px] w-24 bg-white" />
+                <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-white whitespace-nowrap">
+                  The Spangles Standard
+                </span>
+              </div>
+            </motion.div>
           </div>
 
           <div className="relative hidden lg:block w-[400px] h-[340px]">

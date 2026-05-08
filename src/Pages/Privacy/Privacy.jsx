@@ -1,8 +1,12 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 import Support from "../About/Components/Support";
 import bannerImg from "../../assets/portfolio-banner.jpg";
 
 export default function Privacy() {
+  const navigate = useNavigate();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -11,6 +15,14 @@ export default function Privacy() {
     <div className="w-full bg-[#F4F7FA] min-h-screen font-montserrat">
       {/* Banner Section */}
       <div className="relative h-[360px] w-full max-[413px]:h-[300px]">
+        {/* Back to Home Button */}
+        <button 
+          onClick={() => navigate(-1)}
+          className="absolute top-8 left-[100px] z-50 flex items-center gap-2 px-5 py-2.5 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 rounded-full text-white text-[12px] tracking-[1.2px] font-bold transition-all group max-[1200px]:left-10 max-[768px]:left-6 max-[413px]:top-4 max-[413px]:left-4"
+        >
+          <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
+          GO BACK
+        </button>
         <img
           src={bannerImg}
           alt="banner"

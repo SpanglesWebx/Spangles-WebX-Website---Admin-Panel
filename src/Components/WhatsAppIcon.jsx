@@ -47,9 +47,17 @@ const WhatsAppIcon = () => {
           setShowNotification(false); // Clear notification on hover
         }}
         onMouseLeave={() => setIsHovered(false)}
-        whileHover={{ scale: 1.1 }}
+        animate={{
+          y: [0, -12, 0],
+        }}
+        transition={{
+          duration: 2.5,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        whileHover={{ scale: 1.1, y: 0 }}
         whileTap={{ scale: 0.9 }}
-        className="w-11 h-11 bg-[#25D366] rounded-full flex items-center justify-center text-white shadow-[0_4px_20px_rgba(37,211,102,0.4)] cursor-pointer relative group"
+        className="w-10 h-10 bg-[#25D366] rounded-full flex items-center justify-center text-white shadow-[0_4px_25px_rgba(37,211,102,0.5)] cursor-pointer relative group"
       >
         <FaWhatsapp size={24} />
 
@@ -58,14 +66,18 @@ const WhatsAppIcon = () => {
           <motion.span
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-white shadow-sm z-10"
+            className="absolute -top-1 -right-1 w-6 h-6 bg-red-500 text-white text-[11px] font-bold rounded-full flex items-center justify-center border-2 border-white shadow-md z-10"
           >
             1
           </motion.span>
         )}
 
-        {/* Subtle pulse animation */}
-        <span className="absolute inset-0 rounded-full bg-white/20 animate-ping opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+        {/* Continuous Wave/Pulse Effects */}
+        <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-40 -z-10"></span>
+        <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-20 -z-10 [animation-delay:1s]"></span>
+        
+        {/* Hover Glow */}
+        <span className="absolute inset-0 rounded-full bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
       </motion.a>
     </div>
   );
