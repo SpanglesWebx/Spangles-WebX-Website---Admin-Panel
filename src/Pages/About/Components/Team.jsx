@@ -128,7 +128,7 @@ import {
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 
-import team1 from "../../../assets/Team1.jpg";
+import team1 from "../../../assets/IMG_0093.webp";
 import team2 from "../../../assets/Team2.jpg";
 import team3 from "../../../assets/Team3.jpg";
 
