@@ -26,9 +26,16 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 /* ---------- MIDDLEWARE ---------- */
-app.use(cors({ origin: "*", credentials: true }));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({
+  limit: "50mb",
+  extended: true
+}));
 
 /* ✅ STATIC UPLOADS (CRITICAL) */
 // Block direct access to gallery folder (it must go through /api/gallery/view/:filename)

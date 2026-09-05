@@ -7,9 +7,9 @@ dotenv.config();
 /* ---------- ADMIN DETAILS ---------- */
 const ADMIN_DATA = {
   name: " Admin",
-  phone: "9999999999",
-  username: "webxadmin",
-  password: "Admin@123", // stored as plain text
+  phone: "7708784111",
+  username: "WebxAdmin",
+  password: "SpangleS2026", // stored as plain text
   email: process.env.ADMIN_EMAIL,
   role: "admin",
   access: {
