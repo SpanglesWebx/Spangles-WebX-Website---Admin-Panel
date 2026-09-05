@@ -42,7 +42,7 @@ export default function App() {
   }, []);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/admin">
       <Routes>
         {/* Login Page */}
         <Route path="/login" element={<Login />} />
