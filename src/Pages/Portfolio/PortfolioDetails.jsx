@@ -16,11 +16,40 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import Support from "../About/Components/Support";
 import Preloader from "../../Components/Preloader";
+import hospitalBanner from "../../assets/Hospital Management/Hospital baner.png";
+import hospitalImg1 from "../../assets/Hospital Management/Hospital Management 1.png";
+import hospitalImg2 from "../../assets/Hospital Management/Hospital Management -02.png";
+import hospitalImg3 from "../../assets/Hospital Management/Hospital Management -03.png";
+import hospitalImg4 from "../../assets/Hospital Management/Hospital management -4.png";
+import hospitalImg5 from "../../assets/Hospital Management/Hospital management -5.png";
+import hospitalImg6 from "../../assets/Hospital Management/Hospital management - 6.png";
+import hospitalImg7 from "../../assets/Hospital Management/Hospital management - 7.png";
+import hospitalImg8 from "../../assets/Hospital Management/Hospital managemenet -8.png";
+import clinicDashboard from "../../assets/Clinic Management/Clincal Dashboard.png";
+import clinicInnerBanner from "../../assets/Clinic Management/Clinic inner ban.png";
+import clinicSlide1 from "../../assets/Clinic Management/Clinic slide 1.png";
+import clinicSlide2 from "../../assets/Clinic Management/Clinical dashboard - 01.png";
+import clinicSlide3 from "../../assets/Clinic Management/clinical Patient.png";
+import clinicSlide4 from "../../assets/Clinic Management/Clinical doctor.png";
+import clinicSlide5 from "../../assets/Clinic Management/clinic Appointment.png";
+import clinicSlide6 from "../../assets/Clinic Management/Clinic Billing.png";
+import clinicSlide7 from "../../assets/Clinic Management/clinical lab.png";
+import schoolBanner from "../../assets/School mangemnt/School management.png";
+import schoolInnerBanner from "../../assets/School mangemnt/Banner img.png";
+import schoolSlide1 from "../../assets/School mangemnt/sign up page.png";
+import schoolSlide2 from "../../assets/School mangemnt/School Dashboard.png";
+import schoolSlide3 from "../../assets/School mangemnt/Admission.png";
+import schoolSlide4 from "../../assets/School mangemnt/student data.png";
+import schoolSlide5 from "../../assets/School mangemnt/school staff.png";
+import schoolSlide6 from "../../assets/School mangemnt/Fees school.png";
+import schoolSlide7 from "../../assets/School mangemnt/Billing.png";
 import img1 from "../../assets/churchs.png";
 import img2 from "../../assets/portfolio2.jpg";
 import img3 from "../../assets/portfolio3.jpg";
 import img4 from "../../assets/portfolio4.jpg";
-import img5 from "../../assets/portfolio5.jpg";
+import churchBanner from "../../assets/Church/Church.png";
+import bookMain from "../../assets/Book depot/Book-main.png";
+import bookInnerBanner from "../../assets/Book depot/book-inner-banner.png";
 import img6 from "../../assets/portfolio6.jpg";
 import img7 from "../../assets/portfolio7.jpg";
 import img8 from "../../assets/portfolio8.jpg";
@@ -28,163 +57,261 @@ import img8 from "../../assets/portfolio8.jpg";
 const allProjects = [
   {
     id: 1,
-    title: "Elon Date App",
-    image: img1,
-    gallery: [img1, img2, img3],
-    desc: "Analytics-driven dating experience with smart matching.",
-    fullDesc:
-      "Spangles Webx is a tech-driven company passionate about delivering innovative digital products. With a focus on design, usability, and performance, we help startups and enterprises scale with impactful web and mobile solutions. we help startups and ",
-    functionalities: [
-      {
-        title: "AI-powered compatibility matching",
-        description:
-          "Matches users based on deep behavioral analysis and preferences.",
-      },
-      {
-        title: "Real-time analytics dashboard",
-        description: "Provides insights into user activity and engagement.",
-      },
-      {
-        title: "Secure messaging",
-        description: "End-to-end encrypted communication for privacy.",
-      },
-      {
-        title: "Dynamic profiling",
-        description: "Continuously adapts user profiles based on interactions.",
-      },
-      {
-        title: "Event scheduling",
-        description: "Helps users plan and manage meetings efficiently.",
-      },
+    title: "Hospital Management",
+    image: hospitalBanner,
+    gallery: [
+      hospitalImg1,
+      hospitalImg2,
+      hospitalImg3,
+      hospitalImg4,
+      hospitalImg5,
+      hospitalImg6,
+      hospitalImg7,
+      hospitalImg8,
     ],
+    slideTitles: [
+      "Welcome",
+      "Hospital Dashboard",
+      "Patient",
+      "Doctor",
+      "Billing",
+      "Specialities",
+      "Laboratory",
+      "Consultation",
+    ],
+    desc: "Streamlining patient care, doctor scheduling, and administrative operations.",
+    fullDesc:
+      "The Hospital Management System (HMS) is a centralized platform designed to manage hospital operations efficiently. It connects patient care, doctors, nurses, laboratory, pharmacy, billing, insurance, and administration in one system. The system simplifies complex workflows and provides role-based access for different hospital staff. The goal is to create a clear, organized, and user-friendly experience for managing daily hospital activities.",
+    clientInfo:
+      "The project was developed for a hospital organization seeking to modernize and streamline its operational processes through a centralized digital platform. The system was designed to bring together clinical, administrative, and support functions, enabling healthcare professionals and hospital staff to efficiently manage patient care, resources, and day-to-day hospital operations within a unified system.",
+    projectChallenges: [
+      "The organization was facing difficulties in managing hospital operations because different departments followed separate processes. Patient information, appointments, doctors, nurses, laboratory, pharmacy, billing, staff, and inventory were not connected in one place.",
+      "This made it difficult to access information quickly, coordinate between departments, and monitor overall hospital activities.",
+      "I solved this problem by designing a centralized HMS that connects the major hospital workflows in one system, making information easier to manage, access, and track.",
+    ],
+    technologies: {
+      intro:
+        "The HMS was designed and developed using a combination of design and development technologies:",
+      list: [
+        {
+          name: "Figma",
+          desc: "UI/UX design, wireframes, prototypes, and high-fidelity screens.",
+        },
+        {
+          name: "FigJam",
+          desc: "User flows, process mapping, and workflow planning.",
+        },
+        {
+          name: "Design System",
+          desc: "Reusable components, typography, colors, spacing, and UI patterns.",
+        },
+        {
+          name: "HTML, CSS & JavaScript",
+          desc: "Frontend structure, styling, and interactions.",
+        },
+        {
+          name: "React",
+          desc: "Frontend development and component-based UI implementation.",
+        },
+        {
+          name: "Node.js",
+          desc: "Backend development and server-side operations.",
+        },
+        {
+          name: "MongoDB",
+          desc: "Database management for storing and managing hospital data.",
+        },
+      ],
+    },
+    keyFeaturesDeveloped:
+      "The Hospital Management System provides a centralized platform for managing hospital operations, including patient registration, OPD and IPD management, appointments, clinical consultations, departments and medical specialities, hospital facilities such as Emergency Care, ICU, CCU, ICCU and Dialysis, laboratory services, pharmacy and medicine inventory, staff and designation management, billing, insurance, blood requests, and administrative reporting. The system connects these workflows to improve coordination, information accessibility, and overall hospital operational efficiency.",
+    users:
+      "The HMS was designed to support multiple hospital user roles, including administrators, doctors, nurses, receptionists, laboratory technicians, pharmacists, billing staff, and other hospital employees. Each role is provided with access to the relevant modules and workflows required for their responsibilities, ensuring secure and efficient hospital operations.",
+    projectOutcomes:
+      "The redesigned Hospital Management System provides a structured and centralized platform for managing hospital operations. The improved information architecture and user interface make complex workflows easier to navigate, while role-based access helps staff quickly access the functions relevant to their responsibilities. Overall, the solution improves workflow organization, information accessibility, and coordination across different hospital departments.",
+    before:
+      "The existing design presented a wide range of hospital information across multiple operational areas. Users had to work through different sections to access patient and department-related information. Large amounts of information made some screens difficult to scan and understand. Related activities were not always visually connected within the interface. The overall structure required better clarity and information organization.",
+    after:
+      "The redesigned interface establishes a structured environment for managing hospital operations. Patient and operational information is arranged into clear and meaningful sections. Complex content is prioritized using improved information hierarchy and visual grouping. Related functions are positioned together to support smoother navigation. The consistent interface structure provides a clearer experience across hospital modules.",
   },
 
   {
     id: 2,
-    title: "Renewable Energy Landing Page",
-    image: img2,
-    gallery: [img2, img4, img5],
-    desc: "Experience a dynamic landing page for renewable energy solutions, showcasing sustainable innovations that attracted eco-conscious visitors and drove conversions significantly.",
-    fullDesc:
-      "Spangles Webx is a tech-driven company passionate about delivering innovative digital products. With a focus on design, usability, and performance, we help startups and enterprises scale with impactful web and mobile solutions. we help startups and ",
-    functionalities: [
-      {
-        title: "Lightweight architecture",
-        description: "Ensures fast loading and optimal performance.",
-      },
-      {
-        title: "SEO-friendly structure",
-        description: "Improves search engine visibility and ranking.",
-      },
-      {
-        title: "Interactive modules",
-        description: "Engaging service showcase components.",
-      },
-      {
-        title: "CMS integration",
-        description: "Easy content updates with custom management tools.",
-      },
-      {
-        title: "Responsive design",
-        description: "Optimized for all screen sizes and devices.",
-      },
+    title: "Clinical Management",
+    image: clinicInnerBanner,
+    gallery: [
+      clinicSlide1,
+      clinicSlide2,
+      clinicSlide3,
+      clinicSlide4,
+      clinicSlide5,
+      clinicSlide7,
+      clinicSlide6,
     ],
+    slideTitles: [
+      "Login Screen",
+      "Clinical Dashboard",
+      "Patient Management",
+      "Doctor Management",
+      "Appointment Management",
+      "Laboratory",
+      "Billing & Invoicing",
+    ],
+    desc: "Clinical assessment is the systematic evaluation of a patient's health condition through medical history, vital signs, and examinations.",
+    fullDesc:
+      "Clinical assessment is the systematic evaluation of a patient’s health condition through medical history, symptoms, vital signs, physical examination, and clinical findings. It helps healthcare professionals identify health problems, determine the patient’s condition, and plan appropriate diagnosis and treatment.",
+    clientInfo:
+      "The project was developed for a hospital organization seeking to improve and streamline its clinical management processes. The organization needed a structured solution to support healthcare professionals in assessing patients, documenting clinical findings, managing diagnoses and treatments, and maintaining accurate clinical records throughout the patient care journey.",
+    projectChallenges:
+      "Clinical information was handled across different consultation and speciality workflows, making it difficult for healthcare professionals to maintain complete and consistent patient records. Managing clinical assessments, medical history, diagnoses, prescriptions, treatment plans, and follow-up information required a more organized and connected approach.",
+    technologies:
+      "The Clinical Management solution was designed and developed using Figma for UI/UX design and prototyping, FigJam for clinical workflow mapping, React for frontend development, Node.js for backend development, and MongoDB for storing and managing clinical data.",
+    keyFeaturesDeveloped:
+      "The Clinical Management system supports patient clinical assessment, medical history, vital signs, physical examination, clinical findings, diagnosis, treatment planning, prescriptions, clinical notes, consultation records, speciality-based workflows, and follow-up care.",
+    users:
+      "The system is designed for general physicians, specialist doctors, nurses, and authorized clinical staff involved in patient assessment, consultation, diagnosis, treatment, and follow-up. Role-based access allows each user to work with the clinical functions relevant to their responsibilities.",
+    projectOutcomes:
+      "The Clinical Management solution provides a structured approach to managing patient care and clinical information. It improves the organization of clinical records, simplifies assessment and consultation workflows, and enables healthcare professionals to efficiently document and track diagnoses, treatments, prescriptions, and follow-up care throughout the patient journey.",
+    before:
+      "The previous clinical interface contained extensive patient information across different sections. Healthcare professionals needed to review multiple areas to understand relevant clinical details. Patient findings, medical information, and treatment details were not always presented with clear prioritization. The information structure made it harder to quickly identify important clinical details. The interface required a more focused approach to clinical information presentation.",
+    after:
+      "The redesigned clinical interface places important patient information within a clear and structured framework. Clinical details are organized according to the stages of patient care and professional requirements. Assessment findings, diagnoses, treatments, and prescriptions receive clearer visual priority. Relevant information can be reviewed with less visual complexity. The improved structure supports a more focused and consistent clinical user experience.",
   },
 
   {
     id: 3,
-    title: "Management Software",
-    image: img3,
-    gallery: [img3, img5, img6, img7],
-    desc: "Implement efficient management software that streamlined operations, enhanced productivity, and provided real-time insights for better decision-making processes across teams.",
-    fullDesc:
-      "Spangles Webx is a tech-driven company passionate about delivering innovative digital products. With a focus on design, usability, and performance, we help startups and enterprises scale with impactful web and mobile solutions. we help startups and ",
-    functionalities: [
-      {
-        title: "Real-time processing",
-        description: "Handles large datasets instantly.",
-      },
-      {
-        title: "Predictive analytics",
-        description: "Identifies future trends and patterns.",
-      },
-      {
-        title: "Automated reports",
-        description: "Generates and distributes reports efficiently.",
-      },
-      {
-        title: "Custom alerts",
-        description: "Notifies users about key data changes.",
-      },
-      {
-        title: "Scalable ingestion",
-        description: "Supports high-volume data input.",
-      },
+    title: "School Management Software",
+    image: schoolInnerBanner,
+    gallery: [
+      schoolSlide1,
+      schoolSlide2,
+      schoolSlide3,
+      schoolSlide4,
+      schoolSlide5,
+      schoolSlide6,
+      schoolSlide7,
     ],
+    slideTitles: [
+      "Sign Up Page",
+      "School Dashboard",
+      "Admission",
+      "Student Data",
+      "School Staff",
+      "Fees Management",
+      "Billing",
+    ],
+    desc: "A comprehensive School Management platform streamlining student admissions, attendance, grading, fee management, and academic administration.",
+    fullDesc:
+      "The School Management System is a centralized digital platform designed to streamline academic and administrative operations within an educational institution. It enables schools to efficiently manage student information, teachers, classes, subjects, attendance, examinations, schedules, fees, staff, and academic activities through an organized and connected system. The platform improves information accessibility, simplifies day-to-day workflows, and supports effective coordination between different users across the institution.",
+    clientInfo:
+      "The project was developed for a school organization seeking to streamline and centralize its academic and administrative processes. The organization needed a structured solution to manage students, teachers, classes, examinations, schedules, staff, and other day-to-day academic activities through a unified platform.",
+    projectChallenges:
+      "The organization faced challenges in managing academic information and examination processes across different workflows. Student records, class management, exam schedules, hall allocation, staff information, and academic activities required better coordination and organization.",
+    technologies:
+      "The School Management System was designed and developed using Figma for UI/UX design and prototyping, FigJam for workflow mapping, React for frontend development, Node.js for backend development, and MongoDB for storing and managing school data.",
+    keyFeaturesDeveloped:
+      "The School Management System includes student management, teacher management, class and subject management, attendance, fee management, examination management, exam scheduling, theory and practical hall allocation, automatic student seating, invigilator allocation, staff management, and academic reporting.",
+    users:
+      "The system is designed for administrators, teachers, students, examination coordinators, and other authorized school staff. Role-based access allows each user to access the academic and administrative functions relevant to their responsibilities.",
+    projectOutcomes:
+      "The School Management System provides a structured and centralized platform for managing academic and administrative activities. It simplifies examination planning, improves coordination between school staff, organizes student and academic information, and makes complex processes such as exam scheduling and hall allocation easier to manage.",
+    before:
+      "The previous design had multiple academic and administrative functions distributed across different sections. Users had to navigate through several screens to locate required information and complete tasks. Examination-related activities were not presented with a clear visual hierarchy. Important student, class, and examination information could be difficult to identify quickly. The overall interface required better organization and consistency.",
+    after:
+      "The redesigned interface introduces a clearer structure for academic and administrative activities. Information is grouped according to user needs and task priorities. Examination-related content is presented in a more organized and accessible manner. Improved navigation helps users move between related functions more easily. Consistent layouts and reusable UI patterns create a more unified experience.",
   },
 
   {
     id: 4,
-    title: "Hyper Design",
-    image: img4,
-    gallery: [img4, img6],
-    desc: "Minimal UI with futuristic interaction design.",
-    fullDesc:
-      "Spangles Webx is a tech-driven company passionate about delivering innovative digital products. With a focus on design, usability, and performance, we help startups and enterprises scale with impactful web and mobile solutions. we help startups and ",
-    functionalities: [
-      {
-        title: "Micro-interactions",
-        description: "Smooth and engaging UI animations.",
-      },
-      {
-        title: "Minimal design",
-        description: "Clean and distraction-free interface.",
-      },
-      {
-        title: "Dynamic transitions",
-        description: "Fluid layout and page changes.",
-      },
-      {
-        title: "Vector graphics",
-        description: "Optimized scalable visuals.",
-      },
-      {
-        title: "Accessibility-first",
-        description: "Designed for all users inclusively.",
-      },
+    title: "Church Management Software",
+    image: churchBanner,
+    gallery: [churchBanner, img1, img6],
+    slideTitles: [
+      "Church Management",
+      "Member Directory",
+      "Financial Management",
     ],
+    desc: "A centralized church management platform streamlining member records, donations, and ministry activities.",
+    fullDesc:
+      "The Church Management System is an all-in-one digital platform designed to help churches and religious organizations manage memberships, contributions, event scheduling, volunteers, and ministry communications with ease and clarity.",
+    clientInfo:
+      "The client was CSI Christ Church, Coimbatore, a Christian church community. The project was developed to digitally manage the church’s administrative and ministry operations. It supports church staff, office administrators, pastors, fellowship teams, teachers, and members. The system centralizes church records, financial activities, member information, and events. It provides a unified platform for efficient and organized day-to-day church management.",
+    projectChallenges:
+      "The church was handling multiple administrative activities across separate records and manual processes. Member, family, financial, offering, fellowship, event, certificate, and cemetery information needed centralized management. The project reduced dependency on manual record-keeping and scattered data management. It improved accessibility, organization, tracking, reporting, and control of church operations. The solution created a single digital platform for managing the church’s major operational activities.",
+    technologies:
+      "The frontend was developed using React.js, Vite, JavaScript, React Router, Axios, Material UI, Ant Design, and Bootstrap. The backend was built using Node.js and Express.js with RESTful APIs. MongoDB with Mongoose was used for database management and structured church records. JWT, bcrypt, Socket.IO, Nodemailer, Node Cron, Puppeteer, jsPDF, and ExcelJS were used for security, communication, automation, and reporting. Additional integrations and libraries support payments, PDF generation, Excel exports, notifications, dashboards, and real-time communication.",
+    keyFeaturesDeveloped:
+      "The system includes member and family management, authentication, role-based access, dashboards, and notifications. It manages church accounts, receipts, payments, expenses, journals, ledgers, bank reconciliation, and financial reports. Modules were developed for Sunday School, Endeavour School, men’s, women’s, youth, couples’ fellowships, choir, and church activities. It also includes baptism, marriage, death certificates, cemetery management, marriage hall booking, auctions, offerings, donations, subscriptions, and church staff management. Advanced reporting, PDF/Excel exports, search, filtering, attendance, events, examinations, and administrative controls are also included.",
+    users:
+      "The platform is designed to support multiple categories of users through role-based access control. User roles include administrators, treasurers, secretaries, accountants, office staff, pastors, teachers, fellowship teams, cemetery managers, and church members. Members can access relevant personal and church services through their own login. Administrative users receive access according to their assigned responsibilities and permissions. The exact number of active users depends on the church’s live deployment and registered user base.",
+    projectOutcomes:
+      "The project transformed major church administration activities into a centralized digital management system. Staff can manage records, finances, events, fellowships, education, certificates, and reports from one platform. Role-based access improves security by ensuring users see and manage only the functions relevant to them. Automated reporting, search, document generation, notifications, and dashboards reduce repetitive administrative work. Overall, the system provides a more organized, efficient, transparent, and scalable approach to church management.",
+    before:
+      "Church operations relied heavily on manual records, separate files, and disconnected administrative processes. Finding records and preparing reports required more manual effort and time.",
+    after:
+      "Member, family, finance, ministry, event, certificate, and cemetery information is managed in one centralized system. Search, filtering, dashboards, automated reports, PDF/Excel exports, and structured workflows make information easier to access. Overall improvement: From fragmented manual administration → to a centralized, secure, role-based digital church-management platform.",
   },
 
   {
     id: 5,
-    title: "Laptop UI",
-    image: img5,
-    gallery: [img5, img7, img8, img1],
-    desc: "Clean dashboard interface for productivity tools.",
-    fullDesc:
-      "Spangles Webx is a tech-driven company passionate about delivering innovative digital products. With a focus on design, usability, and performance, we help startups and enterprises scale with impactful web and mobile solutions. we help startups and ",
-    functionalities: [
-      {
-        title: "Modular widgets",
-        description: "Customizable dashboard components.",
-      },
-      {
-        title: "Task management",
-        description: "Drag-and-drop workflow organization.",
-      },
-      {
-        title: "Productivity metrics",
-        description: "Track efficiency and performance.",
-      },
-      {
-        title: "Notification center",
-        description: "Unified alerts and updates.",
-      },
-      {
-        title: "Collaboration tools",
-        description: "Supports team-based work.",
-      },
+    title: "Book Depot Management System",
+    image: bookInnerBanner,
+    gallery: [bookMain, bookInnerBanner],
+    slideTitles: [
+      "Book Depot Management",
+      "System Dashboard",
     ],
+    desc: "A centralized platform designed to manage bookstore operations efficiently across multiple branches.",
+    fullDesc:
+      "The Book Depot Management System is a centralized platform designed to manage bookstore operations efficiently across multiple branches. It connects sales, purchases, inventory, customers, suppliers, staff, expenses, accounting, and reporting in one system. The platform simplifies daily bookstore workflows and provides role-based access for different users.",
+    projectChallenges: [
+      "Managing multiple branches, book inventory, sales, purchases, suppliers, customers, and financial activities through separate processes made it difficult to track operations efficiently. Stock visibility, sales monitoring, and maintaining accurate records were major challenges.",
+      "We solved these challenges by developing a centralized system that connects the major bookstore workflows and provides better control, tracking, and accessibility of operational information.",
+    ],
+    technologies: {
+      intro:
+        "The Book Depot Management System was developed using modern web technologies and tools:",
+      list: [
+        {
+          name: "React.js",
+          desc: "Frontend development and component-based UI.",
+        },
+        {
+          name: "Node.js & Express.js",
+          desc: "Backend development and REST APIs.",
+        },
+        {
+          name: "MongoDB & Mongoose",
+          desc: "Database management.",
+        },
+        {
+          name: "Tailwind CSS",
+          desc: "Responsive UI styling.",
+        },
+        {
+          name: "JWT & bcrypt",
+          desc: "Authentication and role-based access.",
+        },
+        {
+          name: "jsPDF",
+          desc: "Invoice and report generation.",
+        },
+        {
+          name: "QZ Tray & Barcode Tools",
+          desc: "Thermal printing and barcode operations.",
+        },
+      ],
+    },
+    keyFeaturesDeveloped:
+      "The system includes multi-branch management, role-based access, POS billing, barcode-based book handling, inventory and stock management, purchase and GRN workflows, purchase returns, customer and supplier management, low-stock monitoring, expenses and ledger management, payments and receipts, dashboards, reports, audit logs, PDF invoices, and thermal printing.",
+    users:
+      "The system supports Mega Admins, Managers, Sales Officers, and Branch Users, with access based on their responsibilities.",
+    projectOutcomes:
+      "The system provides a centralized and structured platform for managing bookstore operations, improving stock visibility, billing efficiency, branch coordination, financial tracking, and reporting while reducing dependency on manual processes.",
+    before:
+      "Manual and disconnected bookstore operations.",
+    after:
+      "Centralized, automated, multi-branch management with integrated billing, inventory, and reporting.",
   },
 
   {
@@ -284,7 +411,7 @@ const allProjects = [
   },
 ];
 
-function ProjectImageSlider({ images }) {
+function ProjectImageSlider({ images, title, slideTitles = [] }) {
   const list = Array.isArray(images) && images.length > 0 ? images : [];
 
   const [index, setIndex] = useState(0);
@@ -366,45 +493,60 @@ function ProjectImageSlider({ images }) {
             transform: `translateX(calc(-${index * slideStep}px))`,
           }}
         >
-          {sliderItems.map((src, i) => (
-            <div
-              key={`${i}-${src}`}
-              className="flex-shrink-0 cursor-default max-[413px]:!mr-0 max-[413px]:!h-[230px] max-[413px]:!w-full max-[413px]:!min-w-0 max-[413px]:!shrink-0 max-[413px]:!grow-0 max-[413px]:!basis-full"
-              style={{ width: "460px", height: "380px", marginRight: "30px" }}
-            >
-              <div className="relative h-full w-full overflow-hidden">
-                <img
-                  src={src}
-                  alt=""
-                  draggable={false}
-                  className="h-full w-full object-cover select-none"
-                  style={{ borderRadius: 0 }}
-                />
+          {sliderItems.map((src, i) => {
+            const originalIndex = i % slideCount;
+            const slideHeading = slideTitles[originalIndex] || title;
+            return (
+              <div
+                key={`${i}-${src}`}
+                className="group flex-shrink-0 cursor-pointer max-[413px]:!mr-0 max-[413px]:!h-[230px] max-[413px]:!w-full max-[413px]:!min-w-0 max-[413px]:!shrink-0 max-[413px]:!grow-0 max-[413px]:!basis-full"
+                style={{ width: "460px", height: "380px", marginRight: "30px" }}
+              >
+                <div className="relative h-full w-full overflow-hidden rounded-[15px]">
+                  <img
+                    src={src}
+                    alt={slideHeading || ""}
+                    draggable={false}
+                    className="h-full w-full object-cover select-none rounded-[15px] transition-transform duration-500 group-hover:scale-105"
+                  />
+
+                  {/* Bottom Gradient Shade on hover */}
+                  <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#345261]/95 via-[#345261]/60 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none rounded-b-[15px]" />
+
+                  {/* Heading / Title on hover */}
+                  <div className="absolute bottom-5 left-6 right-6 text-white z-10 transition-all duration-300 pointer-events-none opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0">
+                    <h3 className="font-montserrat font-bold text-[22px] leading-[28px] text-white max-sm:text-[18px] max-sm:leading-[24px] line-clamp-1">
+                      {slideHeading}
+                    </h3>
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
       <div
-        className="flex justify-center gap-[4px] pt-6 max-[413px]:pt-4"
+        className="flex justify-center items-center gap-2 pt-8 max-[413px]:pt-5"
         role="tablist"
         aria-label="Project images"
       >
         {list.map((src, i) => (
           <button
-            key={`dot-${src}-${i}`}
+            key={`indicator-${src}-${i}`}
             type="button"
             role="tab"
             aria-selected={i === activeDotIndex}
-            aria-label={`Go to image ${i + 1} of ${slideCount}`}
-            className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full border-0 bg-transparent p-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#345261] focus-visible:ring-offset-2"
+            aria-label={`Go to slide ${i + 1} of ${slideCount}`}
+            className="group py-2 px-1 cursor-pointer border-0 bg-transparent focus:outline-none focus-visible:ring-2 focus-visible:ring-[#345261] rounded-full"
             onClick={(e) => {
               e.stopPropagation();
               setIndex(i);
             }}
           >
             <span
-              className={`h-3 w-3 rounded-full transition-colors duration-300 ${i === activeDotIndex ? "bg-[#345261]" : "bg-gray-400"
+              className={`block h-[5px] rounded-full transition-all duration-400 ease-out ${i === activeDotIndex
+                  ? "w-10 bg-[#345261] shadow-sm"
+                  : "w-3.5 bg-gray-300 group-hover:bg-[#345261]/60 group-hover:w-5"
                 }`}
             />
           </button>
@@ -546,20 +688,35 @@ const PortfolioDetails = () => {
   };
 
   const stateProject = location.state;
-  const projectFromData = allProjects.find((p) => p.id === stateProject?.id) || allProjects[0];
+  const projectFromData =
+    allProjects.find(
+      (p) => p.id === stateProject?.id || p.title?.toLowerCase() === stateProject?.title?.toLowerCase()
+    ) || allProjects[0];
+
   const currentProject = {
     ...projectFromData,
-    ...stateProject, // Prioritize state (clicked image/title)
+    ...stateProject,
+    image: projectFromData.image || stateProject?.image || stateProject?.img,
+    gallery: projectFromData.gallery || stateProject?.gallery || [projectFromData.image],
+    slideTitles: projectFromData.slideTitles || stateProject?.slideTitles || [],
+    clientInfo: projectFromData.clientInfo || stateProject?.clientInfo,
+    projectChallenges: projectFromData.projectChallenges || stateProject?.projectChallenges,
+    technologies: projectFromData.technologies || stateProject?.technologies,
+    keyFeaturesDeveloped: projectFromData.keyFeaturesDeveloped || stateProject?.keyFeaturesDeveloped,
+    users: projectFromData.users || stateProject?.users,
+    projectOutcomes: projectFromData.projectOutcomes || stateProject?.projectOutcomes,
+    before: projectFromData.before || stateProject?.before,
+    after: projectFromData.after || stateProject?.after,
   };
 
   return (
-    <div className="font-sans text-gray-700 max-xl:overflow-x-hidden max-[413px]:overflow-x-hidden">
+    <div className="font-sans text-gray-700 max-xl:overflow-x-clip max-[413px]:overflow-x-clip">
       {/* HERO SECTION */}
       <div className="relative h-[360px] w-full max-xl:h-[340px] max-lg:h-[330px] max-md:h-[310px] max-[413px]:h-[300px]">
         <img
           src={currentProject.image}
           alt={currentProject.title}
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover object-bottom"
         />
 
         {/* overlay */}
@@ -583,45 +740,198 @@ const PortfolioDetails = () => {
         <ProjectImageSlider
           key={currentProject.id}
           images={currentProject.gallery ?? [currentProject.image]}
+          title={currentProject.title}
+          slideTitles={currentProject.slideTitles}
         />
       </div>
 
       {/* CONTENT SECTION */}
-      <div className="flex gap-[120px] px-[100px] pb-[120px] border-b border-[#E5E5E5] max-xl:gap-24 max-xl:px-16 max-xl:pb-24 max-lg:gap-20 max-lg:px-12 max-lg:pb-20 max-md:flex-col max-md:gap-12 max-md:px-8 max-md:pb-16 max-sm:gap-11 max-sm:px-6 max-sm:pb-19 max-[413px]:flex-col max-[413px]:gap-10 max-[413px]:px-5 max-[413px]:pb-12">
+      <div className="flex items-start gap-[120px] px-[100px] pb-[120px] border-b border-[#E5E5E5] max-xl:gap-24 max-xl:px-16 max-xl:pb-24 max-lg:gap-20 max-lg:px-12 max-lg:pb-20 max-md:flex-col max-md:gap-12 max-md:px-8 max-md:pb-16 max-sm:gap-11 max-sm:px-6 max-sm:pb-19 max-[413px]:flex-col max-[413px]:gap-10 max-[413px]:px-5 max-[413px]:pb-12">
         {/* LEFT SIDE */}
         <div className="flex-[2] max-md:w-full max-md:min-w-0 max-[413px]:w-full max-[413px]:min-w-0">
           <h3 className="mb-5 font-montserrat font-semibold text-[38px] leading-[52px] tracking-[0%] text-[#345261] align-middle max-xl:mb-4 max-xl:text-[34px] max-xl:leading-[46px] max-lg:text-[32px] max-lg:leading-[44px] max-md:text-[30px] max-md:leading-[40px] max-sm:text-[28px] max-sm:leading-[36px] max-[413px]:mb-4 max-[413px]:text-[22px] max-[413px]:leading-[28px]">
             Description
           </h3>
 
-          <p className="font-montserrat font-normal text-[18px] leading-[28px] tracking-[0%] text-[#6B6A66] text-justify align-middle pb-6 max-lg:text-[17px] max-lg:leading-[27px] max-md:text-left max-md:text-[16px] max-md:leading-[26px] max-md:pb-5 max-sm:text-[15px] max-sm:leading-[25px] max-[413px]:text-left max-[413px]:text-[16px] max-[413px]:leading-[26px] max-[413px]:pb-5">
+          <p className="font-montserrat font-normal text-[18px] leading-[28px] tracking-[0%] text-[#6B6A66] text-justify align-middle max-lg:text-[17px] max-lg:leading-[27px] max-md:text-left max-md:text-[16px] max-md:leading-[26px] max-sm:text-[15px] max-sm:leading-[25px] max-[413px]:text-left max-[413px]:text-[16px] max-[413px]:leading-[26px]">
             {currentProject.fullDesc}
           </p>
-          <h4 className="mb-5 font-montserrat font-semibold text-[38px] leading-[52px] tracking-[0%] text-[#345261] align-middle max-xl:mb-4 max-xl:text-[34px] max-xl:leading-[46px] max-lg:text-[32px] max-lg:leading-[44px] max-md:text-[30px] max-md:leading-[40px] max-sm:text-[28px] max-sm:leading-[36px] max-[413px]:mb-4 max-[413px]:text-[22px] max-[413px]:leading-[28px]">
-            The key functionalities include:
-          </h4>
 
-          <ul className="mt-4 space-y-3 pl-5 list-disc max-lg:space-y-2.5 max-md:mt-3 max-md:pl-4 max-sm:space-y-2.5 max-[413px]:mt-3 max-[413px]:space-y-2.5 max-[413px]:pl-4">
-            {currentProject.functionalities.map((func, idx) => (
-              <li
-                key={idx}
-                className="leading-[28px] text-[18px] align-middle max-lg:text-[17px] max-lg:leading-[27px] max-md:text-[16px] max-md:leading-[26px] max-sm:text-[15px] max-sm:leading-[25px] max-[413px]:text-[15px] max-[413px]:leading-[24px]"
-              >
-                {/* Title (SemiBold) */}
-                <span className="font-semibold text-[#161C2D]">
-                  {func.title}:
-                </span>{" "}
-                {/* Description (Regular) */}
-                <span className="font-normal text-[#6B6A66]">
-                  {func.description}
-                </span>
-              </li>
-            ))}
-          </ul>
+          {currentProject.clientInfo && (
+            <>
+              <h4 className="mt-10 mb-5 font-montserrat font-semibold text-[38px] leading-[52px] tracking-[0%] text-[#345261] align-middle max-xl:mt-9 max-xl:mb-4 max-xl:text-[34px] max-xl:leading-[46px] max-lg:mt-8 max-lg:text-[32px] max-lg:leading-[44px] max-md:mt-7 max-md:text-[30px] max-md:leading-[40px] max-sm:mt-6 max-sm:text-[28px] max-sm:leading-[36px] max-[413px]:mt-6 max-[413px]:mb-4 max-[413px]:text-[22px] max-[413px]:leading-[28px]">
+                Client Information
+              </h4>
+              <p className="font-montserrat font-normal text-[18px] leading-[28px] tracking-[0%] text-[#6B6A66] text-justify align-middle max-lg:text-[17px] max-lg:leading-[27px] max-md:text-left max-md:text-[16px] max-md:leading-[26px] max-sm:text-[15px] max-sm:leading-[25px] max-[413px]:text-left max-[413px]:text-[16px] max-[413px]:leading-[26px]">
+                {currentProject.clientInfo}
+              </p>
+            </>
+          )}
+
+          {currentProject.projectChallenges && (
+            <>
+              <h4 className="mt-10 mb-5 font-montserrat font-semibold text-[38px] leading-[52px] tracking-[0%] text-[#345261] align-middle max-xl:mt-9 max-xl:mb-4 max-xl:text-[34px] max-xl:leading-[46px] max-lg:mt-8 max-lg:text-[32px] max-lg:leading-[44px] max-md:mt-7 max-md:text-[30px] max-md:leading-[40px] max-sm:mt-6 max-sm:text-[28px] max-sm:leading-[36px] max-[413px]:mt-6 max-[413px]:mb-4 max-[413px]:text-[22px] max-[413px]:leading-[28px]">
+                Project Challenges
+              </h4>
+              {Array.isArray(currentProject.projectChallenges) ? (
+                currentProject.projectChallenges.map((para, idx) => (
+                  <p
+                    key={idx}
+                    className="font-montserrat font-normal text-[18px] leading-[28px] tracking-[0%] text-[#6B6A66] text-justify align-middle mb-4 max-lg:text-[17px] max-lg:leading-[27px] max-md:text-left max-md:text-[16px] max-md:leading-[26px] max-md:mb-3 max-sm:text-[15px] max-sm:leading-[25px] max-[413px]:text-left max-[413px]:text-[16px] max-[413px]:leading-[26px] last:mb-0"
+                  >
+                    {para}
+                  </p>
+                ))
+              ) : (
+                <p className="font-montserrat font-normal text-[18px] leading-[28px] tracking-[0%] text-[#6B6A66] text-justify align-middle max-lg:text-[17px] max-lg:leading-[27px] max-md:text-left max-md:text-[16px] max-md:leading-[26px] max-sm:text-[15px] max-sm:leading-[25px] max-[413px]:text-left max-[413px]:text-[16px] max-[413px]:leading-[26px]">
+                  {currentProject.projectChallenges}
+                </p>
+              )}
+            </>
+          )}
+
+          {currentProject.technologies && (
+            <>
+              <h4 className="mt-10 mb-5 font-montserrat font-semibold text-[38px] leading-[52px] tracking-[0%] text-[#345261] align-middle max-xl:mt-9 max-xl:mb-4 max-xl:text-[34px] max-xl:leading-[46px] max-lg:mt-8 max-lg:text-[32px] max-lg:leading-[44px] max-md:mt-7 max-md:text-[30px] max-md:leading-[40px] max-sm:mt-6 max-sm:text-[28px] max-sm:leading-[36px] max-[413px]:mt-6 max-[413px]:mb-4 max-[413px]:text-[22px] max-[413px]:leading-[28px]">
+                Technologies Used
+              </h4>
+              {typeof currentProject.technologies === "string" ? (
+                <p className="font-montserrat font-normal text-[18px] leading-[28px] tracking-[0%] text-[#6B6A66] text-justify align-middle max-lg:text-[17px] max-lg:leading-[27px] max-md:text-left max-md:text-[16px] max-md:leading-[26px] max-sm:text-[15px] max-sm:leading-[25px] max-[413px]:text-left max-[413px]:text-[16px] max-[413px]:leading-[26px]">
+                  {currentProject.technologies}
+                </p>
+              ) : (
+                <>
+                  {currentProject.technologies.intro && (
+                    <p className="font-montserrat font-normal text-[18px] leading-[28px] tracking-[0%] text-[#6B6A66] text-justify align-middle mb-4 max-lg:text-[17px] max-lg:leading-[27px] max-md:text-left max-md:text-[16px] max-md:leading-[26px] max-md:mb-3 max-sm:text-[15px] max-sm:leading-[25px] max-[413px]:text-left max-[413px]:text-[16px] max-[413px]:leading-[26px]">
+                      {currentProject.technologies.intro}
+                    </p>
+                  )}
+                  {currentProject.technologies.list && (
+                    <ul className="space-y-3 pl-5 list-disc max-lg:space-y-2.5 max-md:pl-4 max-sm:space-y-2.5 max-[413px]:space-y-2.5 max-[413px]:pl-4">
+                      {currentProject.technologies.list.map((tech, idx) => (
+                        <li
+                          key={idx}
+                          className="leading-[28px] text-[18px] align-middle max-lg:text-[17px] max-lg:leading-[27px] max-md:text-[16px] max-md:leading-[26px] max-sm:text-[15px] max-sm:leading-[25px] max-[413px]:text-[15px] max-[413px]:leading-[24px]"
+                        >
+                          {/* Name (SemiBold) */}
+                          <span className="font-semibold text-[#161C2D]">
+                            {tech.name}
+                          </span>{" "}
+                          –{" "}
+                          {/* Description (Regular) */}
+                          <span className="font-normal text-[#6B6A66]">
+                            {tech.desc}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </>
+              )}
+            </>
+          )}
+
+          {(currentProject.keyFeaturesDeveloped || (currentProject.functionalities && currentProject.functionalities.length > 0)) && (
+            <>
+              <h4 className="mt-10 mb-5 font-montserrat font-semibold text-[38px] leading-[52px] tracking-[0%] text-[#345261] align-middle max-xl:mt-9 max-xl:mb-4 max-xl:text-[34px] max-xl:leading-[46px] max-lg:mt-8 max-lg:text-[32px] max-lg:leading-[44px] max-md:mt-7 max-md:text-[30px] max-md:leading-[40px] max-sm:mt-6 max-sm:text-[28px] max-sm:leading-[36px] max-[413px]:mt-6 max-[413px]:mb-4 max-[413px]:text-[22px] max-[413px]:leading-[28px]">
+                {currentProject.keyFeaturesDeveloped ? "Key Features Developed" : "The key functionalities include:"}
+              </h4>
+              {currentProject.keyFeaturesDeveloped && (
+                <p className="font-montserrat font-normal text-[18px] leading-[28px] tracking-[0%] text-[#6B6A66] text-justify align-middle max-lg:text-[17px] max-lg:leading-[27px] max-md:text-left max-md:text-[16px] max-md:leading-[26px] max-sm:text-[15px] max-sm:leading-[25px] max-[413px]:text-left max-[413px]:text-[16px] max-[413px]:leading-[26px]">
+                  {currentProject.keyFeaturesDeveloped}
+                </p>
+              )}
+              {currentProject.functionalities && currentProject.functionalities.length > 0 && (
+                <ul className="mt-4 space-y-3 pl-5 list-disc max-lg:space-y-2.5 max-md:mt-3 max-md:pl-4 max-sm:space-y-2.5 max-[413px]:mt-3 max-[413px]:space-y-2.5 max-[413px]:pl-4">
+                  {currentProject.functionalities.map((func, idx) => (
+                    <li
+                      key={idx}
+                      className="leading-[28px] text-[18px] align-middle max-lg:text-[17px] max-lg:leading-[27px] max-md:text-[16px] max-md:leading-[26px] max-sm:text-[15px] max-sm:leading-[25px] max-[413px]:text-[15px] max-[413px]:leading-[24px]"
+                    >
+                      {/* Title (SemiBold) */}
+                      <span className="font-semibold text-[#161C2D]">
+                        {func.title}:
+                      </span>{" "}
+                      {/* Description (Regular) */}
+                      <span className="font-normal text-[#6B6A66]">
+                        {func.description}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </>
+          )}
+
+          {currentProject.users && (
+            <>
+              <h4 className="mt-10 mb-5 font-montserrat font-semibold text-[38px] leading-[52px] tracking-[0%] text-[#345261] align-middle max-xl:mt-9 max-xl:mb-4 max-xl:text-[34px] max-xl:leading-[46px] max-lg:mt-8 max-lg:text-[32px] max-lg:leading-[44px] max-md:mt-7 max-md:text-[30px] max-md:leading-[40px] max-sm:mt-6 max-sm:text-[28px] max-sm:leading-[36px] max-[413px]:mt-6 max-[413px]:mb-4 max-[413px]:text-[22px] max-[413px]:leading-[28px]">
+                Target Users
+              </h4>
+              <p className="font-montserrat font-normal text-[18px] leading-[28px] tracking-[0%] text-[#6B6A66] text-justify align-middle max-lg:text-[17px] max-lg:leading-[27px] max-md:text-left max-md:text-[16px] max-md:leading-[26px] max-sm:text-[15px] max-sm:leading-[25px] max-[413px]:text-left max-[413px]:text-[16px] max-[413px]:leading-[26px]">
+                {currentProject.users}
+              </p>
+            </>
+          )}
+
+          {currentProject.projectOutcomes && (
+            <>
+              <h4 className="mt-10 mb-5 font-montserrat font-semibold text-[38px] leading-[52px] tracking-[0%] text-[#345261] align-middle max-xl:mt-9 max-xl:mb-4 max-xl:text-[34px] max-xl:leading-[46px] max-lg:mt-8 max-lg:text-[32px] max-lg:leading-[44px] max-md:mt-7 max-md:text-[30px] max-md:leading-[40px] max-sm:mt-6 max-sm:text-[28px] max-sm:leading-[36px] max-[413px]:mt-6 max-[413px]:mb-4 max-[413px]:text-[22px] max-[413px]:leading-[28px]">
+                Project Outcomes
+              </h4>
+              <p className="font-montserrat font-normal text-[18px] leading-[28px] tracking-[0%] text-[#6B6A66] text-justify align-middle max-lg:text-[17px] max-lg:leading-[27px] max-md:text-left max-md:text-[16px] max-md:leading-[26px] max-sm:text-[15px] max-sm:leading-[25px] max-[413px]:text-left max-[413px]:text-[16px] max-[413px]:leading-[26px]">
+                {currentProject.projectOutcomes}
+              </p>
+            </>
+          )}
+
+          {currentProject.before && (
+            <>
+              <h4 className="mt-10 mb-5 font-montserrat font-semibold text-[38px] leading-[52px] tracking-[0%] text-[#345261] align-middle max-xl:mt-9 max-xl:mb-4 max-xl:text-[34px] max-xl:leading-[46px] max-lg:mt-8 max-lg:text-[32px] max-lg:leading-[44px] max-md:mt-7 max-md:text-[30px] max-md:leading-[40px] max-sm:mt-6 max-sm:text-[28px] max-sm:leading-[36px] max-[413px]:mt-6 max-[413px]:mb-4 max-[413px]:text-[22px] max-[413px]:leading-[28px]">
+                Before — Existing Workflow & Experience
+              </h4>
+              {Array.isArray(currentProject.before) ? (
+                currentProject.before.map((para, idx) => (
+                  <p
+                    key={idx}
+                    className="font-montserrat font-normal text-[18px] leading-[28px] tracking-[0%] text-[#6B6A66] text-justify align-middle mb-4 max-lg:text-[17px] max-lg:leading-[27px] max-md:text-left max-md:text-[16px] max-md:leading-[26px] max-md:mb-3 max-sm:text-[15px] max-sm:leading-[25px] max-[413px]:text-left max-[413px]:text-[16px] max-[413px]:leading-[26px] last:mb-0"
+                  >
+                    {para}
+                  </p>
+                ))
+              ) : (
+                <p className="font-montserrat font-normal text-[18px] leading-[28px] tracking-[0%] text-[#6B6A66] text-justify align-middle max-lg:text-[17px] max-lg:leading-[27px] max-md:text-left max-md:text-[16px] max-md:leading-[26px] max-sm:text-[15px] max-sm:leading-[25px] max-[413px]:text-left max-[413px]:text-[16px] max-[413px]:leading-[26px]">
+                  {currentProject.before}
+                </p>
+              )}
+            </>
+          )}
+
+          {currentProject.after && (
+            <>
+              <h4 className="mt-10 mb-5 font-montserrat font-semibold text-[38px] leading-[52px] tracking-[0%] text-[#345261] align-middle max-xl:mt-9 max-xl:mb-4 max-xl:text-[34px] max-xl:leading-[46px] max-lg:mt-8 max-lg:text-[32px] max-lg:leading-[44px] max-md:mt-7 max-md:text-[30px] max-md:leading-[40px] max-sm:mt-6 max-sm:text-[28px] max-sm:leading-[36px] max-[413px]:mt-6 max-[413px]:mb-4 max-[413px]:text-[22px] max-[413px]:leading-[28px]">
+                After — Redesigned Workflow & Experience
+              </h4>
+              {Array.isArray(currentProject.after) ? (
+                currentProject.after.map((para, idx) => (
+                  <p
+                    key={idx}
+                    className="font-montserrat font-normal text-[18px] leading-[28px] tracking-[0%] text-[#6B6A66] text-justify align-middle mb-4 max-lg:text-[17px] max-lg:leading-[27px] max-md:text-left max-md:text-[16px] max-md:leading-[26px] max-md:mb-3 max-sm:text-[15px] max-sm:leading-[25px] max-[413px]:text-left max-[413px]:text-[16px] max-[413px]:leading-[26px] last:mb-0"
+                  >
+                    {para}
+                  </p>
+                ))
+              ) : (
+                <p className="font-montserrat font-normal text-[18px] leading-[28px] tracking-[0%] text-[#6B6A66] text-justify align-middle max-lg:text-[17px] max-lg:leading-[27px] max-md:text-left max-md:text-[16px] max-md:leading-[26px] max-sm:text-[15px] max-sm:leading-[25px] max-[413px]:text-left max-[413px]:text-[16px] max-[413px]:leading-[26px]">
+                  {currentProject.after}
+                </p>
+              )}
+            </>
+          )}
         </div>
 
         {/* RIGHT SIDE FORM */}
-        <div className="flex-1 max-md:w-full max-md:min-w-0 max-[413px]:w-full max-[413px]:min-w-0">
+        <div className="flex-1 max-md:w-full max-md:min-w-0 max-[413px]:w-full max-[413px]:min-w-0 md:sticky md:top-[150px] self-start">
           <h4 className="mb-9 font-montserrat font-semibold text-[24px] leading-[32px] tracking-[0%] text-[#345261] align-middle max-lg:mb-8 max-md:mb-7 max-sm:mb-6 max-[413px]:mb-6 max-[413px]:text-[22px] max-[413px]:leading-[28px]">
             Get A Quote
           </h4>

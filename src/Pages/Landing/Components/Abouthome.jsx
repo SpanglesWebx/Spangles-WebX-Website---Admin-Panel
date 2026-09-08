@@ -113,9 +113,9 @@ export default function AboutSection() {
           </p>
 
           <h2 className="text-[46px] font-semibold leading-[52.36px] tracking-[0px] text-[#395563] font-montserrat mb-4 max-[413px]:text-[22px] max-[413px]:leading-[34px]">
-            Spangles Webx is a <br className="hidden min-[1025px]:block" />
-            tech-driven company <br className="hidden min-[1025px]:block" />
-            Webx is a tech
+            We Build Technology    <br className="hidden min-[1025px]:block" />
+            That Drive Real <br className="hidden min-[1025px]:block" />
+            Business Growth
           </h2>
 
           <p className="w-full max-w-lg min-[1600px]:max-w-2xl min-[1920px]:max-w-3xl font-montserrat font-normal text-[#6B6A66] text-[16px] leading-[23.65px] mb-10 max-[413px]:text-[14px] max-[413px]:leading-[20px] max-[413px]:mb-8">

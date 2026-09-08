@@ -244,7 +244,7 @@ const WhyChooseUs = () => {
             onClick={() => navigate('/contact')}
             className="group cursor-pointer bg-[#395563] hover:bg-[#2f4650] text-white font-montserrat font-bold text-[12px] leading-[18px] tracking-[0px] uppercase text-center align-middle px-[25px] py-[17px] rounded-[10px] flex items-center justify-center gap-2 whitespace-nowrap transition max-[413px]:px-[27px] max-[413px]:py-[16px]"
           >
-            GET START
+            GET STARTED
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 max-[413px]:w-[12px] max-[413px]:h-[12px]"

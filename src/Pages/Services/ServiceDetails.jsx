@@ -1,9 +1,7 @@
-import React from "react";
-
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Support from "../About/Components/Support";
 import { services } from "./Services";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState, useMemo } from "react";
 import Serviceicon from "../../assets/Service-icon.png"; // ✅ ADD THIS
 // fallback images (reuse yours)
 import img1 from "../../assets/portfolio1.jpg";
@@ -20,9 +18,7 @@ import num08 from "../../assets/08.png";
 import num09 from "../../assets/09.png";
 import num10 from "../../assets/10.png";
 import num11 from "../../assets/11.png";
-import { useNavigate } from "react-router-dom";
 import Preloader from "../../Components/Preloader";
-import { useState } from "react";
 import { motion } from "framer-motion";
 
 // Website Development Icons
@@ -97,41 +93,35 @@ import {
 } from "lucide-react";
 
 const ServiceDetails = () => {
+  const { slug } = useParams();
   const location = useLocation();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 800);
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    if (!loading) {
-      window.scrollTo(0, 0);
+  const resolveService = () => {
+    if (slug) {
+      const normalized = slug.toLowerCase().trim();
+      const matched = services.find(
+        (s) =>
+          s.slug === normalized ||
+          (normalized === "web-development" && s.slug === "website-development") ||
+          (normalized === "website-development" && s.slug === "web-development") ||
+          s.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") === normalized
+      );
+      if (matched) return { ...matched, gallery: [matched.image] };
     }
-  }, [loading]);
+    if (location.state && location.state.title) {
+      return location.state;
+    }
+    return services[0];
+  };
 
-
-
-
-  const [service, setService] = React.useState(
-    location.state || {
-      title: "Cyber Security",
-      image: img1,
-      description: "Web designing in a powerful way...",
-      detailedDescription: "Web designing in a powerful way to make your business grow and reach more customers online with our expert services and professional team.",
-      gallery: [img1, img2, img3],
-    },
-  );
-
-  const [activeFaq, setActiveFaq] = React.useState(0);
+  const [service, setService] = useState(resolveService);
+  const [activeFaq, setActiveFaq] = useState(0);
 
 
 
   const scrollRef = useRef(null);
-  const navigate = useNavigate();
   const scroll = (direction) => {
     if (scrollRef.current) {
       const scrollAmount = scrollRef.current.offsetWidth;
@@ -217,13 +207,19 @@ const ServiceDetails = () => {
 
 
   useEffect(() => {
-    if (location.state) {
-      setService(location.state);
-      window.scrollTo(0, 0);
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
-    }
-  }, [location.state]);
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 800);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const resolved = resolveService();
+    setService(resolved);
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }, [slug, location.state]);
 
 
   if (loading) {
@@ -873,15 +869,16 @@ const ServiceDetails = () => {
               <div
                 key={index}
                 onClick={() => {
-                  setService({
-                    ...item,
-                    gallery: [item.image],
+                  navigate(`/services/${item.slug}`, {
+                    state: {
+                      ...item,
+                      gallery: [item.image],
+                    },
                   });
 
                   window.scrollTo(0, 0);
                   document.documentElement.scrollTop = 0;
                   document.body.scrollTop = 0;
-
                 }}
                 className="
   relative group cursor-pointer rounded-xl overflow-hidden 

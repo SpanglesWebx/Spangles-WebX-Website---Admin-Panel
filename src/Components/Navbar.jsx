@@ -16,7 +16,7 @@ const LINKS = [
     label: "SERVICES",
     hasDropdown: true,
     dropdown: services.map((s) => ({
-      to: "/service-details",
+      to: `/services/${s.slug}`,
       state: { ...s, gallery: [s.image] },
       label: s.title,
     })),

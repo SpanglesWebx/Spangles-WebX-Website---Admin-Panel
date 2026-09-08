@@ -6,7 +6,7 @@ import valuesIcon from "../../../assets/Values.png";
 
 export default function MissionVision() {
   const missionCount = useCounter(2.5);
-  const visionCount = useCounter(10000);
+  const visionCount = useCounter(5000);
   const valuesCount = useCounter(85);
 
   function useCounter(end, duration = 2000) {
@@ -80,9 +80,11 @@ export default function MissionVision() {
           {/* Image */}
           <div className="flex justify-start max-[1024px]:justify-start">
             <img
-              src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc"
+              src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80"
               className="rounded-[14px] w-full max-w-[450px] min-[1441px]:max-w-[600px] h-[290px] min-[1441px]:h-[380px] max-[768px]:h-[220px] object-cover"
               alt="Mission"
+              loading="lazy"
+              decoding="async"
             />
           </div>
 
@@ -92,7 +94,7 @@ export default function MissionVision() {
               <img src={missionIcon} alt="Mission icon" className="w-[32px] h-[32px] object-contain" />
             </div>
             <p className="text-[#6B6A66] text-[18px] mb-5 leading-[26px] max-[768px]:text-[14px] max-[768px]:leading-[22px]">
-              Our Growth, Compare to Last Financial Year
+              Year-on-Year Growth 
             </p>
             <h3 className="font-medium text-[54px] leading-[64px] text-[#182F27] max-[768px]:text-[40px] max-[768px]:leading-[48px] max-[413px]:text-[32px] max-[413px]:leading-[38px]">
               {missionCount.toFixed(1)}X
@@ -120,7 +122,7 @@ export default function MissionVision() {
               <img src={visionIcon} alt="Vision icon" className="w-[32px] h-[32px] object-contain" />
             </div>
             <p className="text-[#6B6A66] text-[18px] mb-5 leading-[26px] max-[768px]:text-[14px] max-[768px]:leading-[22px]">
-              Our Growth, Compare to Last Financial Year
+              Digital Solutions Delivered 
             </p>
             <h3 className="font-medium text-[54px] leading-[64px] text-[#182F27] max-[768px]:text-[40px] max-[768px]:leading-[48px] max-[413px]:text-[32px] max-[413px]:leading-[38px]">
               {Math.floor(visionCount / 1000)}K
@@ -130,9 +132,11 @@ export default function MissionVision() {
           {/* Image */}
           <div className="flex justify-start max-[1024px]:order-2 max-[1024px]:justify-start">
             <img
-              src="https://images.unsplash.com/photo-1451187580459-43490279c0fa"
+              src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80"
               className="rounded-[14px] w-full max-w-[450px] min-[1441px]:max-w-[600px] h-[290px] min-[1441px]:h-[380px] max-[768px]:h-[220px] object-cover"
               alt="Vision"
+              loading="lazy"
+              decoding="async"
             />
           </div>
 
@@ -171,9 +175,11 @@ export default function MissionVision() {
           {/* Image */}
           <div className="flex justify-start max-[1024px]:justify-start">
             <img
-              src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
+              src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80"
               className="rounded-[14px] w-full max-w-[450px] min-[1441px]:max-w-[600px] h-[290px] min-[1441px]:h-[380px] max-[768px]:h-[220px] object-cover"
               alt="Values"
+              loading="lazy"
+              decoding="async"
             />
           </div>
 

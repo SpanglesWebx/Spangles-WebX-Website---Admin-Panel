@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import hospitalBanner from "../../assets/Hospital Management/Hospital Banner (2).png";
+import clinicBanner from "../../assets/Clinic Management/Clincal Dashboard.png";
+import schoolBanner from "../../assets/School mangemnt/School management.png";
 import img1 from "../../assets/churchs.png";
 import img2 from "../../assets/church.png";
 import img3 from "../../assets/churc.png";
 import img4 from "../../assets/portfolio4.jpg";
-import img5 from "../../assets/portfolio5.jpg";
+import churchBanner from "../../assets/Church/Church.png";
+import bookMain from "../../assets/Book depot/Book-main.png";
 import img6 from "../../assets/portfolio6.jpg";
 import img7 from "../../assets/portfolio7.jpg";
 import img8 from "../../assets/portfolio8.jpg";
@@ -32,34 +36,34 @@ export default function Portfolio() {
   }
   const portfolio = [
     {
-      id: 1,
-      title: "Elon Date App",
-      image: img1,
-      desc: "An analytics-driven dating experience that uses smart matching algorithms to connect people based on deep interests and shared behaviors.",
-    },
-    {
-      id: 2,
-      title: "Renewable Energy",
-      image: img2,
-      desc: "Experience a dynamic landing page for renewable energy solutions, showcasing sustainable innovations that attracted eco-conscious visitors and drove conversions significantly.",
-    },
-    {
-      id: 3,
-      title: "Management Software",
-      image: img3,
-      desc: "Implement efficient management software that streamlined operations, enhanced productivity, and provided real-time insights for better decision-making processes across teams.",
-    },
-    {
       id: 4,
-      title: "Hyper Design",
-      image: img4,
-      desc: "A minimal UI with futuristic interaction design that provides a seamless and immersive user experience across all digital touchpoints.",
+      title: "Church Management Software",
+      image: churchBanner,
+      desc: "A centralized church management platform designed to streamline member directories, donations, event planning, attendance tracking, and community outreach.",
     },
     {
       id: 5,
-      title: "Laptop UI",
-      image: img5,
-      desc: "A clean dashboard interface designed for modern productivity tools, focusing on efficiency and ease of use for complex data workflows.",
+      title: "Book Depot Management System",
+      image: bookMain,
+      desc: "A centralized platform designed to manage bookstore operations efficiently across multiple branches with integrated billing, inventory, and reporting.",
+    },
+    {
+      id: 1,
+      title: "Hospital Management",
+      image: hospitalBanner,
+      desc: "A comprehensive hospital management platform that streamlines patient records, doctor scheduling, and healthcare operations efficiently.",
+    },
+    {
+      id: 3,
+      title: "School Management Software",
+      image: schoolBanner,
+      desc: "A comprehensive School Management platform streamlining student admissions, attendance, grading, fee management, and academic administration.",
+    },
+    {
+      id: 2,
+      title: "Clinical Management",
+      image: clinicBanner,
+      desc: "A modern clinical management platform designed to simplify clinical consultations, patient appointments, and healthcare workflows.",
     },
     {
       id: 6,
@@ -131,22 +135,42 @@ export default function Portfolio() {
             <div
               key={item.id}
               onClick={() => goToDetails(item)}
-              className="group relative rounded-xl overflow-hidden cursor-pointer min-[1024px]:max-[1200px]:origin-top min-[1024px]:max-[1200px]:scale-[1.032]"
+              className="group relative rounded-xl overflow-hidden cursor-pointer min-[1024px]:max-[1200px]:origin-top min-[1024px]:max-[1200px]:scale-[1.032] bg-[#f0f4f7] border border-[#e5e7eb] shadow-sm hover:shadow-lg transition-all duration-300"
             >
-              <img
-                src={item.image}
-                alt={item.title}
-                className="w-full h-[280px] min-[1441px]:h-[450px] object-cover max-[413px]:h-[230px]"
+              <div className="w-full aspect-[2/1] max-[413px]:aspect-[16/9] flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+
+              {/* Bottom Gradient Shade (Only on hover / tap) */}
+              <div
+                className={`absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-[#345261]/95 via-[#345261]/60 to-transparent transition-all duration-300 pointer-events-none ${
+                  clickedCard === item.id
+                    ? "opacity-100"
+                    : "opacity-0 group-hover:opacity-100"
+                }`}
               />
 
-              {/* Bottom Gradient Shade */}
-              <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-[#345261]/90 via-[#345261]/40 to-transparent transition-opacity duration-300" />
-
               {/* Overlay (Full on hover) */}
-              <div className={`absolute inset-0 bg-[#345261]/20 transition-all duration-300 ${clickedCard === item.id ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`} />
+              <div
+                className={`absolute inset-0 bg-[#345261]/20 transition-all duration-300 pointer-events-none ${
+                  clickedCard === item.id
+                    ? "opacity-100"
+                    : "opacity-0 group-hover:opacity-100"
+                }`}
+              />
 
-              {/* Content (Anchored to bottom, with fixed-height desc to align titles) */}
-              <div className="absolute bottom-5 left-8 right-8 text-white z-10">
+              {/* Content (Anchored to bottom, reveals smoothly on hover / tap) */}
+              <div
+                className={`absolute bottom-5 left-8 right-8 text-white z-10 transition-all duration-300 pointer-events-none ${
+                  clickedCard === item.id
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0"
+                }`}
+              >
                 <h3 className="font-montserrat font-bold pb-1 text-[26px] leading-[29.28px] text-white max-[413px]:text-[22px] max-[413px]:leading-normal line-clamp-1">
                   {item.title}
                 </h3>

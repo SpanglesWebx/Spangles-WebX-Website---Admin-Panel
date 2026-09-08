@@ -1,43 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Hero from "./Components/Hero";
 import Stats from "./Components/Stats";
 import MissionVision from "./Components/MissionVision";
+import TechStack from "./Components/TechStack";
 import Team from "./Components/Team";
+import Clients from "./Components/Clients";
 import Support from "./Components/Support";
-import Preloader from "../../Components/Preloader";
-
-import { motion, AnimatePresence } from "framer-motion";
 
 export default function About() {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Synthetic loader for premium feel and consistency
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1200); // Slightly longer for smoother asset readiness
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
-    <AnimatePresence mode="wait">
-      {loading ? (
-        <Preloader key="preloader" />
-      ) : (
-        <motion.div
-          key="content"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, ease: "linear" }}
-          className="min-h-screen"
-        >
-          <Hero />
-          <Stats />
-          <MissionVision />
-          <Team />
-          <Support />
-        </motion.div>
-      )}
-    </AnimatePresence>
+    <div className="min-h-screen">
+      <Hero />
+      <Stats />
+      <MissionVision />
+      <TechStack />
+      <Team />
+      <Clients />
+      <div className="-mt-[40px] relative z-10 max-xl:-mt-9 max-lg:-mt-8 max-md:-mt-7 max-sm:-mt-6 max-[413px]:-mt-6">
+        <Support />
+      </div>
+    </div>
   );
 }

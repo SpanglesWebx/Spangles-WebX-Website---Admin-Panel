@@ -11,13 +11,13 @@ export default function Footer() {
           <Link to="/">
             <img
               src={logo}
-              alt="Spanglez Webx"
+              alt="Spangles Webx"
               className="h-[40px] w-auto object-contain mb-4 max-[413px]:h-[36px] max-[413px]:mb-3"
             />
           </Link>
           <p className="font-montserrat text-[16px] leading-[24px] text-[#6B6A66] max-w-xs">
             We are the best world Information Technology Company. Providing the
-            highest quality in hardware, Software & Network solutions.
+            highest quality in Software & Network solutions.
           </p>
         </div>
 

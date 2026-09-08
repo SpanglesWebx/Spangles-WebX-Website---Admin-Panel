@@ -244,8 +244,7 @@ rounded-lg bg-gray-100 group-hover:bg-[#2f4858] transition-all duration-300"
       </div>
 
       {/* Contact Form + Map */}
-      {/* Contact Form + Map */}
-      <div id="contact-form" className="bg-[#F4F7FA] py-[100px] px-[75px] min-[1441px]:px-[100px] max-[768px]:py-[60px] max-[768px]:px-[30px] max-[413px]:px-4 max-[413px]:py-[50px]">
+      <div id="contact-form" className="bg-[#F4F7FA] scroll-mt-24 py-[100px] px-[75px] min-[1441px]:px-[100px] max-[768px]:py-[60px] max-[768px]:px-[30px] max-[413px]:px-4 max-[413px]:py-[50px]">
         <div className="w-full max-w-full mx-auto min-[1441px]:max-w-[1600px] grid md:grid-cols-2 gap-[60px] items-stretch max-[768px]:gap-10">
           {/* Left Section - Form */}
           <div className="w-full">

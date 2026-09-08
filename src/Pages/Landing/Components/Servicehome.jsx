@@ -239,7 +239,7 @@ export default function ServicesSection() {
               <div
                 key={index}
                 onClick={() => {
-                  navigate("/service-details", {
+                  navigate(`/services/${item.slug}`, {
                     state: {
                       ...item,
                       gallery: [item.image],

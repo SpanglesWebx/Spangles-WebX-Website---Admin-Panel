@@ -14,6 +14,7 @@ import { motion } from "framer-motion";
 
 export const services = [
   {
+    slug: "web-development",
     title: "Website Development",
     image: cyberImg,
     description:
@@ -48,6 +49,7 @@ export const services = [
   },
 
   {
+    slug: "web-app-development",
     title: "Web App Development",
     image: digitalImg,
     description:
@@ -78,6 +80,7 @@ export const services = [
   },
 
   {
+    slug: "mobile-app-development",
     title: "Mobile App Development",
     image: productImg,
     description:
@@ -103,6 +106,7 @@ export const services = [
   },
 
   {
+    slug: "software-testing",
     title: "Software Testing",
     image: webImg,
     description:
@@ -135,6 +139,7 @@ export const services = [
   },
 
   {
+    slug: "ui-ux-designing",
     title: "UI / UX Designing",
     image: testingImg,
     description: "At Spangles Webx Pvt Ltd, we craft visually appealing and user-friendly UI/UX designs that create meaningful digital experiences. Our design approach focuses on understanding user behavior, business goals, and market trends to build interfaces that are both attractive and highly functional.",
@@ -167,6 +172,7 @@ export const services = [
   },
 
   {
+    slug: "software-development",
     title: "Software Development",
     image: appImg,
     description: "At Spangles Webx Pvt Ltd, we provide innovative and scalable software development solutions tailored to meet diverse business requirements. Our expert developers build custom software applications that streamline operations, improve productivity, and support long-term business growth.",
@@ -283,7 +289,7 @@ max-[413px]:px-5 max-[413px]:pt-8 max-[413px]:pb-20"
                   delay: (index % 3) * 0.15,
                 }}
                 onClick={() =>
-                  navigate("/service-details", {
+                  navigate(`/services/${service.slug}`, {
                     state: {
                       ...service,
                       gallery: [service.image], // can expand later

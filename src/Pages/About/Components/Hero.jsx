@@ -12,18 +12,18 @@ export default function Hero() {
         <h1 className="
   font-mont font-semibold 
   text-[54px] leading-[62px] 
-  text-white max-w-full md:max-w-[650px]
+  text-white w-full max-w-none
 
   max-[1024px]:text-[48px] max-[1024px]:leading-[56px]
-  max-[768px]:text-[44px] max-[768px]:leading-[52px]
+  max-[768px]:text-[38px] max-[768px]:leading-[46px]
 
-  max-[413px]:text-[28px] 
-  max-[413px]:leading-[28px] 
-  max-[413px]:max-w-[340px]
+  max-[413px]:text-[24px] 
+  max-[413px]:leading-[30px]
 ">
-          <span className="max-[413px]:whitespace-nowrap">Spangles Webx is a </span>
-          <br className="hidden max-[413px]:block" />
-          tech-driven company
+          About Spangles Webx
+          <span className="block text-[0.75em] font-medium text-white/90 mt-1.5 max-[413px]:mt-1">
+            — Where Ideas Become Digital Solutions
+          </span>
         </h1>
       </div>
     </div>
