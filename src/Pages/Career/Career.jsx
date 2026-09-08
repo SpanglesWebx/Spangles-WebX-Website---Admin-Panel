@@ -60,18 +60,29 @@ export default function Career() {
   const [showAllJobs, setShowAllJobs] = useState(false);
 
   useEffect(() => {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 1500);
+
     const fetchJobs = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/jobs");
+        const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000";
+        const res = await fetch(`${API_BASE}/api/jobs`, { signal: controller.signal });
+        if (!res.ok) throw new Error("Failed to fetch jobs");
         const data = await res.json();
         setJobs(data);
       } catch (err) {
-        console.error("Failed to fetch jobs:", err);
+        console.warn("Jobs data unavailable or offline:", err.message);
       } finally {
+        clearTimeout(timeoutId);
         setLoading(false);
       }
     };
     fetchJobs();
+
+    return () => {
+      clearTimeout(timeoutId);
+      controller.abort();
+    };
   }, []);
 
   // ✅ MOVE THESE HERE

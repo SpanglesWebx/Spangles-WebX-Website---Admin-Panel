@@ -15,7 +15,7 @@ import bannerImg from "../../assets/Service-banner.jpg";
 import img5 from "../../assets/portfolio5.jpg";
 import Preloader from "../../Components/Preloader";
 
-const API_BASE = "http://localhost:5000";
+const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000";
 
 // --- STYLISTIC UTILITIES ---
 const GrainOverlay = () => (
@@ -108,9 +108,13 @@ export default function Blog() {
   });
 
   useEffect(() => {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 1500);
+
     const fetchBlogs = async () => {
       try {
-        const res = await fetch(`${API_BASE}/api/blogs`);
+        const res = await fetch(`${API_BASE}/api/blogs`, { signal: controller.signal });
+        if (!res.ok) throw new Error("Failed to fetch blogs");
         const data = await res.json();
 
         const mappedPosts = data
@@ -134,14 +138,20 @@ export default function Blog() {
 
         setPosts(mappedPosts);
       } catch (err) {
-        console.error("Error fetching blogs:", err);
+        console.warn("Blogs data unavailable or offline:", err.message);
       } finally {
+        clearTimeout(timeoutId);
         setLoading(false);
       }
     };
 
     fetchBlogs();
     window.scrollTo(0, 0);
+
+    return () => {
+      clearTimeout(timeoutId);
+      controller.abort();
+    };
   }, []);
 
   // --- URL PARAMETER SYNC ---

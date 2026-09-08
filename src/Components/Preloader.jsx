@@ -6,8 +6,8 @@ const Preloader = () => {
     <motion.div
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.8, ease: "easeInOut" }}
-      className="fixed inset-0 z-[10000] flex items-center justify-center bg-white"
+      transition={{ duration: 0.25, ease: "easeOut" }}
+      className="fixed inset-0 z-[10000] flex items-center justify-center bg-white pointer-events-none"
     >
       <div className="relative flex flex-col items-center">
         {/* Centered Favicon with "Running" Spinner */}

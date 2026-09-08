@@ -6,7 +6,7 @@ import logo from "../assets/Webx-nav-Logo_03.jpg"; // Make sure to have this ima
 import sideLogo from "../assets/side-logo.png";
 
 
-import { services } from "../Pages/Services/Services";
+import { services } from "../data/servicesData";
 
 const LINKS = [
   { to: "/", label: "HOME", end: true },

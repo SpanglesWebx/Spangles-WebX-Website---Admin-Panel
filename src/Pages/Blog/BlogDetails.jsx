@@ -6,7 +6,7 @@ import { motion, AnimatePresence, useScroll, useSpring, useTransform } from "fra
 import Support from "../About/Components/Support";
 import Preloader from "../../Components/Preloader";
 
-const API_BASE = "http://localhost:5000";
+const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000";
 
 const formatDate = (dateString) => {
   const options = { day: "2-digit", month: "short", year: "numeric" };
@@ -69,9 +69,13 @@ export default function BlogDetails() {
   const opacity = useTransform(scrollY, [0, 400], [1, 0]);
 
   useEffect(() => {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 1500);
+
     const fetchBlog = async () => {
       try {
-        const res = await fetch(`${API_BASE}/api/blogs/${id}`);
+        const res = await fetch(`${API_BASE}/api/blogs/${id}`, { signal: controller.signal });
+        if (!res.ok) throw new Error("Failed to fetch blog");
         const data = await res.json();
 
         if (data.error || !data._id) {
@@ -82,30 +86,32 @@ export default function BlogDetails() {
 
         setBlog(data);
 
-        // Fetch related posts (latest posts except current)
-        const relRes = await fetch(`${API_BASE}/api/blogs`);
-        const relData = await relRes.json();
-        setRelatedPosts(relData.filter(p => p._id !== id).slice(0, 3));
-
-        // Extract unique categories
-        const cats = [...new Set(relData.map(p => p.category || "Tech Trends"))];
-        setAllCategories(cats);
-
-        // Extract unique tags
-        const tags = [...new Set(relData.flatMap(p => p.tags || []))];
-        setAllTags(tags);
-
-        // Store all for filtering
-        setAllBlogsForFiltering(relData);
+        // Fetch related posts
+        const relRes = await fetch(`${API_BASE}/api/blogs`, { signal: controller.signal });
+        if (relRes.ok) {
+          const relData = await relRes.json();
+          setRelatedPosts(relData.filter(p => p._id !== id).slice(0, 3));
+          const cats = [...new Set(relData.map(p => p.category || "Tech Trends"))];
+          setAllCategories(cats);
+          const tags = [...new Set(relData.flatMap(p => p.tags || []))];
+          setAllTags(tags);
+          setAllBlogsForFiltering(relData);
+        }
       } catch (err) {
-        console.error("Error fetching blog details:", err);
+        console.warn("Blog details unavailable or offline:", err.message);
       } finally {
+        clearTimeout(timeoutId);
         setLoading(false);
       }
     };
 
     fetchBlog();
     window.scrollTo(0, 0);
+
+    return () => {
+      clearTimeout(timeoutId);
+      controller.abort();
+    };
   }, [id]);
 
   const filteredCatalog = useMemo(() => {

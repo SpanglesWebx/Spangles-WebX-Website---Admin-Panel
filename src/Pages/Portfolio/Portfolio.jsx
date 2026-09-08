@@ -10,6 +10,7 @@ import img3 from "../../assets/churc.png";
 import img4 from "../../assets/portfolio4.jpg";
 import churchBanner from "../../assets/Church/Church.png";
 import bookMain from "../../assets/Book depot/Book-main.png";
+import bricksBanner from "../../assets/Bricks/Banner.png";
 import img6 from "../../assets/portfolio6.jpg";
 import img7 from "../../assets/portfolio7.jpg";
 import img8 from "../../assets/portfolio8.jpg";
@@ -22,18 +23,6 @@ export default function Portfolio() {
   const navigate = useNavigate();
   const [showAll, setShowAll] = useState(false);
   const [clickedCard, setClickedCard] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 800);
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (loading) {
-    return <Preloader />;
-  }
   const portfolio = [
     {
       id: 4,
@@ -60,16 +49,16 @@ export default function Portfolio() {
       desc: "A comprehensive School Management platform streamlining student admissions, attendance, grading, fee management, and academic administration.",
     },
     {
+      id: 6,
+      title: "Fashion Mockup",
+      image: bricksBanner,
+      desc: "A trendy fashion showcase featuring a modern layout and high-quality visuals to highlight the latest styles and brand collections effectively.",
+    },
+    {
       id: 2,
       title: "Clinical Management",
       image: clinicBanner,
       desc: "A modern clinical management platform designed to simplify clinical consultations, patient appointments, and healthcare workflows.",
-    },
-    {
-      id: 6,
-      title: "Fashion Mockup",
-      image: img6,
-      desc: "A trendy fashion showcase featuring a modern layout and high-quality visuals to highlight the latest styles and brand collections effectively.",
     },
 
     // 👉 NEW CARDS

@@ -1,6 +1,6 @@
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Support from "../About/Components/Support";
-import { services } from "./Services";
+import { services } from "../../data/servicesData";
 import { useRef, useEffect, useState, useMemo } from "react";
 import Serviceicon from "../../assets/Service-icon.png"; // ✅ ADD THIS
 // fallback images (reuse yours)
@@ -96,7 +96,6 @@ const ServiceDetails = () => {
   const { slug } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(true);
 
   const resolveService = () => {
     if (slug) {
@@ -202,15 +201,6 @@ const ServiceDetails = () => {
       slider.removeEventListener("touchstart", setHovered);
       slider.removeEventListener("touchend", setNotHovered);
     };
-  }, [loading]);
-
-
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 800);
-    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -220,12 +210,6 @@ const ServiceDetails = () => {
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
   }, [slug, location.state]);
-
-
-  if (loading) {
-    return <Preloader />;
-  }
-
 
   return (
     <div className="w-full text-gray-700">

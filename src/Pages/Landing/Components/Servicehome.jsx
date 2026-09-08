@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { services } from "../../Services/Services";
+import { services } from "../../../data/servicesData";
 import Serviceicon from "../../../assets/Service-icon.png"; // Make sure to have this image in your assets folder
 
 export default function ServicesSection() {

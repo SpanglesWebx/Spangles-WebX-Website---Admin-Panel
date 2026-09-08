@@ -48,8 +48,31 @@ import img2 from "../../assets/portfolio2.jpg";
 import img3 from "../../assets/portfolio3.jpg";
 import img4 from "../../assets/portfolio4.jpg";
 import churchBanner from "../../assets/Church/Church.png";
+import churchInnerBanner from "../../assets/Church/church inner ban.png";
+import churchLogin from "../../assets/Church/login.png";
+import churchDashboard from "../../assets/Church/Dashboard.png";
+import churchAddMember from "../../assets/Church/Add member.png";
+import churchMember from "../../assets/Church/Memnber.png";
+import churchBaptism from "../../assets/Church/Baptism.png";
+import churchSundaySchool from "../../assets/Church/Sunday school'.png";
+import churchLedger from "../../assets/Church/Ledger.png";
 import bookMain from "../../assets/Book depot/Book-main.png";
 import bookInnerBanner from "../../assets/Book depot/book-inner-banner.png";
+import bookLogin from "../../assets/Book depot/Login (3).png";
+import bookDashboard from "../../assets/Book depot/Dashboard (3).png";
+import bookProduct from "../../assets/Book depot/products.png";
+import bookSupplier from "../../assets/Book depot/supplier.png";
+import bookCustomer from "../../assets/Book depot/customer.png";
+import bookBill from "../../assets/Book depot/Bill.png";
+import bookLowStock from "../../assets/Book depot/Low stock.png";
+import bricksLogin from "../../assets/Bricks/login (2).png";
+import bricksDashboard from "../../assets/Bricks/Dashboard (2).png";
+import bricksEmployee from "../../assets/Bricks/Employee.png";
+import bricksAttendance from "../../assets/Bricks/Attendance.png";
+import bricksIncome from "../../assets/Bricks/Income.png";
+import bricksExpenses from "../../assets/Bricks/Expenses.png";
+import bricksPayroll from "../../assets/Bricks/Payroll (2).png";
+import bricksInnerBanner from "../../assets/Bricks/inner banner.png";
 import img6 from "../../assets/portfolio6.jpg";
 import img7 from "../../assets/portfolio7.jpg";
 import img8 from "../../assets/portfolio8.jpg";
@@ -224,12 +247,24 @@ const allProjects = [
   {
     id: 4,
     title: "Church Management Software",
-    image: churchBanner,
-    gallery: [churchBanner, img1, img6],
+    image: churchInnerBanner,
+    gallery: [
+      churchLogin,
+      churchDashboard,
+      churchAddMember,
+      churchMember,
+      churchBaptism,
+      churchSundaySchool,
+      churchLedger,
+    ],
     slideTitles: [
-      "Church Management",
+      "Login Screen",
+      "Church Dashboard",
+      "Add Member",
       "Member Directory",
-      "Financial Management",
+      "Baptism Records",
+      "Sunday School",
+      "Accounts & Ledger",
     ],
     desc: "A centralized church management platform streamlining member records, donations, and ministry activities.",
     fullDesc:
@@ -256,10 +291,23 @@ const allProjects = [
     id: 5,
     title: "Book Depot Management System",
     image: bookInnerBanner,
-    gallery: [bookMain, bookInnerBanner],
+    gallery: [
+      bookLogin,
+      bookDashboard,
+      bookProduct,
+      bookSupplier,
+      bookCustomer,
+      bookBill,
+      bookLowStock,
+    ],
     slideTitles: [
-      "Book Depot Management",
-      "System Dashboard",
+      "Login Screen",
+      "Dashboard Overview",
+      "Product & Inventory Management",
+      "Supplier Management",
+      "Customer Management",
+      "POS Billing & Invoicing",
+      "Low Stock Alerts",
     ],
     desc: "A centralized platform designed to manage bookstore operations efficiently across multiple branches.",
     fullDesc:
@@ -317,33 +365,44 @@ const allProjects = [
   {
     id: 6,
     title: "Fashion Mockup",
-    image: img6,
-    gallery: [img6, img8, img2],
-    desc: "Trendy fashion showcase with modern layout.",
-    fullDesc:
-      "Spangles Webx is a tech-driven company passionate about delivering innovative digital products. With a focus on design, usability, and performance, we help startups and enterprises scale with impactful web and mobile solutions. we help startups and ",
-    functionalities: [
-      {
-        title: "Interactive lookbook",
-        description: "Showcases fashion collections beautifully.",
-      },
-      {
-        title: "Image optimization",
-        description: "High-quality visuals with fast loading.",
-      },
-      {
-        title: "Typography layout",
-        description: "Elegant and stylish text presentation.",
-      },
-      {
-        title: "Social integration",
-        description: "Connects with social media platforms.",
-      },
-      {
-        title: "Checkout flow",
-        description: "Simple and user-friendly purchasing.",
-      },
+    image: bricksInnerBanner,
+    gallery: [
+      bricksLogin,
+      bricksDashboard,
+      bricksEmployee,
+      bricksAttendance,
+      bricksIncome,
+      bricksExpenses,
+      bricksPayroll,
     ],
+    slideTitles: [
+      "Login Screen",
+      "Dashboard Overview",
+      "Employee Management",
+      "Attendance Tracking",
+      "Income Management",
+      "Expenses Management",
+      "Payroll & Salary",
+    ],
+    desc: "A centralized platform for managing brick sales, expenses, credits, employees, and payroll operations efficiently.",
+    fullDesc:
+      "Elyon Bricks is a comprehensive business and workforce management platform developed to support day-to-day brick manufacturing and sales operations. It provides a centralized digital solution for tracking customers, sales, expenses, credits, employee attendance, and payroll.",
+    clientInfo:
+      "Elyon Bricks, a brick manufacturing and sales business. The system was developed to support the company’s day-to-day sales and workforce management operations. It provides a centralized platform for managing customers, sales, expenses, credits, employees, and payroll. The application is designed for internal business and administrative use. It helps the business move its operational records from manual processes to a structured digital system.",
+    projectChallenges:
+      "The project solved the difficulty of managing brick sales, payments, expenses, credits, and employee records separately. It reduced dependence on manual calculations and scattered records for financial and employee management. The system tracks invoices, advance payments, outstanding balances, and payment histories in one place. Employee attendance and salary calculations are also organized through a centralized system. This gives management better visibility and control over daily business operations.",
+    technologies:
+      "The frontend was developed using React.js with Vite for a responsive and component-based user interface. Node.js and Express.js were used to build the backend REST APIs and business logic. MongoDB with Mongoose was used for storing sales, expenses, credits, employees, attendance, payroll, and user data. Axios, React Icons, Bootstrap, and CSS were used for frontend functionality and interface design. Nodemailer was integrated for email-based OTP functionality, along with environment-based configuration using dotenv.",
+    keyFeaturesDeveloped:
+      "The system includes brick sales and income management with invoice, customer, quantity, pricing, tax, advance, and balance tracking. It provides expense and credit management with payment history and outstanding balance tracking. Employee management includes employee registration, auto-generated employee IDs, editing, viewing, and deletion. Attendance and payroll modules calculate working days, salary, advance payments, and remaining balances. Follow-ups, reports, authentication, search, date filtering, pagination, and payment tracking were also implemented.",
+    users:
+      "The application is designed for internal users of Elyon Bricks rather than public customers. It includes a user authentication system with signup and login functionality. Registered users can access the business management dashboard after authentication. The system supports multiple operational areas through a centralized dashboard. The exact number of active users is not defined in the provided source code, so a specific user count should not be claimed.",
+    projectOutcomes:
+      "Elyon Bricks gained a centralized digital platform for managing sales and employee-related operations. Financial records such as income, expenses, credits, advances, and balances can be maintained systematically. Employee attendance and payroll calculations became easier to organize and review. Reports and follow-up information provide better visibility into business performance and pending payments. Overall, the system improves operational organization, reduces manual record keeping, and supports faster decision-making.",
+    before:
+      "Manual sales and financial records → Centralized digital income and expense management. Manual payment calculations → Automated balance and payment-history tracking. Separate employee records → Centralized employee management with unique employee IDs. Manual attendance and salary calculations → Digital attendance and payroll calculation. Scattered business information → One dashboard for sales, expenses, credits, employees, payroll, reports, and follow-ups.",
+    after:
+      "Centralized digital income and expense management with automated balance and payment-history tracking, structured employee profiles with auto-generated IDs, automated attendance and payroll computation, and unified reporting across all operational branches.",
   },
 
   {
@@ -545,8 +604,8 @@ function ProjectImageSlider({ images, title, slideTitles = [] }) {
           >
             <span
               className={`block h-[5px] rounded-full transition-all duration-400 ease-out ${i === activeDotIndex
-                  ? "w-10 bg-[#345261] shadow-sm"
-                  : "w-3.5 bg-gray-300 group-hover:bg-[#345261]/60 group-hover:w-5"
+                ? "w-10 bg-[#345261] shadow-sm"
+                : "w-3.5 bg-gray-300 group-hover:bg-[#345261]/60 group-hover:w-5"
                 }`}
             />
           </button>
@@ -560,21 +619,6 @@ const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000";
 
 const PortfolioDetails = () => {
   const location = useLocation();
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 800);
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    if (!loading) {
-      window.scrollTo(0, 0);
-    }
-  }, [loading]);
-
 
   const [form, setForm] = useState({
     name: "",
@@ -591,15 +635,15 @@ const PortfolioDetails = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     if (showToast) {
       const timer = setTimeout(() => setShowToast(false), 3000);
       return () => clearTimeout(timer);
     }
   }, [showToast]);
-
-  if (loading) {
-    return <Preloader />;
-  }
 
 
   const validate = () => {
@@ -759,7 +803,7 @@ const PortfolioDetails = () => {
 
           {currentProject.clientInfo && (
             <>
-              <h4 className="mt-10 mb-5 font-montserrat font-semibold text-[38px] leading-[52px] tracking-[0%] text-[#345261] align-middle max-xl:mt-9 max-xl:mb-4 max-xl:text-[34px] max-xl:leading-[46px] max-lg:mt-8 max-lg:text-[32px] max-lg:leading-[44px] max-md:mt-7 max-md:text-[30px] max-md:leading-[40px] max-sm:mt-6 max-sm:text-[28px] max-sm:leading-[36px] max-[413px]:mt-6 max-[413px]:mb-4 max-[413px]:text-[22px] max-[413px]:leading-[28px]">
+              <h4 className="mt-9 mb-4 font-montserrat font-semibold text-[26px] leading-[36px] tracking-[0%] text-[#345261] align-middle max-xl:mt-8 max-xl:mb-3.5 max-xl:text-[24px] max-xl:leading-[34px] max-lg:mt-7 max-lg:text-[22px] max-lg:leading-[30px] max-md:mt-6 max-md:text-[20px] max-md:leading-[28px] max-sm:mt-5 max-sm:text-[19px] max-sm:leading-[26px] max-[413px]:mt-5 max-[413px]:mb-3 max-[413px]:text-[18px] max-[413px]:leading-[24px]">
                 Client Information
               </h4>
               <p className="font-montserrat font-normal text-[18px] leading-[28px] tracking-[0%] text-[#6B6A66] text-justify align-middle max-lg:text-[17px] max-lg:leading-[27px] max-md:text-left max-md:text-[16px] max-md:leading-[26px] max-sm:text-[15px] max-sm:leading-[25px] max-[413px]:text-left max-[413px]:text-[16px] max-[413px]:leading-[26px]">
@@ -770,7 +814,7 @@ const PortfolioDetails = () => {
 
           {currentProject.projectChallenges && (
             <>
-              <h4 className="mt-10 mb-5 font-montserrat font-semibold text-[38px] leading-[52px] tracking-[0%] text-[#345261] align-middle max-xl:mt-9 max-xl:mb-4 max-xl:text-[34px] max-xl:leading-[46px] max-lg:mt-8 max-lg:text-[32px] max-lg:leading-[44px] max-md:mt-7 max-md:text-[30px] max-md:leading-[40px] max-sm:mt-6 max-sm:text-[28px] max-sm:leading-[36px] max-[413px]:mt-6 max-[413px]:mb-4 max-[413px]:text-[22px] max-[413px]:leading-[28px]">
+              <h4 className="mt-9 mb-4 font-montserrat font-semibold text-[26px] leading-[36px] tracking-[0%] text-[#345261] align-middle max-xl:mt-8 max-xl:mb-3.5 max-xl:text-[24px] max-xl:leading-[34px] max-lg:mt-7 max-lg:text-[22px] max-lg:leading-[30px] max-md:mt-6 max-md:text-[20px] max-md:leading-[28px] max-sm:mt-5 max-sm:text-[19px] max-sm:leading-[26px] max-[413px]:mt-5 max-[413px]:mb-3 max-[413px]:text-[18px] max-[413px]:leading-[24px]">
                 Project Challenges
               </h4>
               {Array.isArray(currentProject.projectChallenges) ? (
@@ -792,7 +836,7 @@ const PortfolioDetails = () => {
 
           {currentProject.technologies && (
             <>
-              <h4 className="mt-10 mb-5 font-montserrat font-semibold text-[38px] leading-[52px] tracking-[0%] text-[#345261] align-middle max-xl:mt-9 max-xl:mb-4 max-xl:text-[34px] max-xl:leading-[46px] max-lg:mt-8 max-lg:text-[32px] max-lg:leading-[44px] max-md:mt-7 max-md:text-[30px] max-md:leading-[40px] max-sm:mt-6 max-sm:text-[28px] max-sm:leading-[36px] max-[413px]:mt-6 max-[413px]:mb-4 max-[413px]:text-[22px] max-[413px]:leading-[28px]">
+              <h4 className="mt-9 mb-4 font-montserrat font-semibold text-[26px] leading-[36px] tracking-[0%] text-[#345261] align-middle max-xl:mt-8 max-xl:mb-3.5 max-xl:text-[24px] max-xl:leading-[34px] max-lg:mt-7 max-lg:text-[22px] max-lg:leading-[30px] max-md:mt-6 max-md:text-[20px] max-md:leading-[28px] max-sm:mt-5 max-sm:text-[19px] max-sm:leading-[26px] max-[413px]:mt-5 max-[413px]:mb-3 max-[413px]:text-[18px] max-[413px]:leading-[24px]">
                 Technologies Used
               </h4>
               {typeof currentProject.technologies === "string" ? (
@@ -833,7 +877,7 @@ const PortfolioDetails = () => {
 
           {(currentProject.keyFeaturesDeveloped || (currentProject.functionalities && currentProject.functionalities.length > 0)) && (
             <>
-              <h4 className="mt-10 mb-5 font-montserrat font-semibold text-[38px] leading-[52px] tracking-[0%] text-[#345261] align-middle max-xl:mt-9 max-xl:mb-4 max-xl:text-[34px] max-xl:leading-[46px] max-lg:mt-8 max-lg:text-[32px] max-lg:leading-[44px] max-md:mt-7 max-md:text-[30px] max-md:leading-[40px] max-sm:mt-6 max-sm:text-[28px] max-sm:leading-[36px] max-[413px]:mt-6 max-[413px]:mb-4 max-[413px]:text-[22px] max-[413px]:leading-[28px]">
+              <h4 className="mt-9 mb-4 font-montserrat font-semibold text-[26px] leading-[36px] tracking-[0%] text-[#345261] align-middle max-xl:mt-8 max-xl:mb-3.5 max-xl:text-[24px] max-xl:leading-[34px] max-lg:mt-7 max-lg:text-[22px] max-lg:leading-[30px] max-md:mt-6 max-md:text-[20px] max-md:leading-[28px] max-sm:mt-5 max-sm:text-[19px] max-sm:leading-[26px] max-[413px]:mt-5 max-[413px]:mb-3 max-[413px]:text-[18px] max-[413px]:leading-[24px]">
                 {currentProject.keyFeaturesDeveloped ? "Key Features Developed" : "The key functionalities include:"}
               </h4>
               {currentProject.keyFeaturesDeveloped && (
@@ -865,7 +909,7 @@ const PortfolioDetails = () => {
 
           {currentProject.users && (
             <>
-              <h4 className="mt-10 mb-5 font-montserrat font-semibold text-[38px] leading-[52px] tracking-[0%] text-[#345261] align-middle max-xl:mt-9 max-xl:mb-4 max-xl:text-[34px] max-xl:leading-[46px] max-lg:mt-8 max-lg:text-[32px] max-lg:leading-[44px] max-md:mt-7 max-md:text-[30px] max-md:leading-[40px] max-sm:mt-6 max-sm:text-[28px] max-sm:leading-[36px] max-[413px]:mt-6 max-[413px]:mb-4 max-[413px]:text-[22px] max-[413px]:leading-[28px]">
+              <h4 className="mt-9 mb-4 font-montserrat font-semibold text-[26px] leading-[36px] tracking-[0%] text-[#345261] align-middle max-xl:mt-8 max-xl:mb-3.5 max-xl:text-[24px] max-xl:leading-[34px] max-lg:mt-7 max-lg:text-[22px] max-lg:leading-[30px] max-md:mt-6 max-md:text-[20px] max-md:leading-[28px] max-sm:mt-5 max-sm:text-[19px] max-sm:leading-[26px] max-[413px]:mt-5 max-[413px]:mb-3 max-[413px]:text-[18px] max-[413px]:leading-[24px]">
                 Target Users
               </h4>
               <p className="font-montserrat font-normal text-[18px] leading-[28px] tracking-[0%] text-[#6B6A66] text-justify align-middle max-lg:text-[17px] max-lg:leading-[27px] max-md:text-left max-md:text-[16px] max-md:leading-[26px] max-sm:text-[15px] max-sm:leading-[25px] max-[413px]:text-left max-[413px]:text-[16px] max-[413px]:leading-[26px]">
@@ -876,7 +920,7 @@ const PortfolioDetails = () => {
 
           {currentProject.projectOutcomes && (
             <>
-              <h4 className="mt-10 mb-5 font-montserrat font-semibold text-[38px] leading-[52px] tracking-[0%] text-[#345261] align-middle max-xl:mt-9 max-xl:mb-4 max-xl:text-[34px] max-xl:leading-[46px] max-lg:mt-8 max-lg:text-[32px] max-lg:leading-[44px] max-md:mt-7 max-md:text-[30px] max-md:leading-[40px] max-sm:mt-6 max-sm:text-[28px] max-sm:leading-[36px] max-[413px]:mt-6 max-[413px]:mb-4 max-[413px]:text-[22px] max-[413px]:leading-[28px]">
+              <h4 className="mt-9 mb-4 font-montserrat font-semibold text-[26px] leading-[36px] tracking-[0%] text-[#345261] align-middle max-xl:mt-8 max-xl:mb-3.5 max-xl:text-[24px] max-xl:leading-[34px] max-lg:mt-7 max-lg:text-[22px] max-lg:leading-[30px] max-md:mt-6 max-md:text-[20px] max-md:leading-[28px] max-sm:mt-5 max-sm:text-[19px] max-sm:leading-[26px] max-[413px]:mt-5 max-[413px]:mb-3 max-[413px]:text-[18px] max-[413px]:leading-[24px]">
                 Project Outcomes
               </h4>
               <p className="font-montserrat font-normal text-[18px] leading-[28px] tracking-[0%] text-[#6B6A66] text-justify align-middle max-lg:text-[17px] max-lg:leading-[27px] max-md:text-left max-md:text-[16px] max-md:leading-[26px] max-sm:text-[15px] max-sm:leading-[25px] max-[413px]:text-left max-[413px]:text-[16px] max-[413px]:leading-[26px]">
@@ -887,7 +931,7 @@ const PortfolioDetails = () => {
 
           {currentProject.before && (
             <>
-              <h4 className="mt-10 mb-5 font-montserrat font-semibold text-[38px] leading-[52px] tracking-[0%] text-[#345261] align-middle max-xl:mt-9 max-xl:mb-4 max-xl:text-[34px] max-xl:leading-[46px] max-lg:mt-8 max-lg:text-[32px] max-lg:leading-[44px] max-md:mt-7 max-md:text-[30px] max-md:leading-[40px] max-sm:mt-6 max-sm:text-[28px] max-sm:leading-[36px] max-[413px]:mt-6 max-[413px]:mb-4 max-[413px]:text-[22px] max-[413px]:leading-[28px]">
+              <h4 className="mt-9 mb-4 font-montserrat font-semibold text-[26px] leading-[36px] tracking-[0%] text-[#345261] align-middle max-xl:mt-8 max-xl:mb-3.5 max-xl:text-[24px] max-xl:leading-[34px] max-lg:mt-7 max-lg:text-[22px] max-lg:leading-[30px] max-md:mt-6 max-md:text-[20px] max-md:leading-[28px] max-sm:mt-5 max-sm:text-[19px] max-sm:leading-[26px] max-[413px]:mt-5 max-[413px]:mb-3 max-[413px]:text-[18px] max-[413px]:leading-[24px]">
                 Before — Existing Workflow & Experience
               </h4>
               {Array.isArray(currentProject.before) ? (
@@ -909,7 +953,7 @@ const PortfolioDetails = () => {
 
           {currentProject.after && (
             <>
-              <h4 className="mt-10 mb-5 font-montserrat font-semibold text-[38px] leading-[52px] tracking-[0%] text-[#345261] align-middle max-xl:mt-9 max-xl:mb-4 max-xl:text-[34px] max-xl:leading-[46px] max-lg:mt-8 max-lg:text-[32px] max-lg:leading-[44px] max-md:mt-7 max-md:text-[30px] max-md:leading-[40px] max-sm:mt-6 max-sm:text-[28px] max-sm:leading-[36px] max-[413px]:mt-6 max-[413px]:mb-4 max-[413px]:text-[22px] max-[413px]:leading-[28px]">
+              <h4 className="mt-9 mb-4 font-montserrat font-semibold text-[26px] leading-[36px] tracking-[0%] text-[#345261] align-middle max-xl:mt-8 max-xl:mb-3.5 max-xl:text-[24px] max-xl:leading-[34px] max-lg:mt-7 max-lg:text-[22px] max-lg:leading-[30px] max-md:mt-6 max-md:text-[20px] max-md:leading-[28px] max-sm:mt-5 max-sm:text-[19px] max-sm:leading-[26px] max-[413px]:mt-5 max-[413px]:mb-3 max-[413px]:text-[18px] max-[413px]:leading-[24px]">
                 After — Redesigned Workflow & Experience
               </h4>
               {Array.isArray(currentProject.after) ? (

@@ -9,24 +9,21 @@ const projects = [
     id: 4,
     title: "Church Management Software",
     desc: "A centralized church management platform designed to streamline member directories, donations, event planning, attendance tracking, and community outreach.",
-    roi: "1050% increase in ROI",
-    cac: "42% decrease in CAC",
+    techStack: ["React.js", "Node.js", "Express.js", "MongoDB"],
     img: churchBanner,
   },
   {
     id: 5,
     title: "Book Depot Management System",
     desc: "A centralized platform designed to manage bookstore operations efficiently across multiple branches with integrated billing, inventory, and reporting.",
-    roi: "1100% increase in ROI",
-    cac: "40% decrease in CAC",
+    techStack: ["React.js", "Node.js", "MongoDB", "Tailwind CSS"],
     img: bookBanner,
   },
   {
     id: 1,
     title: "Hospital Management",
     desc: "Explore our comprehensive Hospital Management platform designed to streamline healthcare operations, enhance patient care, and automate clinical workflows.",
-    roi: "1200% increase in ROI",
-    cac: "50% decrease in CAC",
+    techStack: ["React.js", "Node.js", "MongoDB", "Figma"],
     img: hospitalBanner,
   },
 ];
@@ -104,9 +101,15 @@ export default function FeaturedWorkStack() {
                     {item.desc}
                   </p>
 
-                  <div className="flex gap-[20px] max-[1201px]:gap-[15px] max-[1025px]:gap-[10px] max-[768px]:flex-col max-[768px]:gap-[8px] text-white font-montserrat font-semibold text-[16px] max-[1201px]:text-[16px] max-[1025px]:text-[14px] max-[413px]:text-[14px] max-[413px]:leading-[20px] leading-[27.32px] tracking-[0px]">
-                    <span className="flex items-center gap-[8px]"><span className="text-[#A7A7A7] max-[1201px]:text-[16px] max-[1025px]:text-[14px] max-[413px]:text-[14px]">✔</span> {item.roi}</span>
-                    <span className="flex items-center gap-[8px]"><span className="text-[#A7A7A7] max-[1201px]:text-[16px] max-[1025px]:text-[14px] max-[413px]:text-[14px]">✔</span> {item.cac}</span>
+                  <div className="flex flex-wrap items-center gap-[10px] max-[1025px]:gap-[8px] max-[413px]:gap-[6px]">
+                    {item.techStack.map((tech, tIdx) => (
+                      <span
+                        key={tIdx}
+                        className="inline-flex items-center px-[12px] py-[5px] max-[1025px]:px-[10px] max-[1025px]:py-[4px] max-[413px]:px-[9px] max-[413px]:py-[3px] rounded-[6px] bg-[#395563]/80 border border-white/15 text-white/90 font-montserrat font-medium text-[13px] max-[1025px]:text-[12px] max-[413px]:text-[11px] leading-[18px] tracking-[0.2px] backdrop-blur-sm shadow-sm"
+                      >
+                        {tech}
+                      </span>
+                    ))}
                   </div>
 
                   <button
