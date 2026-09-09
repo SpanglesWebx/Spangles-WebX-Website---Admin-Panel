@@ -357,7 +357,7 @@ const allProjects = [
 
   {
     id: 6,
-    title: "Fashion Mockup",
+    title: "Brick Manufacturing Industry",
     image: bricksInnerBanner,
     gallery: [
       bricksLogin,
@@ -384,8 +384,26 @@ const allProjects = [
       "Elyon Bricks, a brick manufacturing and sales business. The system was developed to support the company’s day-to-day sales and workforce management operations. It provides a centralized platform for managing customers, sales, expenses, credits, employees, and payroll. The application is designed for internal business and administrative use. It helps the business move its operational records from manual processes to a structured digital system.",
     projectChallenges:
       "The project solved the difficulty of managing brick sales, payments, expenses, credits, and employee records separately. It reduced dependence on manual calculations and scattered records for financial and employee management. The system tracks invoices, advance payments, outstanding balances, and payment histories in one place. Employee attendance and salary calculations are also organized through a centralized system. This gives management better visibility and control over daily business operations.",
-    technologies:
-      "The frontend was developed using React.js with Vite for a responsive and component-based user interface. Node.js and Express.js were used to build the backend REST APIs and business logic. MongoDB with Mongoose was used for storing sales, expenses, credits, employees, attendance, payroll, and user data. Axios, React Icons, Bootstrap, and CSS were used for frontend functionality and interface design. Nodemailer was integrated for email-based OTP functionality, along with environment-based configuration using dotenv.",
+    technologies: {
+      list: [
+        {
+          name: "Frontend",
+          desc: "React.js, Vite, JavaScript, React Router",
+        },
+        {
+          name: "UI & Styling",
+          desc: "Material UI (MUI), Ant Design, Bootstrap",
+        },
+        {
+          name: "Backend",
+          desc: "Node.js, Express.js",
+        },
+        {
+          name: "Database",
+          desc: "MongoDB",
+        },
+      ],
+    },
     keyFeaturesDeveloped:
       "The system includes brick sales and income management with invoice, customer, quantity, pricing, tax, advance, and balance tracking. It provides expense and credit management with payment history and outstanding balance tracking. Employee management includes employee registration, auto-generated employee IDs, editing, viewing, and deletion. Attendance and payroll modules calculate working days, salary, advance payments, and remaining balances. Follow-ups, reports, authentication, search, date filtering, pagination, and payment tracking were also implemented.",
     users:

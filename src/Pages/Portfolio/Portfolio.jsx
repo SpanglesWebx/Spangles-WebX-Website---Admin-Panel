@@ -40,9 +40,9 @@ export default function Portfolio() {
     },
     {
       id: 6,
-      title: "Fashion Mockup",
+      title: "Brick Manufacturing Industry",
       image: bricksBanner,
-      desc: "A trendy fashion showcase featuring a modern layout and high-quality visuals to highlight the latest styles and brand collections effectively.",
+      desc: "A centralized business and workforce management platform designed to streamline brick manufacturing, sales, credit tracking, employee attendance, and payroll operations.",
     },
     {
       id: 2,
