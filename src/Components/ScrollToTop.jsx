@@ -2,6 +2,9 @@ import { useLayoutEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 const scrollToTop = () => {
+  if (window.__lenis) {
+    window.__lenis.scrollTo(0, { immediate: true });
+  }
   // Force scroll to absolute top
   window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   document.documentElement.scrollTop = 0;
@@ -9,6 +12,9 @@ const scrollToTop = () => {
 
   // Additional fallback for stubborn cases
   setTimeout(() => {
+    if (window.__lenis) {
+      window.__lenis.scrollTo(0, { immediate: true });
+    }
     window.scrollTo(0, 0);
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
@@ -25,7 +31,11 @@ const ScrollToTop = () => {
         const id = hash.replace('#', '');
         const element = document.getElementById(id);
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
+          if (window.__lenis) {
+            window.__lenis.scrollTo(element, { duration: 1.2, offset: -80 });
+          } else {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
         }
       }, 100);
       return () => clearTimeout(timeout);

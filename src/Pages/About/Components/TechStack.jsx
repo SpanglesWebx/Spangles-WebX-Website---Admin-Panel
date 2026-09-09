@@ -315,7 +315,7 @@ export default function TechStack() {
             </span>
           </h2>
 
-          <p className="mt-5 text-[#6B7280] font-montserrat text-[16px] leading-[28px] max-lg:text-[15px] max-lg:leading-[26px] max-md:text-[14px] max-md:leading-[24px] max-sm:text-[13px] max-sm:leading-[22px] max-lg:max-w-[700px]">
+          <p className="mt-5 text-justify text-[#6B7280] font-montserrat text-[16px] leading-[28px] max-lg:text-[15px] max-lg:leading-[26px] max-md:text-[14px] max-md:leading-[24px] max-sm:text-[13px] max-sm:leading-[22px] max-lg:max-w-[700px]">
             We leverage modern and reliable technologies to deliver secure,
             scalable, high-performance, and future-ready digital solutions. Our
             approach focuses on efficient development, seamless integration,
@@ -328,7 +328,7 @@ export default function TechStack() {
               to="/contact#contact-form"
               className="group cursor-pointer bg-[#395563] hover:bg-[#2f4650] text-white font-montserrat font-bold text-[12px] max-sm:text-[11px] leading-[18px] tracking-[0px] uppercase text-center align-middle px-[25px] py-[17px] max-md:px-[20px] max-md:py-[14px] rounded-[10px] inline-flex items-center justify-center gap-2.5 whitespace-nowrap transition max-[413px]:w-full"
             >
-              <span>BOOK FREE CONSULTATION</span>
+              <span>Send an Enquiry</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 max-[413px]:w-[12px] max-[413px]:h-[12px]"

@@ -2,9 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
-import AboutImage from "../../../assets/about-image.png"; // Make sure to have this image in your assets folder
-import growthIcon from "../../../assets/growthIcon.png"; // Make sure to have this image in your assets folder
-import starIcon from "../../../assets/starIcon.png"; // Make sure to have this image in your assets folder
+import AboutImage from "../../../assets/Home/About.webp";
+import growthIcon from "../../../assets/growthIcon.png";
+import starIcon from "../../../assets/starIcon.png";
 function CountUp({ to, durationMs = 1000, suffix = "", decimals = 0 }) {
   const [value, setValue] = useState(0);
   const [inView, setInView] = useState(false);
@@ -84,7 +84,7 @@ export default function AboutSection() {
         >
           <img
             src={AboutImage}
-            alt=""
+            alt="Who We Are - Spangles Webx"
             className="rounded-xl w-full h-full object-cover"
           />
           <div className="absolute bottom-7 right-7 w-[200px] h-[200px] bg-white rounded-full shadow-lg flex flex-col items-center justify-center text-center max-[413px]:w-[150px] max-[413px]:h-[150px] max-[413px]:bottom-4 max-[413px]:right-4">
@@ -118,7 +118,7 @@ export default function AboutSection() {
             Business Growth
           </h2>
 
-          <p className="w-full max-w-lg min-[1600px]:max-w-2xl min-[1920px]:max-w-3xl font-montserrat font-normal text-[#6B6A66] text-[16px] leading-[23.65px] mb-10 max-[413px]:text-[14px] max-[413px]:leading-[20px] max-[413px]:mb-8">
+          <p className="w-full text-justify max-w-lg min-[1600px]:max-w-2xl min-[1920px] :max-w-3xl font-montserrat font-normal text-[#6B6A66] text-[16px] leading-[23.65px] mb-10 max-[413px]:text-[14px] max-[413px]:leading-[20px] max-[413px]:mb-8">
             Spangles Webx is a tech-driven company passionate about delivering
             innovative digital products. With a focus on design, usability, and
             performance, we help startups and enterprises scale with impactful

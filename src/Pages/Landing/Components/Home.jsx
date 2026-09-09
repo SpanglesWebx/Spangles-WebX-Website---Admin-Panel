@@ -70,7 +70,7 @@ export default function HeroSection() {
           </h1>
 
           {/* DESCRIPTION */}
-          <p className="mx-auto mb-7.5 max-w-[500px] text-center font-montserrat text-[16px] font-normal leading-[22.5px] text-[#6B6A66] max-[413px]:mb-5 max-[413px]:max-w-[min(100%,320px)] max-[413px]:text-[14px] max-[413px]:leading-[1.5] max-[413px]:text-[#5C6370]">
+          <p className="mx-auto  mb-7.5 max-w-[500px] text-center font-montserrat text-[16px] font-normal leading-[22.5px] text-[#6B6A66] max-[413px]:mb-5 max-[413px]:max-w-[min(100%,320px)] max-[413px]:text-[14px] max-[413px]:leading-[1.5] max-[413px]:text-[#5C6370]">
             Spangles Webx Private Limited offers tailored solutions in Web
             Development, UI/UX Design, Mobile Apps, and Branding to help your
             business thrive in the digital world.

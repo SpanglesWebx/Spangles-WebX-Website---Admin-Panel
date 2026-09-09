@@ -7,6 +7,9 @@ import Footer from "./Components/Footer";
 import WhatsAppIcon from "./Components/WhatsAppIcon";
 import ScrollToTop from "./Components/ScrollToTop";
 
+import Lenis from "lenis";
+import "lenis/dist/lenis.css";
+
 // Eager load Home for lightning-fast first paint
 import Home from "./Pages/Landing/HomeApp";
 
@@ -33,6 +36,40 @@ function App() {
     setLoading(false);
   }, []);
 
+  // Initialize Lenis smooth scroll engine with luxury inertial lerp damping
+  useEffect(() => {
+    const lenis = new Lenis({
+      lerp: 0.08,
+      wheelMultiplier: 1.0,
+      touchMultiplier: 1.5,
+      smoothWheel: true,
+      infinite: false,
+    });
+
+    window.__lenis = lenis;
+
+    const handleLenisScroll = ({ scroll, limit }) => {
+      const percentage = limit > 0 ? (scroll / limit) * 100 : 0;
+      document.documentElement.style.setProperty('--scroll-percent', `${percentage}%`);
+    };
+
+    lenis.on("scroll", handleLenisScroll);
+
+    let rafId;
+    function raf(time) {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    }
+    rafId = requestAnimationFrame(raf);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      lenis.off("scroll", handleLenisScroll);
+      lenis.destroy();
+      window.__lenis = null;
+    };
+  }, []);
+
   useEffect(() => {
     if ("scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
@@ -42,19 +79,9 @@ function App() {
     document.body.style.overflow = "";
     document.documentElement.style.overflow = "";
 
-    const handleScroll = () => {
-      const scrolled = window.scrollY;
-      const height = document.documentElement.scrollHeight - window.innerHeight;
-      const percentage = (scrolled / height) * 100;
-      document.documentElement.style.setProperty('--scroll-percent', `${percentage}%`);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial call
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    if (window.__lenis) {
+      window.__lenis.resize();
+    }
   }, [pathname]);
 
   const handleTrackClick = (e) => {
@@ -62,7 +89,11 @@ function App() {
     const scrollHeight = document.documentElement.scrollHeight;
     if (scrollHeight > height) {
       const targetScroll = (e.clientY / height) * (scrollHeight - height);
-      window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+      if (window.__lenis) {
+        window.__lenis.scrollTo(targetScroll, { lerp: 0.08 });
+      } else {
+        window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+      }
     }
   };
 

@@ -865,14 +865,12 @@ const ServiceDetails = () => {
                   document.body.scrollTop = 0;
                 }}
                 className="
-  relative group cursor-pointer rounded-xl overflow-hidden 
-  min-w-[calc((100%-48px)/3)] h-[432px] 
-  shadow-[0px_0px_19.22px_0px_#00000012]
+  relative group cursor-pointer rounded-2xl overflow-hidden 
+  min-w-[calc((100%-48px)/3)] aspect-[4/3] h-auto
+  shadow-[0px_10px_30px_0px_rgba(0,0,0,0.08)] hover:shadow-[0px_20px_40px_0px_rgba(0,0,0,0.15)]
+  transition-all duration-500
 
-  max-[1201px]:h-[380px]
-  
   max-[1024px]:min-w-[calc((100%-24px)/2)]
-  max-[1024px]:h-[360px]
 
   max-[413px]:min-w-full
   max-[413px]:max-w-full
@@ -883,37 +881,38 @@ const ServiceDetails = () => {
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
 
 
+                {/* 🔹 Bottom shade only (~3cm from bottom) */}
                 <div
-                  className="absolute inset-0 
-      bg-[linear-gradient(0deg,_#395563_0%,_rgba(20,34,92,0)_100%)]
+                  className="absolute bottom-0 left-0 right-0 h-[45%] max-h-[135px] min-h-[110px]
+      bg-[linear-gradient(0deg,_#395563_0%,_rgba(57,85,99,0.7)_50%,_transparent_100%)]
       transition-all duration-500 ease-in-out 
-      group-hover:opacity-0"
+      group-hover:opacity-0 pointer-events-none"
                 />
 
 
                 <div
-                  className="absolute bottom-14 left-6 right-6 text-white 
-    transition-all duration-500 group-hover:opacity-0"
+                  className="absolute bottom-6 left-6 right-6 text-white 
+    transition-all duration-500 group-hover:opacity-0 z-10"
                 >
                   <div
-                    className="w-12 h-12 mb-4 bg-white"
+                    className="w-10 h-10 mb-3 bg-white"
                     style={{
-                      WebkitMaskImage: `url(${Serviceicon})`,
+                      WebkitMaskImage: `url(${item.icon || Serviceicon})`,
                       WebkitMaskSize: "contain",
                       WebkitMaskRepeat: "no-repeat",
                       WebkitMaskPosition: "center",
-                      maskImage: `url(${Serviceicon})`,
+                      maskImage: `url(${item.icon || Serviceicon})`,
                       maskSize: "contain",
                       maskRepeat: "no-repeat",
                       maskPosition: "center",
                     }}
                   />
 
-                  <h3 className="font-[Montserrat] font-medium text-[20px] leading-[23px] text-white">
+                  <h3 className="font-[Montserrat] font-semibold text-[18px] min-[1441px]:text-[20px] leading-tight text-white drop-shadow-sm">
                     {item.title}
                   </h3>
                 </div>
@@ -930,11 +929,11 @@ const ServiceDetails = () => {
                   <div
                     className="w-12 h-12 mb-4 bg-[#395563]"
                     style={{
-                      WebkitMaskImage: `url(${Serviceicon})`,
+                      WebkitMaskImage: `url(${item.icon || Serviceicon})`,
                       WebkitMaskSize: "contain",
                       WebkitMaskRepeat: "no-repeat",
                       WebkitMaskPosition: "center",
-                      maskImage: `url(${Serviceicon})`,
+                      maskImage: `url(${item.icon || Serviceicon})`,
                       maskSize: "contain",
                       maskRepeat: "no-repeat",
                       maskPosition: "center",

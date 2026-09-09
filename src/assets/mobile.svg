@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="#253844" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Mobile Phone Outer Body -->
+  <rect x="13" y="4" width="22" height="40" rx="4" fill="none" />
+  <!-- Screen Area -->
+  <rect x="16" y="9" width="16" height="28" rx="1.5" fill="none" />
+  <!-- Speaker / Camera notch at top -->
+  <line x1="21" y1="6.5" x2="27" y2="6.5" />
+  <!-- Home Indicator / Nav Bar at bottom -->
+  <line x1="21" y1="40.5" x2="27" y2="40.5" />
+  
+  <!-- App Grid Icons inside Screen -->
+  <rect x="18.5" y="12" width="4.5" height="4.5" rx="1" fill="#253844" fill-opacity="0.15" />
+  <rect x="25" y="12" width="4.5" height="4.5" rx="1" fill="#253844" fill-opacity="0.15" />
+  <rect x="18.5" y="18.5" width="4.5" height="4.5" rx="1" fill="#253844" fill-opacity="0.15" />
+  <rect x="25" y="18.5" width="4.5" height="4.5" rx="1" fill="#253844" fill-opacity="0.15" />
+  
+  <!-- Mobile App Content / Interface Lines -->
+  <line x1="18.5" y1="26.5" x2="29.5" y2="26.5" />
+  <line x1="18.5" y1="30" x2="26.5" y2="30" />
+  <line x1="18.5" y1="33.5" x2="24" y2="33.5" />
+  
+  <!-- Touch / Tap / Wireless Connectivity Signals -->
+  <path d="M38 12 C40 14, 40 18, 38 20" />
+  <path d="M41 9 C44 13, 44 21, 41 25" />
+  <path d="M10 12 C8 14, 8 18, 10 20" />
+</svg>

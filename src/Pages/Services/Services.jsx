@@ -56,7 +56,7 @@ max-[1200px]:px-10
 max-[768px]:px-6
 max-[413px]:px-5 max-[413px]:pt-8 max-[413px]:pb-20"
       >
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-[1030px]:grid-cols-2 max-[413px]:!grid-cols-1 gap-x-[30px] min-[1441px]:gap-x-[20px] min-[1441px]:justify-center gap-y-[50px] min-[1441px]:gap-y-[40px] max-[413px]:gap-y-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-[1030px]:grid-cols-2 max-[413px]:!grid-cols-1 gap-[50px] min-[1441px]:gap-[50px] max-[1400px]:gap-[40px] max-[1030px]:gap-[30px] max-[413px]:gap-8">
           {services.map((service, index) => {
             const isLeft = index % 3 === 0;
             const isCenter = index % 3 === 1;
@@ -89,34 +89,34 @@ max-[413px]:px-5 max-[413px]:pt-8 max-[413px]:pb-20"
                     },
                   })
                 }
-                className="relative group cursor-pointer rounded-xl overflow-hidden w-[390px] h-[432px] min-[1441px]:w-[480px] min-[1441px]:h-[540px] max-[1400px]:w-full max-[1400px]:max-w-[390px] max-[1400px]:mx-auto max-[413px]:h-[430px] shadow-[0px_0px_19.22px_0px_#00000012]"
+                className="relative group cursor-pointer rounded-2xl overflow-hidden w-full aspect-[4/3] shadow-[0px_10px_30px_0px_rgba(0,0,0,0.08)] hover:shadow-[0px_20px_40px_0px_rgba(0,0,0,0.15)] transition-all duration-500"
               >
                 {/* Image */}
                 <img
                   src={service.image}
                   alt={service.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
 
-                {/* 🔹 Gradient (default) */}
+                {/* 🔹 Bottom shade only (~3cm from bottom) */}
                 <div
-                  className="absolute inset-0 
-          bg-[linear-gradient(0deg,_#395563_0%,_rgba(20,34,92,0)_100%)]
+                  className="absolute bottom-0 left-0 right-0 h-[45%] max-h-[135px] min-h-[110px]
+          bg-[linear-gradient(0deg,_#395563_0%,_rgba(57,85,99,0.7)_50%,_transparent_100%)]
           transition-all duration-500 ease-in-out 
-          group-hover:opacity-0"
+          group-hover:opacity-0 pointer-events-none"
                 />
 
                 {/* 🔹 Default Content */}
-                <div className="absolute bottom-14 left-15 right-6 text-white transition-all duration-500 group-hover:opacity-0 max-[413px]:hidden">
+                <div className="absolute bottom-6 left-6 right-6 text-white transition-all duration-500 group-hover:opacity-0 max-[413px]:hidden z-10">
                   {/* ICON — #FFFFFF default; #395563 when card hovered (hover panel icon) */}
                   <div
-                    className="relative w-12 h-12 mb-4 bg-white"
+                    className="relative w-10 h-10 mb-3 bg-white"
                     style={{
-                      WebkitMaskImage: `url(${Serviceicon})`,
+                      WebkitMaskImage: `url(${service.icon || Serviceicon})`,
                       WebkitMaskSize: "contain",
                       WebkitMaskRepeat: "no-repeat",
                       WebkitMaskPosition: "center",
-                      maskImage: `url(${Serviceicon})`,
+                      maskImage: `url(${service.icon || Serviceicon})`,
                       maskSize: "contain",
                       maskRepeat: "no-repeat",
                       maskPosition: "center",
@@ -124,28 +124,28 @@ max-[413px]:px-5 max-[413px]:pt-8 max-[413px]:pb-20"
                     aria-hidden
                   />
 
-                  <h3 className="font-[Montserrat] font-medium text-[20px] leading-[23.07px] tracking-[0%] align-middle text-[#ffffff]">
+                  <h3 className="font-[Montserrat] font-semibold text-[18px] min-[1441px]:text-[20px] leading-tight text-[#ffffff] drop-shadow-sm">
                     {service.title}
                   </h3>
                 </div>
 
                 {/* 🔹 Hover White Card */}
                 <div
-                  className="absolute bottom-6 left-6 right-6 bg-white rounded-xl px-5 pt-5 pb-6  
-          opacity-0 translate-y-6 
+                  className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md rounded-xl p-4 min-[1441px]:p-5 shadow-lg
+          opacity-0 translate-y-4 
           group-hover:opacity-100 group-hover:translate-y-0 
-          transition-all duration-500 ease-in-out
-          max-[413px]:opacity-100 max-[413px]:translate-y-0 max-[413px]:bottom-5 max-[413px]:left-5 max-[413px]:right-5"
+          transition-all duration-400 ease-out z-20
+          max-[413px]:opacity-100 max-[413px]:translate-y-0 max-[413px]:bottom-3 max-[413px]:left-3 max-[413px]:right-3 max-[413px]:p-3"
                 >
                   {/* ICON — #395563 (visible on card hover with this panel) */}
                   <div
-                    className="w-12 h-12 mb-4 bg-[#395563]"
+                    className="w-8 h-8 min-[1441px]:w-10 min-[1441px]:h-10 mb-2 bg-[#395563]"
                     style={{
-                      WebkitMaskImage: `url(${Serviceicon})`,
+                      WebkitMaskImage: `url(${service.icon || Serviceicon})`,
                       WebkitMaskSize: "contain",
                       WebkitMaskRepeat: "no-repeat",
                       WebkitMaskPosition: "center",
-                      maskImage: `url(${Serviceicon})`,
+                      maskImage: `url(${service.icon || Serviceicon})`,
                       maskSize: "contain",
                       maskRepeat: "no-repeat",
                       maskPosition: "center",
@@ -153,11 +153,11 @@ max-[413px]:px-5 max-[413px]:pt-8 max-[413px]:pb-20"
                     aria-hidden
                   />
 
-                  <h3 className="mb-5 font-[Montserrat] font-medium text-[20px] leading-[23.07px] text-[#395563] max-[413px]:text-[18px] max-[413px]:mb-3">
+                  <h3 className="mb-2 font-[Montserrat] font-semibold text-[16px] min-[1441px]:text-[18px] leading-tight text-[#395563] max-[413px]:text-[15px] max-[413px]:mb-1">
                     {service.title}
                   </h3>
 
-                  <p className="font-normal text-[16px] leading-[23.07px] text-[#3955638F] max-[413px]:text-[14px] line-clamp-2 overflow-hidden" style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>
+                  <p className="font-normal text-[13px] min-[1441px]:text-[14px] leading-snug text-[#3955638F] line-clamp-2 overflow-hidden" style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>
                     {service.description}
                   </p>
                 </div>

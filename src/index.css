@@ -12,8 +12,6 @@
 }
 
 html {
-  overflow-x: clip;
-  scroll-behavior: smooth;
   scrollbar-width: none !important;
 }
 
@@ -23,13 +21,20 @@ html::after {
   top: 0;
   right: 0;
   width: 6px;
-  height: 100%;
+  height: var(--scroll-percent, 0%);
   background: #2a3d45;
   z-index: 99999;
   transform-origin: top;
-  transform: scaleY(0);
-  animation: scroll-v auto linear;
-  animation-timeline: scroll();
+  pointer-events: none;
+}
+
+@supports (animation-timeline: scroll()) {
+  html::after {
+    height: 100%;
+    transform: scaleY(0);
+    animation: scroll-v auto linear;
+    animation-timeline: scroll();
+  }
 }
 
 @keyframes scroll-v {
@@ -52,13 +57,9 @@ html::after {
 body {
   @apply font-mont;
   margin: 0;
-  overflow-x: clip;
+  overflow-x: hidden;
   max-width: 100%;
-}
-
-html {
-  overflow-x: clip;
-  scroll-behavior: smooth;
+  width: 100%;
 }
 
 @keyframes fadeIn {

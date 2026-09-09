@@ -109,7 +109,7 @@ export default function SmoothStack() {
   }, []);
 
   return (
-    <div className="flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-[#F4F7FA] px-6 min-[414px]:px-10 min-[1025px]:px-[80px] pt-16 pb-40 max-[1025px]:pb-20 max-[413px]:pb-10">
+    <div className="flex w-full flex-col items-center justify-center overflow-hidden bg-[#F4F7FA] px-6 min-[414px]:px-10 min-[1025px]:px-[80px] pt-16 pb-25 max-[1025px]:pb-8 max-[413px]:pb-6">
       {/* 🔝 TOP HEADING */}
       <div className="mb-6 min-[414px]:mb-10 min-[1025px]:mb-16 text-center">
         <p className="mb-3 font-montserrat text-[12px] min-[414px]:text-[13px] min-[1025px]:text-[14px] font-bold uppercase tracking-[1.43px] leading-[100%] text-[#395563] text-center">

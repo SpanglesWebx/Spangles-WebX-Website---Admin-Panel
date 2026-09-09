@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import formcont from "../../../assets/formcont.jpg"; // replace with your image
+import contactImg from "../../../assets/Home/CONTACT.webp";
 
 export default function ContactSection() {
   const [values, setValues] = useState({
@@ -100,8 +100,8 @@ export default function ContactSection() {
         {/* LEFT IMAGE */}
         <div className="md:w-[45%] w-full h-[550px] max-[413px]:h-[400px]">
           <img
-            src={formcont}
-            alt="contact"
+            src={contactImg}
+            alt="Let’s Build Something Great Together"
             className="w-full h-full object-cover max-[413px]:rounded-[10px]"
           />
         </div>

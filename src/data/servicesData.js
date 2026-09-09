@@ -1,15 +1,24 @@
-import cyberImg from "../assets/portfolio1.jpg";
-import digitalImg from "../assets/portfolio2.jpg";
-import productImg from "../assets/portfolio3.jpg";
-import webImg from "../assets/portfolio4.jpg";
-import testingImg from "../assets/portfolio5.jpg";
-import appImg from "../assets/portfolio6.jpg";
+import websiteDevImg from "../assets/Service/Website.webp";
+import webAppImg from "../assets/Service/Web development.webp";
+import mobileAppImg from "../assets/Service/web app.webp";
+import softwareTestingImg from "../assets/Service/software testing.webp";
+import uiuxImg from "../assets/Service/uiux.webp";
+import softwareDevImg from "../assets/Service/software development.webp";
+
+// 🔹 Distinct Service Icons
+import websiteDevIcon from "../assets/web.png";
+import webAppIcon from "../assets/app.png";
+import mobileAppIcon from "../assets/mobile.png";
+import softwareTestingIcon from "../assets/test.png";
+import uiuxIcon from "../assets/UIUX.png";
+import softwareDevIcon from "../assets/Service-icon.png";
 
 export const services = [
   {
     slug: "web-development",
     title: "Website Development",
-    image: cyberImg,
+    image: websiteDevImg,
+    icon: websiteDevIcon,
     description:
       "The task of thinking about, planning, and formatting electronic data to define their layout, colours, text, styles, structures, graphics, and images—as well as the usage of interactive features that show pages to site visitors—is known as web design.",
     detailedDescription: "The task of thinking about, planning, and formatting electronic data to define their layout, colours, text, styles, structures, graphics, and images—as well as the usage of interactive features that show pages to site visitors—is known as web design. With eight years of expertise under our belt, we can handle any client requirement for web design and development.",
@@ -44,7 +53,8 @@ export const services = [
   {
     slug: "web-app-development",
     title: "Web App Development",
-    image: digitalImg,
+    image: webAppImg,
+    icon: webAppIcon,
     description:
       "Elevate your digital presence with our web application development service. We craft bespoke solutions tailored to your unique needs, combining innovation with functionality to deliver seamless user experiences.",
     detailedDescription: "Elevate your digital presence with our web application development service. We craft bespoke solutions tailored to your unique needs, combining innovation with functionality to deliver seamless user experiences. Let's turn your ideas into reality and propel your business forward in the digital age. Software that runs within your web browser is dubbed an application. Companies need to provide services remotely and share information. Web applications are used by them to safely and conveniently communicate with customers.",
@@ -75,7 +85,8 @@ export const services = [
   {
     slug: "mobile-app-development",
     title: "Mobile App Development",
-    image: productImg,
+    image: mobileAppImg,
+    icon: mobileAppIcon,
     description:
       "Experience the power of mobile with our app development service. We specialize in creating intuitive and feature-rich applications that engage users and drive results.",
     detailedDescription: "Experience the power of mobile with our app development service. We specialize in creating intuitive and feature-rich applications that engage users and drive results. From concept to launch, we're with you every step of the way, ensuring your app stands out in a crowded marketplace. Let's build something incredible together. The development of mobile apps is comparable to the production of other software, including web apps. Planning a smart digital solution, though, can be challenging.",
@@ -101,7 +112,8 @@ export const services = [
   {
     slug: "software-testing",
     title: "Software Testing",
-    image: webImg,
+    image: softwareTestingImg,
+    icon: softwareTestingIcon,
     description:
       "At Spangles Webx Pvt Ltd, we believe that successful software is built not only with great design and development but also with precise and reliable testing. Our software testing services are designed to identify errors, improve functionality, and ensure smooth performance before deployment.",
     detailedDescription: "At Spangles Webx Pvt Ltd, we believe that successful software is built not only with great design and development but also with precise and reliable testing. Our software testing services are designed to identify errors, improve functionality, and ensure smooth performance before deployment. We perform detailed quality checks including functional testing, security testing, usability testing, and cross-platform compatibility testing. This helps us deliver software solutions that are secure, bug-free, and highly efficient. By maintaining strict quality assurance standards, we ensure every product meets client expectations and performs seamlessly in real-time business environments.",
@@ -134,7 +146,8 @@ export const services = [
   {
     slug: "ui-ux-designing",
     title: "UI / UX Designing",
-    image: testingImg,
+    image: uiuxImg,
+    icon: uiuxIcon,
     description: "At Spangles Webx Pvt Ltd, we craft visually appealing and user-friendly UI/UX designs that create meaningful digital experiences. Our design approach focuses on understanding user behavior, business goals, and market trends to build interfaces that are both attractive and highly functional.",
     detailedDescription: "At Spangles Webx Pvt Ltd, we craft visually appealing and user-friendly UI/UX designs that create meaningful digital experiences. Our design approach focuses on understanding user behavior, business goals, and market trends to build interfaces that are both attractive and highly functional. From wireframing to final prototyping, we ensure every screen is designed with clarity, simplicity, and smooth navigation in mind. We prioritize responsive layouts, engaging visuals, and seamless user journeys to increase customer interaction and satisfaction. With our creative UI/UX solutions, businesses can deliver products that not only look impressive but also provide exceptional usability across all devices.",
     advantages: [
@@ -167,7 +180,8 @@ export const services = [
   {
     slug: "software-development",
     title: "Software Development",
-    image: appImg,
+    image: softwareDevImg,
+    icon: softwareDevIcon,
     description: "At Spangles Webx Pvt Ltd, we provide innovative and scalable software development solutions tailored to meet diverse business requirements. Our expert developers build custom software applications that streamline operations, improve productivity, and support long-term business growth.",
     detailedDescription: "At Spangles Webx Pvt Ltd, we provide innovative and scalable software development solutions tailored to meet diverse business requirements. Our expert developers build custom software applications that streamline operations, improve productivity, and support long-term business growth. From requirement analysis to deployment, we follow a structured development process that ensures quality, security, and performance at every stage. We specialize in creating user-centric, feature-rich, and technology-driven software that adapts to changing market demands. With a commitment to excellence and modern development practices, we transform ideas into powerful digital solutions that help businesses stay ahead in a competitive world.",
     advantages: [
