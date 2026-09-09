@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { ArrowRight } from "lucide-react";
-import phoneIcon from "../../assets/Phone.png";
-import mailIcon from "../../assets/Mail.png";
-import chatIcon from "../../assets/Chat.png";
+import phoneIcon from "../../assets/Icon/Phone.png";
+import mailIcon from "../../assets/Icon/Mail.png";
+import chatIcon from "../../assets/Icon/Chat.png";
 import Support from "../About/Components/Support";
 
 const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000";

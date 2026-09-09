@@ -119,18 +119,9 @@
 
 
 
-import {
-  FaFacebookF,
-  FaTwitter,
-  FaLinkedinIn,
-  FaInstagram,
-  FaYoutube,
-} from "react-icons/fa";
 import { motion } from "framer-motion";
 
-import team1 from "../../../assets/IMG_0093.webp";
-import team2 from "../../../assets/Team2.jpg";
-import team3 from "../../../assets/Team3.jpg";
+import team1 from "../../../assets/inner About/IMG_0093.webp";
 
 const team = [
   {
@@ -139,25 +130,13 @@ const team = [
     desc: "I strongly believe that innovation is the key to every successful business transformation. Our company is built on the foundation of quality service, client satisfaction, and a commitment to delivering solutions that truly make a difference. We strive to understand every client’s unique needs and provide reliable digital strategies that support their growth. Together with our dedicated team, we are shaping a future where technology becomes a powerful tool for success. ",
     img: team1,
   },
-  {
-    name: "Devon Lane",
-    role: "Web Designer",
-    desc: "Driving sales growth and building strong client relationships.",
-    img: team2,
-  },
-  {
-    name: "Darlene Robertson",
-    role: "Nursing Assistant",
-    desc: "Driving sales growth and building strong client relationships.",
-    img: team3,
-  },
 ];
 
 export default function Team() {
   const member = team[0]; // Displaying Managing Director card
 
   return (
-    <div className="px-[100px] max-xl:px-[60px] max-lg:px-[40px] max-md:px-6 max-sm:px-4 py-[70px] max-lg:py-[50px] max-md:py-[40px] max-sm:py-[35px] bg-[#ffffff]">
+    <div className="px-[100px] max-xl:px-[60px] max-lg:px-[40px] max-md:px-6 max-sm:px-4 py-[70px] max-lg:py-[50px] max-md:py-[40px] max-sm:py-[35px] bg-[#e9eff2]">
       {/* Top Title & Subheading */}
       <div className="text-center max-w-[850px] mx-auto mb-10 max-lg:mb-8 max-md:mb-6">
         <p className="font-montserrat font-bold text-[14px] max-md:text-[13px] max-sm:text-[12px] leading-tight mb-3 text-[#395563] tracking-[1.43px] uppercase">

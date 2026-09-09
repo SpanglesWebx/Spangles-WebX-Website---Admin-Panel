@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import successImg from "../../assets/Success.png"; // change to your success image
 import { Calendar, Clock, MapPin } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import carrerImg from "../../assets/portfolio7.jpg"; // change to your careers image
-import carrer from "../../assets/career.png"; // change to your careers image
+import bannerImg from "../../assets/portfolio-banner.jpg";
+import carrer from "../../assets/Career/career.webp";
+import successImg from "../../assets/Career/Success.webp";
 import Support from "../About/Components/Support";
 
 const inputClass = (error) =>
@@ -251,7 +251,7 @@ export default function Career() {
       {/* Hero Section */}
       <div className="relative h-[360px] w-full max-[413px]:h-[300px]">
         <img
-          src={carrerImg} // or your careers image
+          src={bannerImg}
           alt="careers banner"
           className="w-full h-full object-cover object-center"
         />

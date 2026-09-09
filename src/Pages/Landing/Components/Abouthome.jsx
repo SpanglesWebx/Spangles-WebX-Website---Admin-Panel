@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 import AboutImage from "../../../assets/Home/About.webp";
-import growthIcon from "../../../assets/growthIcon.png";
-import starIcon from "../../../assets/starIcon.png";
+import growthIcon from "../../../assets/Icon/growthIcon.png";
+import starIcon from "../../../assets/Icon/starIcon.png";
 function CountUp({ to, durationMs = 1000, suffix = "", decimals = 0 }) {
   const [value, setValue] = useState(0);
   const [inView, setInView] = useState(false);

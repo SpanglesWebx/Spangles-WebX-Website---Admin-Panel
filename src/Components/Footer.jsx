@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import logo from "../assets/Webx-nav-Logo_03.jpg"; // Make sure to have this image in your assets folder
+import logo from "../assets/Logo/Webx-nav-Logo_03.jpg";
 
 export default function Footer() {
   return (

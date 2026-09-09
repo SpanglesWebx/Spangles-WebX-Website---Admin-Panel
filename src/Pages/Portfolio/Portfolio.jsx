@@ -1,27 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import hospitalBanner from "../../assets/Hospital Management/Hospital Banner (2).png";
-import clinicBanner from "../../assets/Clinic Management/Clincal Dashboard.png";
-import schoolBanner from "../../assets/School mangemnt/School management.png";
-import img1 from "../../assets/churchs.png";
-import img2 from "../../assets/church.png";
-import img3 from "../../assets/churc.png";
-import img4 from "../../assets/portfolio4.jpg";
-import churchBanner from "../../assets/Church/Church.png";
-import bookMain from "../../assets/Book depot/Book-main.png";
-import bricksBanner from "../../assets/Bricks/Banner.png";
-import img6 from "../../assets/portfolio6.jpg";
-import img7 from "../../assets/portfolio7.jpg";
-import img8 from "../../assets/portfolio8.jpg";
+import hospitalBanner from "../../assets/Hospital Management/Hospital Banner (2).webp";
+import clinicBanner from "../../assets/Clinic Management/Clincal Dashboard.webp";
+import schoolBanner from "../../assets/School mangemnt/School management.webp";
+import churchBanner from "../../assets/Church/Church.webp";
+import bookMain from "../../assets/Book depot/Book-main.webp";
+import bricksBanner from "../../assets/Bricks/Banner.webp";
 import Support from "../About/Components/Support";
-import Preloader from "../../Components/Preloader";
-// 👉 add your background image
 import bannerImg from "../../assets/portfolio-banner.jpg";
 
 export default function Portfolio() {
   const navigate = useNavigate();
-  const [showAll, setShowAll] = useState(false);
   const [clickedCard, setClickedCard] = useState(null);
   const portfolio = [
     {
@@ -60,20 +50,6 @@ export default function Portfolio() {
       image: clinicBanner,
       desc: "A modern clinical management platform designed to simplify clinical consultations, patient appointments, and healthcare workflows.",
     },
-
-    // 👉 NEW CARDS
-    {
-      id: 7,
-      title: "Creative Studio",
-      image: img7,
-      desc: "Creative branding and digital experience design that helps businesses build a strong identity and connect with their audience meaningfully.",
-    },
-    {
-      id: 8,
-      title: "Mobile UI Kit",
-      image: img8,
-      desc: "A modern mobile UI kit featuring versatile components and smooth interactions designed to accelerate the development of high-quality apps.",
-    },
   ];
 
   const goToDetails = (item) => {
@@ -88,11 +64,9 @@ export default function Portfolio() {
     }
   };
 
-
-
   return (
     <div>
-      {/* ✅ NEW BANNER SECTION (like your image) */}
+      {/* ✅ NEW BANNER SECTION */}
       <div className="relative h-[360px] w-full max-[413px]:h-[300px]">
         <img
           src={bannerImg}
@@ -116,11 +90,11 @@ export default function Portfolio() {
         </div>
       </div>
 
-      {/* ✅ YOUR ORIGINAL SECTION (UNCHANGED) */}
+      {/* ✅ PORTFOLIO GRID SECTION */}
       <div className="bg-white pt-[60px] pb-[80px] border-b border-[#E5E5E5] px-[100px] min-[1441px]:w-full
      max-[1024px]:px-10 max-[768px]:px-6 max-[413px]:px-4 max-[413px]:pt-10 max-[413px]:pb-12 min-[1024px]:max-[1200px]:px-[120px]">
-        <div className="grid md:grid-cols-2 gap-15 min-[1441px]:gap-20 mb-8.5 max-[1024px]:gap-12 max-[768px]:gap-10 max-[413px]:gap-6">
-          {(showAll ? portfolio : portfolio.slice(0, 6)).map((item) => (
+        <div className="grid md:grid-cols-2 gap-15 min-[1441px]:gap-20 max-[1024px]:gap-12 max-[768px]:gap-10 max-[413px]:gap-6">
+          {portfolio.map((item) => (
             <div
               key={item.id}
               onClick={() => goToDetails(item)}
@@ -179,23 +153,6 @@ export default function Portfolio() {
               </div>
             </div>
           ))}
-        </div>
-
-        <div className="text-center max-[413px]:my-6">
-          {/* <button
-  onClick={() => setShowAll(true)}
-  className="font-montserrat font-bold text-[14px] leading-[21px] tracking-[2.24px] uppercase text-[#395563] flex items-center gap-2 mx-auto"
->
-  SHOW ALL <ArrowRight size={14} />
-</button> */}
-
-
-          <button
-            onClick={() => setShowAll(!showAll)}
-            className="font-montserrat font-bold text-[14px] leading-[21px] tracking-[2.24px] uppercase text-[#395563] flex items-center gap-2 mx-auto max-[413px]:text-[13px]"
-          >
-            {showAll ? "SHOW LESS" : "SHOW ALL"} <ArrowRight size={14} />
-          </button>
         </div>
       </div>
 

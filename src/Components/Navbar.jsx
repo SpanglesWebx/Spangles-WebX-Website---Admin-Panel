@@ -2,8 +2,8 @@ import { useEffect, useMemo, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import logo from "../assets/Webx-nav-Logo_03.jpg"; // Make sure to have this image in your assets folder
-import sideLogo from "../assets/side-logo.png";
+import logo from "../assets/Logo/Webx-nav-Logo_03.jpg";
+import sideLogo from "../assets/Logo/side-logo.png";
 
 
 import { services } from "../data/servicesData";

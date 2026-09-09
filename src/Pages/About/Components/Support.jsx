@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import {
   FaFacebookF,
-  FaTwitter,
   FaInstagram,
   FaLinkedinIn,
   FaYoutube,
 } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 const logo = "/Web-Support.jpg"; // Reference public assets as absolute strings, not imports
 
 export default function SupportBar() {
@@ -74,25 +74,55 @@ export default function SupportBar() {
           </p>
 
           <div className="flex max-[1024px]:justify-center max-[413px]:gap-[12px]">
-            <div className="p-[10px] rounded-[10px] cursor-pointer max-[413px]:p-[9px]">
+            <a
+              href="https://www.facebook.com/people/Spangles-Webx/61585627947976/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              className="p-[10px] rounded-[10px] cursor-pointer max-[413px]:p-[9px]"
+            >
               <FaFacebookF className="text-[#B3BDD1] text-[18px] hover:text-[#345261] transition max-[413px]:text-[14px]" />
-            </div>
+            </a>
 
-            <div className="p-[10px] rounded-[10px] cursor-pointer max-[413px]:p-[9px]">
-              <FaTwitter className="text-[#B3BDD1] text-[18px] hover:text-[#345261] transition max-[413px]:text-[14px]" />
-            </div>
+            <a
+              href="https://x.com/SpangleSWebX"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="X (Twitter)"
+              className="p-[10px] rounded-[10px] cursor-pointer max-[413px]:p-[9px]"
+            >
+              <FaXTwitter className="text-[#B3BDD1] text-[18px] hover:text-[#345261] transition max-[413px]:text-[14px]" />
+            </a>
 
-            <div className=" p-[10px] rounded-[10px] cursor-pointer max-[413px]:p-[9px]">
+            <a
+              href="https://www.linkedin.com/in/spangles-webx-2996ab3a1/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="p-[10px] rounded-[10px] cursor-pointer max-[413px]:p-[9px]"
+            >
               <FaLinkedinIn className="text-[#B3BDD1] text-[18px] hover:text-[#345261] transition max-[413px]:text-[14px]" />
-            </div>
+            </a>
 
-            <div className=" p-[10px] rounded-[10px] cursor-pointer max-[413px]:p-[9px]">
+            <a
+              href="https://www.instagram.com/spangleswebx/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="p-[10px] rounded-[10px] cursor-pointer max-[413px]:p-[9px]"
+            >
               <FaInstagram className="text-[#B3BDD1] text-[18px] hover:text-[#345261] transition max-[413px]:text-[14px]" />
-            </div>
+            </a>
 
-            <div className=" p-[10px] rounded-[10px] cursor-pointer max-[413px]:p-[9px]">
+            <a
+              href="https://www.youtube.com/@spangleswebx"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="YouTube"
+              className="p-[10px] rounded-[10px] cursor-pointer max-[413px]:p-[9px]"
+            >
               <FaYoutube className="text-[#B3BDD1] text-[18px] hover:text-[#345261] transition max-[413px]:text-[14px]" />
-            </div>
+            </a>
           </div>
         </div>
       </div>

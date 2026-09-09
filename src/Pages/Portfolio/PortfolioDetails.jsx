@@ -16,66 +16,59 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import Support from "../About/Components/Support";
 import Preloader from "../../Components/Preloader";
-import hospitalBanner from "../../assets/Hospital Management/Hospital baner.png";
-import hospitalImg1 from "../../assets/Hospital Management/Hospital Management 1.png";
-import hospitalImg2 from "../../assets/Hospital Management/Hospital Management -02.png";
-import hospitalImg3 from "../../assets/Hospital Management/Hospital Management -03.png";
-import hospitalImg4 from "../../assets/Hospital Management/Hospital management -4.png";
-import hospitalImg5 from "../../assets/Hospital Management/Hospital management -5.png";
-import hospitalImg6 from "../../assets/Hospital Management/Hospital management - 6.png";
-import hospitalImg7 from "../../assets/Hospital Management/Hospital management - 7.png";
-import hospitalImg8 from "../../assets/Hospital Management/Hospital managemenet -8.png";
-import clinicDashboard from "../../assets/Clinic Management/Clincal Dashboard.png";
-import clinicInnerBanner from "../../assets/Clinic Management/Clinic inner ban.png";
-import clinicSlide1 from "../../assets/Clinic Management/Clinic slide 1.png";
-import clinicSlide2 from "../../assets/Clinic Management/Clinical dashboard - 01.png";
-import clinicSlide3 from "../../assets/Clinic Management/clinical Patient.png";
-import clinicSlide4 from "../../assets/Clinic Management/Clinical doctor.png";
-import clinicSlide5 from "../../assets/Clinic Management/clinic Appointment.png";
-import clinicSlide6 from "../../assets/Clinic Management/Clinic Billing.png";
-import clinicSlide7 from "../../assets/Clinic Management/clinical lab.png";
-import schoolBanner from "../../assets/School mangemnt/School management.png";
-import schoolInnerBanner from "../../assets/School mangemnt/Banner img.png";
-import schoolSlide1 from "../../assets/School mangemnt/sign up page.png";
-import schoolSlide2 from "../../assets/School mangemnt/School Dashboard.png";
-import schoolSlide3 from "../../assets/School mangemnt/Admission.png";
-import schoolSlide4 from "../../assets/School mangemnt/student data.png";
-import schoolSlide5 from "../../assets/School mangemnt/school staff.png";
-import schoolSlide6 from "../../assets/School mangemnt/Fees school.png";
-import schoolSlide7 from "../../assets/School mangemnt/Billing.png";
-import img1 from "../../assets/churchs.png";
-import img2 from "../../assets/portfolio2.jpg";
-import img3 from "../../assets/portfolio3.jpg";
-import img4 from "../../assets/portfolio4.jpg";
-import churchBanner from "../../assets/Church/Church.png";
-import churchInnerBanner from "../../assets/Church/church inner ban.png";
-import churchLogin from "../../assets/Church/login.png";
-import churchDashboard from "../../assets/Church/Dashboard.png";
-import churchAddMember from "../../assets/Church/Add member.png";
-import churchMember from "../../assets/Church/Memnber.png";
-import churchBaptism from "../../assets/Church/Baptism.png";
-import churchSundaySchool from "../../assets/Church/Sunday school'.png";
-import churchLedger from "../../assets/Church/Ledger.png";
-import bookMain from "../../assets/Book depot/Book-main.png";
-import bookInnerBanner from "../../assets/Book depot/book-inner-banner.png";
-import bookLogin from "../../assets/Book depot/Login (3).png";
-import bookDashboard from "../../assets/Book depot/Dashboard (3).png";
-import bookProduct from "../../assets/Book depot/products.png";
-import bookSupplier from "../../assets/Book depot/supplier.png";
-import bookCustomer from "../../assets/Book depot/customer.png";
-import bookBill from "../../assets/Book depot/Bill.png";
-import bookLowStock from "../../assets/Book depot/Low stock.png";
-import bricksLogin from "../../assets/Bricks/login (2).png";
-import bricksDashboard from "../../assets/Bricks/Dashboard (2).png";
-import bricksEmployee from "../../assets/Bricks/Employee.png";
-import bricksAttendance from "../../assets/Bricks/Attendance.png";
-import bricksIncome from "../../assets/Bricks/Income.png";
-import bricksExpenses from "../../assets/Bricks/Expenses.png";
-import bricksPayroll from "../../assets/Bricks/Payroll (2).png";
-import bricksInnerBanner from "../../assets/Bricks/inner banner.png";
-import img6 from "../../assets/portfolio6.jpg";
-import img7 from "../../assets/portfolio7.jpg";
-import img8 from "../../assets/portfolio8.jpg";
+import hospitalBanner from "../../assets/Hospital Management/Hospital baner.webp";
+import hospitalImg1 from "../../assets/Hospital Management/Hospital Management 1.webp";
+import hospitalImg2 from "../../assets/Hospital Management/Hospital Management -02.webp";
+import hospitalImg3 from "../../assets/Hospital Management/Hospital Management -03.webp";
+import hospitalImg4 from "../../assets/Hospital Management/Hospital management -4.webp";
+import hospitalImg5 from "../../assets/Hospital Management/Hospital management -5.webp";
+import hospitalImg6 from "../../assets/Hospital Management/Hospital management - 6.webp";
+import hospitalImg7 from "../../assets/Hospital Management/Hospital management - 7.webp";
+import hospitalImg8 from "../../assets/Hospital Management/Hospital managemenet -8.webp";
+import clinicDashboard from "../../assets/Clinic Management/Clincal Dashboard.webp";
+import clinicInnerBanner from "../../assets/Clinic Management/Clinic inner ban.webp";
+import clinicSlide1 from "../../assets/Clinic Management/Clinic slide 1.webp";
+import clinicSlide2 from "../../assets/Clinic Management/Clinical dashboard - 01.webp";
+import clinicSlide3 from "../../assets/Clinic Management/clinical Patient.webp";
+import clinicSlide4 from "../../assets/Clinic Management/Clinical doctor.webp";
+import clinicSlide5 from "../../assets/Clinic Management/clinic Appointment.webp";
+import clinicSlide6 from "../../assets/Clinic Management/Clinic Billing.webp";
+import clinicSlide7 from "../../assets/Clinic Management/clinical lab.webp";
+import schoolBanner from "../../assets/School mangemnt/School management.webp";
+import schoolInnerBanner from "../../assets/School mangemnt/Banner img.webp";
+import schoolSlide1 from "../../assets/School mangemnt/sign up page.webp";
+import schoolSlide2 from "../../assets/School mangemnt/School Dashboard.webp";
+import schoolSlide3 from "../../assets/School mangemnt/Admission.webp";
+import schoolSlide4 from "../../assets/School mangemnt/student data.webp";
+import schoolSlide5 from "../../assets/School mangemnt/school staff.webp";
+import schoolSlide6 from "../../assets/School mangemnt/Fees school.webp";
+import schoolSlide7 from "../../assets/School mangemnt/Billing.webp";
+import churchBanner from "../../assets/Church/Church.webp";
+import churchInnerBanner from "../../assets/Church/church inner ban.webp";
+import churchLogin from "../../assets/Church/login.webp";
+import churchDashboard from "../../assets/Church/Dashboard.webp";
+import churchAddMember from "../../assets/Church/Add member.webp";
+import churchMember from "../../assets/Church/Memnber.webp";
+import churchBaptism from "../../assets/Church/Baptism.webp";
+import churchSundaySchool from "../../assets/Church/Sunday school'.webp";
+import churchLedger from "../../assets/Church/Ledger.webp";
+import bookMain from "../../assets/Book depot/Book-main.webp";
+import bookInnerBanner from "../../assets/Book depot/book-inner-banner.webp";
+import bookLogin from "../../assets/Book depot/Login (3).webp";
+import bookDashboard from "../../assets/Book depot/Dashboard (3).webp";
+import bookProduct from "../../assets/Book depot/products.webp";
+import bookSupplier from "../../assets/Book depot/supplier.webp";
+import bookCustomer from "../../assets/Book depot/customer.webp";
+import bookBill from "../../assets/Book depot/Bill.webp";
+import bookLowStock from "../../assets/Book depot/Low stock.webp";
+import bricksLogin from "../../assets/Bricks/login (2).webp";
+import bricksDashboard from "../../assets/Bricks/Dashboard (2).webp";
+import bricksEmployee from "../../assets/Bricks/Employee.webp";
+import bricksAttendance from "../../assets/Bricks/Attendance.webp";
+import bricksIncome from "../../assets/Bricks/Income.webp";
+import bricksExpenses from "../../assets/Bricks/Expenses.webp";
+import bricksPayroll from "../../assets/Bricks/Payroll (2).webp";
+import bricksInnerBanner from "../../assets/Bricks/inner banner.webp";
 
 const allProjects = [
   {
@@ -403,70 +396,6 @@ const allProjects = [
       "Manual sales and financial records → Centralized digital income and expense management. Manual payment calculations → Automated balance and payment-history tracking. Separate employee records → Centralized employee management with unique employee IDs. Manual attendance and salary calculations → Digital attendance and payroll calculation. Scattered business information → One dashboard for sales, expenses, credits, employees, payroll, reports, and follow-ups.",
     after:
       "Centralized digital income and expense management with automated balance and payment-history tracking, structured employee profiles with auto-generated IDs, automated attendance and payroll computation, and unified reporting across all operational branches.",
-  },
-
-  {
-    id: 7,
-    title: "Creative Studio",
-    image: img7,
-    gallery: [img7, img1, img3, img4, img8],
-    desc: "Creative branding and digital experience design.",
-    fullDesc:
-      "Spangles Webx is a tech-driven company passionate about delivering innovative digital products. With a focus on design, usability, and performance, we help startups and enterprises scale with impactful web and mobile solutions. we help startups and ",
-    functionalities: [
-      {
-        title: "Project categories",
-        description: "Organized creative work sections.",
-      },
-      {
-        title: "Case studies",
-        description: "Detailed project breakdowns.",
-      },
-      {
-        title: "Process layout",
-        description: "Step-by-step design storytelling.",
-      },
-      {
-        title: "Custom animations",
-        description: "Smooth page transitions.",
-      },
-      {
-        title: "Blog integration",
-        description: "Professional content publishing.",
-      },
-    ],
-  },
-
-  {
-    id: 8,
-    title: "Mobile UI Kit",
-    image: img8,
-    gallery: [img8, img3, img6],
-    desc: "Modern mobile UI components and interactions.",
-    fullDesc:
-      "Spangles Webx is a tech-driven company passionate about delivering innovative digital products. With a focus on design, usability, and performance, we help startups and enterprises scale with impactful web and mobile solutions. we help startups and ",
-    functionalities: [
-      {
-        title: "UI components",
-        description: "50+ reusable mobile elements.",
-      },
-      {
-        title: "Native interactions",
-        description: "Smooth mobile experience.",
-      },
-      {
-        title: "Icon library",
-        description: "Wide range of icons and fonts.",
-      },
-      {
-        title: "Templates",
-        description: "Pre-built app screens.",
-      },
-      {
-        title: "Theme system",
-        description: "Highly customizable design options.",
-      },
-    ],
   },
 ];
 

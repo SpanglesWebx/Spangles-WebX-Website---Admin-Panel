@@ -1,13 +1,13 @@
 import React from "react";
 
 // Real client logos from src/assets/Client Logo
-import kanyakumariLogo from "../../../assets/Client Logo/CSI_Kanyakumari_Diocese_Logo.png";
-import christChurchLogo from "../../../assets/Client Logo/ChristChurchLogo.jpg";
-import buildersLogo from "../../../assets/Client Logo/builders-vKRvMrDv.png";
-import churchWorkLogo from "../../../assets/Client Logo/chruchwork-9rLId-nw.png";
-import dayspringLogo from "../../../assets/Client Logo/dayspring-DadjnC7J.png";
-import elyonLogo from "../../../assets/Client Logo/elyonwork-Do9O1OtC.png";
-import saralLogo from "../../../assets/Client Logo/saral-C_1tZjDe.png";
+import kanyakumariLogo from "../../../assets/Client Logo/CSI_Kanyakumari_Diocese_Logo.webp";
+import christChurchLogo from "../../../assets/Client Logo/ChristChurchLogo.webp";
+import buildersLogo from "../../../assets/Client Logo/builders-vKRvMrDv.webp";
+import churchWorkLogo from "../../../assets/Client Logo/chruchwork-9rLId-nw.webp";
+import dayspringLogo from "../../../assets/Client Logo/dayspring-DadjnC7J (1).webp";
+import elyonLogo from "../../../assets/Client Logo/elyonwork-Do9O1OtC.webp";
+import saralLogo from "../../../assets/Client Logo/saral-C_1tZjDe.webp";
 
 export const clientLogos = [
   {

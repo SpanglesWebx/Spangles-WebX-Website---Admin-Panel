@@ -1,8 +1,8 @@
 import React, { useLayoutEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import hospitalBanner from "../../../assets/Hospital Management/Hospital Banner (2).png";
-import churchBanner from "../../../assets/Church/Church.png";
-import bookBanner from "../../../assets/Book depot/Book-main.png";
+import hospitalBanner from "../../../assets/Hospital Management/Hospital Banner (2).webp";
+import churchBanner from "../../../assets/Church/Church.webp";
+import bookBanner from "../../../assets/Book depot/Book-main.webp";
 
 const projects = [
   {

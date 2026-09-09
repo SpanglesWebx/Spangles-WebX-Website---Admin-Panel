@@ -1,10 +1,10 @@
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import icon1 from "../../../assets/icon1.png";
-import icon2 from "../../../assets/icon2.png";
-import icon3 from "../../../assets/icon3.png";
-import icon4 from "../../../assets/icon-4.png";
+import icon1 from "../../../assets/Icon/icon1.png";
+import icon2 from "../../../assets/Icon/icon2.png";
+import icon3 from "../../../assets/Icon/icon3.png";
+import icon4 from "../../../assets/Icon/icon-4.png";
 
 const WhyChooseUs = () => {
   const navigate = useNavigate();

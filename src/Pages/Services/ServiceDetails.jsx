@@ -2,22 +2,18 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Support from "../About/Components/Support";
 import { services } from "../../data/servicesData";
 import { useRef, useEffect, useState, useMemo } from "react";
-import Serviceicon from "../../assets/Service-icon.png"; // ✅ ADD THIS
-// fallback images (reuse yours)
-import img1 from "../../assets/portfolio1.jpg";
-import img2 from "../../assets/portfolio2.jpg";
-import img3 from "../../assets/portfolio3.jpg";
-import num01 from "../../assets/01.png";
-import num02 from "../../assets/02.png";
-import num03 from "../../assets/03.png";
-import num04 from "../../assets/04.png";
-import num05 from "../../assets/05.png";
-import num06 from "../../assets/06.png";
-import num07 from "../../assets/07.png";
-import num08 from "../../assets/08.png";
-import num09 from "../../assets/09.png";
-import num10 from "../../assets/10.png";
-import num11 from "../../assets/11.png";
+import Serviceicon from "../../assets/Icon/Service-icon.png"; // ✅ ADD THIS
+import num01 from "../../assets/Numbers/01.png";
+import num02 from "../../assets/Numbers/02.png";
+import num03 from "../../assets/Numbers/03.png";
+import num04 from "../../assets/Numbers/04.png";
+import num05 from "../../assets/Numbers/05.png";
+import num06 from "../../assets/Numbers/06.png";
+import num07 from "../../assets/Numbers/07.png";
+import num08 from "../../assets/Numbers/08.png";
+import num09 from "../../assets/Numbers/09.png";
+import num10 from "../../assets/Numbers/10.png";
+import num11 from "../../assets/Numbers/11.png";
 import Preloader from "../../Components/Preloader";
 import { motion } from "framer-motion";
 

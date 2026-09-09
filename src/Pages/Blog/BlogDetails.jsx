@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { CalendarDays, Clock3, ChevronRight, ArrowRight, RotateCcw } from "lucide-react";
-import { FaTwitter, FaLinkedinIn, FaArrowLeft } from "react-icons/fa";
+import { FaLinkedinIn, FaArrowLeft } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import { motion, AnimatePresence, useScroll, useSpring, useTransform } from "framer-motion";
 import Support from "../About/Components/Support";
 import Preloader from "../../Components/Preloader";
@@ -319,12 +320,22 @@ export default function BlogDetails() {
                   <p className="text-[#6B6A66]">Share this trend insight with your tech community.</p>
                 </div>
                 <div className="flex gap-4">
-                  <button className="flex items-center gap-3 px-6 py-4 bg-[#F4F7FA] text-[#345261] rounded-2xl font-bold uppercase text-[11px] tracking-[1.5px] hover:bg-[#161C2D] hover:text-white transition-all">
-                    <FaTwitter size={16} /> Twitter
-                  </button>
-                  <button className="flex items-center gap-3 px-6 py-4 bg-[#F4F7FA] text-[#345261] rounded-2xl font-bold uppercase text-[11px] tracking-[1.5px] hover:bg-[#161C2D] hover:text-white transition-all">
+                  <a
+                    href="https://x.com/SpangleSWebX"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 px-6 py-4 bg-[#F4F7FA] text-[#345261] rounded-2xl font-bold uppercase text-[11px] tracking-[1.5px] hover:bg-[#161C2D] hover:text-white transition-all"
+                  >
+                    <FaXTwitter size={16} /> Twitter
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/spangles-webx-2996ab3a1/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 px-6 py-4 bg-[#F4F7FA] text-[#345261] rounded-2xl font-bold uppercase text-[11px] tracking-[1.5px] hover:bg-[#161C2D] hover:text-white transition-all"
+                  >
                     <FaLinkedinIn size={16} /> LinkedIn
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>

@@ -12,7 +12,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence, useScroll, useSpring, useTransform } from "framer-motion";
 import Support from "../About/Components/Support";
 import bannerImg from "../../assets/Service-banner.jpg";
-import img5 from "../../assets/portfolio5.jpg";
+import standardImg from "../../assets/imgvibe.jpg";
 import Preloader from "../../Components/Preloader";
 
 const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000";
@@ -975,7 +975,7 @@ export default function Blog() {
               className="absolute inset-0 rounded-[48px] border border-white/10 bg-[#161C2D]/5 backdrop-blur-3xl overflow-hidden shadow-2xl transition-all duration-700"
             >
               <img
-                src={img5}
+                src={standardImg}
                 alt="Intelligence"
                 className="h-full w-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-1000 grayscale group-hover:grayscale-0"
               />

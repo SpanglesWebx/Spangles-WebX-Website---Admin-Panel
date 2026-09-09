@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import missionIcon from "../../../assets/Mission.png";
-import visionIcon from "../../../assets/Vision.png";
-import valuesIcon from "../../../assets/Values.png";
+import missionIcon from "../../../assets/Icon/Mission.png";
+import visionIcon from "../../../assets/Icon/Vision.png";
+import valuesIcon from "../../../assets/Icon/Values.png";
+import missionImg from "../../../assets/inner About/Mission.webp";
+import visionImg from "../../../assets/inner About/vission.webp";
+import valuesImg from "../../../assets/inner About/core values.webp";
 
 export default function MissionVision() {
   const missionCount = useCounter(2.5);
@@ -80,7 +83,7 @@ export default function MissionVision() {
           {/* Image */}
           <div className="flex justify-start max-[1024px]:justify-start">
             <img
-              src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80"
+              src={missionImg}
               className="rounded-[14px] w-full max-w-[450px] min-[1441px]:max-w-[600px] h-[290px] min-[1441px]:h-[380px] max-[768px]:h-[220px] object-cover"
               alt="Mission"
               loading="lazy"
@@ -132,7 +135,7 @@ export default function MissionVision() {
           {/* Image */}
           <div className="flex justify-start max-[1024px]:order-2 max-[1024px]:justify-start">
             <img
-              src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80"
+              src={visionImg}
               className="rounded-[14px] w-full max-w-[450px] min-[1441px]:max-w-[600px] h-[290px] min-[1441px]:h-[380px] max-[768px]:h-[220px] object-cover"
               alt="Vision"
               loading="lazy"
@@ -175,7 +178,7 @@ export default function MissionVision() {
           {/* Image */}
           <div className="flex justify-start max-[1024px]:justify-start">
             <img
-              src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80"
+              src={valuesImg}
               className="rounded-[14px] w-full max-w-[450px] min-[1441px]:max-w-[600px] h-[290px] min-[1441px]:h-[380px] max-[768px]:h-[220px] object-cover"
               alt="Values"
               loading="lazy"

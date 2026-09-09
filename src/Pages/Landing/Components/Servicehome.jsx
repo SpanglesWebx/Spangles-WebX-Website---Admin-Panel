@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { services } from "../../../data/servicesData";
-import Serviceicon from "../../../assets/Service-icon.png"; // Make sure to have this image in your assets folder
+import Serviceicon from "../../../assets/Icon/Service-icon.png";
 
 export default function ServicesSection() {
   const scrollRef = useRef(null);

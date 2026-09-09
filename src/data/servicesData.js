@@ -6,12 +6,12 @@ import uiuxImg from "../assets/Service/uiux.webp";
 import softwareDevImg from "../assets/Service/software development.webp";
 
 // 🔹 Distinct Service Icons
-import websiteDevIcon from "../assets/web.png";
-import webAppIcon from "../assets/app.png";
-import mobileAppIcon from "../assets/mobile.png";
-import softwareTestingIcon from "../assets/test.png";
-import uiuxIcon from "../assets/UIUX.png";
-import softwareDevIcon from "../assets/Service-icon.png";
+import websiteDevIcon from "../assets/Icon/web.png";
+import webAppIcon from "../assets/Icon/app.png";
+import mobileAppIcon from "../assets/Icon/mobile.png";
+import softwareTestingIcon from "../assets/Icon/test.png";
+import uiuxIcon from "../assets/Icon/UIUX.png";
+import softwareDevIcon from "../assets/Icon/Service-icon.png";
 
 export const services = [
   {

@@ -2,7 +2,7 @@ import React from "react";
 import ServiceImg from "../../assets/Service-banner.jpg";
 import Support from "../About/Components/Support";
 import { useNavigate } from "react-router-dom";
-import Serviceicon from "../../assets/Service-icon.png";
+import Serviceicon from "../../assets/Icon/Service-icon.png";
 import { motion } from "framer-motion";
 import { services } from "../../data/servicesData";
 
