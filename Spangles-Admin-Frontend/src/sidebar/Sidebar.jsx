@@ -51,7 +51,7 @@ export default function Navbar() {
                     {/* Brand Text inside scrollable area */}
                     <div className="mb-10 flex flex-col items-center select-none pt-4">
                         <img
-                            src="/side-logo.png"
+                            src={`${import.meta.env.BASE_URL}side-logo.png`}
                             alt="Logo"
                             className="w-40 h-auto object-contain"
                             onError={(e) => {

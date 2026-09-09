@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { FaEye, FaEdit, FaTrash, FaPlus, FaSearch, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
+const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000";
+
 export default function Client({ showToast }) {
   const [clients, setClients] = useState([]);
 
@@ -11,7 +13,7 @@ export default function Client({ showToast }) {
 
   const fetchClients = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/clients");
+      const res = await fetch(`${API_BASE}/api/clients`);
       if (!res.ok) throw new Error("Failed to fetch");
       const data = await res.json();
       const total = data.length;
@@ -122,7 +124,7 @@ export default function Client({ showToast }) {
         ...formData,
         clientId: getNextClientId(clients)
       };
-      const res = await fetch("http://localhost:5000/api/clients", {
+      const res = await fetch(`${API_BASE}/api/clients`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
@@ -154,7 +156,7 @@ export default function Client({ showToast }) {
   const deleteClient = async () => {
     if (!deleteTarget) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/clients/${deleteTarget}`, {
+      const res = await fetch(`${API_BASE}/api/clients/${deleteTarget}`, {
         method: "DELETE"
       });
       if (!res.ok) throw new Error("Failed to delete client");
@@ -174,7 +176,7 @@ export default function Client({ showToast }) {
     if (viewMode === 'view' || !selectedClient) return;
 
     try {
-      const res = await fetch(`http://localhost:5000/api/clients/${selectedClient._id}`, {
+      const res = await fetch(`${API_BASE}/api/clients/${selectedClient._id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(selectedClient)

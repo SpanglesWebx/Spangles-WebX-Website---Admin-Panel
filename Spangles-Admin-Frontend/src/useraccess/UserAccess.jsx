@@ -54,6 +54,8 @@ const fullAccess = {
 const isFullAccess = (access = {}) =>
   ACCESS_LIST.every(a => access?.[a.key]);
 
+const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000";
+
 export default function UserAccess() {
   const [screen, setScreen] = useState("list");
   const [search, setSearch] = useState("");
@@ -84,14 +86,20 @@ export default function UserAccess() {
   }, []);
 
   const fetchUsers = async () => {
-    const res = await fetch("http://localhost:5000/api/users");
-    const data = await res.json();
-    setUsers(data);
+    try {
+      const res = await fetch(`${API_BASE}/api/users`);
+      if (!res.ok) throw new Error("Failed to fetch users");
+      const data = await res.json();
+      setUsers(Array.isArray(data) ? data : []);
+    } catch (err) {
+      console.error(err);
+      setUsers([]);
+    }
   };
 
   /* ---------------- DELETE USER ---------------- */
   const deleteUser = async (id) => {
-    await fetch(`http://localhost:5000/api/users/${id}`, { method: "DELETE" });
+    await fetch(`${API_BASE}/api/users/${id}`, { method: "DELETE" });
 
     setToastMsg("User deleted successfully!");
     setShowDelete(false);
@@ -106,7 +114,7 @@ export default function UserAccess() {
       access: form.role === "admin" ? fullAccess : form.access
     };
 
-    const res = await fetch("http://localhost:5000/api/users", {
+    const res = await fetch(`${API_BASE}/api/users`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)

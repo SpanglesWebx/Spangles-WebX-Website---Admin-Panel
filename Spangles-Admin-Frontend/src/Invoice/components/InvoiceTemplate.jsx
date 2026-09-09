@@ -110,7 +110,7 @@ const InvoiceTemplate = ({
               {/* Company Header */}
               <div className="text-center mb-16 flex justify-center">
                 <img
-                  src="/logo.png"
+                  src={`${import.meta.env.BASE_URL}logo.png`}
                   alt="Spanglez WebX Logo"
                   className="h-16 object-contain"
                 />

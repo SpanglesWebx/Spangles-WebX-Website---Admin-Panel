@@ -597,9 +597,15 @@ export default function JobPost() {
   useEffect(() => {
     // Load jobs
     fetch(`${API_BASE}/api/jobs`)
-      .then((r) => r.json())
-      .then((d) => setJobs(d))
-      .catch(() => setJobs([]));
+      .then((r) => {
+        if (!r.ok) throw new Error(`HTTP error ${r.status}`);
+        return r.json();
+      })
+      .then((d) => setJobs(Array.isArray(d) ? d : []))
+      .catch((err) => {
+        console.error("Error fetching jobs:", err);
+        setJobs([]);
+      });
   }, []);
 
   const pushToast = (msg, ttl = 3000) => {

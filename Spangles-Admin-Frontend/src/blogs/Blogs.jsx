@@ -17,7 +17,7 @@ import {
 import JoditEditor from "jodit-react";
 import "jodit/es5/jodit.min.css";
 
-const API_BASE = "http://localhost:5000";
+const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000";
 
 /* Compact toolbar CSS + Content View CSS */
 const toolbarCSS = `

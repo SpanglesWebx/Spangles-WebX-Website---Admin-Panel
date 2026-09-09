@@ -919,7 +919,7 @@ function FormModal({ title, form, setForm, onClose, onSave, addItem, updateItem,
             </div>
             <div className="col-span-4 p-2">
               <div onClick={() => fileRef.current?.click()} className="h-24 flex items-center justify-center cursor-pointer bg-white">
-                <img src="/logo.png" alt="logo" className="h-full object-contain border rounded" style={{ padding: '15px' }} />
+                <img src={`${import.meta.env.BASE_URL}logo.png`} alt="logo" className="h-full object-contain border rounded" style={{ padding: '15px' }} />
               </div>
               <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={(e) => handleLogo(e.target.files?.[0])} />
             </div>

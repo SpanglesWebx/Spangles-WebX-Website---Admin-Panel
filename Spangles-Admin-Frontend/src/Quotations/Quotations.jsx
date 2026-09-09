@@ -672,7 +672,7 @@ const Quotations = ({ showToast }) => {
             doc.text(formatDateDisplay(record.date), margin + 90, my);
 
             try {
-                const logoUrl = "/logo.png";
+                const logoUrl = `${import.meta.env.BASE_URL}logo.png`;
                 const res = await fetch(logoUrl);
                 if (res.ok) {
                     const blob = await res.blob();
@@ -1107,7 +1107,7 @@ function FormModal({ title, form, setForm, onClose, onSave, addItem, updateItem,
                         </div>
                         <div className="col-span-4 p-2">
                             <div onClick={() => fileRef.current?.click()} className="h-24 flex items-center justify-center cursor-pointer bg-white">
-                                <img src="/logo.png" alt="logo" className="h-full object-contain border rounded" style={{ padding: '15px' }} />
+                                <img src={`${import.meta.env.BASE_URL}logo.png`} alt="logo" className="h-full object-contain border rounded" style={{ padding: '15px' }} />
                             </div>
                             <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={(e) => handleLogo(e.target.files?.[0])} />
                         </div>
@@ -1263,7 +1263,7 @@ function PreviewModal({ refNode, record, onClose, onEdit, onDownload, onPrint })
                                 <div className="mb-1"><span className="text-slate-500 text-xs">Quotation No.:</span><span className="ml-1 font-medium">{record.number}</span></div>
                                 <div><span className="text-slate-500 text-xs">Quotation Date:</span><span className="ml-1 font-medium">{formatDateDisplay(record.date)}</span></div>
                             </div>
-                            <img src="/logo.png" alt="Company Logo" className="h-16 w-60 object-contain border rounded" style={{ padding: '15px' }} />
+                            <img src={`${import.meta.env.BASE_URL}logo.png`} alt="Company Logo" className="h-16 w-60 object-contain border rounded" style={{ padding: '15px' }} />
                         </div>
                         <div className="grid grid-cols-2 gap-4 mb-6 text-sm">
                             <div className="border rounded-xl p-4 bg-white shadow-sm">
