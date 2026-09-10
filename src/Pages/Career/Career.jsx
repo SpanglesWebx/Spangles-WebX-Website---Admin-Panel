@@ -7,6 +7,8 @@ import carrer from "../../assets/Career/career.webp";
 import successImg from "../../assets/Career/Success.webp";
 import Support from "../About/Components/Support";
 
+const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000";
+
 const inputClass = (error) =>
   `w-full h-[35px] px-3 border rounded-[10px] 
   font-[Montserrat] font-medium text-[14px] leading-[100%] tracking-[0%] text-[#345261] outline-none placeholder:text-[13px] placeholder:font-normal
@@ -215,7 +217,7 @@ export default function Career() {
 
       formData.append("resume", resume); // ✅ already correct
 
-      const res = await fetch("http://localhost:5000/api/applications", {
+      const res = await fetch(`${API_BASE}/api/applications`, {
         method: "POST",
         body: formData,
       });
