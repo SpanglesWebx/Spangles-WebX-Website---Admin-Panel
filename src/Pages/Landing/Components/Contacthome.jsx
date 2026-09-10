@@ -1,6 +1,8 @@
 import React, { useMemo, useState } from "react";
 import contactImg from "../../../assets/Home/CONTACT.webp";
 
+const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000";
+
 export default function ContactSection() {
   const [values, setValues] = useState({
     name: "",
@@ -35,19 +37,54 @@ export default function ContactSection() {
     return next;
   };
 
-  const handleSubmit = (e) => {
-    e?.preventDefault?.();
-    const next = validate();
-    setErrors(next);
-    if (Object.keys(next).length > 0) return;
 
-    // TODO: hook up API/email service here
-    // For now: successful client-side validation only
+const handleSubmit = async (e) => {
+  e?.preventDefault?.();
+
+  const next = validate();
+  setErrors(next);
+
+  if (Object.keys(next).length > 0) return;
+
+  try {
+    const res = await fetch(`${API_BASE}/api/contact`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values),
+    });
+
+    if (!res.ok) throw new Error("Submission failed");
+
     setToast({ type: "success", message: "Message sent successfully." });
-    setValues({ name: "", phone: "", email: "", subject: "", message: "" });
+
+    setValues({
+      name: "",
+      phone: "",
+      email: "",
+      subject: "",
+      message: "",
+    });
+
     window.clearTimeout(handleSubmit._toastTimer);
-    handleSubmit._toastTimer = window.setTimeout(() => setToast(null), 2500);
-  };
+    handleSubmit._toastTimer = window.setTimeout(() => {
+      setToast(null);
+    }, 2500);
+  } catch (err) {
+    console.error("Error submitting form:", err);
+    setToast({
+      type: "error",
+      message: "Failed to send message. Please try again.",
+    });
+
+    window.clearTimeout(handleSubmit._toastTimer);
+    handleSubmit._toastTimer = window.setTimeout(() => {
+      setToast(null);
+    }, 2500);
+  }
+};
+
 
   return (
     <section className="w-full bg-[#F4F7FA] px-[75px]  relative z-30 -mb-[100px] max-[1025px]: -mt-[55px] max-[413px]:px-4 max-[413px]:mb-0">
@@ -135,10 +172,11 @@ export default function ContactSection() {
                   type="text"
                   placeholder="Phone Number *"
                   value={values.phone}
-                  onChange={(e) => setField("phone", e.target.value)}
-                  className={`w-full h-[48px] font-montserrat font-normal text-[14px] leading-[100%] text-[#345261] px-[15px] border rounded-[10px] outline-none focus:border-[#345261] placeholder:text-[#677289] max-[413px]:bg-white  ${
-                    errors.phone ? "border-red-500" : "border-gray-300"
-                  }`}
+                  maxLength={10}
+                  inputMode="numeric"
+                  onChange={(e) => setField("phone", e.target.value.replace(/\D/g, "").slice(0, 10))}
+                  className={`w-full h-[48px] font-montserrat font-normal text-[14px] leading-[100%] text-[#345261] px-[15px] border rounded-[10px] outline-none focus:border-[#345261] placeholder:text-[#677289] max-[413px]:bg-white ${errors.phone ? "border-red-500" : "border-gray-300"
+                    }`}
                 />
                 {errors.phone ? (
                   <p className="mt-2 text-[12px] text-red-600 font-montserrat">
@@ -197,7 +235,7 @@ export default function ContactSection() {
             {/* Button */}
             <button
               type="submit"
-              className="group bg-[#3f5b6b] hover:bg-[#344c59] text-white font-montserrat font-bold text-[12px] leading-[18px] tracking-[0px] uppercase text-center align-middle px-9 py-5 rounded-lg flex items-center justify-center gap-2 transition max-[413px]:w-full max-[413px]:text-[12px]"
+              className="group bg-[#3f5b6b] hover:bg-[#344c59] text-white font-montserrat font-bold text-[12px] leading-[18px] tracking-[0px] uppercase text-center align-middle px-9 py-5 rounded-lg flex items-center justify-center gap-2 transition max-[413px]:w-full max-[413px]:text-[12px] cursor-pointer"
             >
               SEND MESSAGE
               <svg
