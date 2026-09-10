@@ -15,27 +15,55 @@ const inputClass = (error) =>
 
 const Modal = ({ children, onClose, customClasses }) => {
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+
+    const prevBodyOverflow = document.body.style.overflow;
+    const prevHtmlOverflow = document.documentElement.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+
+    if (window.__lenis) {
+      window.__lenis.stop();
+    }
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = prevBodyOverflow;
+      document.documentElement.style.overflow = prevHtmlOverflow;
+      if (window.__lenis) {
+        window.__lenis.start();
+      }
+    };
+  }, [onClose]);
 
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed inset-0 bg-black/60 flex justify-center items-start z-[1000] overflow-y-auto pt-[165px] pb-10 max-[768px]:pt-[100px] max-[413px]:pt-[20vh] max-[413px]:pb-0 max-[413px]:items-end"
+        data-lenis-prevent="true"
+        className="fixed inset-0 bg-black/60 flex justify-center items-center z-[1000] p-4 sm:p-6 md:p-8 overscroll-contain"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         onClick={onClose}
+        onWheel={(e) => e.stopPropagation()}
       >
         <motion.div
-          className={customClasses || "bg-white rounded-2xl shadow-xl w-[1200px] px-[80px] py-[100px] relative self-start max-[1201px]:w-[90%] max-[768px]:py-[60px] max-[768px]:px-[40px] max-[413px]:w-full max-[413px]:min-h-[70vh] max-[413px]:rounded-t-[24px] max-[413px]:rounded-b-[10px] max-[413px]:px-[20px] max-[413px]:py-[40px] max-[413px]:overflow-x-hidden max-[413px]:mb-0 max-[413px]:mt-0"}
+          data-lenis-prevent="true"
+          className={
+            customClasses ||
+            "bg-white rounded-2xl shadow-xl w-[1100px] max-w-full max-h-[85vh] px-[60px] py-[60px] relative overflow-y-auto overscroll-contain custom-modal-scroll max-[1201px]:w-[90%] max-[768px]:py-[60px] max-[768px]:px-[40px] max-[413px]:w-full max-[413px]:min-h-[70vh] max-[413px]:rounded-t-[24px] max-[413px]:rounded-b-[10px] max-[413px]:px-[20px] max-[413px]:py-[40px] max-[413px]:overflow-x-hidden max-[413px]:mb-0 max-[413px]:mt-0"
+          }
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.9, opacity: 0 }}
           onClick={(e) => e.stopPropagation()}
+          onWheel={(e) => e.stopPropagation()}
         >
           <button
-            className="absolute top-6 right-6 text-gray-500 text-2xl hover:text-black transition-colors max-[413px]:top-[20px] max-[413px]:right-[20px] max-[413px]:text-[24px]"
+            className="absolute top-6 right-6 text-gray-500 text-2xl hover:text-black transition-colors max-[413px]:top-[20px] max-[413px]:right-[20px] max-[413px]:text-[24px] cursor-pointer z-10"
             onClick={onClose}
           >
             ✕
@@ -100,12 +128,24 @@ export default function Career() {
   useEffect(() => {
     if (showDetails || showForm || showSuccess) {
       document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+      if (window.__lenis) {
+        window.__lenis.stop();
+      }
     } else {
       document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+      if (window.__lenis) {
+        window.__lenis.start();
+      }
     }
 
     return () => {
       document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+      if (window.__lenis) {
+        window.__lenis.start();
+      }
     };
   }, [showDetails, showForm, showSuccess]);
 
@@ -427,13 +467,13 @@ export default function Career() {
             </button>
           </div>
         )}
-      </div>{" "}
-
-
-      {/* Details Modal */}
+      </div>      {/* Details Modal */}
       {showDetails && (
-        <Modal onClose={() => setShowDetails(false)} customClasses="bg-white rounded-2xl shadow-xl w-[1100px] px-[60px] py-[60px] relative self-start max-[1201px]:w-[90%] max-[768px]:py-[60px] max-[768px]:px-[40px] max-[413px]:w-full max-[413px]:min-h-[70vh] max-[413px]:rounded-t-[24px] max-[413px]:rounded-b-[10px] max-[413px]:px-[20px] max-[413px]:py-[40px] max-[413px]:overflow-x-hidden max-[413px]:mb-0 max-[413px]:mt-0">
-          <h2 className=" w-[65%] font-[Montserrat] font-medium text-[29px] leading-[39px] tracking-[-1px] text-[#345261] mb-4 max-[1025px]:w-[80%] max-[1025px]:text-[28px] max-[768px]:w-full max-[768px]:text-[24px] max-[768px]:leading-[32px] max-[413px]:text-[20px] max-[413px]:leading-[28px] max-[413px]:tracking-[-0.02em] max-[413px]:mb-[16px] max-[413px]:pr-[30px] max-[413px]:w-full">
+        <Modal
+          onClose={() => setShowDetails(false)}
+          customClasses="bg-white rounded-2xl shadow-xl w-[1100px] max-w-full max-h-[85vh] px-[60px] py-[60px] relative overflow-y-auto overscroll-contain custom-modal-scroll max-[1201px]:w-[90%] max-[768px]:py-[60px] max-[768px]:px-[40px] max-[413px]:w-full max-[413px]:min-h-[70vh] max-[413px]:rounded-t-[24px] max-[413px]:rounded-b-[10px] max-[413px]:px-[20px] max-[413px]:py-[40px] max-[413px]:overflow-x-hidden max-[413px]:mb-0 max-[413px]:mt-0"
+        >
+          <h2 className="w-[65%] font-[Montserrat] font-medium text-[29px] leading-[39px] tracking-[-1px] text-[#345261] mb-4 max-[1025px]:w-[80%] max-[1025px]:text-[28px] max-[768px]:w-full max-[768px]:text-[24px] max-[768px]:leading-[32px] max-[413px]:text-[20px] max-[413px]:leading-[28px] max-[413px]:tracking-[-0.02em] max-[413px]:mb-[16px] max-[413px]:pr-[30px] max-[413px]:w-full">
             {selectedJob?.jobTitle}
           </h2>
           <div className="flex gap-8 max-[768px]:flex-col max-[413px]:flex-col max-[413px]:gap-[20px]">
@@ -459,7 +499,12 @@ export default function Career() {
               </h3>
               <ul className="font-[Montserrat] text-[13px] leading-[23px] text-[#6B6A66] mb-6 list-disc pl-5 space-y-1 marker:text-[#345261] marker:text-lg max-[413px]:text-[14px] max-[413px]:leading-[26px] max-[413px]:mb-[25px] max-[413px]:pl-[14px] max-[413px]:space-y-[12px] max-[413px]:marker:text-[14px]">
                 {selectedJob?.responsibilities ? (
-                  selectedJob.responsibilities.split('\n').filter(line => line.trim()).map((res, i) => (
+                  (typeof selectedJob.responsibilities === 'string'
+                    ? selectedJob.responsibilities.split('\n').filter(line => line.trim())
+                    : Array.isArray(selectedJob.responsibilities)
+                      ? selectedJob.responsibilities
+                      : []
+                  ).map((res, i) => (
                     <li key={i}>{res}</li>
                   ))
                 ) : (
@@ -476,8 +521,14 @@ export default function Career() {
                 Requirements:
               </h3>
               <ul className="font-[Montserrat] text-[13px] leading-[23px] text-[#6B6A66] mb-6 list-disc pl-5 space-y-1 marker:text-[#345261] marker:text-lg max-[413px]:text-[14px] max-[413px]:leading-[26px] max-[413px]:mb-[25px] max-[413px]:pl-[14px] max-[413px]:space-y-[12px] max-[413px]:marker:text-[14px]">
-                {selectedJob?.requiredQualifications && selectedJob.requiredQualifications.length > 0 ? (
-                  selectedJob.requiredQualifications.map((req, i) => (
+                {selectedJob?.requiredQualifications && (
+                  (Array.isArray(selectedJob.requiredQualifications) && selectedJob.requiredQualifications.length > 0) ||
+                  (typeof selectedJob.requiredQualifications === 'string' && selectedJob.requiredQualifications.trim().length > 0)
+                ) ? (
+                  (typeof selectedJob.requiredQualifications === 'string'
+                    ? selectedJob.requiredQualifications.split('\n').filter(line => line.trim())
+                    : selectedJob.requiredQualifications
+                  ).map((req, i) => (
                     <li key={i}>{req}</li>
                   ))
                 ) : (
@@ -516,7 +567,7 @@ export default function Career() {
 
                 <button
                   onClick={handleApplyNow}
-                  className="mt-5 w-fit bg-[#2F4858] text-white text-[12px] font-bold px-4 py-3 rounded-md flex items-center justify-center gap-2 max-[768px]:w-[200px] max-[413px]:mt-[40px] max-[413px]:w-full max-[413px]:py-[12px] max-[413px]:rounded-[8px]"
+                  className="mt-5 w-fit bg-[#2F4858] text-white text-[12px] font-bold px-4 py-3 rounded-md flex items-center justify-center gap-2 max-[768px]:w-[200px] max-[413px]:mt-[40px] max-[413px]:w-full max-[413px]:py-[12px] max-[413px]:rounded-[8px] cursor-pointer"
                 >
                   APPLY NOW{" "}
                   <svg
@@ -540,10 +591,12 @@ export default function Career() {
         </Modal>
       )}
 
-
       {/* Form Modal */}
       {showForm && (
-        <Modal onClose={() => setShowForm(false)} customClasses="bg-white rounded-2xl shadow-xl w-[900px] px-[60px] py-[60px] relative self-start max-[1201px]:w-[90%] max-[768px]:py-[60px] max-[768px]:px-[40px] max-[413px]:w-full max-[413px]:min-h-[70vh] max-[413px]:rounded-t-[24px] max-[413px]:rounded-b-[10px] max-[413px]:px-[20px] max-[413px]:py-[40px] max-[413px]:overflow-x-hidden max-[413px]:mb-0 max-[413px]:mt-0">
+        <Modal
+          onClose={() => setShowForm(false)}
+          customClasses="bg-white rounded-2xl shadow-xl w-[900px] max-w-full max-h-[85vh] px-[60px] py-[60px] relative overflow-y-auto overscroll-contain custom-modal-scroll max-[1201px]:w-[90%] max-[768px]:py-[60px] max-[768px]:px-[40px] max-[413px]:w-full max-[413px]:min-h-[70vh] max-[413px]:rounded-t-[24px] max-[413px]:rounded-b-[10px] max-[413px]:px-[20px] max-[413px]:py-[40px] max-[413px]:overflow-x-hidden max-[413px]:mb-0 max-[413px]:mt-0"
+        >
           <div className="md:px-6 max-[413px]:px-0">
             {/* Heading */}
             <h2 className="font-[Montserrat] font-semibold text-[28px] leading-[100%] tracking-[0%] text-[#345261] mb-5 max-[1201px]:text-[26px] max-[1025px]:text-[24px] max-[413px]:text-[22px] max-[413px]:leading-[32px] max-[413px]:mb-[12px] max-[413px]:tracking-[-0.01em]">
@@ -716,7 +769,7 @@ export default function Career() {
                 {skillList.length > 0 && (
                   <div className="flex flex-wrap gap-2 mb-4">
                     <AnimatePresence>
-                      {skillList.map((skill, index) => (
+                      {skillList.map((skill) => (
                         <motion.div
                           key={skill}
                           initial={{ scale: 0.8, opacity: 0 }}
@@ -820,8 +873,6 @@ export default function Career() {
 
                         if (file) {
                           setResume(file);
-                          console.log("Selected file:", file); // debug
-
                           if (errors.resume) {
                             setErrors((prev) => ({ ...prev, resume: "" }));
                           }
@@ -849,7 +900,7 @@ export default function Career() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="bg-[#2f4858] text-white font-[Montserrat] font-bold text-[11px] leading-[18px] tracking-[0%] uppercase text-center align-middle px-4 py-3 rounded-[10px] flex items-center justify-center gap-2 max-[413px]:w-full max-[413px]:py-[12px] max-[413px]:rounded-[8px] disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="bg-[#2f4858] text-white font-[Montserrat] font-bold text-[11px] leading-[18px] tracking-[0%] uppercase text-center align-middle px-4 py-3 rounded-[10px] flex items-center justify-center gap-2 max-[413px]:w-full max-[413px]:py-[12px] max-[413px]:rounded-[8px] disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
                 >
                   {submitting ? "SUBMITTING..." : "APPLY NOW"}{" "}
                   {!submitting && (
@@ -874,31 +925,23 @@ export default function Career() {
           </div>
         </Modal>
       )}
+
       {/* Success Modal */}
       {showSuccess && (
-        <Modal onClose={() => setShowSuccess(false)} customClasses="bg-white rounded-2xl shadow-xl w-[80%] px-[80px] py-[60px] relative self-start max-[768px]:py-[50px] max-[768px]:px-[60px] max-[413px]:w-full max-[413px]:min-h-[40vh] max-[413px]:rounded-t-[24px] max-[413px]:rounded-b-[10px] max-[413px]:px-[20px] max-[413px]:py-[40px] max-[413px]:overflow-x-hidden max-[413px]:mb-0 max-[413px]:mt-0">
-          <div className="flex flex-col items-center justify-center text-center px-4 sm:px-6 md:px-8 max-[413px]:absolute max-[413px]:top-1/2 max-[413px]:left-1/2 max-[413px]:-translate-x-1/2 max-[413px]:-translate-y-1/2 max-[413px]:w-full">
-
+        <Modal
+          onClose={() => setShowSuccess(false)}
+          customClasses="bg-white rounded-2xl shadow-xl w-[80%] max-w-[800px] max-h-[85vh] px-[80px] py-[60px] relative overflow-y-auto overscroll-contain custom-modal-scroll max-[768px]:py-[50px] max-[768px]:px-[60px] max-[413px]:w-full max-[413px]:px-[20px] max-[413px]:py-[40px]"
+        >
+          <div className="flex flex-col items-center justify-center text-center px-4 sm:px-6 md:px-8 max-[413px]:w-full">
             <img
               src={successImg}
               alt="success"
-              className="
-          w-full max-w-[250px] 
-          sm:max-w-[300px] 
-          md:max-w-[350px] 
-          h-auto object-contain mb-4 max-[413px]:mx-auto
-        "
+              className="w-full max-w-[250px] sm:max-w-[300px] md:max-w-[350px] h-auto object-contain mb-4 max-[413px]:mx-auto"
             />
 
-            <h3 className="
-        font-[Montserrat] font-semibold 
-        text-[18px] sm:text-[22px] md:text-[26px] 
-        leading-tight 
-        text-[#345261] max-[413px]:text-center max-[413px]:mx-auto max-[413px]:w-full
-      ">
+            <h3 className="font-[Montserrat] font-semibold text-[18px] sm:text-[22px] md:text-[26px] leading-tight text-[#345261] max-[413px]:text-center max-[413px]:mx-auto max-[413px]:w-full">
               Application Submitted Successfully
             </h3>
-
           </div>
         </Modal>
       )}
