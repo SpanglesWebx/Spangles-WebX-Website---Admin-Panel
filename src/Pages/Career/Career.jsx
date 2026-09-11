@@ -126,6 +126,7 @@ export default function Career() {
   const [skillInput, setSkillInput] = useState("");
   const [salary, setSalary] = useState("");
   const [resume, setResume] = useState(null);
+  const [applicantId, setApplicantId] = useState("");
 
   useEffect(() => {
     if (showDetails || showForm || showSuccess) {
@@ -161,20 +162,39 @@ export default function Career() {
     setShowForm(true);
   };
 
-  const handleAddSkill = (e) => {
-    if (e.key === "Enter" && skillInput.trim()) {
-      e.preventDefault();
-      const newSkill = skillInput.trim();
-      if (!skillList.includes(newSkill)) {
-        setSkillList([...skillList, newSkill]);
-        if (errors.skills) {
-          setErrors((prev) => ({ ...prev, skills: "" }));
-        }
-      }
-      setSkillInput("");
-    }
-  };
+  // const handleAddSkill = (e) => {
+  //   if (e.key === "Enter" && skillInput.trim()) {
+  //     e.preventDefault();
+  //     const newSkill = skillInput.trim();
+  //     if (!skillList.includes(newSkill)) {
+  //       setSkillList([...skillList, newSkill]);
+  //       if (errors.skills) {
+  //         setErrors((prev) => ({ ...prev, skills: "" }));
+  //       }
+  //     }
+  //     setSkillInput("");
+  //   }
+  // };
 
+  const handleAddSkill = (e) => {
+  if (e) {
+    e.preventDefault();
+  }
+
+  const newSkill = skillInput.trim();
+
+  if (!newSkill) return;
+
+  if (!skillList.includes(newSkill)) {
+    setSkillList((prev) => [...prev, newSkill]);
+
+    if (errors.skills) {
+      setErrors((prev) => ({ ...prev, skills: "" }));
+    }
+  }
+
+  setSkillInput("");
+};
   const handleRemoveSkill = (skillToRemove) => {
     const newList = skillList.filter((s) => s !== skillToRemove);
     setSkillList(newList);
@@ -257,15 +277,12 @@ export default function Career() {
 
       formData.append("resume", resume); // ✅ already correct
 
-      const res = await fetch(`${API_BASE}/api/applications`, {
-        method: "POST",
-        body: formData,
-      });
+      const res = await fetch(`${API_BASE}/api/applications`, { method: "POST", body: formData });
+const data = await res.json();
 
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        throw new Error(data.message || "Submission failed");
-      }
+if (!res.ok) throw new Error(data.message || "Submission failed");
+
+setApplicantId(data.applicantId || "");
 
       // Reset form state
       setName("");
@@ -481,11 +498,11 @@ export default function Career() {
           <div className="flex gap-8 max-[768px]:flex-col max-[413px]:flex-col max-[413px]:gap-[20px]">
             {/* LEFT SECTION */}
             <div className="w-[65%] max-[768px]:w-full max-[413px]:w-full">
-              <p className="font-[Montserrat] font-normal text-[13px] leading-[23px] text-[#6B6A66] align-middle mb-6 max-[413px]:text-[14px] max-[413px]:leading-[26px] max-[413px]:mb-[24px]">
+              {/* <p className="font-[Montserrat] font-normal text-[13px] leading-[23px] text-[#6B6A66] align-middle mb-6 max-[413px]:text-[14px] max-[413px]:leading-[26px] max-[413px]:mb-[24px]">
                 We help transform the world’s most important businesses into
                 vigorous, agile organizations that anticipate the unpredictable,
                 adapt rapidly to disruption and outcompete their opposition.
-              </p>
+              </p> */}
 
               {/* Job Description */}
               <h3 className="font-[Montserrat] font-medium text-[17px] leading-[23px] tracking-[-1px] text-[#345261] align-middle mb-3 max-[413px]:text-[18px] max-[413px]:leading-[24px] max-[413px]:tracking-[-0.01em] max-[413px]:mb-[12px]">
@@ -541,10 +558,10 @@ export default function Career() {
                   </>
                 )}
               </ul>
-              <p className="font-[Montserrat] font-normal text-[13px] leading-[23px] text-[#6B6A66] align-middle mb-4 max-[413px]:text-[14px] max-[413px]:leading-[26px] max-[413px]:mb-[10px]">
+              {/* <p className="font-[Montserrat] font-normal text-[13px] leading-[23px] text-[#6B6A66] align-middle mb-4 max-[413px]:text-[14px] max-[413px]:leading-[26px] max-[413px]:mb-[10px]">
                 If you're passionate about delivering exceptional digital
                 experiences, we'd love to hear from you.
-              </p>
+              </p> */}
             </div>
 
             {/* RIGHT SIDEBAR */}
@@ -606,12 +623,12 @@ export default function Career() {
             </h2>
 
             {/* Description */}
-            <p className="font-[Montserrat] font-normal text-[13px] leading-[23px] tracking-[0%] text-[#6B6A66] mb-10 max-w-2xl max-[1025px]:text-[14px] max-[1025px]:mb-10 max-[413px]:text-[14px] max-[413px]:leading-[24px] max-[413px]:mb-8">
+            {/* <p className="font-[Montserrat] font-normal text-[13px] leading-[23px] tracking-[0%] text-[#6B6A66] mb-10 max-w-2xl max-[1025px]:text-[14px] max-[1025px]:mb-10 max-[413px]:text-[14px] max-[413px]:leading-[24px] max-[413px]:mb-8">
               Thank you for your interest in working with us. To get to know you
               better, we'd like if you could fill out some information. Once we
               receive your application, we'll be in touch if you are found
               suitable.
-            </p>
+            </p> */}
 
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-[24px] max-[1025px]:space-y-[20px] max-[413px]:space-y-0 text-left">
@@ -736,38 +753,49 @@ export default function Career() {
                 </div>
 
                 <div className="max-[413px]:mb-[20px]">
-                  <label className="font-[Montserrat] font-medium text-[13px] leading-[100%] tracking-[0%] text-[#161C2D] mb-2.5 block max-[1025px]:mb-2 max-[413px]:mb-[8px] max-[413px]:text-[14px]">
-                    Professional Experience*
-                  </label>
-                  <input
-                    value={experience}
-                    onChange={(e) => {
-                      const val = e.target.value;
-                      if (/^[0-9.-]*$/.test(val)) {
-                        setExperience(val);
-                        if (errors.experience) {
-                          setErrors((prev) => ({ ...prev, experience: "" }));
-                        }
-                      }
-                    }}
-                    placeholder="Enter your experience"
-                    className={inputClass(errors.experience)}
-                  />
-                  {errors.experience && (
-                    <p className="text-red-500 text-[14px] mt-1 max-[413px]:text-[12px]">
-                      {errors.experience}
-                    </p>
-                  )}
-                </div>
+  <label className="font-[Montserrat] font-medium text-[13px] leading-[100%] tracking-[0%] text-[#161C2D] mb-2.5 block max-[1025px]:mb-2 max-[413px]:mb-[8px] max-[413px]:text-[14px]">
+    Professional Experience* (In Years)
+  </label>
+
+  <input
+    type="text"
+    inputMode="numeric"
+    maxLength={2}
+    value={experience}
+    onChange={(e) => {
+      const val = e.target.value;
+
+      // Only numbers and maximum 2 digits
+      if (/^\d{0,2}$/.test(val)) {
+        setExperience(val);
+
+        if (errors.experience) {
+          setErrors((prev) => ({
+            ...prev,
+            experience: "",
+          }));
+        }
+      }
+    }}
+    placeholder="Enter your experience"
+    className={inputClass(errors.experience)}
+  />
+
+  {errors.experience && (
+    <p className="text-red-500 text-[14px] mt-1 max-[413px]:text-[12px]">
+      {errors.experience}
+    </p>
+  )}
+</div>
               </div>
 
               {/* Row 3: Skill Set (Dynamic Tags) */}
-              <div className="w-full">
+              {/* <div className="w-full">
                 <label className="font-[Montserrat] font-medium text-[13px] leading-[100%] tracking-[0%] text-[#161C2D] mb-2.5 block max-[1025px]:mb-2 max-[413px]:mb-[8px] max-[413px]:text-[14px]">
                   Skill Set (optional - Press Enter to add)
                 </label>
 
-                {/* Skill Chips */}
+                
                 {skillList.length > 0 && (
                   <div className="flex flex-wrap gap-2 mb-4">
                     <AnimatePresence>
@@ -814,7 +842,84 @@ export default function Career() {
                     {errors.skills}
                   </p>
                 )}
-              </div>
+              </div> */}
+
+              <div className="w-full">
+  <label className="font-[Montserrat] font-medium text-[13px] leading-[100%] tracking-[0%] text-[#161C2D] mb-2.5 block max-[1025px]:mb-2 max-[413px]:mb-[8px] max-[413px]:text-[14px]">
+    Skill Set (optional - Press Enter to add)
+  </label>
+
+  {/* Skill Chips */}
+  {skillList.length > 0 && (
+    <div className="flex flex-wrap gap-2 mb-4">
+      <AnimatePresence>
+        {skillList.map((skill) => (
+          <motion.div
+            key={skill}
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.8, opacity: 0 }}
+            className="bg-[#345261] text-white px-3 py-1.5 rounded-[8px] flex items-center gap-2 text-[14px] font-[Montserrat]"
+          >
+            {skill}
+
+            <button
+              type="button"
+              onClick={() => handleRemoveSkill(skill)}
+              className="hover:text-red-300 transition-colors text-[16px] font-bold"
+            >
+              ×
+            </button>
+          </motion.div>
+        ))}
+      </AnimatePresence>
+    </div>
+  )}
+
+  {/* Skill Input */}
+  <div className="flex gap-2">
+    <div className="relative flex-1">
+      <input
+        type="text"
+        value={skillInput}
+        onChange={(e) => setSkillInput(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.keyCode === 13) {
+            handleAddSkill(e);
+          }
+        }}
+        enterKeyHint="done"
+        onFocus={() => setFocusedField("skills")}
+        onBlur={() => setFocusedField(null)}
+        placeholder="Type and press Enter to add skills"
+        className={`${inputClass(errors.skills)} pr-12`}
+      />
+
+      {focusedField === "skills" && (
+        <span className="absolute right-3 bottom-1.5 text-[11px] text-gray-400 font-[Montserrat] pointer-events-none">
+          {skillInput.length} characters
+        </span>
+      )}
+    </div>
+
+    {/* Mobile/Desktop Add Button */}
+    <button
+      type="button"
+      onMouseDown={(e) => e.preventDefault()}
+      onClick={handleAddSkill}
+      disabled={!skillInput.trim()}
+      className="h-[35px] px-4 bg-[#345261] text-white rounded-[10px] font-[Montserrat] text-[13px] font-medium disabled:opacity-50 disabled:cursor-not-allowed shrink-0"
+    >
+      + Add
+    </button>
+  </div>
+
+  {errors.skills && (
+    <p className="text-red-500 text-[14px] mt-1 max-[413px]:text-[12px]">
+      {errors.skills}
+    </p>
+  )}
+</div>
 
               {/* Row 4: Salary & Resume */}
               <div className="grid md:grid-cols-2 gap-[30px] max-[1201px]:gap-[20px] max-[1025px]:gap-[15px] max-[413px]:gap-0 max-[413px]:mb-[30px] max-[413px]:flex max-[413px]:flex-col">
@@ -822,12 +927,32 @@ export default function Career() {
                   <label className="font-[Montserrat] font-medium text-[13px] leading-[100%] tracking-[0%] text-[#161C2D] mb-2.5 block max-[1025px]:mb-2 max-[413px]:mb-[8px] max-[413px]:text-[14px]">
                     Salary Expectation (annually) (optional)
                   </label>
+
                   <input
-                    value={salary}
-                    onChange={(e) => setSalary(e.target.value)}
+                    type="text"
+                    inputMode="numeric"
+                    value={
+                      salary
+                        ? Number(salary).toLocaleString("en-IN")
+                        : ""
+                    }
+                    onChange={(e) => {
+                      // Remove everything except numbers
+                      const val = e.target.value.replace(/\D/g, "");
+
+                      setSalary(val);
+
+                      if (errors.salary) {
+                        setErrors((prev) => ({
+                          ...prev,
+                          salary: "",
+                        }));
+                      }
+                    }}
                     placeholder="Enter your salary expectation"
                     className={inputClass(errors.salary)}
                   />
+
                   {errors.salary && (
                     <p className="text-red-500 text-[14px] mt-1 max-[413px]:text-[12px]">
                       {errors.salary}
@@ -944,6 +1069,14 @@ export default function Career() {
             <h3 className="font-[Montserrat] font-semibold text-[18px] sm:text-[22px] md:text-[26px] leading-tight text-[#345261] max-[413px]:text-center max-[413px]:mx-auto max-[413px]:w-full">
               Application Submitted Successfully
             </h3>
+
+            <p className="font-[Montserrat] text-[15px] text-[#6B6A66] mt-3">
+              Your Applicant ID
+            </p>
+
+            <p className="font-[Montserrat] font-bold text-[22px] text-[#345261] mt-1">
+              {applicantId}
+            </p>
           </div>
         </Modal>
       )}
