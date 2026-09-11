@@ -101,6 +101,8 @@ function ApplicantDetailPage({ applicant, onClose, onDownloadResume, onStatusCha
 
           {/* Details Grid */}
           <div className="p-8 grid grid-cols-[180px_1fr] gap-y-5 text-[15px]">
+            <div className="text-gray-600 font-medium">Applicant ID</div>
+<div className="font-semibold text-[#345261]">{applicant.applicantId || "—"}</div>
             <div className="text-gray-600 font-medium">Name</div>
             <div className="font-medium text-gray-800">{applicant.yourName || "—"}</div>
 
@@ -134,13 +136,15 @@ function ApplicantDetailPage({ applicant, onClose, onDownloadResume, onStatusCha
             </div>
 
             <div className="text-gray-600 font-medium">Salary Expectation</div>
-            <div>{applicant.salaryExpectation || "—"}</div>
+            <div>
+              {applicant.salaryExpectation
+                ? Number(applicant.salaryExpectation).toLocaleString("en-IN")
+                : "—"}
+            </div>
 
             <div className="text-gray-600 font-medium">Applied On</div>
             <div>{formatDateDisplay(applicant.appliedDate)}</div>
 
-            <div className="text-gray-600 font-medium">Description</div>
-            <div className="whitespace-pre-line text-gray-700">{applicant.description || "—"}</div>
           </div>
 
           {/* Status Selection */}
@@ -205,71 +209,75 @@ function ApplicantDetailPage({ applicant, onClose, onDownloadResume, onStatusCha
             Resume Preview Modal
       --------------------------------------------------------- */}
       {showResumeModal && (
-        <div
-          className="fixed top-0 right-0 bottom-0 z-[99999] flex flex-col items-center justify-start p-4"
-          style={{ left: "224px", pointerEvents: "none" }}
-        >
-          <div
-            className="fixed top-0 right-0 bottom-0"
-            style={{ left: "224px", background: "rgba(0,0,0,0.75)", zIndex: -1 }}
-          ></div>
+  <div
+    className="fixed inset-0 z-[99999] flex flex-col items-center justify-start p-4 overflow-auto"
+    style={{
+      left: "224px",
+      pointerEvents: "none",
+    }}
+  >
+    {/* Background */}
+    <div
+      className="fixed top-0 right-0 bottom-0"
+      style={{
+        left: "224px",
+        background: "rgba(0,0,0,0.75)",
+        zIndex: -1,
+      }}
+    />
 
-          {/* Header Icons */}
-          <div className="w-full flex justify-end items-center gap-4 mb-4 pr-8 pointer-events-auto">
-            <button onClick={() => onDownloadResume(applicant)} className="flex items-center gap-1 text-white text-sm">
-              <FaDownload size={16} />
-              <span>Download</span>
-            </button>
+    {/* Header */}
+    <div className="w-full flex justify-end items-center gap-4 mb-4 pr-8 pointer-events-auto">
+      <button
+        onClick={() => onDownloadResume(applicant)}
+        className="flex items-center gap-1 text-white text-sm"
+      >
+        <FaDownload size={16} />
+        <span>Download</span>
+      </button>
 
-            <button
-              onClick={() => setShowResumeModal(false)}
-              className="text-white flex items-center justify-center pointer-events-auto"
-            >
-              <div className="border border-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
-                ✕
-              </div>
-            </button>
-          </div>
-
-          {/* PDF */}
-          <div
-            className="pointer-events-auto"
-            style={{
-              width: "750px",
-              height: "850px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "flex-start",
-              overflow: "hidden",
-              background: "transparent",
-            }}
-          >
-            {applicant.pdfFile?.contentType === "application/pdf" && (
-              <iframe
-                src={`${API_BASE}/api/applications/resume/${applicant._id}?t=${Date.now()}#toolbar=0&navpanes=0`}
-                style={{
-                  width: "1900px",
-                  height: "2000px",
-                  border: "none",
-                  transform: "scale(0.65)",
-                  transformOrigin: "top center",
-                  background: "transparent",
-                  pointerEvents: "none",
-                }}
-                title="Resume Preview"
-              ></iframe>
-            )}
-
-            {applicant.pdfFile?.contentType?.startsWith("image/") && (
-              <img
-                src={`${API_BASE}/api/applications/resume/${applicant._id}?t=${Date.now()}`}
-                className="object-contain w-full h-full"
-                alt="Resume"
-              />
-            )}
-          </div>
+      <button
+        onClick={() => setShowResumeModal(false)}
+        className="text-white flex items-center justify-center"
+      >
+        <div className="border border-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+          ✕
         </div>
+      </button>
+    </div>
+
+    {/* Resume */}
+    <div
+      className="pointer-events-auto flex justify-center"
+      style={{
+        width: "100%",
+        height: "calc(100vh - 100px)",
+        minHeight: "700px",
+      }}
+    >
+      {applicant.pdfFile?.contentType === "application/pdf" && (
+        <iframe
+          src={`${API_BASE}/api/applications/resume/${applicant._id}#toolbar=1&navpanes=0&scrollbar=1`}
+          style={{
+            width: "850px",
+            height: "100%",
+            border: "none",
+            background: "white",
+          }}
+          title="Resume Preview"
+        />
       )}
+
+      {applicant.pdfFile?.contentType?.startsWith("image/") && (
+        <img
+          src={`${API_BASE}/api/applications/resume/${applicant._id}`}
+          className="object-contain w-full h-full"
+          alt="Resume"
+        />
+      )}
+    </div>
+  </div>
+)}
     </div>
   );
 }
@@ -332,7 +340,7 @@ export default function Applicants({ showToast }) {
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = `${applicant.yourName}-resume.pdf`;
+      a.download = applicant.pdfFile?.filename || `${applicant.applicantId}.pdf`;
       a.click();
       URL.revokeObjectURL(url);
     } catch {
@@ -533,6 +541,7 @@ export default function Applicants({ showToast }) {
             <thead className="bg-[#345261] text-white text-xs uppercase">
               <tr>
                 <th className="px-6 py-3">SI No</th>
+                <th className="px-6 py-3">Applicant ID</th>
                 <th className="px-6 py-3">Name</th>
                 <th className="px-6 py-3">Job Title</th>
                 <th className="px-6 py-3">Designation</th>
@@ -554,6 +563,9 @@ export default function Applicants({ showToast }) {
                     }}
                   >
                     <td className="px-6 py-4">{indexOfLast - recordsPerPage + index + 1}</td>
+                    <td className="px-6 py-4 font-semibold text-[#345261]">
+                      {applicant.applicantId || "—"}
+                    </td>
                     <td className="px-6 py-4">{applicant.yourName}</td>
                     <td className="px-6 py-4">{applicant.jobTitle}</td>
                     <td className="px-6 py-4">{applicant.designation}</td>
@@ -576,7 +588,7 @@ export default function Applicants({ showToast }) {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="7" className="px-6 py-12 text-center text-gray-500">
+                  <td colSpan="8" className="px-6 py-12 text-center text-gray-500">
                     No applicants found
                   </td>
                 </tr>

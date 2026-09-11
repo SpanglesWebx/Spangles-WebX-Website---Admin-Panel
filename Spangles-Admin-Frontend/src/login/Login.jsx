@@ -18,10 +18,10 @@ export default function Login() {
   const [newPass, setNewPass] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
 
-  const [ setShowOtpModal] = useState(false);
+  const [showOtpModal, setShowOtpModal] = useState(false);
   const [otpInfo] = useState("");
-
-  const isAdmin = form.username === "Webx Admin";
+const [resetUsername, setResetUsername] = useState("");
+  const isAdmin = form.username === "WebxAdmin";
 
   /* ---------------- CUSTOM TOAST ---------------- */
   const [toastMsg, setToastMsg] = useState(null);
@@ -40,10 +40,9 @@ export default function Login() {
   };
 
   /* ---------------- EFFECTS ---------------- */
-  useEffect(() => {
-    setForm({ username: "", password: "" });
-    setShowPassword(false);
-  }, [step]);
+ useEffect(() => {
+  setShowPassword(false);
+}, [step]);
 
   /* ---------------- LOGIN ---------------- */
   const handleLogin = async () => {
@@ -81,7 +80,47 @@ export default function Login() {
     }
   };
 
+/* ================= SEND OTP ================= */
+const sendOtp = async () => {
+  if (!resetUsername) {
+    showToast("Username is required");
+    return;
+  }
 
+  try {
+    setLoading(true);
+
+    const res = await fetch(
+      `${API_BASE}/api/users/forgot-password/send-otp`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: resetUsername,
+        }),
+      }
+    );
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      showToast(data.message || "Failed to send OTP");
+      return;
+    }
+
+    setEmail(data.email);
+    showToast("OTP sent successfully");
+    setStep("otp");
+
+  } catch (error) {
+    console.error("SEND OTP ERROR:", error);
+    showToast("Failed to send OTP");
+  } finally {
+    setLoading(false);
+  }
+};
 
   /* ---------------- VERIFY OTP ---------------- */
   const verifyOtp = async () => {
@@ -211,7 +250,10 @@ export default function Login() {
 
               {isAdmin && (
                 <div
-                  onClick={() => setStep("email")}
+                  onClick={() => {
+      setResetUsername(form.username);
+      setStep("email");
+    }}
                   className="text-xs text-right text-[#345261] cursor-pointer mb-4"
                 >
                   Forgot password?
@@ -229,38 +271,51 @@ export default function Login() {
           )}
 
           {/* EMAIL */}
+          {/* SEND OTP */}
           {step === "email" && (
             <>
-              <input
-                className="w-full px-4 py-2 bg-[#EFF6FF] rounded-lg"
-                placeholder="Admin Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
+              <p className="text-sm text-gray-600 text-center mb-4">
+                We will send an OTP to your registered email address.
+              </p>
+
               <button
-                onClick={() => setShowOtpModal(true)}
-                className="w-full mt-4 py-2 bg-[#345261] text-white rounded-lg"
+                disabled={loading}
+                onClick={sendOtp}
+                className="w-full mt-4 py-2 bg-[#345261] text-white rounded-lg disabled:opacity-50"
               >
-                Send OTP
+                {loading ? "Sending OTP..." : "Send OTP"}
               </button>
             </>
           )}
 
           {/* OTP */}
+          {/* OTP */}
           {step === "otp" && (
             <>
-              {otpInfo && (
-                <p className="text-xs text-green-600 mb-2">{otpInfo}</p>
-              )}
+              <p className="text-sm text-gray-600 text-center mb-4">
+                OTP has been sent to
+              </p>
+
+              <p className="text-sm font-semibold text-[#345261] text-center mb-4">
+                {email}
+              </p>
+
               <input
-                className="w-full px-4 py-2 bg-[#EFF6FF] rounded-lg"
+                type="text"
+                inputMode="numeric"
+                maxLength={6}
+                className="w-full px-4 py-2 bg-[#EFF6FF] rounded-lg text-center tracking-[8px]"
                 placeholder="Enter OTP"
                 value={otp}
-                onChange={(e) => setOtp(e.target.value)}
+                onChange={(e) =>
+                  setOtp(e.target.value.replace(/\D/g, ""))
+                }
               />
+
               <button
                 onClick={verifyOtp}
-                className="w-full mt-4 py-2 bg-[#345261] text-white rounded-lg"
+                disabled={otp.length !== 6}
+                className="w-full mt-4 py-2 bg-[#345261] text-white rounded-lg disabled:opacity-50"
               >
                 Verify OTP
               </button>

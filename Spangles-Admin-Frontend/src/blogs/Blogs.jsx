@@ -240,33 +240,48 @@ export default function Blogs() {
 
   /* Update Blog */
   const updateBlog = async () => {
-    try {
-      const formData = new FormData();
-      formData.append("title", title);
-      formData.append("content", content);
-      if (imageFile) formData.append("image", imageFile);
-      formData.append("category", category);
-      tags.forEach((tag) => formData.append("tags", tag));
-
-      const res = await fetch(`${API_BASE}/api/blogs/${selectedBlog._id}`, {
-        method: "PUT",
-        body: formData,
-      });
-
-      const data = await res.json();
-
-      setBlogs((prev) =>
-        prev.map((b) => (b._id === selectedBlog._id ? data : b))
-      );
-
-      setSelectedBlog(data);
-      setIsEditing(false);
-      setPage("view");
-      setToast("Blog updated successfully!");
-    } catch {
-      setToast("Failed to update blog");
+  try {
+    if (!selectedBlog?._id) {
+      setToast("Blog ID is missing");
+      return;
     }
-  };
+
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("content", content);
+    formData.append("category", category);
+    tags.forEach((tag) => formData.append("tags", tag));
+
+    if (imageFile) {
+      formData.append("image", imageFile);
+    }
+
+    const res = await fetch(`${API_BASE}/api/blogs/${selectedBlog._id}`, {
+      method: "PUT",
+      body: formData,
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.error || data.message || "Failed to update blog");
+    }
+
+    setBlogs((prev) =>
+      prev.map((b) => (b._id === selectedBlog._id ? data : b))
+    );
+
+    setSelectedBlog(data);
+    setIsEditing(false);
+    setImageFile(null);
+    setImagePreview(data.image ? `${API_BASE}/api/blogs/view/${data.image.split("/").pop()}` : null);
+    setPage("view");
+    setToast("Blog updated successfully!");
+  } catch (err) {
+    console.error("Update blog error:", err);
+    setToast(err.message || "Failed to update blog");
+  }
+};
 
   /* Delete Blog */
   const deleteBlog = async (id) => {
@@ -382,6 +397,7 @@ export default function Blogs() {
                 <div className="absolute top-4 right-4 flex gap-2 translate-y-[-10px] opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
                   <button
                     onClick={() => {
+                      setSelectedBlog(blog);
                       setIsEditing(true);
                       setTitle(blog.title);
                       setContent(blog.content);
