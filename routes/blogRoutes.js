@@ -61,9 +61,9 @@ const upload = multer({
 /* -------------------- ROUTES -------------------- */
 router.post("/", upload.single("image"), createBlog);
 router.get("/", getBlogs);
+router.get("/view/:filename", serveBlogImage);
 router.get("/:id", getBlogById);
 router.put("/:id", upload.single("image"), updateBlog);
 router.delete("/:id", deleteBlog);
-router.get("/view/:filename", serveBlogImage);
 
 export default router;

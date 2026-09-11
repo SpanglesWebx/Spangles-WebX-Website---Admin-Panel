@@ -2,6 +2,7 @@ import express from "express";
 import multer from "multer";
 import path from "path";
 import fs from "fs";
+import Counter from "../models/Counter.js";
 
 import {
   createApplication,
@@ -22,11 +23,24 @@ if (!fs.existsSync(UPLOADS_DIR)) {
 /* --------------------------------------------------- */
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, UPLOADS_DIR),
-  filename: (req, file, cb) => {
-    const uniqueName = `resume-${Date.now()}-${Math.round(
-      Math.random() * 1e6
-    )}${path.extname(file.originalname)}`;
-    cb(null, uniqueName);
+  filename: async (req, file, cb) => {
+    try {
+      const counter = await Counter.findOneAndUpdate(
+        { name: "applicantId" },
+        { $inc: { sequence: 1 } },
+        { new: true, upsert: true, setDefaultsOnInsert: true }
+      );
+
+      const applicantId = `APP${String(counter.sequence).padStart(4, "0")}`;
+
+      req.applicantId = applicantId;
+
+      const extension = path.extname(file.originalname).toLowerCase();
+
+      cb(null, `${applicantId}${extension}`);
+    } catch (error) {
+      cb(error);
+    }
   },
 });
 

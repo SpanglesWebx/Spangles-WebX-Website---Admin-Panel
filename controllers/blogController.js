@@ -93,10 +93,12 @@ export const updateBlog = async (req, res) => {
     const blog = await Blog.findById(req.params.id);
     if (!blog) return res.status(404).json({ error: "Blog not found" });
 
+    const oldTitle = blog.title;
+
     blog.title = req.body.title || blog.title;
     blog.content = req.body.content || blog.content;
 
-    if (req.body.title && req.body.title !== blog.title) {
+    if (req.body.title && req.body.title !== oldTitle) {
       blog.slug = slugify(req.body.title, {
         lower: true,
         strict: true,

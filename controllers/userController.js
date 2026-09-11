@@ -91,45 +91,150 @@ export const deleteUser = async (req, res) => {
 };
 
 /* ================= SEND ADMIN OTP ================= */
+// export const sendAdminOtp = async (req, res) => {
+//   try {
+//     const adminEmail = process.env.ADMIN_EMAIL;
+//     if (!adminEmail) {
+//       return res.status(500).json({ message: "ADMIN_EMAIL not set" });
+//     }
+
+//     const admin = await User.findOne({ username: "Webx Admin" });
+//     if (!admin) {
+//       return res.status(404).json({ message: "Admin not found" });
+//     }
+
+//     // 🔐 Generate 6-digit OTP
+//     const otp = Math.floor(100000 + Math.random() * 900000).toString();
+
+//     admin.resetOtp = otp;
+//     admin.resetOtpExpires = new Date(Date.now() + 10 * 60 * 1000);
+//     admin.isOtpVerified = false;
+//     await admin.save();
+
+//     const transporter = await createTransporter();
+
+//     const info = await transporter.sendMail({
+//       from: `"SPANGLES WBX Support" <${process.env.EMAIL_USER}>`,
+//       to: adminEmail,
+//       subject: "Password Reset OTP",
+
+//       // Plain text (important for inbox delivery)
+//       text: `
+// Hello Webx Admin,
+
+// We received a request to reset your password.
+
+// Your One-Time Password (OTP) is:
+// ${otp}
+
+// Please enter this OTP to proceed with resetting your password.
+
+// This code is valid for a limited time for security reasons (3 minutes).
+// If you did not request a password reset, please ignore this email.
+
+// Thank you,
+// SPANGLES WEBX
+// Support Team
+//       `,
+
+//       // HTML email
+//       html: `
+//         <p>Hello <b>Webx Admin</b>,</p>
+
+//         <p>We received a request to reset your password.</p>
+
+//         <p><b>Your One-Time Password (OTP) is:</b></p>
+
+//         <h2 style="letter-spacing:2px;">${otp}</h2>
+
+//         <p>Please enter this OTP to proceed with resetting your password.</p>
+
+//         <p style="color:#555;">
+//           This code is valid for a limited time for security reasons(3mins).
+//           <br />
+//           If you did not request a password reset, please ignore this email.
+//         </p>
+
+//         <br />
+
+//         <p>
+//           Thank you,<br />
+//           <b>SPANGLES WEBX</b><br />
+//           Support Team
+//         </p>
+//       `,
+//     });
+
+//     console.log("📨 OTP Mail sent:", info.messageId);
+
+//     res.json({ message: "OTP sent successfully" });
+//   } catch (err) {
+//     console.error("SEND OTP ERROR:", err);
+//     res.status(500).json({ message: "Failed to send OTP" });
+//   }
+// };
+
+/* ================= SEND OTP ================= */
 export const sendAdminOtp = async (req, res) => {
   try {
-    const adminEmail = process.env.ADMIN_EMAIL;
-    if (!adminEmail) {
-      return res.status(500).json({ message: "ADMIN_EMAIL not set" });
+    const { username } = req.body;
+
+    if (!username) {
+      return res.status(400).json({
+        message: "Username is required",
+      });
     }
 
-    const admin = await User.findOne({ username: "Webx Admin" });
-    if (!admin) {
-      return res.status(404).json({ message: "Admin not found" });
+    // Find user using username
+    const user = await User.findOne({ username });
+
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found",
+      });
     }
 
-    // 🔐 Generate 6-digit OTP
-    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    // Get email from User schema
+    if (!user.email) {
+      return res.status(400).json({
+        message: "No email address is registered for this user",
+      });
+    }
 
-    admin.resetOtp = otp;
-    admin.resetOtpExpires = new Date(Date.now() + 10 * 60 * 1000);
-    admin.isOtpVerified = false;
-    await admin.save();
+    // Generate 6-digit OTP
+    const otp = Math.floor(
+      100000 + Math.random() * 900000
+    ).toString();
 
+    // Save OTP
+    user.resetOtp = otp;
+    user.resetOtpExpires = new Date(
+      Date.now() + 3 * 60 * 1000
+    );
+    user.isOtpVerified = false;
+
+    await user.save();
+
+    // Create mail transporter
     const transporter = await createTransporter();
 
+    // Send OTP to user's registered email
     const info = await transporter.sendMail({
       from: `"SPANGLES WBX Support" <${process.env.EMAIL_USER}>`,
-      to: adminEmail,
+      to: user.email,
       subject: "Password Reset OTP",
 
-      // Plain text (important for inbox delivery)
       text: `
-Hello Webx Admin,
+Hello ${user.name || user.username},
 
 We received a request to reset your password.
 
 Your One-Time Password (OTP) is:
+
 ${otp}
 
-Please enter this OTP to proceed with resetting your password.
+This OTP is valid for 3 minutes.
 
-This code is valid for a limited time for security reasons (3 minutes).
 If you did not request a password reset, please ignore this email.
 
 Thank you,
@@ -137,49 +242,64 @@ SPANGLES WEBX
 Support Team
       `,
 
-      // HTML email
       html: `
-        <p>Hello <b>Webx Admin</b>,</p>
+        <div style="font-family: Arial, sans-serif;">
+          <p>Hello <b>${user.name || user.username}</b>,</p>
 
-        <p>We received a request to reset your password.</p>
+          <p>
+            We received a request to reset your password.
+          </p>
 
-        <p><b>Your One-Time Password (OTP) is:</b></p>
+          <p>
+            <b>Your One-Time Password (OTP) is:</b>
+          </p>
 
-        <h2 style="letter-spacing:2px;">${otp}</h2>
+          <h2 style="letter-spacing: 5px;">
+            ${otp}
+          </h2>
 
-        <p>Please enter this OTP to proceed with resetting your password.</p>
+          <p>
+            This OTP is valid for <b>3 minutes</b>.
+          </p>
 
-        <p style="color:#555;">
-          This code is valid for a limited time for security reasons(3mins).
+          <p style="color:#666;">
+            If you did not request a password reset,
+            please ignore this email.
+          </p>
+
           <br />
-          If you did not request a password reset, please ignore this email.
-        </p>
 
-        <br />
-
-        <p>
-          Thank you,<br />
-          <b>SPANGLES WEBX</b><br />
-          Support Team
-        </p>
+          <p>
+            Thank you,<br />
+            <b>SPANGLES WEBX</b><br />
+            Support Team
+          </p>
+        </div>
       `,
     });
 
-    console.log("📨 OTP Mail sent:", info.messageId);
+    console.log("📨 OTP sent to:", user.email);
+    console.log("📨 Message ID:", info.messageId);
 
-    res.json({ message: "OTP sent successfully" });
+    res.json({
+      message: "OTP sent successfully",
+      email: user.email,
+    });
+
   } catch (err) {
     console.error("SEND OTP ERROR:", err);
-    res.status(500).json({ message: "Failed to send OTP" });
+
+    res.status(500).json({
+      message: "Failed to send OTP",
+    });
   }
 };
-
 /* ================= VERIFY OTP ================= */
 export const verifyAdminOtp = async (req, res) => {
   try {
     const { otp } = req.body;
 
-    const admin = await User.findOne({ username: "Webx Admin" });
+    const admin = await User.findOne({ username: "WebxAdmin" });
     if (!admin) {
       return res.status(404).json({ message: "Admin not found" });
     }
@@ -219,7 +339,7 @@ export const resetAdminPassword = async (req, res) => {
       return res.status(400).json({ message: "WEAK_PASSWORD" });
     }
 
-    const admin = await User.findOne({ username: "Webx Admin" });
+    const admin = await User.findOne({ username: "WebxAdmin" });
     if (!admin) {
       return res.status(404).json({ message: "Admin not found" });
     }

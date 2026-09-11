@@ -1,5 +1,6 @@
 import Application from "../models/Application.js";
 import Job from "../models/Job.js";
+import Counter from "../models/Counter.js";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -7,49 +8,30 @@ import { fileURLToPath } from "url";
 /* --------------------------------------------------- */
 export const createApplication = async (req, res) => {
   try {
-    // ✅ check file
-    if (!req.file) {
-      return res.status(400).json({ message: "Resume file is required" });
-    }
+    if (!req.file) return res.status(400).json({ message: "Resume file is required" });
 
-    // ✅ get data from body
-    const {
-      yourName,
-      yourEmail,
-      mobileNumber,
-      skills,
-      experienceYears,
-      salaryExpectation,
-      jobId,
-    } = req.body;
+    const { yourName, yourEmail, mobileNumber, skills, experienceYears, salaryExpectation, jobId } = req.body;
 
-    // ✅ required validation
     if (!yourName || !yourEmail || !mobileNumber || !jobId) {
       return res.status(400).json({ message: "Required fields missing" });
     }
 
-    // ✅ fetch job
     const jobData = await Job.findById(jobId);
-    if (!jobData) {
-      return res.status(404).json({ message: "Job not found" });
-    }
+    if (!jobData) return res.status(404).json({ message: "Job not found" });
 
-    // ✅ create application (IMPORTANT FIX HERE)
+    const applicantId = req.applicantId;
+
     const application = new Application({
+      applicantId,
       yourName,
       yourEmail,
       mobileNumber,
-
-      // ✅ MUST BE VALUES (NOT SCHEMA)
       experienceYears: experienceYears ? String(experienceYears) : "",
       skills: skills ? String(skills) : "",
       salaryExpectation: salaryExpectation ? String(salaryExpectation) : "",
-
       jobId: jobData._id,
       jobTitle: jobData.jobTitle,
       designation: jobData.designation,
-      description: jobData.jobSummary,
-
       pdfFile: {
         filename: req.file.filename,
         contentType: req.file.mimetype,
@@ -59,8 +41,10 @@ export const createApplication = async (req, res) => {
 
     await application.save();
 
-    res.status(201).json({ message: "Application submitted successfully" });
-
+    res.status(201).json({
+      message: "Application submitted successfully",
+      applicantId: application.applicantId,
+    });
   } catch (err) {
     console.error("❌ Application Error:", err);
     res.status(500).json({ message: err.message });

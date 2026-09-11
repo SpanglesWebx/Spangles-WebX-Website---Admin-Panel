@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const applicationSchema = new mongoose.Schema(
   {
+    applicantId: { type: String, unique: true, sparse: true, index: true },
     yourName: { type: String, required: true },
     mobileNumber: { type: String, required: true },
     yourEmail: { type: String, required: true },
